@@ -91,7 +91,16 @@ Department of Informatics and Telecommunications, University of Ioannina,
 \end_layout
 
 \begin_layout Abstract
-Write some abstract here
+This paper presents and analyzes a programming tool that implements a method
+ for classification and function regression problems.
+ This method builds new features from existing ones with the assistance
+ of a hybrid algorithm that makes use of artificial neural networks and
+ Grammatical Evolution.
+ The implemented software exploits modern multi-core computing units for
+ faster execution.
+ The method has been applied to a variety of classification and function
+ regression problems and an extensive comparison with other methods of computati
+onal intelligence is made.
 \end_layout
 
 \end_body

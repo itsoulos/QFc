@@ -7,28 +7,50 @@
 # include <nnc.h>
 # include <QDebug>
 
+#include <ostream>
+namespace Color {
+    enum Code {
+        FG_RED      = 31,
+        FG_GREEN    = 32,
+        FG_BLUE     = 34,
+        FG_DEFAULT  = 39,
+        BG_RED      = 41,
+        BG_GREEN    = 42,
+        BG_BLUE     = 44,
+        BG_DEFAULT  = 49
+    };
+    class Modifier {
+        Code code;
+    public:
+        Modifier(Code pCode) : code(pCode) {}
+        friend std::ostream&
+        operator<<(std::ostream& os, const Modifier& mod) {
+            return os << "\033[" << mod.code << "m";
+        }
+    };
+}
 
 void printOption(QString fullName,QString shortName,
                  QString description,QString value)
 {
-    QString s=QString("%1 %2 %3 %4 %5").arg(fullName,-27).
-            arg(shortName,5).arg(description,-35).arg("Default value:",-15).arg(value,-10);
+    QString s=QString("%1 %2 %3 %4").arg(fullName,-27).
+            arg(description,-35).arg("Default value:",-15).arg(value,-10);
     qDebug().noquote()<<s;
 }
 
 void printOption(QString fullName,QString shortName,
                  QString description,int value)
 {
-    QString s=QString("%1 %2 %3 %4 %5").arg(fullName,-27).
-            arg(shortName,5).arg(description,-35).arg("Default value:",-15).arg(value,-10);
+    QString s=QString("%1 %2 %3 %4").arg(fullName,-27).
+            arg(description,-35).arg("Default value:",-15).arg(value,-10);
     qDebug().noquote()<<s;
 }
 
 void printOption(QString fullName,QString shortName,
                  QString description,double value)
 {
-    QString s=QString("%1 %2 %3 %4 %5").arg(fullName,-27).
-            arg(shortName,5).arg(description,-35).arg("Default value:",-15).arg(value,-10);
+    QString s=QString("%1 %2 %3 %4").arg(fullName,-27).
+           arg(description,-35).arg("Default value:",-15).arg(value,-10);
     qDebug().noquote()<<s;
 }
 
@@ -40,7 +62,7 @@ void printParams()
     printOption("--features","-d","Define the number of constructed features",features);
     printOption("--randomSeed","-r","Random seed",randomSeed);
     printOption("--featureCreateModel","-k",
-                "The model used for feature construction (rbf,neural,knn,armaRbf,osamaRbf)",
+                "The model used for feature construction (rbf,neural,knn,copy,armaRbf,osamaRbf)",
                 featureCreatemodel);
     printOption("--featureEvaluateModel","-e",
                 "The model used to evaluate the constructed features (rbf,neural,knn,armaRbf,osamaRbf,nnc)",
@@ -258,6 +280,28 @@ void makeGrammaticalEvolution()
         defaultModel->setPatternDimension(features);
         ((OsamaRbf *)defaultModel)->setNumOfWeights(rbf_weights);
     }
+    else
+    if(featureCreatemodel=="copy")
+    {
+        //make default mapper showing the original features
+        delete  defaultMapper;
+        FILE *fp=fopen(trainFile.toStdString().c_str(),"r");
+        int original_dimension;
+        fscanf(fp,"%d",&original_dimension);
+        fclose(fp);
+        defaultMapper = new Mapper(original_dimension);
+        vector<string> sexpr;
+        sexpr.resize(original_dimension);
+        for(int i=0;i<(int)sexpr.size();i++)
+        {
+            char ss[10];
+            sprintf(ss,"x%d",i+1);
+            sexpr[i]=ss;
+        }
+        defaultMapper->setExpr(sexpr);
+        features = original_dimension;
+        return ;
+    }
 
     defaultProgram = new NNprogram(defaultMapper,defaultModel,features,trainFile);
     srand(randomSeed);
@@ -291,7 +335,7 @@ void    makeTest()
 
     if(featureEvaluateModel=="neural")
     {
-        evalModel = new Neural(defaultProgram->getMapper());
+        evalModel = new Neural(defaultMapper);
          evalModel->readPatterns(trainFile);
         evalModel->setPatternDimension(features);
         ((Neural *)evalModel)->setNumOfWeights(neural_weights);
