@@ -292,7 +292,6 @@ void makeGrammaticalEvolution()
             for(int i=0;i<threads;i++)
                {
                 tmodel[i] = new Rbf(tmapper[i]);
-                 printf("make model %d \n",i);
                 tmodel[i]->setPatternDimension(features);
                 ((Rbf *)tmodel[i])->setNumOfWeights(rbf_weights);
             }

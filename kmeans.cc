@@ -156,6 +156,9 @@ void myKmeans(double * data_vectors, double * centers,
 	delete[] old;
 }
 
+# include <random>
+using namespace std;
+
 
 void Kmeans(double * data_vectors, double * centers, 
             double * variances, int m, int n, int K)
@@ -164,6 +167,8 @@ void Kmeans(double * data_vectors, double * centers,
 	int j=0;
 	int l=0;
 	int k=0;
+
+
 	double * new_centers = (double*)malloc(sizeof(double)*K*n);
 	int **cluster_members=new int*[K];
 	for(int i=0;i<K;i++)
@@ -185,8 +190,9 @@ void Kmeans(double * data_vectors, double * centers,
 	// Assign a random center to each example in the training set
 	for(i=0; i<K; i++)
 	{
-		do{
-			random_centers[i]=(int)((m-1) * drand48());
+        do{
+            double random =drand48();
+            random_centers[i]=(int)((m-1) * random);
 		}while(random_centers[i]>m);
 		
 	}

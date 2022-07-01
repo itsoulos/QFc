@@ -142,5 +142,5 @@ void	OsamaRbf::getDeriv(Matrix x,Matrix &g)
 
 double	OsamaRbf::funmin(Matrix x)
 {
-
+    return Model::funmin(x);
 }

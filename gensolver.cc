@@ -79,7 +79,7 @@ else*/
     Neural *nn=(Neural *)problem;
 double    v=problem->funmin(g);
     v=v*(1.0+100.0*nn->countViolate(20.0));
-    return -v;
+    //return -v;
  return -problem->funmin(g);
 }
 

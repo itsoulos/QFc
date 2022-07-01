@@ -17,12 +17,14 @@ double *Output;
 
 double Rbf::train1()
 {
+
 	int noutput=1;
 	#ifdef CLASS
 		noutput=2;
 	#endif
-	if(weight.size() != noutput * num_weights)
+    if(first)//weight.size() != noutput * num_weights)
 	{
+        first = false;
 		weight.resize(num_weights*noutput);
 		setDimension(num_weights*noutput);
 		if(centers)
@@ -36,17 +38,18 @@ double Rbf::train1()
 		variances = new double[num_weights * pattern_dimension];
 		weights = new double[num_weights*noutput];
 		input = new double[pattern_dimension*xpoint.size()];
+        Output=new double[noutput * xpoint.size()];
 	}
-	Output=new double[noutput * xpoint.size()];
+
 
 	Matrix xx;
 	xx.resize(original_dimension);
 	for(int i=0;i<xpoint.size();i++) 
 	{
-		int d=mapper->map(origx[i],xpoint[i]);
+        int d=mapper->map(origx[i],xpoint[i]);
 		if(!d) 
 		{
-			delete[] Output;
+        //	delete[] Output;
 			return 1e+100;
 		}
 		for(int j=0;j<pattern_dimension;j++)
@@ -56,8 +59,7 @@ double Rbf::train1()
 		}
 		if(!d)  
 		{
-			printf("fail3\n");
-			delete[] Output;
+            //delete[] Output;
 			return 1e+100;
 		}
 #ifndef CLASS
@@ -72,12 +74,12 @@ double Rbf::train1()
 	}
 #endif
 
-
+        srand48(1);
         Kmeans(input,centers,variances,
-			xpoint.size(),pattern_dimension,num_weights);
+            xpoint.size(),pattern_dimension,num_weights);
 	
         int icode=train_rbf(pattern_dimension,num_weights,noutput,xpoint.size(),
-			centers,variances,weights,input,Output);
+            centers,variances,weights,input,Output);
 	double v =0.0;
 #ifndef CLASS
 	double norm=0.0;
@@ -99,7 +101,7 @@ double Rbf::train1()
 		delete[] xt;
 	}
 #endif
-	delete[] Output;
+    //delete[] Output;
 	if(icode==1) return 1e+100;
 	return v;
 }
@@ -164,7 +166,7 @@ double	Rbf::setWeightValuesFromPattern(double *pattern,int size)
 
 
 
-	srand48(1);
+    srand48(1);
         Kmeans(input,centers,variances,
 			xpoint.size(),pattern_dimension,num_weights);
 	
@@ -223,5 +225,6 @@ Rbf::~Rbf()
 	delete[] variances;
 	delete[] weights;
 	delete[] input;
+    delete[] Output;
 
 }
