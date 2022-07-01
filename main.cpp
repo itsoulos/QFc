@@ -68,6 +68,7 @@ void printParams()
                 "The model used to evaluate the constructed features (rbf,neural,knn,armaRbf,osamaRbf,nnc)",
                 featureEvaluateModel);
     printOption("--testIters","-i","The number of iterations for testing",testIters);
+    printOption("--threads","-t","The number of threads",threads);
     printOption("--neural_weights","-w","Hidden nodes in neural network",
                 neural_weights);
     printOption("--neural_trainingMethod","-m","Training method for neural network. Available options: bfgs,genetic,conj,leve",
@@ -178,6 +179,7 @@ void parseCmdLine(QStringList args)
         checkParameter(name,value,"--featureCreateModel","-k",featureCreatemodel);
         checkParameter(name,value,"--featureEvaluateModel","-e",featureEvaluateModel);
         checkParameter(name,value,"--testIters","-i",testIters);
+        checkParameter(name,value,"--threads","-i",threads);
         checkParameter(name,value,"--neural_weights","-w",neural_weights);
         checkParameter(name,value,"--neural_trainingMethod","-m",neural_trainingMethod);
         checkParameter(name,value,"--knn_weights","-w",knn_weights);
@@ -208,6 +210,9 @@ NNprogram *defaultProgram;
 Model     *defaultModel;
 Mapper    *defaultMapper;
 int       patternDimension;
+vector<Program*> tprogram;
+vector<Mapper*> tmapper;
+vector<Model*>  tmodel;
 
 void checkTrainAndTest()
 {
@@ -243,21 +248,55 @@ void checkTrainAndTest()
 void makeGrammaticalEvolution()
 {
     Population *pop;
+    if(threads<=1)
     defaultMapper = new Mapper(patternDimension);
-
+    else
+    {
+        tmapper.resize(threads);
+        tmodel.resize(threads);
+        for(int i=0;i<threads;i++)
+            tmapper[i]=new Mapper(patternDimension);
+    }
     if(featureCreatemodel=="neural")
     {
+        if(threads<=1)
+        {
         defaultModel = new Neural(defaultMapper);
         defaultModel->setPatternDimension(features);
         ((Neural *)defaultModel)->setNumOfWeights(neural_weights);
         ((Neural *)defaultModel)->setLocalSearchMethod(neural_trainingMethod);
+        }
+        else
+        {
+            for(int i=0;i<threads;i++)
+            {
+            tmodel[i] = new Neural(tmapper[i]);
+             tmodel[i]->setPatternDimension(features);
+
+            ((Neural *) tmodel[i])->setNumOfWeights(neural_weights);
+            ((Neural *) tmodel[i])->setLocalSearchMethod(neural_trainingMethod);
+            }
+        }
     }
     else
     if(featureCreatemodel=="rbf")
     {
+        if(threads<=1)
+        {
         defaultModel = new Rbf(defaultMapper);
         defaultModel->setPatternDimension(features);
         ((Rbf *)defaultModel)->setNumOfWeights(rbf_weights);
+        }
+        else
+        {
+            for(int i=0;i<threads;i++)
+               {
+                tmodel[i] = new Rbf(tmapper[i]);
+                 printf("make model %d \n",i);
+                tmodel[i]->setPatternDimension(features);
+                ((Rbf *)tmodel[i])->setNumOfWeights(rbf_weights);
+            }
+        }
     }
     else
     if(featureCreatemodel=="knn")
@@ -269,16 +308,41 @@ void makeGrammaticalEvolution()
     else
     if(featureCreatemodel=="armaRbf")
     {
+        if(threads<=1)
+        {
         defaultModel=new ArmaRbf(defaultMapper);
         defaultModel->setPatternDimension(features);
         ((ArmaRbf *)defaultModel)->setNumOfWeights(rbf_weights);
+        }
+        else
+        {
+            for(int i=0;i<threads;i++)
+            {
+                tmodel[i]=new ArmaRbf(tmapper[i]);
+                tmodel[i]->setPatternDimension(features);
+                ((ArmaRbf *)tmodel[i])->setNumOfWeights(rbf_weights);
+            }
+        }
     }
     else
     if(featureCreatemodel=="osamaRbf")
     {
+        if(threads<=1)
+        {
         defaultModel=new OsamaRbf(defaultMapper);
         defaultModel->setPatternDimension(features);
         ((OsamaRbf *)defaultModel)->setNumOfWeights(rbf_weights);
+        }
+        else
+        {
+            //printf("Enter heere \n");
+            for(int i=0;i<threads;i++)
+            {
+                tmodel[i]=new OsamaRbf(tmapper[i]);
+                tmodel[i]->setPatternDimension(features);
+                ((OsamaRbf *)tmodel[i])->setNumOfWeights(rbf_weights);
+            }
+        }
     }
     else
     if(featureCreatemodel=="copy")
@@ -303,11 +367,21 @@ void makeGrammaticalEvolution()
         return ;
     }
 
+    if(threads<=1)
     defaultProgram = new NNprogram(defaultMapper,defaultModel,features,trainFile);
     srand(randomSeed);
     srand48(randomSeed);
-
+    if(threads<=1)
     pop = new Population(ge_chromosomes,features * ge_length,defaultProgram);
+    else
+    {
+        tprogram.resize(threads);
+        for(int i=0;i<threads;i++)
+        {
+            tprogram[i]=new NNprogram(tmapper[i],tmodel[i],features,trainFile);
+        }
+          pop = new Population(ge_chromosomes,features * ge_length,tprogram);
+    }
     pop->setSelectionRate(ge_selectionRate);
     pop->setMutationRate(ge_mutationRate);
     pop->setLocalSearchGenerations(ge_localSearchGenerations);
@@ -319,12 +393,25 @@ void makeGrammaticalEvolution()
     {
             pop->nextGeneration();
             genome = pop->getBestGenome();
-            string s = defaultProgram->printF(genome);
+            string s = "";
+            if(threads<=1)
+                s=defaultProgram->printF(genome);
+            else
+                s=((NNprogram *)tprogram[0])->printF(genome);
+
             qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
                                 pop->getBestFitness()<<
                                 " Best program:\n"<<s.c_str();
     }
+    if(threads<=1)
+
     defaultProgram->fitness(genome);
+    else
+    {
+        ((NNprogram *)tprogram[0])->fitness(genome);
+        defaultMapper=tmapper[0];
+        defaultModel = tmodel[0];
+    }
     delete pop;
 }
 
@@ -428,10 +515,23 @@ void    makeTest()
 }
 
 void    freeMemory()
-{    delete defaultModel;
-    delete defaultMapper;
+{
+     if(threads<=1)
+     {
+         delete defaultMapper;
+        delete defaultProgram;
+         delete defaultModel;
 
-    delete defaultProgram;
+     }
+     else
+     {
+         for(int i=0;i<threads;i++)
+         {
+             delete tmodel[i];
+             delete tmapper[i];
+             delete tprogram[i];
+         }
+     }
 
 }
 int main(int argc, char *argv[])

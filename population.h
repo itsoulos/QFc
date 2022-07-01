@@ -1,7 +1,7 @@
 # ifndef __POPULATION__H
 # include <program.h>
 # include <QString>
-
+# include "omp.h"
 /* The Population class holds the current population. */
 /* The mutation, selection and crossover operators are defined here */
 class Population
@@ -17,6 +17,7 @@ class Population
 		int	genome_size;
 		int	generation;
 		Program	*program;
+        vector<Program*> tprogram;
 
 		void	crossover();
 		void	mutate();
@@ -29,6 +30,8 @@ class Population
         QString localSearchMethod;
 	public:
 		Population(int gcount,int gsize,Program *p);
+        Population(int gcount,int gsize,vector<Program *> p);
+
 		double 	fitness(vector<int> &g);
 		void	setElitism(int s);
         void	select();

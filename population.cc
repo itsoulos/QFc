@@ -8,6 +8,34 @@
 
 # define MAX_RULE	1024
 
+Population::Population(int gcount,int gsize,vector<Program *> p)
+{
+
+    elitism=1;
+    selection_rate = 0.1;
+    mutation_rate  = 0.1;
+    genome_count   = gcount;
+    genome_size    = gsize;
+    generation     = 0;
+    tprogram        = p;
+
+    /* Create the population and based on genome count and size */
+    /* Initialize the genomes to random */
+    double f;
+    genome=new int*[genome_count];
+    children=new int*[genome_count];
+    vector<int> g;
+    g.resize(genome_size);
+    for(int i=0;i<genome_count;i++)
+    {
+        genome[i]=new int[genome_size];
+        children[i]=new int[genome_size];
+            for(int j=0;j<genome_size;j++)
+                g[j]=genome[i][j]=rand()%MAX_RULE;
+    }
+    fitness_array=new double[genome_count];
+}
+
 /* Population constructor */
 /* Input: genome count , genome size, pointer to Program instance */
 Population::Population(int gcount,int gsize,Program *p)
@@ -51,6 +79,14 @@ void	Population::reset()
 /* Return the fitness of a genome */
 double 	Population::fitness(vector<int> &g)
 {
+    extern int threads;
+
+    if(threads>1)
+    {
+        double tf=tprogram[omp_get_thread_num()]->fitness(g);
+       // printf("TF[%4d]=%10.lg\n",omp_get_thread_num(),tf);
+        return tf;
+    }
 	return program->fitness(g);
 }
 
@@ -171,6 +207,31 @@ void	Population::calcFitnessArray()
 
 	double dmin=1e+100;
 	int icount=0;
+    extern int threads;
+    if(threads>1)
+    {
+
+#pragma omp parallel for num_threads(threads)
+        for(int i=0;i<genome_count;i++)
+        {
+            for(int j=0;j<genome_size;j++) g[j]=genome[i][j];
+            fitness_array[i]=fitness(g);
+            //else
+            //localSearch(i);
+            if(fabs(fitness_array[i])<dmin)
+            {
+                dmin=fabs(fitness_array[i]);
+            }
+            if(fabs(fitness_array[i])>=1e+100) icount++;
+            /*
+            if((i+1)%10==0)
+            {
+                printf(" %d:%.5lg ",i+1,dmin);
+                fflush(stdout);
+            }*/
+        }
+    }
+    else
 	for(int i=0;i<genome_count;i++)
 	{
 		for(int j=0;j<genome_size;j++) g[j]=genome[i][j];	

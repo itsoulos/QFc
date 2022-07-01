@@ -7,7 +7,7 @@ int      randomSeed=1;
 QString  featureCreatemodel="rbf";
 QString  featureEvaluateModel="neural";
 int      testIters=30;
-
+int      threads=1;
 /** Parameters for the neural network **/
 int      neural_weights=1;
 QString  neural_trainingMethod="bfgs";

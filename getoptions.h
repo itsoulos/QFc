@@ -14,6 +14,7 @@ extern int      randomSeed;
 extern QString  featureCreatemodel;
 extern QString  featureEvaluateModel;
 extern int      testIters;
+extern int      threads;
 
 /** Parameters for the neural network **/
 extern int      neural_weights;
