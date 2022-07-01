@@ -120,6 +120,38 @@ double KNN::train2()
 
 double KNN::output(Matrix x)
 {
+    int k = num_weights;
+    vector<double> dist;
+    vector<int> index;
+    dist.resize(xpoint.size());
+    index.resize(dist.size());
+    for(int i=0;i<xpoint.size();i++)
+    {
+        double d=getDistance(x,xpoint[i]);
+        index[i]=i;
+    }
+    for(int i=0;i<dist.size();i++)
+    {
+     for(int j=0;j<dist.size()-1;j++)
+     {
+         if(dist[j+1]<dist[j])
+         {
+             double d=dist[j];
+             dist[j]=dist[j+1];
+             dist[j+1]=d;
+             int k=index[j];
+             index[j]=index[j+1];
+             index[j+1]=k;
+         }
+     }
+    }
+    double average = 0.0;
+    for(int i=1;i<=k;i++)
+    {
+        average+=ypoint[index[i]];
+    }
+    average/=k;
+    return average;
 }
 
 void   KNN::getDeriv(Matrix x,Matrix &g)
@@ -158,7 +190,7 @@ void	KNN::makeDistance(vector<Matrix> &testx,vector<Matrix> &distance)
 			distance[i][j]=distance[j][i]=(i==j)?1e+100:getDistance(testx[i],testx[j]);
 		}
 		distance[i][i]=1e+100;
-		if(i%50==0) printf("make %d \n",i);
+
 	}
 }
 

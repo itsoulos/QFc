@@ -399,6 +399,9 @@ void    makeTest()
         double d;
         d=knn->train2();
         average_train_error+=d;
+        double t=evalModel->testError(testFile);
+        average_test_error+=t;
+
         average_class_error+=knn->KNNtestError(testx,testy,distance);
         testIters=1;
     }
