@@ -429,6 +429,16 @@ void    makeTest()
 
     }
     else
+    if(featureEvaluateModel=="weightNeural")
+    {
+        evalModel = new Neural(defaultMapper);
+         evalModel->readPatterns(trainFile);
+        evalModel->setPatternDimension(features);
+        ((Neural *)evalModel)->setNumOfWeights(neural_weights);
+        ((Neural *)evalModel)->enableWeightDecay();
+        ((Neural *)evalModel)->setLocalSearchMethod("genetic");
+    }
+    else
     if(featureEvaluateModel=="rbf")
     {
         evalModel = new Rbf(defaultMapper);

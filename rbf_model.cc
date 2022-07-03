@@ -74,6 +74,7 @@ double Rbf::train1()
 	}
 #endif
 
+    if(!isTrain2)
         srand48(1);
         Kmeans(input,centers,variances,
             xpoint.size(),pattern_dimension,num_weights);
@@ -182,8 +183,10 @@ double	Rbf::setWeightValuesFromPattern(double *pattern,int size)
 
 double Rbf::train2()
 {
-	return train1();
-	double v;
+    isTrain2=true;
+    double v= train1();
+    isTrain2=false;
+    return v;
 	double pattern[2 * maxWeight];
 	RbfSolve(this,pattern,v,0,0);
 	setWeightValuesFromPattern(pattern, 2* maxWeight);

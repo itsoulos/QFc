@@ -5,11 +5,13 @@ class Neural :public Model
 {
 private:
     QString localSearchMethod;
+    bool weigh_decay_flag = false;
 	public:
 		Neural(Mapper *m);
         Matrix bestWeight;
         double  bestValue;
         double    localSearch();
+        void enableWeightDecay();
         void    setLocalSearchMethod(QString s);
         QString  getLocalSearchMethod( ) const;
 		double	countViolate(double limit);

@@ -22,6 +22,7 @@ class GenSolver
 		int	elitism;
 		Problem	*problem;
 		int	small_tolmin_flag;
+        bool weight_decay_flag = false;
 	public:
 		void	local();
 		GenSolver(int gcount,Problem *p,double mx,int f);
@@ -39,6 +40,7 @@ class GenSolver
 		vector<double> getBestGenome() const;
 		void	reset();
 		void	setBest(double *x,double y);
+        void    enableWeightDecay();
 		~GenSolver();
 		
 };

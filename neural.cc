@@ -26,6 +26,10 @@ Neural::Neural(Mapper *m):Model(m)
     model_type = MODEL_NEURAL;
     localSearchMethod="bfgs";//available options are: bfgs, genetic, conj
 }
+void Neural::enableWeightDecay()
+{
+    weigh_decay_flag=true;
+}
 
 void	Neural::setWeights(Matrix x)
 {
@@ -300,6 +304,11 @@ double    Neural::localSearch()
     if(localSearchMethod=="genetic")
     {
         double v;
+        if(weigh_decay_flag)
+        {
+            GenSolve(this,weight,v,0,1);
+        }
+        else
         GenSolve(this,weight,v,0,0);
         for(int i=0;i<weight.size();i++)
         {

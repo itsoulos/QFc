@@ -7,6 +7,7 @@ class Rbf :public Model
 	private:
 	        double *input,*centers,*variances,*weights;
             bool first=true;
+            bool isTrain2=false;
 	public:
 		Rbf(Mapper *m);
 		double	setWeightValuesFromPattern(double *pattern,int size);

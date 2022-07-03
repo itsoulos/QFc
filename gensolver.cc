@@ -35,24 +35,15 @@ GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 	}
 	fitness_array=new double[genome_count];
 }
+void    GenSolver::enableWeightDecay()
+{
+    weight_decay_flag = true;
+}
 
 void	GenSolver::reset()
 {
 }
 
-static double computeFactor(double v)
-{
-	if(v<=0.1) return pow(2.0,1.0);
-	if(v<=0.2) return pow(2.0,2.0);
-	if(v<=0.3) return pow(2.0,3.0);
-	if(v<=0.4) return pow(2.0,4.0);
-	if(v<=0.5) return pow(2.0,5.0);
-	if(v<=0.6) return pow(2.0,6.0);
-	if(v<=0.7) return pow(2.0,7.0);
-	if(v<=0.8) return pow(2.0,8.0);
-	if(v<=0.9) return pow(2.0,9.0);
-	if(v<=1.0) return pow(2.0,10.0);
-}
 
 double 	GenSolver::fitness(vector<double> &g)
 {
@@ -78,9 +69,13 @@ if(generation%5==0 && rand() % genome_count<=10)
 else*/
     Neural *nn=(Neural *)problem;
 double    v=problem->funmin(g);
+if(weight_decay_flag)
+{
     v=v*(1.0+100.0*nn->countViolate(20.0));
-    //return -v;
- return -problem->funmin(g);
+    return -v;
+}
+return -v;
+ //return -problem->funmin(g);
 }
 
 void	GenSolver::select()
@@ -334,6 +329,8 @@ void	GenSolve(Problem *p,Matrix &x,double &y,double mx,int flag)
     const int genome_count =genetic_chromosomes;
     const int max_generations =genetic_maxGenerations;
 	GenSolver pop(genome_count,p,mx,flag);
+    if(flag)
+        pop.enableWeightDecay();
     pop.setSelectionRate(genetic_selectionRate);
     pop.setMutationRate(genetic_mutationRate);
 	Neural *nn=(Neural *)p;
