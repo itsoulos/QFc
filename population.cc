@@ -404,6 +404,7 @@ class PopulationProblem: public Problem
 
 void	Population::localSearch(int pos)
 {
+    if(localSearchMethod=="none") return;
 	vector<int> g;
 	g.resize(genome_size);
 
@@ -460,11 +461,6 @@ void	Population::localSearch(int pos)
             else	genome[pos][ipos]=old_value;
             }
         }
-    }
-    else
-    if(localSearchMethod=="grs")
-    {
-
     }
     else
     if(localSearchMethod=="bfgs")

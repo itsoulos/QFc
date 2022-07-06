@@ -111,6 +111,14 @@ Introduction
 Methods 
 \end_layout
 
+\begin_layout Subsection
+The feature construction step 
+\end_layout
+
+\begin_layout Subsection
+The feature evaluation step
+\end_layout
+
 \begin_layout Section
 Experiments 
 \end_layout
@@ -355,16 +363,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Lymography
-\series default
- dataset.
- The aim here is to detect the presence of a lymphoma in patients.
- It contains 148 patterns of 18 features each.
 \end_layout
 
 \begin_layout Enumerate
@@ -878,7 +876,7 @@ name "tab:class_results"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="30" columns="7">
+<lyxtabular version="3" rows="29" columns="7">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1543,71 +1541,6 @@ IONOSPHERE
 
 \begin_layout Plain Layout
 LIVERDISORDER
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-LYMOGRAPHY
 \end_layout
 
 \end_inset

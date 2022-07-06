@@ -96,7 +96,7 @@ void printParams()
                 ge_localSearchRate);
 
     printOption("--ge_localSearchMethod","-m",
-                "The local search used in Grammatical Evolution",
+                "The local search used in Grammatical Evolution(none,random,crossover,bfgs)",
                 ge_localSearchMethod);
 
     printOption("--genetic_chromosomes","-c","Chromosomes for the genetic algorithm",
