@@ -111,6 +111,13 @@ Introduction
 Methods 
 \end_layout
 
+\begin_layout Standard
+The proposed technique is divided into two phases: in the first phase new
+ features are constructed from the old ones using Grammatical Evolution
+ and in the second phase these new features modify the control set and a
+ machine learning model is applied to the new control set.
+\end_layout
+
 \begin_layout Subsection
 The feature construction step 
 \end_layout
@@ -185,59 +192,6 @@ The final outcome of the previous steps is a command line program called
 qfc
 \emph default
 .
-\end_layout
-
-\begin_layout Subsection
-The program qfc 
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-trainFile=filename
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-testFile=filename
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-features=n
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-randomSeed=r
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-featureCreateModel=model
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-featureEvaluateModel=model
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $--$
-\end_inset
-
-testIters=n
 \end_layout
 
 \begin_layout Subsection
@@ -316,6 +270,223 @@ x_{M1} & x_{M2} & \ldots & x_{MD} & y_{M}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+The program qfc 
+\end_layout
+
+\begin_layout Standard
+The program 
+\emph on
+qfc
+\emph default
+ has a variety of command line options.
+ All options are in form 
+\begin_inset Formula $--$
+\end_inset
+
+key=value, where key is the name of the option and value is actual option
+ value.
+ The main options of the program are:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+trainFile=filename, where filename is the full path to data contain the
+ input train set.
+ The file must be in the format of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-of-input"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+testFile=filename, where filename is the full path to data contain the input
+ test set.
+ The user should at least provide the train and test set in order to execute
+ the program.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+features=n, set as the n the number of features that will constructed by
+ the method.
+ The default value is 1.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+randomSeed=r, set as r the random seed generator.
+ The default value for this parameter is 1 and the drand48() random generator
+ of c++ language was used.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+featureCreateModel=model, the string parameter model sets the name of the
+ used feature construction model.
+ The default value is 
+\begin_inset Quotes eld
+\end_inset
+
+rbf
+\begin_inset Quotes erd
+\end_inset
+
+ but other accepted values are: neural, knn.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+featureEvaluateModel=model, the string parameter model sets the name of
+ the used model for the evalution of the constructed features.
+ The default value is 
+\begin_inset Quotes eld
+\end_inset
+
+neural
+\begin_inset Quotes erd
+\end_inset
+
+ but other accepted values are: rbf, knn.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+threads=t, the number of OpenMP threads used.
+ The default value is 1.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+neural_weights=n, the weights used in neural networks.
+ The default value is 1.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+knn_weights=n, the weights (neighboors) used in knn model.
+ The default value is 1.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+rbf_weights=n, the weights used in rbf model.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+ge_chromosomes=n, the number of chromosomes for the Grammatical Evolution
+ procedure.
+ The default value is 500.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+ge_maxGenerations=n, the maximum number of generations for the Grammatical
+ Evolution procedure.
+ The default value is 200.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+ge_selectionRate=f, the selection rate used in the Grammatical Evolution
+ procedure.
+ The default value is 0.10 (10%).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+ge_mutationRate=f, the mutation rate used in the Grammatical Evolution procedure.
+ The default value is 0.05 (5%).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+ge_length=n, the length of chromosomes in the Grammatical Evolution procedure.
+ The default value is 
+\begin_inset Formula $40\times d$
+\end_inset
+
+, where 
+\begin_inset Formula $d$
+\end_inset
+
+ is the number of features that will be created.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+genetic_chromosomes=n
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+genetic_maxGenerations=n
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+genetic_selectionRate=f
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+genetic_mutationRate=f
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+bfgs_iterations=n
 \end_layout
 
 \begin_layout Subsection
