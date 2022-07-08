@@ -41,3 +41,11 @@ int      bfgs_iterations=2001;
 
 /** Parameters for the lbfgs method **/
 int      lbfgs_iterations=2001;
+/** The file where the modified training data will be exported **/
+QString  export_train_file="";
+
+/** The file where the modified test data will be exported **/
+QString  export_test_file="";
+
+/** The file contains the created features in c++ format **/
+QString export_cpp_file="";

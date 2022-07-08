@@ -1402,14 +1402,6 @@ The program qfc
 \end_layout
 
 \begin_layout Standard
-(add export options in c++ and in data format)
-\end_layout
-
-\begin_layout Standard
-(add the method osamaRbf as an option)
-\end_layout
-
-\begin_layout Standard
 The program 
 \emph on
 qfc
@@ -1485,7 +1477,7 @@ rbf
 \begin_inset Quotes erd
 \end_inset
 
- but other accepted values are: neural, knn.
+ but other accepted values are: neural, knn, osamaRbf, copy.
 \end_layout
 
 \begin_layout Enumerate
@@ -1502,7 +1494,7 @@ neural
 \begin_inset Quotes erd
 \end_inset
 
- but other accepted values are: rbf, knn.
+ but other accepted values are: rbf, knn, osamaRbf, nnc.
 \end_layout
 
 \begin_layout Enumerate
@@ -1620,6 +1612,34 @@ genetic_mutationRate=f
 \end_inset
 
 bfgs_iterations=n
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+export_train_file=f
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+export_test_file=f
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+export_cpp_file=f
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+help
 \end_layout
 
 \begin_layout Subsection

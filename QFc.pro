@@ -19,7 +19,6 @@ QMAKE_LFLAGS += -O3
 SOURCES += \
         KmeansPP.cpp \
         Rbf.cc \
-        armarbf.cpp \
         collection.cc \
         converter.cc \
         cprogram.cc \
@@ -31,7 +30,7 @@ SOURCES += \
         grs.cc \
         kmeans.cc \
         knn.cc \
-        levmarq.cc \
+        lbfgs.cpp \
         main.cpp \
         mapper.cc \
         matrix_functions.cc \
@@ -54,7 +53,7 @@ SOURCES += \
         symbol.cc \
         tolmin.cc
 
-LIBS += -larmadillo -lgsl
+LIBS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -65,7 +64,6 @@ HEADERS += \
     KmeansPP.h \
     Rbf.h \
     Util.h \
-    armarbf.h \
     collection.h \
     converter.h \
     cprogram.h \
@@ -79,7 +77,7 @@ HEADERS += \
     grs.h \
     kmeans.h \
     knn.h \
-    levmarq.h \
+    lbfgs.h \
     mapper.h \
     matrix_functions.h \
     model.h \

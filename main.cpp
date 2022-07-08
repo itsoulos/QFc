@@ -2,7 +2,6 @@
 # include <getoptions.h>
 # include <population.h>
 # include <nnprogram.h>
-# include <armarbf.h>
 # include <osamarbf.h>
 # include <nnc.h>
 # include <QDebug>
@@ -62,16 +61,16 @@ void printParams()
     printOption("--features","-d","Define the number of constructed features",features);
     printOption("--randomSeed","-r","Random seed",randomSeed);
     printOption("--featureCreateModel","-k",
-                "The model used for feature construction (rbf,neural,knn,copy,armaRbf,osamaRbf)",
+                "The model used for feature construction (rbf,neural,knn,copy,osamaRbf)",
                 featureCreatemodel);
     printOption("--featureEvaluateModel","-e",
-                "The model used to evaluate the constructed features (rbf,neural,knn,armaRbf,osamaRbf,nnc)",
+                "The model used to evaluate the constructed features (rbf,neural,knn,osamaRbf,nnc)",
                 featureEvaluateModel);
     printOption("--testIters","-i","The number of iterations for testing",testIters);
     printOption("--threads","-t","The number of threads",threads);
     printOption("--neural_weights","-w","Hidden nodes in neural network",
                 neural_weights);
-    printOption("--neural_trainingMethod","-m","Training method for neural network. Available options: bfgs,genetic,conj,leve",
+    printOption("--neural_trainingMethod","-m","Training method for neural network. Available options: bfgs, lbfgs, genetic",
                 neural_trainingMethod);
     printOption("--knn_weights","-w","Number of weights in KNN model",
                 knn_weights);
@@ -119,9 +118,12 @@ void printParams()
     printOption("--bfgs_iterations","-b",
                 "Maximum number of iterations for the BFGS method",
                 bfgs_iterations);
-    printOption("--lbfgs_iterations","-b",
-                "Maximum numbers of iterations for the L-BFGS method",
-                lbfgs_iterations);
+
+    printOption("--export_train_file","-e","Filepath where the modified train file will be printed",
+                export_train_file);
+
+    printOption("--export_train_file","-e","Filepath where the modified test file will be printed",
+                export_test_file);
    exit(0);
 }
 
@@ -201,7 +203,9 @@ void parseCmdLine(QStringList args)
         checkParameter(name,value,"--genetic_localSearchRate","-l",genetic_localSearchRate);
         checkParameter(name,value,"--genetic_localSearchMethod","-m",genetic_localSearchMethod);
         checkParameter(name,value,"--bfgs_iterations","-b",bfgs_iterations);
-        checkParameter(name,value,"--lbfgs_iterations","-b",lbfgs_iterations);
+        checkParameter(name,value,"--export_train_file","-e",export_train_file);
+        checkParameter(name,value,"--export_test_file","-e",export_test_file);
+        checkParameter(name,value,"--export_cpp_file","-e",export_cpp_file);
     }
 }
 
@@ -304,25 +308,8 @@ void makeGrammaticalEvolution()
          defaultModel->setPatternDimension(features);
          ((KNN *)defaultModel)->setNumOfWeights(knn_weights);
     }
-    else
-    if(featureCreatemodel=="armaRbf")
-    {
-        if(threads<=1)
-        {
-        defaultModel=new ArmaRbf(defaultMapper);
-        defaultModel->setPatternDimension(features);
-        ((ArmaRbf *)defaultModel)->setNumOfWeights(rbf_weights);
-        }
-        else
-        {
-            for(int i=0;i<threads;i++)
-            {
-                tmodel[i]=new ArmaRbf(tmapper[i]);
-                tmodel[i]->setPatternDimension(features);
-                ((ArmaRbf *)tmodel[i])->setNumOfWeights(rbf_weights);
-            }
-        }
-    }
+
+
     else
     if(featureCreatemodel=="osamaRbf")
     {
@@ -454,14 +441,7 @@ void    makeTest()
          evalModel->setPatternDimension(features);
          ((KNN *)evalModel)->setNumOfWeights(knn_weights);
     }
-    else
-    if(featureEvaluateModel=="armaRbf")
-    {
-         evalModel = new ArmaRbf(defaultMapper);
-          evalModel->readPatterns(trainFile);
-         evalModel->setPatternDimension(features);
-         ((ArmaRbf *)evalModel)->setNumOfWeights(knn_weights);
-    }
+
 
     else
     if(featureEvaluateModel=="osamaRbf")
@@ -523,6 +503,31 @@ void    makeTest()
     delete evalModel;
 }
 
+void    makeExports()
+{
+    Model *evalModel = NULL;
+
+    if(export_train_file.length()!=0)
+    {
+        evalModel = new Rbf(defaultMapper);
+        evalModel->readPatterns(trainFile);
+        evalModel->setPatternDimension(features);
+        evalModel->dumpFile(trainFile,export_train_file);
+    }
+    if(export_test_file.length()!=0)
+    {
+        evalModel = new Rbf(defaultMapper);
+        evalModel->readPatterns(trainFile);
+        evalModel->setPatternDimension(features);
+        evalModel->dumpFile(testFile,export_test_file);
+    }
+    if(export_cpp_file.length()!=0)
+    {
+        defaultMapper->dumpCppFile(export_cpp_file.toStdString());
+    }
+    delete evalModel;
+}
+
 void    freeMemory()
 {
      if(threads<=1)
@@ -555,6 +560,8 @@ int main(int argc, char *argv[])
     makeGrammaticalEvolution();
     //make tests with the constructed features
     makeTest();
+    //export data
+    makeExports();
     //free memory;
     freeMemory();
     return 0;

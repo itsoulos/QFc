@@ -57,6 +57,7 @@ class Model :public Problem
         double	classTestError(QString filename,double &precision,double &recall);
 		void	print(char *train,char *itest,char *otest);
 		void	randomizeWeights();
+        void    dumpFile(QString input,QString output);
 		~Model();
 };
 

@@ -49,4 +49,14 @@ extern int      bfgs_iterations;
 
 /** Parameters for the lbfgs method **/
 extern int      lbfgs_iterations;
+
+/** The file where the modified training data will be exported **/
+extern QString  export_train_file;
+
+/** The file where the modified test data will be exported **/
+extern QString  export_test_file;
+
+/** The file contains the created features in c++ format **/
+extern QString export_cpp_file;
+
 #endif // GETOPTIONS_H

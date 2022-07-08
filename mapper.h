@@ -11,11 +11,13 @@ class Mapper
 		string vars;
 		vector<FunctionParser*> parser;
 		vector<int> foundX;
+        vector<string> lastExpr;
 	public:
 		Mapper(int d);
 		void	setExpr(vector<string> s);
 		int	map(Matrix x,Matrix &x1);
         int getOriginalDimension() const;
+        void    dumpCppFile(string file);
 		~Mapper();
 };
 # endif

@@ -441,6 +441,44 @@ void	Model::enableValidation()
 	isvalidation=1;
 }
 
+
+void    Model::dumpFile(QString input,QString output)
+{
+    FILE *Fp=fopen(input.toStdString().c_str(),"r");
+    FILE *fout=fopen(output.toStdString().c_str(),"w");
+    if(!fout)
+    {
+        fclose(Fp);
+        return;
+    }
+    int dim,count;
+    fscanf(Fp,"%d",&dim);
+    fscanf(Fp,"%d",&count);
+    vector<double> testx;
+    double testy;
+    testx.resize(pattern_dimension);
+    vector<double> xx;
+    xx.resize(dim);
+    fprintf(fout,"%d\n%d\n",pattern_dimension,count);
+    for(int i=0;i<count;i++)
+    {
+        for(int j=0;j<dim;j++)
+        {
+            fscanf(Fp,"%lf",&xx[j]);
+
+            /**/
+            /**/
+        }
+        mapper->map(xx,testx);
+        for(int j=0;j<pattern_dimension;j++)
+            fprintf(fout,"%lf ",testx[j]);
+        fscanf(Fp,"%lf",&testy);
+        fprintf(fout,"%lf\n",testy);
+    }
+    fclose(Fp);
+    fclose(fout);
+}
+
 Model::~Model()
 {
 }

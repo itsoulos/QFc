@@ -31,8 +31,27 @@ void	Mapper::setExpr(vector<string> s)
 	{
 		int d=parser[i]->Parse(s[i],vars);
 	}
+    lastExpr = s;
 }
 
+void    Mapper::dumpCppFile(string file)
+{
+    FILE *fp = fopen(file.c_str(),"w");
+    if(!fp) return;
+    fprintf(fp,"#include <math.h>\n");
+    fprintf(fp,"void fcMap(double *inx,double *outx)");
+    fprintf(fp,"{\n");
+    for(int i=0;i<dimension;i++)
+    {
+        fprintf(fp,"\tdouble x%d=inx[%d];\n",i+1,i);
+    }
+    for(int i=0;i<(int)lastExpr.size();i++)
+    {
+        fprintf(fp,"\toutx[%d]=%s;\n",i,lastExpr[i].c_str());
+    }
+    fprintf(fp,"}\n");
+    fclose(fp);
+}
 extern int haveX;
 
 int	Mapper::map(Matrix x,Matrix &x1)
