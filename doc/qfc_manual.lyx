@@ -107,6 +107,89 @@ onal intelligence is made.
 Introduction 
 \end_layout
 
+\begin_layout Standard
+Many problems from various research areas can be considered as classification
+ or regression problems, such as problems from physics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_physics1,nnphysics1,nnphysics2,nnphysics3"
+literal "false"
+
+\end_inset
+
+, chemistry 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_chem1,fc_chem2,fc_chem3"
+literal "false"
+
+\end_inset
+
+, economics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_econ1,fc_econ2"
+literal "false"
+
+\end_inset
+
+, pollution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_pollution1,fc_pollution2,fc_pollution3"
+literal "false"
+
+\end_inset
+
+, medicine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnmed1,nnmed2"
+literal "false"
+
+\end_inset
+
+ etc.
+ These problems are usually tackled by learning models such as Artificial
+ Neural Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nn1,nn2"
+literal "false"
+
+\end_inset
+
+, Radial Basis Function (RBF) networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rbf1,rbf2"
+literal "false"
+
+\end_inset
+
+, Support Vector Machines (SVM) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "svm"
+literal "false"
+
+\end_inset
+
+, etc.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(dimensionality curse here, expensive model in memory)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(overfitting problems here)
+\end_layout
+
 \begin_layout Section
 Methods 
 \end_layout
@@ -847,13 +930,125 @@ Operation
 \end_layout
 
 \begin_layout Subsection
-The feature construction step 
+The feature construction procedure
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:The-feature-construction"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+The following procedure is executed in order to produce 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ features from the original ones for a given chromosome 
+\begin_inset Formula $X$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
 
 \series bold
-(Describe the mapping here)
+Split
+\series default
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ into 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ parts.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ 
+\begin_inset Formula $i=1..N_{f}$
+\end_inset
+
+ 
+\series bold
+denote
+\series default
+ each part as 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ every part 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ construct a feature 
+\begin_inset Formula $\mbox{FT}_{i}$
+\end_inset
+
+ using the grammar given in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Every feature 
+\begin_inset Formula $\mbox{FT}_{i}$
+\end_inset
+
+ is considered as mapping function, that transforms the original features
+ to a new one.
+ For example the feature 
+\begin_inset Formula 
+\[
+\mbox{FT}_{1}=x_{1}^{2}+\sin(\left(x_{2}\right)
+\]
+
+\end_inset
+
+is a non linear function that maps the original feature 
+\begin_inset Formula $\left(x_{1},x_{2}\right)$
+\end_inset
+
+ into 
+\begin_inset Formula $\mbox{FT}_{1}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\left(x_{1},x_{2}\right)=\left(2,1\right)$
+\end_inset
+
+.
+ The mapping procedure will create the value 
+\begin_inset Formula $4+\sin(1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The feature construction step 
 \end_layout
 
 \begin_layout Standard
@@ -940,6 +1135,19 @@ Set
 \begin_layout Enumerate
 
 \series bold
+Set
+\series default
+ 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+, the desired number of features.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
 Set 
 \begin_inset Formula $p_{M}$
 \end_inset
@@ -999,8 +1207,18 @@ For
 \series bold
 Create
 \series default
- using the Grammatical evolution procedure a classification program 
-\begin_inset Formula $C_{i}$
+ using the procedure of subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:The-feature-construction"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ a set of 
+\begin_inset Formula $N_{f}$
 \end_inset
 
  for the corresponding chromosome 
@@ -1014,7 +1232,29 @@ Create
 \begin_layout Enumerate
 
 \series bold
-Calculate
+Transform
+\series default
+ the original train data to the new train data using the previously created
+ features.
+ Denote the new train set as 
+\begin_inset Formula $\left(x_{g_{i},j},t_{j}\right),\ j=1,..M$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apply 
+\series default
+a learning model 
+\begin_inset Formula $C$
+\end_inset
+
+ (such as RBF) to the new data and 
+\series bold
+calculate
 \series default
  the fitness 
 \begin_inset Formula $f_{i}$
@@ -1023,7 +1263,7 @@ Calculate
  as
 \begin_inset Formula 
 \begin{equation}
-f_{i}=\sum_{i=1}^{M}\left(C_{i}\left(x_{i}\right)-t_{i}\right)^{2}
+f_{i}=\sum_{j=1}^{M}\left(C\left(x_{g_{i},j}\right)-t_{j}\right)^{2}
 \end{equation}
 
 \end_inset
@@ -1150,48 +1390,18 @@ If
 \series bold
 Genetic
 \series default
- Step.
-\end_layout
-
-\begin_layout Enumerate
-
+ Step, else 
 \series bold
-Evaluation step
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-Obtain
+terminate
 \series default
- the best chromosome 
+ and obtain 
 \begin_inset Formula $g^{*}$
 \end_inset
 
- and create the corresponding classification program 
-\begin_inset Formula $C^{*}$
-\end_inset
-
-.
+ as the best chromosome in the population.
 \end_layout
 
-\begin_layout Enumerate
-
-\series bold
-Apply
-\series default
- 
-\begin_inset Formula $C^{*}$
-\end_inset
-
- to the test set and report the result.
-\end_layout
-
+\begin_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1246,9 +1456,86 @@ The feature evaluation step
 \end_layout
 
 \begin_layout Standard
+During the feature evaluation step the following steps are executed:
+\end_layout
+
+\begin_layout Enumerate
 
 \series bold
-(Write here what evaluation models we use.)
+Denote
+\series default
+ as 
+\begin_inset Formula $T=\left(x_{i},y_{i}\right),\ i=1,..,K$
+\end_inset
+
+ the original test set.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Obtain
+\series default
+ the best chromosome 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ of the feature construction step.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Construct
+\series default
+ 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ features for 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ using the procedure of subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:The-feature-construction"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Transform
+\series default
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ into 
+\begin_inset Formula $T'=\left(x_{g^{*},i},y_{i}\right),\ i=1,..,K$
+\end_inset
+
+ using the previously constructed features.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apply
+\series default
+ a learning model such as RBF or a neural network to 
+\begin_inset Formula $T'$
+\end_inset
+
+ and obtain the test error.
 \end_layout
 
 \begin_layout Section
@@ -1632,14 +1919,146 @@ export_test_file=f
 \begin_inset Formula $--$
 \end_inset
 
-export_cpp_file=f
+export_cpp_file=f, where f is the output with the constructed features in
+ the C++ programming language.
+ As an example consider the file outlined in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example_BL"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The function fcMap() is a function with two array arguments:
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+the argument inx denotes an input pattern with the original dimension.
+ For the case of BL dataset the original dimension is 7.
+\end_layout
+
+\begin_layout Enumerate
+the argument outx stands for the created features by the algorithm.
+ In this case, outx[0] is the first feature and outx[1] is the second feature.
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-help
+help, prints a help screen and terminates the program.
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An example output file for the BL dataset.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example_BL"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++},basicstyle={\footnotesize}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <math.h> 
+\end_layout
+
+\begin_layout Plain Layout
+
+void fcMap(double *inx,double *outx)
+\end_layout
+
+\begin_layout Plain Layout
+
+{         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x1=inx[0];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x2=inx[1];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x3=inx[2];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x4=inx[3];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x5=inx[4];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x6=inx[5];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	double x7=inx[6];         
+\end_layout
+
+\begin_layout Plain Layout
+
+	outx[0]=exp((5.4*x1/(5.3*x4*(38.599*x1*(x7*cos(((-55.68)/5.4)*x1))))));    
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+	outx[1]=((-88.007)*x3/(9.998*x7+cos(((-8.81)*x5*sqrt((783.138*x2)))))); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -5740,6 +6159,370 @@ Conclusions
  add termination rules 2) discover the right number of features.
  3) add more models like svm 4) add more input formats 5) combine the method
  with GenClass for example)
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_physics1"
+literal "false"
+
+\end_inset
+
+E.M.
+ Metodiev, B.
+ Nachman, J.
+ Thaler, Classification without labels: learning from mixed samples in high
+ energy physics.
+ J.
+ High Energ.
+ Phys.
+ 2017, article number 174, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics1"
+literal "false"
+
+\end_inset
+
+P.
+ Baldi, K.
+ Cranmer, T.
+ Faucett et al, Parameterized neural networks for high-energy physics, Eur.
+ Phys.
+ J.
+ C 
+\series bold
+76
+\series default
+, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics2"
+literal "true"
+
+\end_inset
+
+J.
+ J.
+ Valdas and G.
+ Bonham-Carter, Time dependent neural network models for detecting changes
+ of state in complex processes: Applications in earth sciences and astronomy,
+ Neural Networks 
+\series bold
+19
+\series default
+, pp.
+ 196-207, 2006
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics3"
+literal "false"
+
+\end_inset
+
+G.
+ Carleo,M.
+ Troyer, Solving the quantum many-body problem with artificial neural networks,
+ Science 
+\series bold
+355
+\series default
+, pp.
+ 602-606, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem1"
+literal "true"
+
+\end_inset
+
+C.
+ Güler, G.
+ D.
+ Thyne, J.
+ E.
+ McCray, K.A.
+ Turner, Evaluation of graphical and multivariate statistical methods for
+ classification of water chemistry data, Hydrogeology Journal 
+\series bold
+10
+\series default
+, pp.
+ 455-474, 2002
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem2"
+literal "true"
+
+\end_inset
+
+E.
+ Byvatov ,U.
+ Fechner ,J.
+ Sadowski , G.
+ Schneider, Comparison of Support Vector Machine and Artificial Neural Network
+ Systems for Drug/Nondrug Classification, J.
+ Chem.
+ Inf.
+ Comput.
+ Sci.
+ 
+\series bold
+43
+\series default
+, pp 1882–1889, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem3"
+literal "true"
+
+\end_inset
+
+Kunwar P.
+ Singh, Ankita Basant, Amrita Malik, Gunja Jain, Artificial neural network
+ modeling of the river water quality—A case study, Ecological Modelling
+ 
+\series bold
+220
+\series default
+, pp.
+ 888-895, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_econ1"
+literal "true"
+
+\end_inset
+
+I.
+ Kaastra, M.
+ Boyd, Designing a neural network for forecasting financial and economic
+ time series, Neurocomputing 
+\series bold
+10
+\series default
+, pp.
+ 215-236, 1996.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_econ2"
+literal "true"
+
+\end_inset
+
+Moshe Leshno, Yishay Spector, Neural network prediction analysis: The bankruptcy
+ case, Neurocomputing 
+\series bold
+10
+\series default
+, pp.
+ 125-147, 1996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution1"
+literal "false"
+
+\end_inset
+
+A.
+ Astel, S.
+ Tsakovski, V, Simeonov et al., Multivariate classification and modeling
+ in surface water pollution estimation.
+ Anal Bioanal Chem 
+\series bold
+390
+\series default
+, pp.
+ 1283–1292, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution2"
+literal "false"
+
+\end_inset
+
+A.
+ Azid, H.
+ Juahir, M.E.
+ Toriman et al., Prediction of the Level of Air Pollution Using Principal
+ Component Analysis and Artificial Neural Network Techniques: a Case Study
+ in Malaysia, Water Air Soil Pollut 
+\series bold
+225
+\series default
+, pp.
+ 2063, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution3"
+literal "false"
+
+\end_inset
+
+H.
+ Maleki, A.
+ Sorooshian, G.
+ Goudarzi et al., Air pollution prediction by using an artificial neural
+ network model, Clean Techn Environ Policy 
+\series bold
+21
+\series default
+, pp.
+ 1341–1352, 2019.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed1"
+literal "false"
+
+\end_inset
+
+Igor I.
+ Baskin, David Winkler and Igor V.
+ Tetko, A renaissance of neural networks in drug discovery, Expert Opinion
+ on Drug Discovery 
+\series bold
+11
+\series default
+, pp.
+ 785-795, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed2"
+literal "false"
+
+\end_inset
+
+Ronadl Bartzatt, Prediction of Novel Anti-Ebola Virus Compounds Utilizing
+ Artificial Neural Network (ANN), Chemistry Faculty Publications 
+\series bold
+49
+\series default
+, pp.
+ 16-34, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn1"
+literal "true"
+
+\end_inset
+
+C.
+ Bishop, Neural Networks for Pattern Recognition, Oxford University Press,
+ 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn2"
+literal "true"
+
+\end_inset
+
+G.
+ Cybenko, Approximation by superpositions of a sigmoidal function, Mathematics
+ of Control Signals and Systems 
+\series bold
+2
+\series default
+, pp.
+ 303-314, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf1"
+literal "false"
+
+\end_inset
+
+J.
+ Park and I.
+ W.
+ Sandberg, Universal Approximation Using Radial-Basis-Function Networks,
+ Neural Computation 3, pp.
+ 246-257, 1991.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf2"
+literal "false"
+
+\end_inset
+
+H.
+ Yu, T.
+ Xie, S.
+ Paszczynski, B.
+ M.
+ Wilamowski, Advantages of Radial Basis Function Networks for Dynamic System
+ Design, in IEEE Transactions on Industrial Electronics 
+\series bold
+58
+\series default
+, pp.
+ 5438-5450, 2011.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "svm"
+literal "false"
+
+\end_inset
+
+I.
+ Steinwart, A.
+ Christmann, Support Vector Machines, Information Science and Statistics,
+ Springer, 2008.
 \end_layout
 
 \begin_layout Bibliography
