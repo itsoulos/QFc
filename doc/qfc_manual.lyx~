@@ -167,23 +167,341 @@ literal "false"
 
 \end_inset
 
-, Support Vector Machines (SVM), etc.
+, Support Vector Machines (SVM) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "svm"
+literal "false"
+
+\end_inset
+
+, etc.
+ A review of the methods used in classification can be found in the work
+ of Kotsiantis et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "class_review"
+literal "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
+Learning data is usually divided into two parts: training data and test
+ data.
+ Learning models adjust their parameters taking the training data as input
+ and are evaluated on the test data.
+ The number of learning model parameters directly depends on the dimension
+ of the input problem (number of features) and this means that for large
+ problems large amounts of memory are required to store and manage the learning
+ models.
+ In addition, as the number of parameters of the computational models grows,
+ a longer time is required to adjust the parameters.
+ Also, as the dimension of the data grows, more samples (patterns) are required
+ in order to achieve high learning rates.
+ A discussion on how the dimensionality of the input problems affects the
+ effectiveness of neural networks is presented in  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndimension"
+literal "false"
 
-\series bold
-(dimensionality curse here, expensive model in memory)
+\end_inset
+
+.
+ A common approach to reduce the dimension of the input data is the Principal
+ Component Analysis (PCA) technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnpca1,nnpca2,nnpca3"
+literal "false"
+
+\end_inset
+
+ or the Minimum redundancy feature selection (MRMR) technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mrmr1,mrmr2"
+literal "false"
+
+\end_inset
+
+.
+ Also, Wang et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nn_autoencoder"
+literal "false"
+
+\end_inset
+
+ proposed an auto-encoder based dimensionality reduction method for large
+ datasets.
+ An overview of dimensionality reduction techniques can be found in the
+ work of Ayesha et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "reduction_comparison"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+The current article describes the method and the software associated with
+ a feature construction method based on Grammatical Evolution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_main"
+literal "false"
+
+\end_inset
+
+, which is an evolutionary process that can create programs in any programming
+ language.
+ This process has been used in a variety of cases such as automatic composition
+ of music 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_music"
+literal "false"
+
+\end_inset
+
+, construction of neural networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_nn,ge_nn2"
+literal "false"
+
+\end_inset
+
+, automatic constant creation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_constant"
+literal "false"
+
+\end_inset
+
+, evolution of video games 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_pacman"
+literal "false"
+
+\end_inset
+
+, energy demand estimation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_energy"
+literal "false"
+
+\end_inset
+
+ etc.
+ The described method constructs subsets of features from the original ones
+ using non-linear combinations from them.
+ The method is graphically illustrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schematic-representation-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 
 \series bold
-(overfitting problems here)
+ 
+\series default
+Initially the method was described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc1"
+literal "true"
+
+\end_inset
+
+ and it has been utilized in a variety of cases such as Spam Identification
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc2"
+literal "true"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+Fetal heart classification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc3"
+literal "true"
+
+\end_inset
+
+, epileptic oscillations in clinical intracranial electroencephalograms
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc4"
+literal "true"
+
+\end_inset
+
+, classification of EEG signals 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc5"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+The proposed software has been implemented in ANSI C++ utilizing the freely
+ available library of QT from 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.qt.io
+\end_layout
+
+\end_inset
+
+.
+ The user should supply the training and test data of the underlying problem
+ as well as the desired number of features that will be created.
+ The evaluation of the constructed features can be made using a variety
+ of machine learning models and the user can easily extend the software
+ to add more learning models.
+ Also, the software has a variety of command line options to control the
+ parameters of the learning models or to manage the output of the method.
+ Finally, since the process of Grammatical Evolution can require a lot of
+ execution time, parallel computation is included in the proposed software
+ through the OpenMP programming library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "openmp"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The rest of this article is organized as follows: in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Methods"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the proposed method is analyzed, in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-software"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the proposed software is outlined in detail, in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experiments"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ a variety of experiments are conducted and presented and finally in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ some conclusions and future guidelines are discussed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schematic representation of the feature construction technique.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schematic-representation-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename fc_schema.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Methods 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Methods"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1532,6 +1850,13 @@ Apply
 
 \begin_layout Section
 The software
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:The-software"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1720,6 +2045,7 @@ noprefix "false"
 
 testFile=filename, where filename is the full path to data contain the input
  test set.
+ The format of this file should be the same as the train data.
  The user should at least provide the train and test set in order to execute
  the program.
 \end_layout
@@ -1756,9 +2082,62 @@ rbf
 \begin_inset Quotes erd
 \end_inset
 
- but other accepted values are: neural, knn, osamaRbf, copy.
+ and accepted values are: 
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+copy
+\series default
+.
+ With this value no feature construction is done and the original data set
+ is used for training by the model specified by the option 
+\begin_inset Formula $--$
+\end_inset
+
+featureEvaluateModel.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+rbf
+\series default
+.
+ This value is used to utilize an Radial Basis Function neural network for
+ the evaluation of the constructed features.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+neural
+\series default
+.
+ This value is used to use a neural network for the evaluation of the constructe
+d features.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+knn
+\series default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+osamaRbf
+\series default
+.
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
@@ -2059,6 +2438,13 @@ Example run
 
 \begin_layout Section
 Experiments 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Experiments"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6142,6 +6528,13 @@ AVERAGE REGRESSION
 
 \begin_layout Section
 Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6150,7 +6543,29 @@ Conclusions
 1.
  add termination rules 2) discover the right number of features.
  3) add more models like svm 4) add more input formats 5) combine the method
- with GenClass for example)
+ with GenClass for example) 6) incorporation of MPI for heterogenous networks
+\end_layout
+
+\begin_layout Subsection*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+The experiments of this research work was performed at the high performance
+ computing system established at Knowledge and Intelligent Computing Laboratory,
+ Dept of Informatics and Telecommunications, University of Ioannina, acquired
+ with the project "Educational Laboratory equipment of TEI of Epirus" with
+ MIS 5007094 funded by the Operational Programme "Epirus" 2014-2020, by
+ ERDF and national finds.
+\end_layout
+
+\begin_layout Subsection*
+Compliance with Ethical Standards 
+\end_layout
+
+\begin_layout Standard
+All authors declare that they have no conflict of interest.
+ 
 \end_layout
 
 \begin_layout Bibliography
@@ -6520,6 +6935,423 @@ I.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "class_review"
+literal "false"
+
+\end_inset
+
+S.B.
+ Kotsiantis, I.D.
+ Zaharakis, P.E.
+ Pintelas, Machine learning: a review of classification and combining techniques
+, Artif Intell Rev 
+\series bold
+26
+\series default
+, pp.
+ 159–190, 2006.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndimension"
+literal "false"
+
+\end_inset
+
+Verleysen M., Francois D., Simon G., Wertz V., On the effects of dimensionality
+ on data analysis with neural networks.
+ In: Mira J., Álvarez J.R.
+ (eds) Artificial Neural Nets Problem Solving Methods.
+ IWANN 2003.
+ Lecture Notes in Computer Science, vol 2687.
+ Springer, Berlin, Heidelberg.
+ 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca1"
+literal "false"
+
+\end_inset
+
+Burcu Erkmen, Tülay Yıldırım, Improving classification performance of sonar
+ targets by applying general regression neural network with PCA, Expert
+ Systems with Applications 
+\series bold
+35
+\series default
+, pp.
+ 472-475, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca2"
+literal "false"
+
+\end_inset
+
+Jing Zhou, Aihuang Guo, Branko Celler, Steven Su, Fault detection and identifica
+tion spanning multiple processes by integrating PCA with neural network,
+ Applied Soft Computing 
+\series bold
+14
+\series default
+, pp.
+ 4-11, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca3"
+literal "false"
+
+\end_inset
+
+Ravi Kumar G., Nagamani K., Anjan Babu G., A Framework of Dimensionality Reduction
+ Utilizing PCA for Neural Network Prediction.
+ In: Borah S., Emilia Balas V., Polkowski Z.
+ (eds) Advances in Data Science and Management.
+ Lecture Notes on Data Engineering and Communications Technologies, vol
+ 37.
+ Springer, Singapore.
+ 2020
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mrmr1"
+literal "true"
+
+\end_inset
+
+Hanchuan Peng, Fuhui Long, and Chris Ding, Feature selection based on mutual
+ information: criteria of max-dependency, max-relevance, and min-redundancy,
+ IEEE Transactions on Pattern Analysis and Machine Intelligence 
+\series bold
+27
+\series default
+, pp.1226-1238, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mrmr2"
+literal "true"
+
+\end_inset
+
+Chris Ding, and Hanchuan Peng, Minimum redundancy feature selection from
+ microarray gene expression data, Journal of Bioinformatics and Computational
+ Biology 
+\series bold
+3
+\series default
+, pp.185-205, 2005
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_autoencoder"
+literal "false"
+
+\end_inset
+
+Y.
+ Wang, H.
+ Yao, S.
+ Zhao, Auto-encoder based dimensionality reduction, Neurocomputing 
+\series bold
+184
+\series default
+, pp.
+ 232-242, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "reduction_comparison"
+literal "false"
+
+\end_inset
+
+S.
+ Ayesha, M.
+ Kashif Hanif, R.
+ Talib, Information Fusion 
+\series bold
+59
+\series default
+, pp.
+ 44-58, 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_main"
+literal "true"
+
+\end_inset
+
+M.
+ O’Neill, C.
+ Ryan, Grammatical evolution, IEEE Trans.
+ Evol.
+ Comput.
+ 
+\series bold
+5,
+\series default
+pp.
+ 349–358, 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_music"
+literal "false"
+
+\end_inset
+
+A.O.
+ Puente, R.
+ S.
+ Alfonso, M.
+ A.
+ Moreno, Automatic composition of music by means of grammatical evolution,
+ In: APL '02: Proceedings of the 2002 conference on APL: array processing
+ languages: lore, problems, and applications July 2002 Pages 148–155.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_nn"
+literal "false"
+
+\end_inset
+
+Lídio Mauro Limade Campo, R.
+ Célio Limã Oliveira,Mauro Roisenberg, Optimization of neural networks through
+ grammatical evolution and a genetic algorithm, Expert Systems with Applications
+ 
+\series bold
+56
+\series default
+, pp.
+ 368-384, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_nn2"
+literal "false"
+
+\end_inset
+
+K.
+ Soltanian, A.
+ Ebnenasir, M.
+ Afsharchi, Modular Grammatical Evolution for the Generation of Artificial
+ Neural Networks, Evolutionary Computation 
+\series bold
+30
+\series default
+, pp 291–327, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_constant"
+literal "false"
+
+\end_inset
+
+I.
+ Dempsey, M.O' Neill, A.
+ Brabazon, Constant creation in grammatical evolution, International Journal
+ of Innovative Computing and Applications 
+\series bold
+1
+\series default
+ , pp 23–38, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_pacman"
+literal "false"
+
+\end_inset
+
+E.
+ Galván-López, J.M.
+ Swafford, M.
+ O’Neill, A.
+ Brabazon, Evolving a Ms.
+ PacMan Controller Using Grammatical Evolution.
+ In: , et al.
+ Applications of Evolutionary Computation.
+ EvoApplications 2010.
+ Lecture Notes in Computer Science, vol 6024.
+ Springer, Berlin, Heidelberg, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_energy"
+literal "false"
+
+\end_inset
+
+D.
+ Martínez-Rodríguez, J.
+ M.
+ Colmenar, J.
+ I.
+ Hidalgo, R.J.
+ Villanueva Micó, S.
+ Salcedo-Sanz, Particle swarm grammatical evolution for energy demand estimation
+, Energy Science and Engineering 
+\series bold
+8
+\series default
+, pp.
+ 1068-1079, 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc1"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Selecting and constructing features using
+ grammatical evolution, Pattern Recognition Letters 
+\series bold
+29
+\series default
+,pp.
+ 1358-1365, 2008.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc2"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
+ for Robust Detection of E-Mail Spam, Advances in Artificial Intelligence
+ Volume 3955 of the series Lecture Notes in Computer Science pp 498-501,
+ 2006.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc3"
+literal "true"
+
+\end_inset
+
+George Georgoulas, Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Chrysostomos Stylios, João Bernardes, Peter P.
+ Groumpos, Novel approach for fetal heart rate classification introducing
+ grammatical evolution, Biomedical Signal Processing and Control 
+\series bold
+2
+\series default
+,pp.
+ 69-79, 2007 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc4"
+literal "true"
+
+\end_inset
+
+Otis Smart, Ioannis G.
+ Tsoulos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
+ features of epileptic oscillations in clinical intracranial electroencephalogra
+ms, Expert Systems with Applications 
+\series bold
+38
+\series default
+, pp.
+ 9991-9999, 2011 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc5"
+literal "false"
+
+\end_inset
+
+A.
+ T.
+ Tzallas, I.
+ Tsoulos, M.
+ G.
+ Tsipouras, N.
+ Giannakeas, I.
+ Androulidakis and E.
+ Zaitseva, Classification of EEG signals using feature creation produced
+ by grammatical evolution, In: 24th Telecommunications Forum (TELFOR), pp.
+ 1-4, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "openmp"
+literal "false"
+
+\end_inset
+
+L.
+ Dagum, R.
+ Menon, OpenMP: an industry standard API for shared-memory programming,
+ IEEE Computational Science and Engineering 
+\series bold
+ 5
+\series default
+, pp.
+ 46-55, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "bnf1"
 literal "false"
 
@@ -6532,6 +7364,24 @@ J.
  of the Zurich ACM-GAMM Conference.
  Proceedings of the International Conference on Information Processing,
  UNESCO, 1959, pp.125-132
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "powell"
+literal "true"
+
+\end_inset
+
+M.J.D Powell, A Tolerant Algorithm for Linearly Constrained Optimization Calculati
+ons, Mathematical Programming 
+\series bold
+45
+\series default
+, pp.
+ 547-566, 1989.
+ 
 \end_layout
 
 \begin_layout Bibliography
