@@ -494,7 +494,7 @@ void    makeTest()
         average_train_error+=d;
         average_test_error+=t;
         average_class_error+=c;
-        printf("train[%d]=%.10lf test[%d]=%lf class[%d]=%lf%%\n",i,d,i,t,i,c*100.0);
+        //printf("train[%d]=%.10lf test[%d]=%lf class[%d]=%lf%%\n",i,d,i,t,i,c*100.0);
 
     }
     printf("AVERAGES(TRAIN,TEST,CLASS): %15.8lg %15.8lg %15.8lg%%\n",

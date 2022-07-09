@@ -192,12 +192,12 @@ literal "false"
 \begin_layout Standard
 Learning data is usually divided into two parts: training data and test
  data.
- Learning models adjust their parameters, taking the training data as input
+ Learning models adjust their parameters taking the training data as input
  and are evaluated on the test data.
  The number of learning model parameters directly depends on the dimension
  of the input problem (number of features) and this means that for large
- problems, large amounts of memory are required to store and manage the
- learning models.
+ problems large amounts of memory are required to store and manage the learning
+ models.
  In addition, as the number of parameters of the computational models grows,
  a longer time is required to adjust the parameters.
  Also, as the dimension of the data grows, more samples (patterns) are required
@@ -264,7 +264,7 @@ literal "false"
 
 , which is an evolutionary process that can create programs in any programming
  language.
- This process has been used in a variety of cases, such as automatic composition
+ This process has been used in a variety of cases such as automatic composition
  of music 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -307,7 +307,7 @@ literal "false"
 
  etc.
  The described method constructs subsets of features from the original ones
- using non-linear combinations of them.
+ using non-linear combinations from them.
  The method is graphically illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -323,7 +323,7 @@ noprefix "false"
 \series bold
  
 \series default
-Initially, the method was described in 
+Initially the method was described in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "fc1"
@@ -331,7 +331,7 @@ literal "true"
 
 \end_inset
 
- and it has been utilized in a variety of cases, such as Spam Identification
+ and it has been utilized in a variety of cases such as Spam Identification
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -505,7 +505,7 @@ name "sec:Methods"
 \end_layout
 
 \begin_layout Standard
-The proposed technique is divided into two phases: in the first phase, new
+The proposed technique is divided into two phases: in the first phase new
  features are constructed from the old ones using Grammatical Evolution
  and in the second phase these new features modify the control set and a
  machine learning model is applied to the new control set.
@@ -516,8 +516,8 @@ Grammatical Evolution
 \end_layout
 
 \begin_layout Standard
-Grammatical evolution is a biologically inspired procedure that can create
- artificial programs in any language.
+Grammatical evolution is a biological inspired procedure, that can create
+ artificially programs in any language.
  In Grammatical evolution the chromosomes enclose production rules from
  a BNF (Backus–Naur form) grammar
 \begin_inset CommandInset citation
@@ -528,7 +528,7 @@ literal "false"
 \end_inset
 
 .
- These grammars usually described as a set 
+ These grammars usually are described as a set 
 \series bold
 
 \begin_inset Formula $G=\left(N,T,S,P\right)$
@@ -599,7 +599,7 @@ or
 \begin_layout Standard
 In order for Grammatical Evolution to work, the original grammar is expanded
  by enumerating all production rules.
- For example, consider the modified grammar of Figure 
+ For example consider the modified grammar of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:BNF-grammar-of"
@@ -614,15 +614,15 @@ noprefix "false"
  The numbers in parentheses are the production sequence numbers for each
  non-terminal symbol.
  The constant N is the original number of features for the input data.
- In Grammatical Evolution, the chromosomes are expressed as vectors of integers.
+ In Grammatical Evolution the chromosomes are expressed as vectors of integers.
  Every element of each chromosome denotes a
 \series bold
  
 \series default
 production rule from the provided BNF grammar.
  The algorithm starts from the start symbol of the grammar and gradually
- produces some program string, by replacing non - terminal symbols with
- the right hand of the selected production rule.
+ produces some program string, by replacing non terminal symbols with the
+ right hand of the selected production rule.
  The selection of the rule has two steps:
 \end_layout
 
@@ -1326,7 +1326,7 @@ Every feature
 \begin_inset Formula $\mbox{FT}_{i}$
 \end_inset
 
- is considered as a mapping function, that transforms the original features
+ is considered as mapping function, that transforms the original features
  to a new one.
  For example the feature 
 \begin_inset Formula 
@@ -1336,7 +1336,7 @@ Every feature
 
 \end_inset
 
-is a non - linear function that maps the original feature 
+is a non linear function that maps the original feature 
 \begin_inset Formula $\left(x_{1},x_{2}\right)$
 \end_inset
 
@@ -1617,7 +1617,7 @@ During this process,
  chromosomes will be created.
  Firstly, for every pair of produced offsprings, two distinct chromosomes
  (parents) are selected from the current population using tournament selection:
- First, a subset of 
+ First a subset of 
 \begin_inset Formula $K>1$
 \end_inset
 
@@ -1659,7 +1659,7 @@ noprefix "false"
 Apply
 \series default
  the mutation procedure.
- For every element of each chromosome, select a random number 
+ For every element of each chromosome select a random number 
 \begin_inset Formula $r\in\left[0,1\right]$
 \end_inset
 
@@ -1765,7 +1765,7 @@ The feature evaluation step
 \end_layout
 
 \begin_layout Standard
-During the feature evaluation step, the following steps are executed:
+During the feature evaluation step the following steps are executed:
 \end_layout
 
 \begin_layout Enumerate
@@ -1876,8 +1876,8 @@ https://www.qt.io
 
 \end_inset
 
- As expected, the software can be installed on the majority of operating
- systems, even on mobile devices (Android, Ios etc).
+ As expected, the software can be installed in the majority of operating
+ systems even in mobile devices (Android, Ios etc).
  The program is freely available from 
 \begin_inset Flex URL
 status open
@@ -1928,7 +1928,7 @@ Data format
 
 \begin_layout Standard
 Classification and regression problems should be formatted in files according
- to the format shown in Figure 
+ to the format show in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Example-of-input"
@@ -1945,9 +1945,8 @@ The integer number D denotes the number of features of the dataset and M
  
 \series default
 represents the number of patterns.
- In every  subsequent line of the file there should be the input pattern
- and the final column is the real output (category) for the corresponding
- pattern.
+ In every  subsequent line of the file should be the input pattern and the
+ final column is the real output (category) for the corresponding pattern.
  
 \end_layout
 
@@ -2015,7 +2014,7 @@ qfc
 \begin_inset Formula $--$
 \end_inset
 
-key=value, where key is the name of the option and value is the actual option
+key=value, where key is the name of the option and value is actual option
  value.
  The main options of the program are:
 \end_layout
@@ -2024,7 +2023,7 @@ key=value, where key is the name of the option and value is the actual option
 \begin_inset Formula $--$
 \end_inset
 
-trainFile=filename, where filename is the full path to data containing the
+trainFile=filename, where filename is the full path to data contain the
  input train set.
  The file must be in the format of Figure 
 \begin_inset CommandInset ref
@@ -2043,8 +2042,8 @@ noprefix "false"
 \begin_inset Formula $--$
 \end_inset
 
-testFile=filename, where filename is the full path to data containing the
- input test set.
+testFile=filename, where filename is the full path to data contain the input
+ test set.
  The format of this file should be the same as the train data.
  The user should at least provide the train and test set in order to execute
  the program.
@@ -2054,8 +2053,8 @@ testFile=filename, where filename is the full path to data containing the
 \begin_inset Formula $--$
 \end_inset
 
-features=n, set as the n the number of features that will be constructed
- by the method.
+features=n, set as the n the number of features that will constructed by
+ the method.
  The default value is 1.
 \end_layout
 
@@ -2092,8 +2091,8 @@ rbf
 copy
 \series default
 .
- With this value, no feature construction is done and the original data
- set is used for training by the model specified by the option 
+ With this value no feature construction is done and the original data set
+ is used for training by the model specified by the option 
 \begin_inset Formula $--$
 \end_inset
 
@@ -2106,7 +2105,7 @@ featureEvaluateModel.
 rbf
 \series default
 .
- This value is used to utilize a Radial Basis Function neural network for
+ This value is used to utilize an Radial Basis Function neural network for
  the evaluation of the constructed features.
 \end_layout
 
@@ -2127,7 +2126,7 @@ d features.
 knn
 \series default
 .
- A simple K-nearest neighbor (KNN) method is used 
+ A simple K-nearest neighbor (KNN) method used 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "knn"
@@ -2175,8 +2174,8 @@ neural
 \end_inset
 
  but other accepted values are: rbf, knn, osamaRbf, nnc.
- The value nnc refers to the Neural Network Construction model as proposed
- by Tsoulos et al 
+ The value nnc refers to Neural Network Construction model as proposed by
+ Tsoulos et al 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "nnc_tsoulos"
@@ -2200,7 +2199,7 @@ threads=t, the number of OpenMP threads used.
 \end_inset
 
 neural_trainingMethod=m.
- This is the option that defines the method used for neural network training.
+ This is the option that define the method used for neural network training.
  The default value for m is 
 \begin_inset Quotes eld
 \end_inset
@@ -2219,7 +2218,7 @@ bfgs
 bfgs
 \series default
 .
- This value sets as a training method a BFGS variant of Powell 
+ This value sets as training method a BFGS variant of Powell 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "powell"
@@ -2236,7 +2235,7 @@ literal "false"
 lbfgs
 \series default
 .
- This value sets as a training method the limited memory BFGS 
+ This value sets as training method the limited memory BFGS 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "lbfgs1,lbfgs2"
@@ -2253,7 +2252,7 @@ literal "false"
 genetic
 \series default
 .
- With this value, a simple genetic algorithm 
+ With this value a simple genetic algorithm 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "gen1,gen2"
@@ -2277,7 +2276,7 @@ neural_weights=n, the weights used in neural networks.
 \begin_inset Formula $--$
 \end_inset
 
-knn_weights=n, the weights (neighbors) used in the knn model.
+knn_weights=n, the weights (neighbors) used in knn model.
  The default value is 1.
 \end_layout
 
@@ -2285,14 +2284,14 @@ knn_weights=n, the weights (neighbors) used in the knn model.
 \begin_inset Formula $--$
 \end_inset
 
-rbf_weights=n, the weights used in the rbf model.
+rbf_weights=n, the weights used in rbf model.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-ge_chromosomes=n, the number of chromosomes in the Grammatical Evolution
+ge_chromosomes=n, the number of chromosomes for the Grammatical Evolution
  procedure.
  The default value is 500.
 \end_layout
@@ -2418,9 +2417,9 @@ features .
 \begin_inset Formula $--$
 \end_inset
 
-export_cpp_file=f, where f is the output of the constructed features in
+export_cpp_file=f, where f is the output with the constructed features in
  the C++ programming language.
- As an example, consider the file outlined in Figure 
+ As an example consider the file outlined in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example_BL"
@@ -2441,7 +2440,7 @@ the argument inx denotes an input pattern with the original dimension.
 \end_layout
 
 \begin_layout Enumerate
-the argument outx stands for the features created by the algorithm.
+the argument outx stands for the created features by the algorithm.
  In this case, outx[0] is the first feature and outx[1] is the second feature.
 \end_layout
 
@@ -2680,16 +2679,16 @@ A series of experiments were performed in order to evaluate the reliability
  random number generator each time and averages were taken.
  All the experiments were conducted on an AMD Ryzen 5950X equipped with
  128GB of RAM.
- The operating system used was OpenSUSE Linux and all the programs were
- compiled using the GNU C++ compiler.
- In all the experiments, the parameter 
+ The operating system used was OpenSUSE Linux and all the programs are compiled
+ using the GNU C++ compiler.
+ In all the experiments the parameter 
 \begin_inset Formula $--$
 \end_inset
 
 featureCreateModel had the value rbf, since it is the fastest model that
  could be used and has high learning rates.
  For classification problems, the average classification error on the test
- set is shown and, for regression datasets the average mean squared error
+ set is shown and for regression datasets the average mean squared error
  on the test set is displayed.
 
 \series bold
@@ -2697,8 +2696,8 @@ featureCreateModel had the value rbf, since it is the fastest model that
 \series default
 In all cases, 10 fold cross validation was used and the number of parameters
  for neural networks and for rbf networks was set to 10.
- The evaluation of the features constructed by Grammatical Evolution was
- made using the Function Parser library 
+ The evaluation of the features constructed by the Grammatical Evolution
+ was made using the Function Parser library 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "functionparser"
@@ -3417,7 +3416,7 @@ Wankara
 \end_layout
 
 \begin_layout Subsection
-Experimental results
+Exprimental results
 \end_layout
 
 \begin_layout Standard
@@ -3478,10 +3477,10 @@ The column FCNNC stands for the results of the proposed method, when the
 \end_layout
 
 \begin_layout Standard
-From the experimental results and especially from the average errors, we
+From the experimental results and especially from the average errors we
  can see that the proposed method significantly outperforms the other computatio
 nal methods.
- In the case of data classification, there is a gain of the order of 30%
+ In the case of data classification there is a gain of the order of 30%
  and in the case of regression data the gain from the application of the
  proposed technique exceeds 50%.
  Also, among the three cases of models used to evaluate the constructed
@@ -3500,7 +3499,7 @@ In addition, one more experiment was done in order to establish the impact
 \end_inset
 
 .
- The average classification error and the average regression error for all
+ The average classfication error and the average regression error for all
  datasets are shown in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3513,16 +3512,16 @@ noprefix "false"
 
 .
  From the experimental results, the robustness of the proposed methodology
- is clearly visible, as 1 or 2 features seem to be enough to achieve high
+ is clearly visible, as 1 or 2 features seems to be enough to achieve high
  learning rates for the experimental data used.
 \end_layout
 
 \begin_layout Standard
 Furthermore, one more experiment was conducted to determine the effect of
  the maximum number of generations on the accuracy of the proposed method.
- Again, as an evaluator model the RBF was used.
+ Again as an evaluator model the RBF was used.
  The number of generations was varied from 50 to 400 and the average classificat
-ion error and average regression error for all datasets were measured.
+ion error and average regression error for all datasets was measured.
  The results for this experiment are presented in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3534,7 +3533,7 @@ noprefix "false"
 \end_inset
 
 .
- Once again, the dynamics of the proposed method appear as a few generations
+ Once again the dynamics of the proposed method appear as a few generations
  are enough to achieve high learning rates.
 \end_layout
 
@@ -6773,7 +6772,7 @@ name "sec:Conclusions"
 \begin_layout Standard
 A feature construction method and its accompanying software were analyzed
  in this paper.
- The software is developed in ANSI C++ and is freely available on the internet.
+ The software is developed in ansi C++ and is freely available on the internet.
  The proposed method constructs new features for classification or regression
  data in a fully automatic manner and these features are evaluated by machine
  learning models.
@@ -6805,15 +6804,7 @@ Addition of more input format such as the ARFF format or CSV format.
 \end_layout
 
 \begin_layout Enumerate
-Incorporation of the MPI library 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "openmpi"
-literal "false"
-
-\end_inset
-
- for large network of computers.
+Incorporation of the MPI library for large network of computers.
 \end_layout
 
 \begin_layout Subsection*

@@ -192,12 +192,12 @@ literal "false"
 \begin_layout Standard
 Learning data is usually divided into two parts: training data and test
  data.
- Learning models adjust their parameters taking the training data as input
+ Learning models adjust their parameters, taking the training data as input
  and are evaluated on the test data.
  The number of learning model parameters directly depends on the dimension
  of the input problem (number of features) and this means that for large
- problems large amounts of memory are required to store and manage the learning
- models.
+ problems, large amounts of memory are required to store and manage the
+ learning models.
  In addition, as the number of parameters of the computational models grows,
  a longer time is required to adjust the parameters.
  Also, as the dimension of the data grows, more samples (patterns) are required
@@ -264,7 +264,7 @@ literal "false"
 
 , which is an evolutionary process that can create programs in any programming
  language.
- This process has been used in a variety of cases such as automatic composition
+ This process has been used in a variety of cases, such as automatic composition
  of music 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -307,7 +307,7 @@ literal "false"
 
  etc.
  The described method constructs subsets of features from the original ones
- using non-linear combinations from them.
+ using non-linear combinations of them.
  The method is graphically illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -323,7 +323,7 @@ noprefix "false"
 \series bold
  
 \series default
-Initially the method was described in 
+Initially, the method was described in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "fc1"
@@ -331,7 +331,7 @@ literal "true"
 
 \end_inset
 
- and it has been utilized in a variety of cases such as Spam Identification
+ and it has been utilized in a variety of cases, such as Spam Identification
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -505,7 +505,7 @@ name "sec:Methods"
 \end_layout
 
 \begin_layout Standard
-The proposed technique is divided into two phases: in the first phase new
+The proposed technique is divided into two phases: in the first phase, new
  features are constructed from the old ones using Grammatical Evolution
  and in the second phase these new features modify the control set and a
  machine learning model is applied to the new control set.
@@ -516,10 +516,10 @@ Grammatical Evolution
 \end_layout
 
 \begin_layout Standard
-Grammatical evolution is a biological inspired procedure, that can create
- artificially programs in any language.
- In Grammatical evoltion the chromosomes enclose production rules from a
- BNF (Backus–Naur form) grammar
+Grammatical evolution is a biologically inspired procedure that can create
+ artificial programs in any language.
+ In Grammatical evolution the chromosomes enclose production rules from
+ a BNF (Backus–Naur form) grammar
 \begin_inset CommandInset citation
 LatexCommand cite
 key "bnf1"
@@ -528,7 +528,7 @@ literal "false"
 \end_inset
 
 .
- These grammars usually are described as a set 
+ These grammars usually described as a set 
 \series bold
 
 \begin_inset Formula $G=\left(N,T,S,P\right)$
@@ -599,7 +599,7 @@ or
 \begin_layout Standard
 In order for Grammatical Evolution to work, the original grammar is expanded
  by enumerating all production rules.
- For example consider the modified grammar of Figure 
+ For example, consider the modified grammar of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:BNF-grammar-of"
@@ -614,15 +614,15 @@ noprefix "false"
  The numbers in parentheses are the production sequence numbers for each
  non-terminal symbol.
  The constant N is the original number of features for the input data.
- In Grammatical Evolution the chromosomes are expressed as vectors of integers.
+ In Grammatical Evolution, the chromosomes are expressed as vectors of integers.
  Every element of each chromosome denotes a
 \series bold
  
 \series default
 production rule from the provided BNF grammar.
  The algorithm starts from the start symbol of the grammar and gradually
- produces some program string, by replacing non terminal symbols with the
- right hand of the selected production rule.
+ produces some program string, by replacing non - terminal symbols with
+ the right hand of the selected production rule.
  The selection of the rule has two steps:
 \end_layout
 
@@ -1326,7 +1326,7 @@ Every feature
 \begin_inset Formula $\mbox{FT}_{i}$
 \end_inset
 
- is considered as mapping function, that transforms the original features
+ is considered as a mapping function, that transforms the original features
  to a new one.
  For example the feature 
 \begin_inset Formula 
@@ -1336,7 +1336,7 @@ Every feature
 
 \end_inset
 
-is a non linear function that maps the original feature 
+is a non - linear function that maps the original feature 
 \begin_inset Formula $\left(x_{1},x_{2}\right)$
 \end_inset
 
@@ -1473,8 +1473,7 @@ Set
 Initialize
 \series default
  the chromosomes of the population.
- Every element of each chromosome is initlialized randomly in the range
- [0,255].
+ Every element of each chromosome is initialized randomly in the range [0,255].
 \end_layout
 
 \begin_layout Enumerate
@@ -1618,7 +1617,7 @@ During this process,
  chromosomes will be created.
  Firstly, for every pair of produced offsprings, two distinct chromosomes
  (parents) are selected from the current population using tournament selection:
- First a subset of 
+ First, a subset of 
 \begin_inset Formula $K>1$
 \end_inset
 
@@ -1660,7 +1659,7 @@ noprefix "false"
 Apply
 \series default
  the mutation procedure.
- For every element of each chromosome select a random number 
+ For every element of each chromosome, select a random number 
 \begin_inset Formula $r\in\left[0,1\right]$
 \end_inset
 
@@ -1766,7 +1765,7 @@ The feature evaluation step
 \end_layout
 
 \begin_layout Standard
-During the feature evaluation step the following steps are executed:
+During the feature evaluation step, the following steps are executed:
 \end_layout
 
 \begin_layout Enumerate
@@ -1877,8 +1876,8 @@ https://www.qt.io
 
 \end_inset
 
- As expected, the software can be installed in the majority of operating
- systems even in mobile devices (Android, Ios etc).
+ As expected, the software can be installed on the majority of operating
+ systems, even on mobile devices (Android, Ios etc).
  The program is freely available from 
 \begin_inset Flex URL
 status open
@@ -1929,7 +1928,7 @@ Data format
 
 \begin_layout Standard
 Classification and regression problems should be formatted in files according
- to the format show in Figure 
+ to the format shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Example-of-input"
@@ -1941,13 +1940,14 @@ reference "fig:Example-of-input"
 \series bold
  
 \series default
-The integer number D denotes the number of featuresof the dataset and M
+The integer number D denotes the number of features of the dataset and M
 \series bold
  
 \series default
 represents the number of patterns.
- In every  subsequent line of the file should be the input pattern and the
- final column is the real output (category) for the corresponding pattern.
+ In every  subsequent line of the file there should be the input pattern
+ and the final column is the real output (category) for the corresponding
+ pattern.
  
 \end_layout
 
@@ -2015,7 +2015,7 @@ qfc
 \begin_inset Formula $--$
 \end_inset
 
-key=value, where key is the name of the option and value is actual option
+key=value, where key is the name of the option and value is the actual option
  value.
  The main options of the program are:
 \end_layout
@@ -2024,7 +2024,7 @@ key=value, where key is the name of the option and value is actual option
 \begin_inset Formula $--$
 \end_inset
 
-trainFile=filename, where filename is the full path to data contain the
+trainFile=filename, where filename is the full path to data containing the
  input train set.
  The file must be in the format of Figure 
 \begin_inset CommandInset ref
@@ -2043,8 +2043,8 @@ noprefix "false"
 \begin_inset Formula $--$
 \end_inset
 
-testFile=filename, where filename is the full path to data contain the input
- test set.
+testFile=filename, where filename is the full path to data containing the
+ input test set.
  The format of this file should be the same as the train data.
  The user should at least provide the train and test set in order to execute
  the program.
@@ -2054,8 +2054,8 @@ testFile=filename, where filename is the full path to data contain the input
 \begin_inset Formula $--$
 \end_inset
 
-features=n, set as the n the number of features that will constructed by
- the method.
+features=n, set as the n the number of features that will be constructed
+ by the method.
  The default value is 1.
 \end_layout
 
@@ -2092,8 +2092,8 @@ rbf
 copy
 \series default
 .
- With this value no feature construction is done and the original data set
- is used for training by the model specified by the option 
+ With this value, no feature construction is done and the original data
+ set is used for training by the model specified by the option 
 \begin_inset Formula $--$
 \end_inset
 
@@ -2106,7 +2106,7 @@ featureEvaluateModel.
 rbf
 \series default
 .
- This value is used to utilize an Radial Basis Function neural network for
+ This value is used to utilize a Radial Basis Function neural network for
  the evaluation of the constructed features.
 \end_layout
 
@@ -2127,6 +2127,16 @@ d features.
 knn
 \series default
 .
+ A simple K-nearest neighbor (KNN) method is used 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "knn"
+literal "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -2134,6 +2144,18 @@ knn
 \series bold
 osamaRbf
 \series default
+.
+ A simple RBF implementation as downloaded from 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/osama-afifi/RBF-Radial-Basis-Function-Network
+\end_layout
+
+\end_inset
+
 .
 \end_layout
 
@@ -2143,7 +2165,7 @@ osamaRbf
 \end_inset
 
 featureEvaluateModel=model, the string parameter model sets the name of
- the used model for the evalution of the constructed features.
+ the used model for the evaluation of the constructed features.
  The default value is 
 \begin_inset Quotes eld
 \end_inset
@@ -2153,6 +2175,16 @@ neural
 \end_inset
 
  but other accepted values are: rbf, knn, osamaRbf, nnc.
+ The value nnc refers to the Neural Network Construction model as proposed
+ by Tsoulos et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnc_tsoulos"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -2167,9 +2199,72 @@ threads=t, the number of OpenMP threads used.
 \begin_inset Formula $--$
 \end_inset
 
-neural_trainingMethod=m
+neural_trainingMethod=m.
+ This is the option that defines the method used for neural network training.
+ The default value for m is 
+\begin_inset Quotes eld
+\end_inset
+
+bfgs
+\begin_inset Quotes erd
+\end_inset
+
+ and accepted values are
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+bfgs
+\series default
+.
+ This value sets as a training method a BFGS variant of Powell 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "powell"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+lbfgs
+\series default
+.
+ This value sets as a training method the limited memory BFGS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lbfgs1,lbfgs2"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+genetic
+\series default
+.
+ With this value, a simple genetic algorithm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gen1,gen2"
+literal "false"
+
+\end_inset
+
+ is used to train the neural network.
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
@@ -2182,7 +2277,7 @@ neural_weights=n, the weights used in neural networks.
 \begin_inset Formula $--$
 \end_inset
 
-knn_weights=n, the weights (neighboors) used in knn model.
+knn_weights=n, the weights (neighbors) used in the knn model.
  The default value is 1.
 \end_layout
 
@@ -2190,14 +2285,14 @@ knn_weights=n, the weights (neighboors) used in knn model.
 \begin_inset Formula $--$
 \end_inset
 
-rbf_weights=n, the weights used in rbf model.
+rbf_weights=n, the weights used in the rbf model.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-ge_chromosomes=n, the number of chromosomes for the Grammatical Evolution
+ge_chromosomes=n, the number of chromosomes in the Grammatical Evolution
  procedure.
  The default value is 500.
 \end_layout
@@ -2248,58 +2343,84 @@ ge_length=n, the length of chromosomes in the Grammatical Evolution procedure.
 \begin_inset Formula $--$
 \end_inset
 
-genetic_chromosomes=n
+genetic_chromosomes=n, the number of chromosomes used in the genetic algorithm
+ for neural network training.
+ The default value is 500.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-genetic_maxGenerations=n
+genetic_maxGenerations=n, the maximum number of generations for the genetic
+ algorithm used for neural network training.
+ The default value is 200.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-genetic_selectionRate=f
+genetic_selectionRate=f, the selection rate used in the genetic algorithm
+ of neural network training.
+ The default value is 0.1 (10%).
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-genetic_mutationRate=f
+genetic_mutationRate=f, the mutation rate used in the genetic algorithm
+ of neural network training.
+ The default value is 0.05 (5%).
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-bfgs_iterations=n
+bfgs_iterations=n, the maximum number of iterations for the BFGS method.
+ The default value is 2001.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-export_train_file=f
+export_train_file=f.
+ The value f specifies the file where the training set will be exported
+ after new features are constructed.
+ The new file will have the same format and the same number of templates
+ as the original, but the dimension will be changed to the one defined with
+ the parameter 
+\begin_inset Formula $--$
+\end_inset
+
+features .
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-export_test_file=f
+export_test_file=f, The value f specifies the file where the test set will
+ be exported after new features are constructed.
+ The new file will have the same format and the same number of templates
+ as the original, but the dimension will be changed to the one defined with
+ the parameter 
+\begin_inset Formula $--$
+\end_inset
+
+features .
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $--$
 \end_inset
 
-export_cpp_file=f, where f is the output with the constructed features in
+export_cpp_file=f, where f is the output of the constructed features in
  the C++ programming language.
- As an example consider the file outlined in Figure 
+ As an example, consider the file outlined in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:example_BL"
@@ -2320,7 +2441,7 @@ the argument inx denotes an input pattern with the original dimension.
 \end_layout
 
 \begin_layout Enumerate
-the argument outx stands for the created features by the algorithm.
+the argument outx stands for the features created by the algorithm.
  In this case, outx[0] is the first feature and outx[1] is the second feature.
 \end_layout
 
@@ -2443,6 +2564,99 @@ void fcMap(double *inx,double *outx)
 Example run
 \end_layout
 
+\begin_layout Standard
+As an example run consider the wdbc dataset located in the 
+\emph on
+examples
+\emph default
+ folder of the distribution.
+ The following command:
+\end_layout
+
+\begin_layout LyX-Code
+./QFc --trainFile=examples/wdbc.train --testFile=examples/wdbc.test 
+\end_layout
+
+\begin_layout LyX-Code
+     --features=2 --ge_maxGenerations=5 
+\end_layout
+
+\begin_layout LyX-Code
+     --featureEvaluatedModel=rbf --threads=8
+\end_layout
+
+\begin_layout Standard
+will produce the following output 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language={C++},basicstyle={\tiny}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Iteration:  1  Best Fitness:  -52.1562   
+\end_layout
+
+\begin_layout Plain Layout
+
+Best program:  f1(x)=(447.63*x7-x14+x15)
+\end_layout
+
+\begin_layout Plain Layout
+
+Iteration:  2  Best Fitness:  -52.1562   
+\end_layout
+
+\begin_layout Plain Layout
+
+Best program:  f1(x)=(447.63*x7-x14+x15)
+\end_layout
+
+\begin_layout Plain Layout
+
+Iteration:  3  Best Fitness:  -51.8369   
+\end_layout
+
+\begin_layout Plain Layout
+
+Best program:  f1(x)=(417.63*x7-x14+x15)
+\end_layout
+
+\begin_layout Plain Layout
+
+Iteration:  4  Best Fitness:  -51.7176   
+\end_layout
+
+\begin_layout Plain Layout
+
+Best program:  f1(x)=(417.63*x7-x14+(48.07/(-486.503))*x14+exp(55.884*x15))
+\end_layout
+
+\begin_layout Plain Layout
+
+Iteration:  5  Best Fitness:  -51.5149   
+\end_layout
+
+\begin_layout Plain Layout
+
+Best program:  f1(x)=(417.63*x7-x14+x15+x16+log(((-9.863)/5.9)*x30+exp(sin(x5+(417.6
+3/07.54)*x8+7.494*x29)))) 
+\end_layout
+
+\begin_layout Plain Layout
+
+AVERAGES(TRAIN,TEST,CLASS):       57.241174        60.60288       29.473684%
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Experiments 
 \begin_inset CommandInset label
@@ -2462,6 +2676,37 @@ A series of experiments were performed in order to evaluate the reliability
  of the experimental results to various critical parameters, such as the
  number of features or the maximum number of generations of the genetic
  algorithm, were measured.
+ All the experiments were conducted 30 times with different seeds for the
+ random number generator each time and averages were taken.
+ All the experiments were conducted on an AMD Ryzen 5950X equipped with
+ 128GB of RAM.
+ The operating system used was OpenSUSE Linux and all the programs were
+ compiled using the GNU C++ compiler.
+ In all the experiments, the parameter 
+\begin_inset Formula $--$
+\end_inset
+
+featureCreateModel had the value rbf, since it is the fastest model that
+ could be used and has high learning rates.
+ For classification problems, the average classification error on the test
+ set is shown and, for regression datasets the average mean squared error
+ on the test set is displayed.
+
+\series bold
+ 
+\series default
+In all cases, 10 fold cross validation was used and the number of parameters
+ for neural networks and for rbf networks was set to 10.
+ The evaluation of the features constructed by Grammatical Evolution was
+ made using the Function Parser library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "functionparser"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -3172,19 +3417,132 @@ Wankara
 \end_layout
 
 \begin_layout Subsection
-Exprimental results
+Experimental results
 \end_layout
 
 \begin_layout Standard
-Na grapsoume edo giati balame to RBF san creation model (epeidi einai poly
- pio grigoro apo oti to neural)
+The experimental results for the classification datasets are listed in Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:class_results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and for regression datasets in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:regression_results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The number of features constructed by the Grammatical Evolution was set
+ to 2.
+ In both tables, an additional row was added at the end showing the average
+ classification or regression error for all datasets and it is denoted by
+ the name AVERAGE.
+ The columns of both tables have the following meaning:
+\end_layout
+
+\begin_layout Enumerate
+The column RBF stands for the results from an RBF network with 10 parameters.
+\end_layout
+
+\begin_layout Enumerate
+The column MLP stands for the results of a neural network trained by a genetic
+ algorithm.
+ The number of weights was set to 10.
+\end_layout
+
+\begin_layout Enumerate
+The column FCRBF represents the results of the proposed method, when an
+ RBF network was used as the evaluation model.
+\end_layout
+
+\begin_layout Enumerate
+The column FCMLP represents the results of the proposed method, when a neural
+ network trained by a genetic algorithm was used as the evaluation model.
+\end_layout
+
+\begin_layout Enumerate
+The column FCNNC stands for the results of the proposed method, when the
+ neural network construction model (nnc) was utilized as the evaluation
+ model.
+\end_layout
+
+\begin_layout Standard
+From the experimental results and especially from the average errors, we
+ can see that the proposed method significantly outperforms the other computatio
+nal methods.
+ In the case of data classification, there is a gain of the order of 30%
+ and in the case of regression data the gain from the application of the
+ proposed technique exceeds 50%.
+ Also, among the three cases of models used to evaluate the constructed
+ features (FCRBF, FCMLP, FCNNC), there does not seem to be any clear superiority
+ of any of the three.
+ However, we would say that the nnc method slightly outperforms the simple
+ genetic algorithm.
+\end_layout
+
+\begin_layout Standard
+In addition, one more experiment was done in order to establish the impact
+ of the number of features on the accuracy of the proposed method.
+ In this case, the rbf (FCRBF) network was used as the feature evaluator,
+ and the number of generated features was in the interval 
+\begin_inset Formula $[1..4]$
+\end_inset
+
+.
+ The average classification error and the average regression error for all
+ datasets are shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:table_features"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ From the experimental results, the robustness of the proposed methodology
+ is clearly visible, as 1 or 2 features seem to be enough to achieve high
+ learning rates for the experimental data used.
+\end_layout
+
+\begin_layout Standard
+Furthermore, one more experiment was conducted to determine the effect of
+ the maximum number of generations on the accuracy of the proposed method.
+ Again, as an evaluator model the RBF was used.
+ The number of generations was varied from 50 to 400 and the average classificat
+ion error and average regression error for all datasets were measured.
+ The results for this experiment are presented in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:table_gens"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Once again, the dynamics of the proposed method appear as a few generations
+ are enough to achieve high learning rates.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -4922,7 +5280,7 @@ AVERAGE
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -6046,139 +6404,7 @@ AVERAGE
 \begin_inset Float table
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Average execution times fot the three evaluation models of Feature Construction.
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:time_table"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-METHOD
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-AVERAGE TIME
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FC RBF
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-249.40
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FC MLP
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-751.62
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FC NNC
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-524.56
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -6372,7 +6598,7 @@ AVERAGE REGRESSION
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6545,12 +6771,49 @@ name "sec:Conclusions"
 \end_layout
 
 \begin_layout Standard
-(
-\series bold
-1.
- add termination rules 2) discover the right number of features.
- 3) add more models like svm 4) add more input formats 5) combine the method
- with GenClass for example) 6) incorporation of MPI for heterogenous networks
+A feature construction method and its accompanying software were analyzed
+ in this paper.
+ The software is developed in ANSI C++ and is freely available on the internet.
+ The proposed method constructs new features for classification or regression
+ data in a fully automatic manner and these features are evaluated by machine
+ learning models.
+ The user can choose between several learning models and can customize the
+ course of the technique through a series of command line parameters.
+ From the extensive execution of experiments and the comparison with other
+ learning methods, the superiority of the proposed technique and its ability
+ to achieve high learning rates even with a limited number of constructed
+ features or a maximum number of iterations emerge.
+ These results combined with the ability of the method to run on multiple
+ threads through the OpenMP library make it ideal for learning large sets
+ of data in a satisfactory execution time.
+\end_layout
+
+\begin_layout Standard
+The method can be extended in several ways, such as:
+\end_layout
+
+\begin_layout Enumerate
+Incorporation of advanced stopping rules.
+\end_layout
+
+\begin_layout Enumerate
+Usage of more advanced learning models such as SVM.
+\end_layout
+
+\begin_layout Enumerate
+Addition of more input formats such as the ARFF format or CSV format.
+\end_layout
+
+\begin_layout Enumerate
+Incorporation of the MPI library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "openmpi"
+literal "false"
+
+\end_inset
+
+ for large network of computers.
 \end_layout
 
 \begin_layout Subsection*
@@ -7376,6 +7639,41 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "knn"
+literal "false"
+
+\end_inset
+
+E.
+ Fix, J.L.
+ Hodges, Joseph, Discriminatory Analysis.
+ Nonparametric Discrimination: Consistency Properties , USAF School of Aviation
+ Medicine, Randolph Field, Texas, 1951.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnc_tsoulos"
+literal "false"
+
+\end_inset
+
+I.
+ Tsoulos, D.
+ Gavrilis, E.
+ Glavas, Neural network construction and training using grammatical evolution,
+ Neurocomputing 
+\series bold
+72
+\series default
+, pp.
+ 269-277, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "powell"
 literal "true"
 
@@ -7389,6 +7687,95 @@ ons, Mathematical Programming
 , pp.
  547-566, 1989.
  
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "lbfgs1"
+literal "false"
+
+\end_inset
+
+R.
+ H.
+ Byrd, P.
+ Lu, J.
+ Nocedal, C.
+ Zhu, A limited memory algorithm for bound constrained optimization, SIAM
+ J.
+ Scientific Computing 
+\series bold
+16
+\series default
+, pp.
+ 1190-1208, 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "lbfgs2"
+literal "false"
+
+\end_inset
+
+R.
+ Byrd, J.
+ Nocedal, R.
+ Schnabel Representations of Quasi-Newton Matrices and their use in Limited
+ Memory Methods', Mathematical Programming 
+\series bold
+63
+\series default
+, pp.
+ 129-156, 1994.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "gen1"
+literal "true"
+
+\end_inset
+
+Z.
+ Michaelewicz, Genetic Algorithms + Data Structures = Evolution Programs.
+ Springer - Verlag, Berlin, 1996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "gen2"
+literal "true"
+
+\end_inset
+
+P.
+ Kaelo, M.M.
+ Ali, Integrated crossover rules in real coded genetic algorithms, European
+ Journal of Operational Research 
+\series bold
+176
+\series default
+, pp.
+ 60-76, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "functionparser"
+literal "true"
+
+\end_inset
+
+J.
+ Nieminen and J.
+ Yliluoma, "Function Parser for C++, v2.7", available from http://warp.povusers.org
+/FunctionParser/
 \end_layout
 
 \begin_layout Bibliography
@@ -8063,6 +8450,22 @@ R.D.
 , pp.
  11322–11326, 1992.
  
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "openmpi"
+literal "true"
+
+\end_inset
+
+Richard L.
+ Graham , Timothy S.
+ Woodall , Jeffrey M.
+ Squyres, Open MPI: A Flexible High Performance MPI, Parallel Processing
+ and Applied Mathematics Volume 3911 of the series Lecture Notes in Computer
+ Science, pp 228-239, 2006.
 \end_layout
 
 \end_body
