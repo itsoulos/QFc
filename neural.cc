@@ -137,7 +137,7 @@ double    Neural::localSearch()
     rmargin.resize(weight.size());
     for(int i=0;i<weight.size();i++)
     {
-        weight[i]=0.01 * drand48();
+        weight[i]=0.01 * (2.0*drand48()-1.0);
         lmargin[i]=-100.0;
         rmargin[i]= 100.0;
     }
