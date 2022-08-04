@@ -175,7 +175,31 @@ literal "false"
 
 \end_inset
 
-, etc.
+, Parse - matrix evolution 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "parseMatrix"
+literal "false"
+
+\end_inset
+
+, Multilevel Block Building 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "multiLevel"
+literal "false"
+
+\end_inset
+
+, Development of Mathematical Expressions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dome"
+literal "false"
+
+\end_inset
+
+ etc.
  A review of the methods used in classification can be found in the work
  of Kotsiantis et al 
 \begin_inset CommandInset citation
@@ -264,48 +288,6 @@ literal "false"
 
 , which is an evolutionary process that can create programs in any programming
  language.
- This process has been used in a variety of cases, such as automatic composition
- of music 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ge_music"
-literal "false"
-
-\end_inset
-
-, construction of neural networks 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ge_nn,ge_nn2"
-literal "false"
-
-\end_inset
-
-, automatic constant creation 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ge_constant"
-literal "false"
-
-\end_inset
-
-, evolution of video games 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ge_pacman"
-literal "false"
-
-\end_inset
-
-, energy demand estimation 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ge_energy"
-literal "false"
-
-\end_inset
-
- etc.
  The described method constructs subsets of features from the original ones
  using non-linear combinations of them.
  The method is graphically illustrated in Figure 
@@ -373,6 +355,66 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Feature construction methods have been thoroughly examined and analyzed
+ in the relevant literature such as the work of Smith and Bull 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc1"
+literal "false"
+
+\end_inset
+
+, where tree genetic programming is used to construct artificial features.
+ Devi uses the Simulated Annealing method
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc_anneal"
+literal "false"
+
+\end_inset
+
+ to identify the features that are most important for data classification.
+
+\series bold
+ 
+\series default
+Neshatian et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc2"
+literal "false"
+
+\end_inset
+
+ constructs artificial features using an entropy based fitness function
+ for the associated genetic algorithm.
+
+\series bold
+ 
+\series default
+Li and Yin uses another evolutionary approach for feature selection using
+ gene expression data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc3"
+literal "false"
+
+\end_inset
+
+.
+ Furthermore, Ma and Teng proposed 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc4"
+literal "false"
+
+\end_inset
+
+ a genetic programming approach that utilizes information gain ratio (IGR)
+ to construct artificial features.
+\end_layout
+
+\begin_layout Standard
 The proposed software has been implemented in ANSI C++ utilizing the freely
  available library of QT from 
 \begin_inset Flex URL
@@ -408,6 +450,50 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+The proposed method differs from similar ones as it does not require any
+ prior knowledge of the objective problem and can be applied without any
+ change to both classification problems and regression problems.
+ In addition, the method can discover any functional dependencies between
+ the initial features and can drastically reduce the number of input features,
+ significantly reducing the time required to train the subsequent machine
+ learning model.
+\end_layout
+
+\begin_layout Standard
+Related freely available software packages on feature selection and construction
+ are also the Mlpack package
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mlpack"
+literal "false"
+
+\end_inset
+
+, that implements the PCA method, the GSL software package obtained from
+ 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://www.gnu.org/software/gsl/doc/html/index.html
+\end_layout
+
+\end_inset
+
+ that also implements the PCA method among others, the MRMR package writen
+ in ANSI C++ by Hanchuan Peng 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mrmr1,mrmr2"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
 The rest of this article is organized as follows: in section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -418,7 +504,8 @@ noprefix "false"
 
 \end_inset
 
- the proposed method is analyzed, in section 
+ the Grammatical Evolution procedure is briefly described and the proposed
+ method is analyzed, in section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:The-software"
@@ -505,10 +592,11 @@ name "sec:Methods"
 \end_layout
 
 \begin_layout Standard
-The proposed technique is divided into two phases: in the first phase, new
- features are constructed from the old ones using Grammatical Evolution
- and in the second phase these new features modify the control set and a
- machine learning model is applied to the new control set.
+In this section, a brief overview of Grammatical Evolution, its applications
+ and its advantages is given and then presented: the creation of artificial
+ features using Grammatical Evolution, the first phase of the method where
+ features are constructed and evaluated, and the second phase of the method,
+ where the characteristics from the first phase are evaluated.
 \end_layout
 
 \begin_layout Subsection
@@ -519,7 +607,7 @@ Grammatical Evolution
 Grammatical evolution is a biologically inspired procedure that can create
  artificial programs in any language.
  In Grammatical evolution the chromosomes enclose production rules from
- a BNF (Backus–Naur form) grammar
+ a BNF (Backus–Naur form) grammar 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "bnf1"
@@ -639,7 +727,11 @@ Select the next production rule according to the the scheme Rule = V mod
 
 \begin_layout Standard
 For example, consider the chromosome chromosome 
-\begin_inset Formula $x=\left[9,8,6,4,16,10,17,23,8,14\right]$
+\begin_inset Formula 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+
 \end_inset
 
  and 
@@ -664,6 +756,108 @@ reference "tab:table_with_steps"
 
 .
  
+\end_layout
+
+\begin_layout Standard
+Initially, Grammatical Evolution was used in cases of learning functions
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_program1,ge_program2"
+literal "false"
+
+\end_inset
+
+ and solving trigonometric identities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_trig"
+literal "false"
+
+\end_inset
+
+ but then it was also applied in other fields such as automatic composition
+ of music 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_music"
+literal "false"
+
+\end_inset
+
+, construction of neural networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_nn,ge_nn2"
+literal "false"
+
+\end_inset
+
+, automatic constant creation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_constant"
+literal "false"
+
+\end_inset
+
+, evolution of video games 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_pacman,ge_supermario"
+literal "false"
+
+\end_inset
+
+, energy demand estimation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_energy"
+literal "false"
+
+\end_inset
+
+, combinatorial optimization 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_comb"
+literal "false"
+
+\end_inset
+
+, cryptography 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ge_crypt"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+A key advantage of the Grammatical Evolution is its easy adaptability to
+ a wide range of problems, as long as the grammar of the problem and a fitness
+ method are provided.
+ No additional knowledge of the problem is required such as using derivatives.
+ Also, the method can be easily parallelized, since it is essentially a
+ genetic algorithm of integer values.
+ However, there are a number of disadvantages that must be taken into account
+ when using the technique.
+ In principle in many cases a chromosome may not be able to produce a valid
+ expression in the underlying grammar if its elements run out.
+ In this case, wrapping an effect can be executed, but it is not always
+ certain that this can again provide a valid solution.
+ Also another important issue is the initialization of the chromosomes of
+ Grammatical evolution.
+ Usually the rules are very few in number and therefore different numbers
+ on the chromosomes may produce the same rules.
+\end_layout
+
+\begin_layout Standard
+In the next subsection the steps of producing artificial features from the
+ original ones are provided and discussed.
 \end_layout
 
 \begin_layout Standard
@@ -1251,7 +1445,11 @@ name "subsec:The-feature-construction"
 \end_layout
 
 \begin_layout Standard
-The following procedure is executed in order to produce 
+The proposed technique is divided into two phases: in the first phase, new
+ features are constructed from the old ones using Grammatical Evolution
+ and in the second phase these new features modify the control set and a
+ machine learning model is applied to the new control set.
+ The following procedure is executed in order to produce 
 \begin_inset Formula $N_{f}$
 \end_inset
 
@@ -1362,7 +1560,8 @@ The feature construction step
 \end_layout
 
 \begin_layout Standard
-The method has the following steps:
+This is the first phase of the proposed method and it has the following
+ steps:
 \end_layout
 
 \begin_layout Enumerate
@@ -1858,6 +2057,15 @@ name "sec:The-software"
 
 \end_layout
 
+\begin_layout Standard
+The proposed method has been fully implemented in ANSI C++ and is freely
+ available from the internet.
+ This section also acts as a small manual for this software.
+ It starts with the software installation instructions, then all the operating
+ parameters of the software are presented and the use of the software is
+ demonstrated through an analytical example.
+\end_layout
+
 \begin_layout Subsection
 Installation procedure 
 \end_layout
@@ -1920,85 +2128,8 @@ The final outcome of the previous steps is a command line program called
 qfc
 \emph default
 .
-\end_layout
-
-\begin_layout Subsection
-Data format 
-\end_layout
-
-\begin_layout Standard
-Classification and regression problems should be formatted in files according
- to the format shown in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Example-of-input"
-
-\end_inset
-
-.
-
-\series bold
- 
-\series default
-The integer number D denotes the number of features of the dataset and M
-\series bold
- 
-\series default
-represents the number of patterns.
- In every  subsequent line of the file there should be the input pattern
- and the final column is the real output (category) for the corresponding
- pattern.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Example of input file for regression/classification.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Example-of-input"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-D
-\end_layout
-
-\begin_layout Plain Layout
-M
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\begin{array}{ccccc}
-x_{11} & x_{12} & \ldots & x_{1D} & y_{1}\\
-x_{21} & x_{22} & \ldots & x_{2D} & y_{2}\\
-\vdots & \vdots & \vdots & \vdots & \vdots\\
-x_{M1} & x_{M2} & \ldots & x_{MD} & y_{M}
-\end{array}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+ This program has a series of command line parameters that illustrated subsequen
+tly.
 \end_layout
 
 \begin_layout Subsection
@@ -2037,6 +2168,16 @@ noprefix "false"
 \end_inset
 
 .
+ The integer number D denotes the number of features of the dataset and
+ M
+\series bold
+ 
+\series default
+represents the number of patterns.
+ In every  subsequent line of the file there should be the input pattern
+ and the final column is the real output (category) for the corresponding
+ pattern.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -2147,7 +2288,7 @@ osamaRbf
 .
  A simple RBF implementation as downloaded from 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -2457,7 +2598,54 @@ help, prints a help screen and terminates the program.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of input file for regression/classification.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-of-input"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+D
+\end_layout
+
+\begin_layout Plain Layout
+M
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{array}{ccccc}
+x_{11} & x_{12} & \ldots & x_{1D} & y_{1}\\
+x_{21} & x_{22} & \ldots & x_{2D} & y_{2}\\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+x_{M1} & x_{M2} & \ldots & x_{MD} & y_{M}
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2696,7 +2884,7 @@ featureCreateModel had the value rbf, since it is the fastest model that
  
 \series default
 In all cases, 10 fold cross validation was used and the number of parameters
- for neural networks and for rbf networks was set to 10.
+ for neural networks and for RBF networks was set to 10.
  The evaluation of the features constructed by Grammatical Evolution was
  made using the Function Parser library 
 \begin_inset CommandInset citation
@@ -3446,19 +3634,47 @@ The column RBF stands for the results from an RBF network with
 \end_layout
 
 \begin_layout Enumerate
-The column MLP stands for the results of a neural network trained by a genetic
- algorithm.
- The number of weights was set to 10.
+The column MLP stands for the results of a neural network with 
+\begin_inset Formula $H$
+\end_inset
+
+ sigmoidal nodes trained by a genetic algorithm.
+ The parameters of this genetic algorithm are listed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Experimental-parameters."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
 The column FCRBF represents the results of the proposed method, when an
- RBF network was used as the evaluation model.
+ RBF network with 
+\begin_inset Formula $H$
+\end_inset
+
+ Gaussian units was used as the evaluation model.
 \end_layout
 
 \begin_layout Enumerate
 The column FCMLP represents the results of the proposed method, when a neural
  network trained by a genetic algorithm was used as the evaluation model.
+ The parameters of this genetic algorithm are listed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Experimental-parameters."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3555,13 +3771,18 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-From the experimental results and especially from the average errors, we
- can see that the proposed method significantly outperforms the other computatio
-nal methods.
+Summarizing the conclusions of the experiments, one can say that the proposed
+ method obviously outperforms the other techniques in most cases, especially
+ in the case of regression datasets.
  In the case of data classification, there is a gain of the order of 30%
  and in the case of regression data the gain from the application of the
  proposed technique exceeds 50%.
- Also, among the three cases of models used to evaluate the constructed
+ The gain in many cases from the application of the proposed technique can
+ even reach 90%.
+ In addition, the MRMR method seems to be superior in most cases to the
+ PCA, possibly pointing the way for a future research on the combination
+ of Grammatical Evolution and MRMR.
+ Furthermore, among the three cases of models used to evaluate the constructed
  features (FCRBF, FCMLP, FCNNC), there does not seem to be any clear superiority
  of any of the three.
  However, we would say that the nnc method slightly outperforms the simple
@@ -3619,7 +3840,7 @@ noprefix "false"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -3778,7 +3999,7 @@ Features
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $p_{s}$
+\begin_inset Formula $p_{S}$
 \end_inset
 
 
@@ -3810,7 +4031,7 @@ Selection rate
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $p_{m}$
+\begin_inset Formula $p_{M}$
 \end_inset
 
 
@@ -6744,11 +6965,7 @@ AVERAGE
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -9557,7 +9774,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
-27.69
+15.93
 \end_layout
 
 \end_inset
@@ -9972,13 +10189,32 @@ name "sec:Conclusions"
 \end_layout
 
 \begin_layout Standard
-A feature construction method and its accompanying software were analyzed
- in this paper.
+A feature construction method and the accompanying software were analyzed
+ in detail in this paper.
  The software is developed in ANSI C++ and is freely available on the internet.
- The proposed method constructs new features for classification or regression
- data in a fully automatic manner and these features are evaluated by machine
- learning models.
- The user can choose between several learning models and can customize the
+ The proposed technique constructs technical features from the existing
+ ones by exploiting the possible functional dependencies between the features
+ but also the possibility that some of the original features do not contribute
+ anything to the learning.
+ The method does not require any prior knowledge of the objective problem
+ and can be applied without any change to both regression and classification
+ problems.
+ The method is divided into two phases: in the first phase a genetic algorithm
+ using Grammatical Evolution is used to construct new features from the
+ original ones.
+ These features are evaluated for their accuracy with some machine learning
+ model.
+ However, this process can be very time consuming and as a consequence fast
+ learning models or parallel algorithms should be used.
+ Radial basis networks were used in the first phase of the method during
+ the experiments, which are known to have short training times, but other
+ models could be used in their place.
+ In the second phase of the method after the features are generated, a machine
+ learning method is applied to them and the error on the test set is evaluated.
+\end_layout
+
+\begin_layout Standard
+The user can choose between several learning models and can customize the
  course of the technique through a series of command line parameters.
  From the extensive execution of experiments and the comparison with other
  learning methods, the superiority of the proposed technique and its ability
@@ -10426,6 +10662,56 @@ S.B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "parseMatrix"
+literal "false"
+
+\end_inset
+
+C.
+ Luo, S.L.
+ Zhang, Parse-matrix evolution for symbolic regression, Elsevier Engineering
+ Applications of Artificial Intelligence 25, pp.
+ 1182-1193, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "multiLevel"
+literal "false"
+
+\end_inset
+
+C.
+ Chen, C.
+ Luo, Z.
+ Jiang, A multilevel block building algorithm for fast modeling generalized
+ separable systems, Expert Systems with Applications 109, pp.
+ 25-34, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "dome"
+literal "false"
+
+\end_inset
+
+D.
+ Rivero, E.F.
+ Blanco, A.Pazos, DoME: A deterministic technique for equation development
+ and Symbolic Regression, Expert Systems with Applications 
+\series bold
+198
+\series default
+, 2022.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "nndimension"
 literal "false"
 
@@ -10591,6 +10877,312 @@ pp.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "fc1"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Selecting and constructing features using
+ grammatical evolution, Pattern Recognition Letters 
+\series bold
+29
+\series default
+,pp.
+ 1358-1365, 2008.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc2"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
+ for Robust Detection of E-Mail Spam, Advances in Artificial Intelligence
+ Volume 3955 of the series Lecture Notes in Computer Science pp 498-501,
+ 2006.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc3"
+literal "true"
+
+\end_inset
+
+George Georgoulas, Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Chrysostomos Stylios, João Bernardes, Peter P.
+ Groumpos, Novel approach for fetal heart rate classification introducing
+ grammatical evolution, Biomedical Signal Processing and Control 
+\series bold
+2
+\series default
+,pp.
+ 69-79, 2007 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc4"
+literal "true"
+
+\end_inset
+
+Otis Smart, Ioannis G.
+ Tsoulos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
+ features of epileptic oscillations in clinical intracranial electroencephalogra
+ms, Expert Systems with Applications 
+\series bold
+38
+\series default
+, pp.
+ 9991-9999, 2011 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc5"
+literal "false"
+
+\end_inset
+
+A.
+ T.
+ Tzallas, I.
+ Tsoulos, M.
+ G.
+ Tsipouras, N.
+ Giannakeas, I.
+ Androulidakis and E.
+ Zaitseva, Classification of EEG signals using feature creation produced
+ by grammatical evolution, In: 24th Telecommunications Forum (TELFOR), pp.
+ 1-4, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc1"
+literal "false"
+
+\end_inset
+
+M.G.
+ Smith, L.
+ Bull, Genetic Programming with a Genetic Algorithm for Feature Construction
+ and Selection, Genet Program Evolvable Mach 
+\series bold
+6
+\series default
+, pp.
+ 265–281, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc_anneal"
+literal "false"
+
+\end_inset
+
+V.S.
+ Devi, Class Specific Feature Selection Using Simulated Annealing.
+ In: Prasath, R., Vuppala, A., Kathirvalavakumar, T.
+ (eds) Mining Intelligence and Knowledge Exploration.
+ MIKE 2015.
+ Lecture Notes in Computer Science(), vol 9468.
+ Springer, Cham.
+ 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc2"
+literal "false"
+
+\end_inset
+
+K.
+ Neshatian, M.
+ Zhang, P.
+ Andreae, A Filter Approach to Multiple Feature Construction for Symbolic
+ Learning Classifiers Using Genetic Programming, IEEE Transactions on Evolutiona
+ry Computation 
+\series bold
+16
+\series default
+, pp.
+ 645-661, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc3"
+literal "false"
+
+\end_inset
+
+X.
+ Li, M.
+ Yin, Multiobjective Binary Biogeography Based Optimization for Feature
+ Selection Using Gene Expression Data, IEEE Transactions on NanoBioscience
+ 
+\series bold
+12
+\series default
+, pp.
+ 343-353, 2013.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc4"
+literal "false"
+
+\end_inset
+
+J.
+ Ma, G.
+ Teng, A hybrid multiple feature construction approach for classification
+ using Genetic Programming, Applied Soft Computing 
+\series bold
+80
+\series default
+, pp.
+ 687-699, 2019.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "openmp"
+literal "false"
+
+\end_inset
+
+L.
+ Dagum, R.
+ Menon, OpenMP: an industry standard API for shared-memory programming,
+ IEEE Computational Science and Engineering 
+\series bold
+ 5
+\series default
+, pp.
+ 46-55, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlpack"
+literal "true"
+
+\end_inset
+
+Ryan R.
+ Curtin, James R.
+ Cline, N.
+ P.
+ Slagle, William B.
+ March, Parikshit Ram, Nishant A.
+ Mehta, Alexander G.
+ Gray, MLPACK: A Scalable C++ Machine Learning Library, Journal of Machine
+ Learning Research 
+\series bold
+14
+\series default
+, pp.
+ 801−805, 2013.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "bnf1"
+literal "false"
+
+\end_inset
+
+J.
+ W.
+ Backus.
+ The Syntax and Semantics of the Proposed International Algebraic Language
+ of the Zurich ACM-GAMM Conference.
+ Proceedings of the International Conference on Information Processing,
+ UNESCO, 1959, pp.125-132.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_program1"
+literal "false"
+
+\end_inset
+
+C.
+ Ryan, J.
+ Collins, M.
+ O’Neill, Grammatical evolution: Evolving programs for an arbitrary language.
+ In: Banzhaf, W., Poli, R., Schoenauer, M., Fogarty, T.C.
+ (eds) Genetic Programming.
+ EuroGP 1998.
+ Lecture Notes in Computer Science, vol 1391.
+ Springer, Berlin, Heidelberg, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_program2"
+literal "false"
+
+\end_inset
+
+M.
+ O’Neill, M., C.
+ Ryan, Evolving Multi-line Compilable C Programs.
+ In: Poli, R., Nordin, P., Langdon, W.B., Fogarty, T.C.
+ (eds) Genetic Programming.
+ EuroGP 1999.
+ Lecture Notes in Computer Science, vol 1598.
+ Springer, Berlin, Heidelberg, 1999.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge_trig"
+literal "false"
+
+\end_inset
+
+C.
+ Ryan, M.
+ O’Neill, J.J.
+ Collins, Grammatical evolution: Solving trigonometric identities, proceedings
+ of Mendel.
+ Vol.
+ 98.
+ 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "ge_music"
 literal "false"
 
@@ -10687,6 +11279,26 @@ E.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "ge_supermario"
+literal "false"
+
+\end_inset
+
+N.
+ Shaker, M.
+ Nicolau, G.
+ N.
+ Yannakakis, J.
+ Togelius, M.
+ O'Neill, Evolving levels for Super Mario Bros using grammatical evolution,
+ 2012 IEEE Conference on Computational Intelligence and Games (CIG), 2012,
+ pp.
+ 304-31.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "ge_energy"
 literal "false"
 
@@ -10711,130 +11323,45 @@ D.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "fc1"
-literal "true"
+key "ge_comb"
+literal "false"
 
 \end_inset
 
-Dimitris Gavrilis, Ioannis G.
- Tsoulos, Evangelos Dermatas, Selecting and constructing features using
- grammatical evolution, Pattern Recognition Letters 
+N.
+ R.
+ Sabar, M.
+ Ayob, G.
+ Kendall, R.
+ Qu, Grammatical Evolution Hyper-Heuristic for Combinatorial Optimization
+ Problems, IEEE Transactions on Evolutionary Computation 
 \series bold
-29
-\series default
-,pp.
- 1358-1365, 2008.
- 
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "fc2"
-literal "true"
-
-\end_inset
-
-Dimitris Gavrilis, Ioannis G.
- Tsoulos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
- for Robust Detection of E-Mail Spam, Advances in Artificial Intelligence
- Volume 3955 of the series Lecture Notes in Computer Science pp 498-501,
- 2006.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "fc3"
-literal "true"
-
-\end_inset
-
-George Georgoulas, Dimitris Gavrilis, Ioannis G.
- Tsoulos, Chrysostomos Stylios, João Bernardes, Peter P.
- Groumpos, Novel approach for fetal heart rate classification introducing
- grammatical evolution, Biomedical Signal Processing and Control 
-\series bold
-2
-\series default
-,pp.
- 69-79, 2007 
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "fc4"
-literal "true"
-
-\end_inset
-
-Otis Smart, Ioannis G.
- Tsoulos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
- features of epileptic oscillations in clinical intracranial electroencephalogra
-ms, Expert Systems with Applications 
-\series bold
-38
+17
 \series default
 , pp.
- 9991-9999, 2011 
+ 840-861, 2013.
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "fc5"
+key "ge_crypt"
 literal "false"
 
 \end_inset
 
-A.
- T.
- Tzallas, I.
- Tsoulos, M.
- G.
- Tsipouras, N.
- Giannakeas, I.
- Androulidakis and E.
- Zaitseva, Classification of EEG signals using feature creation produced
- by grammatical evolution, In: 24th Telecommunications Forum (TELFOR), pp.
- 1-4, 2016.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "openmp"
-literal "false"
-
-\end_inset
-
-L.
- Dagum, R.
- Menon, OpenMP: an industry standard API for shared-memory programming,
- IEEE Computational Science and Engineering 
+C.
+ Ryan, M.
+ Kshirsagar, G.
+ Vaidya, G.
+ et al.
+ Design of a cryptographically secure pseudo random number generator with
+ grammatical evolution.
+ Sci Rep 
 \series bold
- 5
+12
 \series default
-, pp.
- 46-55, 1998.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "bnf1"
-literal "false"
-
-\end_inset
-
-J.
- W.
- Backus.
- The Syntax and Semantics of the Proposed International Algebraic Language
- of the Zurich ACM-GAMM Conference.
- Proceedings of the International Conference on Information Processing,
- UNESCO, 1959, pp.125-132
+, 8602, 2022.
 \end_layout
 
 \begin_layout Bibliography
@@ -11650,31 +12177,6 @@ R.D.
 \series default
 , pp.
  11322–11326, 1992.
- 
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "mlpack"
-literal "true"
-
-\end_inset
-
-Ryan R.
- Curtin, James R.
- Cline, N.
- P.
- Slagle, William B.
- March, Parikshit Ram, Nishant A.
- Mehta, Alexander G.
- Gray, MLPACK: A Scalable C++ Machine Learning Library, Journal of Machine
- Learning Research 
-\series bold
-14
-\series default
-, pp.
- 801−805, 2013.
  
 \end_layout
 

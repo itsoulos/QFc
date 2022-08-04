@@ -3,6 +3,7 @@
 \documentclass[english]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{textcomp}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -59,8 +60,10 @@ pollution \cite{fc_pollution1,fc_pollution2,fc_pollution3}, medicine
 \cite{nnmed1,nnmed2} etc. These problems are usually tackled by learning
 models such as Artificial Neural Networks \cite{nn1,nn2}, Radial
 Basis Function (RBF) networks \cite{rbf1,rbf2}, Support Vector Machines
-(SVM) \cite{svm}, etc. A review of the methods used in classification
-can be found in the work of Kotsiantis et al \cite{class_review}. 
+(SVM) \cite{svm}, Parse - matrix evolution \cite{parseMatrix}, Multilevel
+Block Building \cite{multiLevel}, Development of Mathematical Expressions
+\cite{dome} etc. A review of the methods used in classification can
+be found in the work of Kotsiantis et al \cite{class_review}. 
 
 Learning data is usually divided into two parts: training data and
 test data. Learning models adjust their parameters, taking the training
@@ -84,19 +87,26 @@ reduction techniques can be found in the work of Ayesha et al \cite{reduction_co
 The current article describes the method and the software associated
 with a feature construction method based on Grammatical Evolution
 \cite{ge_main}, which is an evolutionary process that can create
-programs in any programming language. This process has been used in
-a variety of cases, such as automatic composition of music \cite{ge_music},
-construction of neural networks \cite{ge_nn,ge_nn2}, automatic constant
-creation \cite{ge_constant}, evolution of video games \cite{ge_pacman},
-energy demand estimation \cite{ge_energy} etc. The described method
-constructs subsets of features from the original ones using non-linear
-combinations of them. The method is graphically illustrated in Figure
-\ref{fig:Schematic-representation-of}.\textbf{ }Initially, the method
-was described in \cite{fc1} and it has been utilized in a variety
-of cases, such as Spam Identification \cite{fc2},\textbf{ }Fetal
-heart classification \cite{fc3}, epileptic oscillations in clinical
-intracranial electroencephalograms \cite{fc4}, classification of
-EEG signals \cite{fc5} etc.
+programs in any programming language. The described method constructs
+subsets of features from the original ones using non-linear combinations
+of them. The method is graphically illustrated in Figure \ref{fig:Schematic-representation-of}.\textbf{
+}Initially, the method was described in \cite{fc1} and it has been
+utilized in a variety of cases, such as Spam Identification \cite{fc2},\textbf{
+}Fetal heart classification \cite{fc3}, epileptic oscillations in
+clinical intracranial electroencephalograms \cite{fc4}, classification
+of EEG signals \cite{fc5} etc.
+
+Feature construction methods have been thoroughly examined and analyzed
+in the relevant literature such as the work of Smith and Bull \cite{genfc1},
+where tree genetic programming is used to construct artificial features.
+Devi uses the Simulated Annealing method\cite{genfc_anneal} to identify
+the features that are most important for data classification.\textbf{
+}Neshatian et al \cite{genfc2} constructs artificial features using
+an entropy based fitness function for the associated genetic algorithm.\textbf{
+}Li and Yin uses another evolutionary approach for feature selection
+using gene expression data \cite{genfc3}. Furthermore, Ma and Teng
+proposed \cite{genfc4} a genetic programming approach that utilizes
+information gain ratio (IGR) to construct artificial features.
 
 The proposed software has been implemented in ANSI C++ utilizing the
 freely available library of QT from \url{https://www.qt.io}. The
@@ -111,9 +121,24 @@ Evolution can require a lot of execution time, parallel computation
 is included in the proposed software through the OpenMP programming
 library \cite{openmp}. 
 
+The proposed method differs from similar ones as it does not require
+any prior knowledge of the objective problem and can be applied without
+any change to both classification problems and regression problems.
+In addition, the method can discover any functional dependencies between
+the initial features and can drastically reduce the number of input
+features, significantly reducing the time required to train the subsequent
+machine learning model.
+
+Related freely available software packages on feature selection and
+construction are also the Mlpack package\cite{mlpack}, that implements
+the PCA method, the GSL software package obtained from \url{https://www.gnu.org/software/gsl/doc/html/index.html}
+that also implements the PCA method among others, the MRMR package
+writen in ANSI C++ by Hanchuan Peng \cite{mrmr1,mrmr2} etc.
+
 The rest of this article is organized as follows: in section \ref{sec:Methods}
-the proposed method is analyzed, in section \ref{sec:The-software}
-the proposed software is outlined in detail, in section \ref{sec:Experiments}
+the Grammatical Evolution procedure is briefly described and the proposed
+method is analyzed, in section \ref{sec:The-software} the proposed
+software is outlined in detail, in section \ref{sec:Experiments}
 a variety of experiments are conducted and presented and finally in
 section \ref{sec:Conclusions} some conclusions and future guidelines
 are discussed.
@@ -127,18 +152,20 @@ are discussed.
 
 \section{Methods \label{sec:Methods}}
 
-The proposed technique is divided into two phases: in the first phase,
-new features are constructed from the old ones using Grammatical Evolution
-and in the second phase these new features modify the control set
-and a machine learning model is applied to the new control set.
+In this section, a brief overview of Grammatical Evolution, its applications
+and its advantages is given and then presented: the creation of artificial
+features using Grammatical Evolution, the first phase of the method
+where features are constructed and evaluated, and the second phase
+of the method, where the characteristics from the first phase are
+evaluated.
 
 \subsection{Grammatical Evolution}
 
 Grammatical evolution is a biologically inspired procedure that can
 create artificial programs in any language. In Grammatical evolution
 the chromosomes enclose production rules from a BNF (Backus--Naur
-form) grammar\cite{bnf1}. These grammars usually described as a set
-\textbf{$G=\left(N,T,S,P\right)$}, where
+form) grammar \cite{bnf1}. These grammars usually described as a
+set \textbf{$G=\left(N,T,S,P\right)$}, where
 \begin{itemize}
 \item \textbf{$N$ }is the set of non-terminal symbols.
 \item \textbf{$T$ }is the set of terminal symbols.\textbf{ }
@@ -164,9 +191,39 @@ the selected production rule. The selection of the rule has two steps:
 V mod R, where R is the number of production rules for the current
 non -- terminal symbol. 
 \end{itemize}
-For example, consider the chromosome chromosome $x=\left[9,8,6,4,16,10,17,23,8,14\right]$
-and $N=3$. The steps of mapping this chromosome to the valid expression\textbf{
+For example, consider the chromosome chromosome 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+ and $N=3$. The steps of mapping this chromosome to the valid expression\textbf{
 $f(x)=x_{2}+\cos\left(x_{3}\right)$ }are illustrated in Table \ref{tab:table_with_steps}. 
+
+Initially, Grammatical Evolution was used in cases of learning functions
+\cite{ge_program1,ge_program2} and solving trigonometric identities
+\cite{ge_trig} but then it was also applied in other fields such
+as automatic composition of music \cite{ge_music}, construction of
+neural networks \cite{ge_nn,ge_nn2}, automatic constant creation
+\cite{ge_constant}, evolution of video games \cite{ge_pacman,ge_supermario},
+energy demand estimation \cite{ge_energy}, combinatorial optimization
+\cite{ge_comb}, cryptography \cite{ge_crypt} etc.
+
+A key advantage of the Grammatical Evolution is its easy adaptability
+to a wide range of problems, as long as the grammar of the problem
+and a fitness method are provided. No additional knowledge of the
+problem is required such as using derivatives. Also, the method can
+be easily parallelized, since it is essentially a genetic algorithm
+of integer values. However, there are a number of disadvantages that
+must be taken into account when using the technique. In principle
+in many cases a chromosome may not be able to produce a valid expression
+in the underlying grammar if its elements run out. In this case, wrapping
+an effect can be executed, but it is not always certain that this
+can again provide a valid solution. Also another important issue is
+the initialization of the chromosomes of Grammatical evolution. Usually
+the rules are very few in number and therefore different numbers on
+the chromosomes may produce the same rules.
+
+In the next subsection the steps of producing artificial features
+from the original ones are provided and discussed.
 
 \begin{figure}
 \caption{BNF grammar of the proposed method.\label{fig:BNF-grammar-of}}
@@ -271,7 +328,11 @@ String & Chromosome & Operation\tabularnewline
 
 \subsection{The feature construction procedure\label{subsec:The-feature-construction}}
 
-The following procedure is executed in order to produce $N_{f}$ features
+The proposed technique is divided into two phases: in the first phase,
+new features are constructed from the old ones using Grammatical Evolution
+and in the second phase these new features modify the control set
+and a machine learning model is applied to the new control set. The
+following procedure is executed in order to produce $N_{f}$ features
 from the original ones for a given chromosome $X$:
 \begin{enumerate}
 \item \textbf{Split} $X$ into $N_{f}$ parts.
@@ -291,7 +352,8 @@ The mapping procedure will create the value $4+\sin(1)$.
 
 \subsection{The feature construction step }
 
-The method has the following steps:
+This is the first phase of the proposed method and it has the following
+steps:
 \begin{enumerate}
 \item \textbf{Initialization} step. \textbf{}
 
@@ -374,6 +436,13 @@ $T'$ and obtain the test error.
 
 \section{The software\label{sec:The-software}}
 
+The proposed method has been fully implemented in ANSI C++ and is
+freely available from the internet. This section also acts as a small
+manual for this software. It starts with the software installation
+instructions, then all the operating parameters of the software are
+presented and the use of the software is demonstrated through an analytical
+example.
+
 \subsection{Installation procedure }
 
 The software is entirely written in ANSI C++ using the freely available
@@ -391,32 +460,8 @@ compile the project:
 \item make
 \end{enumerate}
 The final outcome of the previous steps is a command line program
-called \emph{qfc}.
-
-\subsection{Data format }
-
-Classification and regression problems should be formatted in files
-according to the format shown in Figure \ref{fig:Example-of-input}.\textbf{
-}The integer number D denotes the number of features of the dataset
-and M\textbf{ }represents the number of patterns. In every  subsequent
-line of the file there should be the input pattern and the final column
-is the real output (category) for the corresponding pattern. 
-
-\begin{figure}
-\caption{Example of input file for regression/classification.\label{fig:Example-of-input}}
-
-D
-
-M
-
-$\begin{array}{ccccc}
-x_{11} & x_{12} & \ldots & x_{1D} & y_{1}\\
-x_{21} & x_{22} & \ldots & x_{2D} & y_{2}\\
-\vdots & \vdots & \vdots & \vdots & \vdots\\
-x_{M1} & x_{M2} & \ldots & x_{MD} & y_{M}
-\end{array}$
-\end{figure}
-
+called \emph{qfc}. This program has a series of command line parameters
+that illustrated subsequently.
 
 \subsection{The program qfc }
 
@@ -427,6 +472,10 @@ are:
 \begin{enumerate}
 \item $--$trainFile=filename, where filename is the full path to data containing
 the input train set. The file must be in the format of Figure \ref{fig:Example-of-input}.
+The integer number D denotes the number of features of the dataset
+and M\textbf{ }represents the number of patterns. In every  subsequent
+line of the file there should be the input pattern and the final column
+is the real output (category) for the corresponding pattern. 
 \item $--$testFile=filename, where filename is the full path to data containing
 the input test set. The format of this file should be the same as
 the train data. The user should at least provide the train and test
@@ -522,6 +571,20 @@ the second feature.
 \end{enumerate}
 \begin{lyxcode}
 \begin{figure}
+\caption{Example of input file for regression/classification.\label{fig:Example-of-input}}
+
+D
+
+M
+
+$\begin{array}{ccccc}
+x_{11} & x_{12} & \ldots & x_{1D} & y_{1}\\
+x_{21} & x_{22} & \ldots & x_{2D} & y_{2}\\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+x_{M1} & x_{M2} & \ldots & x_{MD} & y_{M}
+\end{array}$
+\end{figure}
+\begin{figure}
 \caption{An example output file for the BL dataset.\label{fig:example_BL}}
 
 \begin{lstlisting}[language={C++},basicstyle={\footnotesize}]
@@ -589,7 +652,7 @@ learning rates. For classification problems, the average classification
 error on the test set is shown and, for regression datasets the average
 mean squared error on the test set is displayed.\textbf{ }In all cases,
 10 fold cross validation was used and the number of parameters for
-neural networks and for rbf networks was set to 10. The evaluation
+neural networks and for RBF networks was set to 10. The evaluation
 of the features constructed by Grammatical Evolution was made using
 the Function Parser library \cite{functionparser}.
 
@@ -708,40 +771,59 @@ of USA from 01/04/1980 to 02/04/2000 on a weekly basis.
 
 \subsection{Experimental results}
 
-The experimental results for the classification datasets are listed
-in Table \ref{tab:class_results} and for regression datasets in Table
-\ref{tab:regression_results}. The number of features constructed
-by the Grammatical Evolution was set to 2. In both tables, an additional
-row was added at the end showing the average classification or regression
-error for all datasets and it is denoted by the name AVERAGE. The
-columns of both tables have the following meaning:
+The parameters for the used methods are listed in Table \ref{tab:Experimental-parameters.}
+In all tables, an additional row was added at the end showing the
+average classification or regression error for all datasets and it
+is denoted by the name AVERAGE. The columns of all tables have the
+following meaning:
 \begin{enumerate}
-\item The column RBF stands for the results from an RBF network with 10
-parameters.
-\item The column MLP stands for the results of a neural network trained
-by a genetic algorithm. The number of weights was set to 10.
+\item The column RBF stands for the results from an RBF network with $H$
+Gaussian units.
+\item The column MLP stands for the results of a neural network with $H$
+sigmoidal nodes trained by a genetic algorithm. The parameters of
+this genetic algorithm are listed in Table \ref{tab:Experimental-parameters.}.
 \item The column FCRBF represents the results of the proposed method, when
-an RBF network was used as the evaluation model.
+an RBF network with $H$ Gaussian units was used as the evaluation
+model.
 \item The column FCMLP represents the results of the proposed method, when
 a neural network trained by a genetic algorithm was used as the evaluation
-model.
+model. The parameters of this genetic algorithm are listed in Table
+\ref{tab:Experimental-parameters.}.
 \item The column FCNNC stands for the results of the proposed method, when
 the neural network construction model (nnc) was utilized as the evaluation
 model.
+\item The column MRMR stands for the Minimum Redundancy Maximum Relevance
+Feature Selection method with two selected features. The features
+selected by MRMR are evaluated using an artificial neural network
+trained by a genetic algorithm using the parameters of Table \ref{tab:Experimental-parameters.}.
+\item The Principal Component Analysis (PCA) method as implemented in Mlpack
+software\cite{mlpack}, used to construct two features. The features
+constructed by PCA are evaluated using an artificial neural network
+trained by a genetic algorithm using the parameters of Table \ref{tab:Experimental-parameters.}.
 \end{enumerate}
-From the experimental results and especially from the average errors,
-we can see that the proposed method significantly outperforms the
-other computational methods. In the case of data classification, there
-is a gain of the order of 30\% and in the case of regression data
-the gain from the application of the proposed technique exceeds 50\%.
-Also, among the three cases of models used to evaluate the constructed
-features (FCRBF, FCMLP, FCNNC), there does not seem to be any clear
-superiority of any of the three. However, we would say that the nnc
-method slightly outperforms the simple genetic algorithm.
+The experimental results for the classification datasets are listed
+in Table \ref{tab:class_results} and for regression datasets in Table
+\ref{tab:regression_results}. Also, a comparison against MRMR and
+PCA is performed in tables \ref{tab:pca_class} and \ref{tab:pca_regression}
+respectively.
+
+Summarizing the conclusions of the experiments, one can say that the
+proposed method obviously outperforms the other techniques in most
+cases, especially in the case of regression datasets. In the case
+of data classification, there is a gain of the order of 30\% and in
+the case of regression data the gain from the application of the proposed
+technique exceeds 50\%. The gain in many cases from the application
+of the proposed technique can even reach 90\%. In addition, the MRMR
+method seems to be superior in most cases to the PCA, possibly pointing
+the way for a future research on the combination of Grammatical Evolution
+and MRMR. Furthermore, among the three cases of models used to evaluate
+the constructed features (FCRBF, FCMLP, FCNNC), there does not seem
+to be any clear superiority of any of the three. However, we would
+say that the nnc method slightly outperforms the simple genetic algorithm.
 
 In addition, one more experiment was done in order to establish the
 impact of the number of features on the accuracy of the proposed method.
-In this case, the rbf (FCRBF) network was used as the feature evaluator,
+In this case, the RBF (FCRBF) network was used as the feature evaluator,
 and the number of generated features was in the interval $[1..4]$.
 The average classification error and the average regression error
 for all datasets are shown in Table \ref{tab:table_features}. From
@@ -757,6 +839,30 @@ error and average regression error for all datasets were measured.
 The results for this experiment are presented in Table \ref{tab:table_gens}.
 Once again, the dynamics of the proposed method appear as a few generations
 are enough to achieve high learning rates.
+
+\begin{table}
+\caption{Experimental parameters.\label{tab:Experimental-parameters.}}
+
+\centering{}%
+\begin{tabular}{|c|c|c|}
+\hline 
+PARAMETER & MEANING & VALUE\tabularnewline
+\hline 
+\hline 
+$H$ & Neural Weights & 10\tabularnewline
+\hline 
+$N_{C}$ & Chromosomes & 500\tabularnewline
+\hline 
+$N_{F}$ & Features & 2\tabularnewline
+\hline 
+$p_{S}$ & Selection rate & 0.10\tabularnewline
+\hline 
+$p_{M}$ & Mutation Rate & 0.05\tabularnewline
+\hline 
+$N_{G}$ & Generations & 200\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
 
 \begin{table}
 \caption{Experimental results between the method and other techniques for the
@@ -875,7 +981,123 @@ WANKARA & 0.001 & 0.012 & 0.0004 & 0.0002 & 0.0002\tabularnewline
 \hline 
 \end{tabular}
 \end{table}
+\begin{table}
+\caption{Comparison against MRMR and PCA for the classification datasets.\label{tab:pca_class}}
 
+\centering{}%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+DATASET & MRMR & PCA & FCRBF & FCMLP & FCNNC\tabularnewline
+\hline 
+\hline 
+ALCOHOL & 56.75\% & 70.29\% & 35.56\% & 26.57\% & 28.58\%\tabularnewline
+\hline 
+AUSTRALIAN & 32.92\% & 49.97\% & 15.37\% & 14.31\% & 14.24\%\tabularnewline
+\hline 
+BALANCE & 56.80\% & 56.48\% & 14.39\% & 1.42\% & 1.52\%\tabularnewline
+\hline 
+DERMATOLOGY & 68.54\% & 62.11\% & 22.42\% & 15.06\% & 15.42\%\tabularnewline
+\hline 
+GLASS & 58.35\% & 50.16\% & 49.81\% & 55.94\% & 52.62\%\tabularnewline
+\hline 
+HAYES ROTH & 61.21\% & 61.13\% & 34.59\% & 29.58\% & 30.67\%\tabularnewline
+\hline 
+HEART & 38.04\% & 35.84\% & 18.61\% & 15.67\% & 17.21\%\tabularnewline
+\hline 
+HOUSEVOTES & 3.05\% & 10.80\% & 7.15\% & 5.22\% & 3.96\%\tabularnewline
+\hline 
+IONOSPHERE & 12.93\% & 21.22\% & 9.83\% & 9.48\% & 9.92\%\tabularnewline
+\hline 
+LIVERDISORDER & 40.32\% & 45.01\% & 30.77\% & 31.98\% & 30.24\%\tabularnewline
+\hline 
+MAMMOGRAPHIC & 16.84\% & 17.23\% & 16.68\% & 17.92\% & 16.75\%\tabularnewline
+\hline 
+PAGEBLOCKS & 14.91\% & 13.05\% & 9.24\% & 5.58\% & 5.85\%\tabularnewline
+\hline 
+PARKINSONS & 17.16\% & 16.96\% & 8.48\% & 10.82\% & 12.53\%\tabularnewline
+\hline 
+PIMA & 26.29\% & 39.43\% & 24.07\% & 30.02\% & 25.01\%\tabularnewline
+\hline 
+POPFAILURES & 7.04\% & 31.42\% & 4.94\% & 4.94\% & 4.43\%\tabularnewline
+\hline 
+REGIONS2 & 33.31\% & 32.50\% & 25.49\% & 27.52\% & 24.40\%\tabularnewline
+\hline 
+SAHEART & 28.78\% & 36.96\% & 29.10\% & 27.91\% & 27.17\%\tabularnewline
+\hline 
+SEGMENT & 45.72\% & 70.29\% & 39.35\% & 49.52\% & 46.14\%\tabularnewline
+\hline 
+SONAR & 43.92\% & 49.97\% & 24.35\% & 25.38\% & 23.68\%\tabularnewline
+\hline 
+SPIRAL & 44.87\% & 45.94\% & 34.34\% & 45.53\% & 42.69\%\tabularnewline
+\hline 
+TAE & 61.00\% & 64.80\% & 50.95\% & 56.87\% & 55.67\%\tabularnewline
+\hline 
+WDBC & 12.91\% & 10.28\% & 3.39\% & 4.36\% & 4.51\%\tabularnewline
+\hline 
+WINE & 30.73\% & 30.39\% & 7.61\% & 11.08\% & 11.61\%\tabularnewline
+\hline 
+Z\_F\_S & 32.71\% & 44.81\% & 5.48\% & 6.72\% & 6.63\%\tabularnewline
+\hline 
+ZO\_NF\_S & 33.79\% & 40.02\% & 4.08\% & 4.25\% & 4.34\%\tabularnewline
+\hline 
+ZONF\_S & 10.31\% & 12.63\% & 1.89\% & 4.62\% & 3.18\%\tabularnewline
+\hline 
+Z\_O\_N\_F\_S & 43.04\% & 56.45\% & 39.29\% & 40.93\% & 41.19\%\tabularnewline
+\hline 
+ZOO & 19.03\% & 11.50\% & 26.07\% & 13.30\% & 10.33\%\tabularnewline
+\hline 
+\textbf{AVERAGE} & \textbf{33.97\%} & \textbf{38.84\%} & \textbf{22.11\%} & \textbf{22.02\%} & \textbf{21.22\%}\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Comparison against MRMR and PCA for the regression datasets.\label{tab:pca_regression}}
+
+\centering{}%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+DATASET & MRMR & PCA & FCRBF & FCMLP & FCNNC\tabularnewline
+\hline 
+\hline 
+ABALONE & 6.48 & 6.70 & 4.46 & 4.18 & 4.39\tabularnewline
+\hline 
+AIRFOIL & 0.003 & 0.019 & 0.002 & 0.001 & 0.001\tabularnewline
+\hline 
+BASEBALL & 100.21 & 101.87 & 48.04 & 52.50 & 51.40\tabularnewline
+\hline 
+BK & 0.03 & 0.17 & 0.02 & 0.02 & 0.02\tabularnewline
+\hline 
+BL & 0.15 & 0.19 & 0.04 & 0.001 & 0.01\tabularnewline
+\hline 
+CONCRETE & 0.025 & 0.273 & 0.006 & 0.004 & 0.005\tabularnewline
+\hline 
+DEE & 0.40 & 0.55 & 0.18 & 0.40 & 0.38\tabularnewline
+\hline 
+DIABETES & 19.86 & 27.36 & 1.49 & 0.58 & 0.61\tabularnewline
+\hline 
+HOUSING & 67.97 & 119.08 & 12.78 & 28.47 & 17.47\tabularnewline
+\hline 
+FA & 0.02 & 0.08 & 0.01 & 0.02 & 0.01\tabularnewline
+\hline 
+MB & 3.39 & 4.33 & 0.48 & 0.12 & 0.06\tabularnewline
+\hline 
+MORTGAGE & 0.17 & 2.41 & 0.66 & 1.37 & 0.22\tabularnewline
+\hline 
+NT & 0.05 & 1.57 & 0.25 & 0.007 & 0.02\tabularnewline
+\hline 
+PY & 1.56 & 0.30 & 0.17 & 0.03 & 0.03\tabularnewline
+\hline 
+QUAKE & 1.44 & 1.80 & 0.06 & 0.02 & 0.04\tabularnewline
+\hline 
+TREASURY & 0.12 & 3.13 & 0.29 & 1.41 & 0.11\tabularnewline
+\hline 
+WANKARA & 0.002 & 0.90 & 0.0004 & 0.0002 & 0.0002\tabularnewline
+\hline 
+\textbf{AVERAGE} & \textbf{11.88} & \textbf{15.93} & \textbf{4.06} & \textbf{5.24} & \textbf{4.4}\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
 \begin{table}
 \caption{Average errors regarding the number of features.\label{tab:table_features}}
 
@@ -898,7 +1120,6 @@ FEATURES & AVERAGE CLASS & AVERAGE REGRESSION\tabularnewline
 \end{table}
 
 \begin{table}
-
 \caption{Average error depending on the number of generations.\label{tab:table_gens}}
 
 \centering{}%
@@ -919,17 +1140,32 @@ GENERATIONS & AVERAGE CLASS & AVERAGE REGRESSION\tabularnewline
 
 \section{Conclusions\label{sec:Conclusions}}
 
-A feature construction method and its accompanying software were analyzed
-in this paper. The software is developed in ANSI C++ and is freely
-available on the internet. The proposed method constructs new features
-for classification or regression data in a fully automatic manner
-and these features are evaluated by machine learning models. The user
-can choose between several learning models and can customize the course
-of the technique through a series of command line parameters. From
-the extensive execution of experiments and the comparison with other
-learning methods, the superiority of the proposed technique and its
-ability to achieve high learning rates even with a limited number
-of constructed features or a maximum number of iterations emerge.
+A feature construction method and the accompanying software were analyzed
+in detail in this paper. The software is developed in ANSI C++ and
+is freely available on the internet. The proposed technique constructs
+technical features from the existing ones by exploiting the possible
+functional dependencies between the features but also the possibility
+that some of the original features do not contribute anything to the
+learning. The method does not require any prior knowledge of the objective
+problem and can be applied without any change to both regression and
+classification problems. The method is divided into two phases: in
+the first phase a genetic algorithm using Grammatical Evolution is
+used to construct new features from the original ones. These features
+are evaluated for their accuracy with some machine learning model.
+However, this process can be very time consuming and as a consequence
+fast learning models or parallel algorithms should be used. Radial
+basis networks were used in the first phase of the method during the
+experiments, which are known to have short training times, but other
+models could be used in their place. In the second phase of the method
+after the features are generated, a machine learning method is applied
+to them and the error on the test set is evaluated.
+
+The user can choose between several learning models and can customize
+the course of the technique through a series of command line parameters.
+From the extensive execution of experiments and the comparison with
+other learning methods, the superiority of the proposed technique
+and its ability to achieve high learning rates even with a limited
+number of constructed features or a maximum number of iterations emerge.
 These results combined with the ability of the method to run on multiple
 threads through the OpenMP library make it ideal for learning large
 sets of data in a satisfactory execution time.
@@ -1040,6 +1276,18 @@ Information Science and Statistics, Springer, 2008.
 Machine learning: a review of classification and combining techniques,
 Artif Intell Rev \textbf{26}, pp. 159--190, 2006.
 
+\bibitem{parseMatrix}C. Luo, S.L. Zhang, Parse-matrix evolution for
+symbolic regression, Elsevier Engineering Applications of Artificial
+Intelligence 25, pp. 1182-1193, 2012.
+
+\bibitem{multiLevel}C. Chen, C. Luo, Z. Jiang, A multilevel block
+building algorithm for fast modeling generalized separable systems,
+Expert Systems with Applications 109, pp. 25-34, 2018.
+
+\bibitem{dome}D. Rivero, E.F. Blanco, A.Pazos, DoME: A deterministic
+technique for equation development and Symbolic Regression, Expert
+Systems with Applications \textbf{198}, 2022. 
+
 \bibitem{nndimension}Verleysen M., Francois D., Simon G., Wertz V.,
 On the effects of dimensionality on data analysis with neural networks.
 In: Mira J., Álvarez J.R. (eds) Artificial Neural Nets Problem Solving
@@ -1081,35 +1329,6 @@ Information Fusion \textbf{59}, pp. 44-58, 2020.
 \bibitem{ge_main}M. O\textquoteright Neill, C. Ryan, Grammatical
 evolution, IEEE Trans. Evol. Comput. \textbf{5,}pp. 349--358, 2001.
 
-\bibitem{ge_music}A.O. Puente, R. S. Alfonso, M. A. Moreno, Automatic
-composition of music by means of grammatical evolution, In: APL '02:
-Proceedings of the 2002 conference on APL: array processing languages:
-lore, problems, and applications July 2002 Pages 148--155. 
-
-\bibitem{ge_nn}Lídio Mauro Limade Campo, R. Célio Limã Oliveira,Mauro
-Roisenberg, Optimization of neural networks through grammatical evolution
-and a genetic algorithm, Expert Systems with Applications \textbf{56},
-pp. 368-384, 2016.
-
-\bibitem{ge_nn2}K. Soltanian, A. Ebnenasir, M. Afsharchi, Modular
-Grammatical Evolution for the Generation of Artificial Neural Networks,
-Evolutionary Computation \textbf{30}, pp 291--327, 2022.
-
-\bibitem{ge_constant}I. Dempsey, M.O' Neill, A. Brabazon, Constant
-creation in grammatical evolution, International Journal of Innovative
-Computing and Applications \textbf{1} , pp 23--38, 2007.
-
-\bibitem{ge_pacman}E. Galván-López, J.M. Swafford, M. O\textquoteright Neill,
-A. Brabazon, Evolving a Ms. PacMan Controller Using Grammatical Evolution.
-In: , et al. Applications of Evolutionary Computation. EvoApplications
-2010. Lecture Notes in Computer Science, vol 6024. Springer, Berlin,
-Heidelberg, 2010.
-
-\bibitem{ge_energy}D. Martínez-Rodríguez, J. M. Colmenar, J. I. Hidalgo,
-R.J. Villanueva Micó, S. Salcedo-Sanz, Particle swarm grammatical
-evolution for energy demand estimation, Energy Science and Engineering
-\textbf{8}, pp. 1068-1079, 2020.
-
 \bibitem{fc1}Dimitris Gavrilis, Ioannis G. Tsoulos, Evangelos Dermatas,
 Selecting and constructing features using grammatical evolution, Pattern
 Recognition Letters \textbf{29},pp. 1358-1365, 2008. 
@@ -1134,14 +1353,100 @@ I. Androulidakis and E. Zaitseva, Classification of EEG signals using
 feature creation produced by grammatical evolution, In: 24th Telecommunications
 Forum (TELFOR), pp. 1-4, 2016.
 
+\bibitem{genfc1}M.G. Smith, L. Bull, Genetic Programming with a Genetic
+Algorithm for Feature Construction and Selection, Genet Program Evolvable
+Mach \textbf{6}, pp. 265--281, 2005.
+
+\bibitem{genfc_anneal}V.S. Devi, Class Specific Feature Selection
+Using Simulated Annealing. In: Prasath, R., Vuppala, A., Kathirvalavakumar,
+T. (eds) Mining Intelligence and Knowledge Exploration. MIKE 2015.
+Lecture Notes in Computer Science(), vol 9468. Springer, Cham. 2015.
+
+\bibitem{genfc2}K. Neshatian, M. Zhang, P. Andreae, A Filter Approach
+to Multiple Feature Construction for Symbolic Learning Classifiers
+Using Genetic Programming, IEEE Transactions on Evolutionary Computation
+\textbf{16}, pp. 645-661, 2012.
+
+\bibitem{genfc3}X. Li, M. Yin, Multiobjective Binary Biogeography
+Based Optimization for Feature Selection Using Gene Expression Data,
+IEEE Transactions on NanoBioscience \textbf{12}, pp. 343-353, 2013.
+
+\bibitem{genfc4}J. Ma, G. Teng, A hybrid multiple feature construction
+approach for classification using Genetic Programming, Applied Soft
+Computing \textbf{80}, pp. 687-699, 2019.
+
 \bibitem{openmp}L. Dagum, R. Menon, OpenMP: an industry standard
 API for shared-memory programming, IEEE Computational Science and
 Engineering \textbf{ 5}, pp. 46-55, 1998.
 
+\bibitem{mlpack}Ryan R. Curtin, James R. Cline, N. P. Slagle, William
+B. March, Parikshit Ram, Nishant A. Mehta, Alexander G. Gray, MLPACK:
+A Scalable C++ Machine Learning Library, Journal of Machine Learning
+Research \textbf{14}, pp. 801\textminus 805, 2013. 
+
 \bibitem{bnf1}J. W. Backus. The Syntax and Semantics of the Proposed
 International Algebraic Language of the Zurich ACM-GAMM Conference.
 Proceedings of the International Conference on Information Processing,
-UNESCO, 1959, pp.125-132
+UNESCO, 1959, pp.125-132.
+
+\bibitem{ge_program1}C. Ryan, J. Collins, M. O\textquoteright Neill,
+Grammatical evolution: Evolving programs for an arbitrary language.
+In: Banzhaf, W., Poli, R., Schoenauer, M., Fogarty, T.C. (eds) Genetic
+Programming. EuroGP 1998. Lecture Notes in Computer Science, vol 1391.
+Springer, Berlin, Heidelberg, 1998.
+
+\bibitem{ge_program2}M. O\textquoteright Neill, M., C. Ryan, Evolving
+Multi-line Compilable C Programs. In: Poli, R., Nordin, P., Langdon,
+W.B., Fogarty, T.C. (eds) Genetic Programming. EuroGP 1999. Lecture
+Notes in Computer Science, vol 1598. Springer, Berlin, Heidelberg,
+1999.
+
+\bibitem{ge_trig}C. Ryan, M. O\textquoteright Neill, J.J. Collins,
+Grammatical evolution: Solving trigonometric identities, proceedings
+of Mendel. Vol. 98. 1998.
+
+\bibitem{ge_music}A.O. Puente, R. S. Alfonso, M. A. Moreno, Automatic
+composition of music by means of grammatical evolution, In: APL '02:
+Proceedings of the 2002 conference on APL: array processing languages:
+lore, problems, and applications July 2002 Pages 148--155. 
+
+\bibitem{ge_nn}Lídio Mauro Limade Campo, R. Célio Limã Oliveira,Mauro
+Roisenberg, Optimization of neural networks through grammatical evolution
+and a genetic algorithm, Expert Systems with Applications \textbf{56},
+pp. 368-384, 2016.
+
+\bibitem{ge_nn2}K. Soltanian, A. Ebnenasir, M. Afsharchi, Modular
+Grammatical Evolution for the Generation of Artificial Neural Networks,
+Evolutionary Computation \textbf{30}, pp 291--327, 2022.
+
+\bibitem{ge_constant}I. Dempsey, M.O' Neill, A. Brabazon, Constant
+creation in grammatical evolution, International Journal of Innovative
+Computing and Applications \textbf{1} , pp 23--38, 2007.
+
+\bibitem{ge_pacman}E. Galván-López, J.M. Swafford, M. O\textquoteright Neill,
+A. Brabazon, Evolving a Ms. PacMan Controller Using Grammatical Evolution.
+In: , et al. Applications of Evolutionary Computation. EvoApplications
+2010. Lecture Notes in Computer Science, vol 6024. Springer, Berlin,
+Heidelberg, 2010.
+
+\bibitem{ge_supermario}N. Shaker, M. Nicolau, G. N. Yannakakis, J.
+Togelius, M. O'Neill, Evolving levels for Super Mario Bros using grammatical
+evolution, 2012 IEEE Conference on Computational Intelligence and
+Games (CIG), 2012, pp. 304-31.
+
+\bibitem{ge_energy}D. Martínez-Rodríguez, J. M. Colmenar, J. I. Hidalgo,
+R.J. Villanueva Micó, S. Salcedo-Sanz, Particle swarm grammatical
+evolution for energy demand estimation, Energy Science and Engineering
+\textbf{8}, pp. 1068-1079, 2020.
+
+\bibitem{ge_comb}N. R. Sabar, M. Ayob, G. Kendall, R. Qu, Grammatical
+Evolution Hyper-Heuristic for Combinatorial Optimization Problems,
+IEEE Transactions on Evolutionary Computation \textbf{17}, pp. 840-861,
+2013.
+
+\bibitem{ge_crypt}C. Ryan, M. Kshirsagar, G. Vaidya, G. et al. Design
+of a cryptographically secure pseudo random number generator with
+grammatical evolution. Sci Rep \textbf{12}, 8602, 2022.
 
 \bibitem{knn}E. Fix, J.L. Hodges, Joseph, Discriminatory Analysis.
 Nonparametric Discrimination: Consistency Properties , USAF School
