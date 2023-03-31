@@ -30,7 +30,7 @@ GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 		genome[i]=new double[genome_size];
 		children[i]=new double[genome_size];
 		for(int j=0;j<genome_size;j++)
-			genome[i][j]=0.1 * (2.0*drand48()-1.0);
+			genome[i][j]= (2.0*drand48()-1.0);
 				
 	}
 	fitness_array=new double[genome_count];
@@ -71,7 +71,8 @@ else*/
 double    v=problem->funmin(g);
 if(weight_decay_flag)
 {
-    v=v*(1.0+100.0*nn->countViolate(20.0));
+	double viol = nn->countViolate(20.0);
+    v=v*(1.0+100.0*viol * viol);
     return -v;
 }
 return -v;
