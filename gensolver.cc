@@ -351,8 +351,8 @@ void	GenSolve(Problem *p,Matrix &x,double &y,double mx,int flag)
 		x2+=fabs(pop.getBestFitness()-oldBest)*fabs(pop.getBestFitness()-oldBest);
 		double variance=x2/(i+1)-x1/(i+1)*x1/(i+1);
 		if(i>=10 && variance<=stopat) break;
-        if(i%10==0)
-            pop.local();
+   //     if(i%10==0)
+   //         pop.local();
 		if(pop.getBestFitness()>oldBest)
 		{
 			stopat=variance/2.0;
@@ -362,7 +362,8 @@ void	GenSolve(Problem *p,Matrix &x,double &y,double mx,int flag)
 //			i,pop.getBestFitness(),
 //			1.0*nn->countViolate(20.0));
 	}
-	pop.local();
+//	pop.local();
+	g=pop.getBestGenome();
 	for(int i=0;i<g.size();i++) x[i]=g[i];
 	y=-pop.getBestFitness();
 	delete[] xx;	
