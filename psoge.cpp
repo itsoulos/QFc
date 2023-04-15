@@ -12,6 +12,8 @@ PsoGE::PsoGE(int gcount,int gsize,Program *p)
     bestg = new int[particle_size];
     program = p;
     tprogram.resize(0);
+    vector<int> gt;
+    gt.resize(particle_size);
     for(int i=0;i<pso_count;i++)
     {
         particle[i]=new int[particle_size];
@@ -21,8 +23,17 @@ PsoGE::PsoGE(int gcount,int gsize,Program *p)
         initParticle(particle[i]);
         memcpy(bestParticle[i],particle[i],particle_size*sizeof(int));
         initVelocity(velocity[i]);
+        for(int j=0;j<particle_size;j++)
+            gt[j]=particle[i][j];
+        fitnessArray[i]=fitness(gt);
+        bestFitnessArray[i]=fitnessArray[i];
+        if(i==0 || fitnessArray[i]<bestf)
+        {
+            bestf = fitnessArray[i];
+            memcpy(bestg,particle[i],sizeof(int)*particle_size);
+        }
+
     }
-    calcFitnessArray();
     bestf = 1e+100;
 }
 
