@@ -22,13 +22,17 @@ PsoGE::PsoGE(int gcount,int gsize,Program *p)
         memcpy(bestParticle[i],particle[i],particle_size*sizeof(int));
         initVelocity(velocity[i]);
     }
+    calcFitnessArray();
     bestf = 1e+100;
 }
 
 void    PsoGE::initParticle(int *p)
 {
     for(int i=0;i<particle_size;i++)
+    {
         p[i] = rand() % NMAX;
+        if(p[i]<0) p[i]=-p[i];
+    }
 }
 
 void    PsoGE::initVelocity(int *v)
@@ -84,7 +88,10 @@ vector<int> PsoGE::getBestParticle()
     vector<int> g;
     g.resize(particle_size);
     for(int i=0;i<particle_size;i++)
+    {
         g[i]=bestg[i];
+        if(g[i]<0) exit(printf("ERROR %d\n",g[i]));
+    }
     return g;
 }
 
