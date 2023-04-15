@@ -3,10 +3,16 @@
 # include <population.h>
 # include <nnprogram.h>
 # include <osamarbf.h>
+# include <psoge.h>
 # include <nnc.h>
 # include <QDebug>
 
 #include <ostream>
+# define GEMETHOD_GENETIC "genetic"
+# define GEMETHOD_PSO     "pso"
+QString ge_method = GEMETHOD_GENETIC;
+vector<int> genome;
+
 namespace Color {
     enum Code {
         FG_RED      = 31,
@@ -97,6 +103,10 @@ void printParams()
     printOption("--ge_localSearchMethod","-m",
                 "The local search used in Grammatical Evolution(none,random,crossover,bfgs)",
                 ge_localSearchMethod);
+
+    printOption("--ge_method","-g",
+                "The used method in Grammatical Evolution",
+                ge_method);
 
     printOption("--genetic_chromosomes","-c","Chromosomes for the genetic algorithm",
                 genetic_chromosomes);
@@ -206,6 +216,8 @@ void parseCmdLine(QStringList args)
         checkParameter(name,value,"--export_train_file","-e",export_train_file);
         checkParameter(name,value,"--export_test_file","-e",export_test_file);
         checkParameter(name,value,"--export_cpp_file","-e",export_cpp_file);
+        checkParameter(name,value,"--ge_method","-g",ge_method);
+
     }
 }
 
@@ -248,10 +260,74 @@ void checkTrainAndTest()
 }
 
 
+void    executeGenetic()
+{
+
+    Population *pop;
+    if(threads<=1)
+    pop = new Population(ge_chromosomes,features * ge_length,defaultProgram);
+    else
+    {
+     pop = new Population(ge_chromosomes,features * ge_length,tprogram);
+    }
+    pop->setSelectionRate(ge_selectionRate);
+    pop->setMutationRate(ge_mutationRate);
+    pop->setLocalSearchGenerations(ge_localSearchGenerations);
+    pop->setLocalSearchMethod(ge_localSearchMethod);
+    pop->setLocalSearchRate(ge_localSearchRate);
+
+    for(int g=1;g<=ge_maxGenerations;g++)
+    {
+            pop->nextGeneration();
+            genome = pop->getBestGenome();
+            string s = "";
+            if(threads<=1)
+                s=defaultProgram->printF(genome);
+            else
+                s=((NNprogram *)tprogram[0])->printF(genome);
+
+            qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
+                                pop->getBestFitness()<<
+                                " Best program:\n"<<s.c_str();
+    }
+
+    delete pop;
+}
+
+
+void    executePso()
+{
+
+    PsoGE *pop;
+    if(threads<=1)
+    pop = new PsoGE(ge_chromosomes,features * ge_length,defaultProgram);
+    else
+    {
+     pop = new PsoGE(ge_chromosomes,features * ge_length,tprogram);
+    }
+
+    pop->setMaxIters(ge_maxGenerations);
+
+    for(int g=1;g<=ge_maxGenerations;g++)
+    {
+            pop->nextGeneration();
+            genome = pop->getBestParticle();
+            string s = "";
+            if(threads<=1)
+                s=defaultProgram->printF(genome);
+            else
+                s=((NNprogram *)tprogram[0])->printF(genome);
+
+            qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
+                                pop->getBestFitness()<<
+                                " Best program:\n"<<s.c_str();
+    }
+
+    delete pop;
+}
 
 void makeGrammaticalEvolution()
 {
-    Population *pop;
     if(threads<=1)
     defaultMapper = new Mapper(patternDimension);
     else
@@ -353,52 +429,30 @@ void makeGrammaticalEvolution()
         return ;
     }
 
+    genome.resize(features * ge_length);
     if(threads<=1)
     defaultProgram = new NNprogram(defaultMapper,defaultModel,features,trainFile);
     srand(randomSeed);
     srand48(randomSeed);
-    if(threads<=1)
-    pop = new Population(ge_chromosomes,features * ge_length,defaultProgram);
-    else
+    if(threads>1)
     {
         tprogram.resize(threads);
         for(int i=0;i<threads;i++)
         {
             tprogram[i]=new NNprogram(tmapper[i],tmodel[i],features,trainFile);
         }
-          pop = new Population(ge_chromosomes,features * ge_length,tprogram);
     }
-    pop->setSelectionRate(ge_selectionRate);
-    pop->setMutationRate(ge_mutationRate);
-    pop->setLocalSearchGenerations(ge_localSearchGenerations);
-    pop->setLocalSearchMethod(ge_localSearchMethod);
-    pop->setLocalSearchRate(ge_localSearchRate);
-    vector<int> genome;
-    genome.resize(features * ge_length);
-    for(int g=1;g<=ge_maxGenerations;g++)
-    {
-            pop->nextGeneration();
-            genome = pop->getBestGenome();
-            string s = "";
-            if(threads<=1)
-                s=defaultProgram->printF(genome);
-            else
-                s=((NNprogram *)tprogram[0])->printF(genome);
-
-            qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
-                                pop->getBestFitness()<<
-                                " Best program:\n"<<s.c_str();
-    }
+    if(ge_method==GEMETHOD_GENETIC)
+        executeGenetic();
+    else executePso();
     if(threads<=1)
-
-    defaultProgram->fitness(genome);
+        defaultProgram->fitness(genome);
     else
     {
         ((NNprogram *)tprogram[0])->fitness(genome);
         defaultMapper=tmapper[0];
         defaultModel = tmodel[0];
     }
-    delete pop;
 }
 
 
