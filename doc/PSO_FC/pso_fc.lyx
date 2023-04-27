@@ -258,6 +258,292 @@ Particle swarm optimization, Grammatical Evolution, Evolutionary techniques,
 Introduction
 \end_layout
 
+\begin_layout Standard
+A multitude of everyday problems from various sciences can be treated as
+ a problem of categorization or regression problems, such as problems that
+ appear in the fields of physics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_physics1,nnphysics1,nnphysics2,nnphysics3"
+literal "false"
+
+\end_inset
+
+, chemistry 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_chem1,fc_chem2,fc_chem3"
+literal "false"
+
+\end_inset
+
+, economics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_econ1,fc_econ2"
+literal "false"
+
+\end_inset
+
+, environmental problems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc_pollution1,fc_pollution2,fc_pollution3"
+literal "false"
+
+\end_inset
+
+, medical problems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnmed1,nnmed2"
+literal "false"
+
+\end_inset
+
+ etc.
+ In the relevant literature there is a wide range of techniques that one
+ can use to handle such problems such as the k nearest neighboors model
+ (k-NN) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "knn1,knn2"
+literal "false"
+
+\end_inset
+
+, artificial neural networks (ANNs) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nn1,nn2"
+literal "false"
+
+\end_inset
+
+, Radial Basis Function (RBF) networks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbf2,rbf3,rbf4"
+literal "false"
+
+\end_inset
+
+, Support Vector Machines (SVM) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "svm,svm2"
+literal "false"
+
+\end_inset
+
+, decision trees 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "dt1,dt2"
+literal "false"
+
+\end_inset
+
+ etc.
+ A systematic review of methods used in classification problems can be found
+ in the paper of Kotsiantis et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "class_review"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+All the previously mentioned methods have to overcome two major problems:
+\end_layout
+
+\begin_layout Itemize
+Excessive computational times, because they require processing time proportional
+ to the dimension of the objective problem and the number of processing
+ units as well.
+ For example, a neural network of 
+\begin_inset Formula $H=10$
+\end_inset
+
+ processing units applied to a test data with 
+\begin_inset Formula $d=3$
+\end_inset
+
+, is considered as an optimization problem with dimension 
+\begin_inset Formula $w=(d+2)H=50$
+\end_inset
+
+.
+ This means that the total number of network parameters is growing extremely
+ fast, which results in a longer computation time than the corresponding
+ universal optimization method.
+ An extensive discussion on the problems caused by the dimensionality of
+ neural networks is presented in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndimension"
+literal "false"
+
+\end_inset
+
+.
+ A common approach to overcome this problem is to use the PCA technique
+ to reduce the dimensionality of the objective problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnpca1,nnpca2,nnpca3"
+literal "false"
+
+\end_inset
+
+ i.e.
+ the parameter 
+\begin_inset Formula $d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The overfitting problem.
+ It is quite common for these methods to produce poor results when they
+ are applied to data (test data) not previously used in the training procedure.
+ This problem is discussed in detail in the article by Geman et all 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nngeman"
+literal "true"
+
+\end_inset
+
+ as well as in the article of Hawkins 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnhawkins"
+literal "false"
+
+\end_inset
+
+.
+ A variety of methods have been proposed to overcome this problem, such
+ as weight sharing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnsharing1"
+literal "true"
+
+\end_inset
+
+, pruning 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnprunning1,nnprunning2,nnprunning3"
+literal "true"
+
+\end_inset
+
+, the dropout technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndrop1"
+literal "false"
+
+\end_inset
+
+, early stopping 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnearly1,nnearly2"
+literal "true"
+
+\end_inset
+
+, and weight decaying 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndecay1,nndecay2"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Learning data is usually divided into two parts: training data and test
+ data.
+ Learning models adjust their parameters, taking the training data as input
+ and are evaluated on the test data.
+ The number of learning model parameters directly depends on the dimension
+ of the input problem (number of features) and this means that for large
+ problems, large amounts of memory are required to store and manage the
+ learning models.
+ In addition, as the number of parameters of the computational models grows,
+ a longer time is required to adjust the parameters.
+ Also, as the dimension of the data grows, more samples (patterns) are required
+ in order to achieve high learning rates.
+ A discussion on how the dimensionality of the input problems affects the
+ effectiveness of neural networks is presented in  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndimension"
+literal "false"
+
+\end_inset
+
+.
+ A common approach to reduce the dimension of the input data is the Principal
+ Component Analysis (PCA) technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnpca1,nnpca2,nnpca3"
+literal "false"
+
+\end_inset
+
+ or the Minimum redundancy feature selection (MRMR) technique 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mrmr1,mrmr2"
+literal "false"
+
+\end_inset
+
+.
+ Also, Wang et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nn_autoencoder"
+literal "false"
+
+\end_inset
+
+ proposed an auto-encoder based dimensionality reduction method for large
+ datasets.
+ An overview of dimensionality reduction techniques can be found in the
+ work of Ayesha et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "reduction_comparison"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+(The rest of this article is divided as follows: )
+\end_layout
+
 \begin_layout Section
 The proposed method
 \begin_inset CommandInset label
@@ -7512,6 +7798,508 @@ Keep empty!
 
 \begin_layout References Title
 References
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_physics1"
+literal "false"
+
+\end_inset
+
+E.M.
+ Metodiev, B.
+ Nachman, J.
+ Thaler, Classification without labels: learning from mixed samples in high
+ energy physics.
+ J.
+ High Energ.
+ Phys.
+ 2017, article number 174, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics1"
+literal "false"
+
+\end_inset
+
+P.
+ Baldi, K.
+ Cranmer, T.
+ Faucett et al, Parameterized neural networks for high-energy physics, Eur.
+ Phys.
+ J.
+ C 
+\series bold
+76
+\series default
+, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics2"
+literal "true"
+
+\end_inset
+
+J.
+ J.
+ Valdas and G.
+ Bonham-Carter, Time dependent neural network models for detecting changes
+ of state in complex processes: Applications in earth sciences and astronomy,
+ Neural Networks 
+\series bold
+19
+\series default
+, pp.
+ 196-207, 2006
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics3"
+literal "false"
+
+\end_inset
+
+G.
+ Carleo,M.
+ Troyer, Solving the quantum many-body problem with artificial neural networks,
+ Science 
+\series bold
+355
+\series default
+, pp.
+ 602-606, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem1"
+literal "true"
+
+\end_inset
+
+C.
+ Güler, G.
+ D.
+ Thyne, J.
+ E.
+ McCray, K.A.
+ Turner, Evaluation of graphical and multivariate statistical methods for
+ classification of water chemistry data, Hydrogeology Journal 
+\series bold
+10
+\series default
+, pp.
+ 455-474, 2002
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem2"
+literal "true"
+
+\end_inset
+
+E.
+ Byvatov ,U.
+ Fechner ,J.
+ Sadowski , G.
+ Schneider, Comparison of Support Vector Machine and Artificial Neural Network
+ Systems for Drug/Nondrug Classification, J.
+ Chem.
+ Inf.
+ Comput.
+ Sci.
+ 
+\series bold
+43
+\series default
+, pp 1882–1889, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_chem3"
+literal "true"
+
+\end_inset
+
+Kunwar P.
+ Singh, Ankita Basant, Amrita Malik, Gunja Jain, Artificial neural network
+ modeling of the river water quality—A case study, Ecological Modelling
+ 
+\series bold
+220
+\series default
+, pp.
+ 888-895, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_econ1"
+literal "true"
+
+\end_inset
+
+I.
+ Kaastra, M.
+ Boyd, Designing a neural network for forecasting financial and economic
+ time series, Neurocomputing 
+\series bold
+10
+\series default
+, pp.
+ 215-236, 1996.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_econ2"
+literal "true"
+
+\end_inset
+
+Moshe Leshno, Yishay Spector, Neural network prediction analysis: The bankruptcy
+ case, Neurocomputing 
+\series bold
+10
+\series default
+, pp.
+ 125-147, 1996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution1"
+literal "false"
+
+\end_inset
+
+A.
+ Astel, S.
+ Tsakovski, V, Simeonov et al., Multivariate classification and modeling
+ in surface water pollution estimation.
+ Anal Bioanal Chem 
+\series bold
+390
+\series default
+, pp.
+ 1283–1292, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution2"
+literal "false"
+
+\end_inset
+
+A.
+ Azid, H.
+ Juahir, M.E.
+ Toriman et al., Prediction of the Level of Air Pollution Using Principal
+ Component Analysis and Artificial Neural Network Techniques: a Case Study
+ in Malaysia, Water Air Soil Pollut 
+\series bold
+225
+\series default
+, pp.
+ 2063, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc_pollution3"
+literal "false"
+
+\end_inset
+
+H.
+ Maleki, A.
+ Sorooshian, G.
+ Goudarzi et al., Air pollution prediction by using an artificial neural
+ network model, Clean Techn Environ Policy 
+\series bold
+21
+\series default
+, pp.
+ 1341–1352, 2019.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed1"
+literal "false"
+
+\end_inset
+
+Igor I.
+ Baskin, David Winkler and Igor V.
+ Tetko, A renaissance of neural networks in drug discovery, Expert Opinion
+ on Drug Discovery 
+\series bold
+11
+\series default
+, pp.
+ 785-795, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed2"
+literal "false"
+
+\end_inset
+
+Ronadl Bartzatt, Prediction of Novel Anti-Ebola Virus Compounds Utilizing
+ Artificial Neural Network (ANN), Chemistry Faculty Publications 
+\series bold
+49
+\series default
+, pp.
+ 16-34, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "knn1"
+literal "false"
+
+\end_inset
+
+Y.
+ Wu, K.
+ Ianakiev, V.
+ Govindaraju, Improved k-nearest neighbor classification, Pattern Recognition
+ 
+\series bold
+35
+\series default
+, pp.
+ 2311-2318, 2002.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "knn2"
+literal "false"
+
+\end_inset
+
+Z.-ga Liu, Q.
+ Pan, J.
+ Dezert, A new belief-based K-nearest neighbor classification method, Pattern
+ Recognition 
+\series bold
+46
+\series default
+, pp.
+ 834-844, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn1"
+literal "true"
+
+\end_inset
+
+C.
+ Bishop, Neural Networks for Pattern Recognition, Oxford University Press,
+ 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn2"
+literal "true"
+
+\end_inset
+
+G.
+ Cybenko, Approximation by superpositions of a sigmoidal function, Mathematics
+ of Control Signals and Systems 
+\series bold
+2
+\series default
+, pp.
+ 303-314, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf2"
+literal "false"
+
+\end_inset
+
+H.
+ Yu, T.
+ Xie, S.
+ Paszczynski, B.
+ M.
+ Wilamowski, Advantages of Radial Basis Function Networks for Dynamic System
+ Design, in IEEE Transactions on Industrial Electronics 
+\series bold
+58
+\series default
+, pp.
+ 5438-5450, 2011.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf3"
+literal "false"
+
+\end_inset
+
+D.
+ Chen, Research on Traffic Flow Prediction in the Big Data Environment Based
+ on the Improved RBF Neural Network, IEEE Transactions on Industrial Informatics
+ 
+\series bold
+13
+\series default
+, pp.
+ 2000-2008, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf4"
+literal "false"
+
+\end_inset
+
+Z.
+ Yang, M.
+ Mourshed, K.
+ Liu, X.
+ Xu, S.
+ Feng, A novel competitive swarm optimized RBF neural network model for
+ short-term solar power generation forecasting, Neurocomputing 
+\series bold
+397
+\series default
+, pp.
+ 415-421, 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "svm"
+literal "false"
+
+\end_inset
+
+I.
+ Steinwart, A.
+ Christmann, Support Vector Machines, Information Science and Statistics,
+ Springer, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "svm2"
+literal "false"
+
+\end_inset
+
+A.
+ Iranmehr, H.
+ Masnadi-Shirazi, N.
+ Vasconcelos, Cost-sensitive support vector machines, Neurocomputing 
+\series bold
+343
+\series default
+, pp.
+ 50-64, 2019.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "dt1"
+literal "false"
+
+\end_inset
+
+S.B.
+ Kotsiantis, Decision trees: a recent overview, Artif Intell Rev 
+\series bold
+39
+\series default
+, pp.
+ 261–283, 2013.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "dt2"
+literal "false"
+
+\end_inset
+
+D.
+ Bertsimas, J.
+ Dunn, Optimal classification trees, Mach Learn 
+\series bold
+106
+\series default
+, pp.
+ 1039–1082, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "class_review"
+literal "false"
+
+\end_inset
+
+S.B.
+ Kotsiantis, I.D.
+ Zaharakis, P.E.
+ Pintelas, Machine learning: a review of classification and combining techniques
+, Artif Intell Rev 
+\series bold
+26
+\series default
+, pp.
+ 159–190, 2006.
 \end_layout
 
 \begin_layout Bibliography
