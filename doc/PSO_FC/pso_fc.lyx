@@ -359,41 +359,73 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-All the previously mentioned methods have to overcome two major problems:
-\end_layout
+In most cases, learning models have a number of parameters that should be
+ determined through some algorithms, such as the Back Propagation method
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bpnn,bpnn2"
+literal "false"
 
-\begin_layout Itemize
-Excessive computational times, because they require processing time proportional
- to the dimension of the objective problem and the number of processing
- units as well.
- For example, a neural network of 
-\begin_inset Formula $H=10$
 \end_inset
 
- processing units applied to a test data with 
-\begin_inset Formula $d=3$
-\end_inset
+ for the artificial neural networks or more advanced optimization methods
+ such as the Genetic algorithms 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "geneticnn1,geneticnn2,geneticnn3"
+literal "false"
 
-, is considered as an optimization problem with dimension 
-\begin_inset Formula $w=(d+2)H=50$
 \end_inset
 
 .
- This means that the total number of network parameters is growing extremely
- fast, which results in a longer computation time than the corresponding
- universal optimization method.
- An extensive discussion on the problems caused by the dimensionality of
- neural networks is presented in 
+ However, most of the time there are two main problems in the parameterization
+ of learning models:
+\end_layout
+
+\begin_layout Itemize
+Requirement for large training time, which is proportional to the dimension
+ of the input data.
+ For example, in a neural network with one hidden layer equipped with 10
+ processing nodes and a provided dataset with 10 inputs, then more than
+ 
+\begin_inset Formula $N=100$
+\end_inset
+
+ parameters are required to build the neural network.
+ Therefore the size of the network will grow proportionally to the problem
+ and therefore longer training times will be required for the model.
+ In addition, in some techniques such as for example Bfgs 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
+key "Powell"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset Formula $O\left(N^{2}\right)$
+\end_inset
+
+ storage space will be required for the training model and for the partial
+ derivatives required by the optimization method.
+ An extensive discussion of the problems caused by increased data dimensionality
+ is presented in the paper by Verleysen et al 
+\begin_inset CommandInset citation
+LatexCommand citep
 key "nndimension"
 literal "false"
 
 \end_inset
 
 .
- A common approach to overcome this problem is to use the PCA technique
- to reduce the dimensionality of the objective problem 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A common approach to overcome this problem is to use the PCA technique to
+ reduce the dimensionality of the objective problem 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "nnpca1,nnpca2,nnpca3"
@@ -410,6 +442,8 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 The overfitting problem.
  It is quite common for these methods to produce poor results when they
  are applied to data (test data) not previously used in the training procedure.
@@ -478,28 +512,6 @@ literal "false"
 \begin_layout Standard
 
 \series bold
-Learning data is usually divided into two parts: training data and test
- data.
- Learning models adjust their parameters, taking the training data as input
- and are evaluated on the test data.
- The number of learning model parameters directly depends on the dimension
- of the input problem (number of features) and this means that for large
- problems, large amounts of memory are required to store and manage the
- learning models.
- In addition, as the number of parameters of the computational models grows,
- a longer time is required to adjust the parameters.
- Also, as the dimension of the data grows, more samples (patterns) are required
- in order to achieve high learning rates.
- A discussion on how the dimensionality of the input problems affects the
- effectiveness of neural networks is presented in  
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nndimension"
-literal "false"
-
-\end_inset
-
-.
  A common approach to reduce the dimension of the input data is the Principal
  Component Analysis (PCA) technique 
 \begin_inset CommandInset citation
@@ -8300,6 +8312,151 @@ S.B.
 \series default
 , pp.
  159–190, 2006.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "bpnn"
+literal "false"
+
+\end_inset
+
+D.E.
+ Rumelhart, G.E.
+ Hinton and R.J.
+ Williams, Learning representations by back-propagating errors, Nature 
+\series bold
+323
+\series default
+, pp.
+ 533 - 536 , 1986.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "bpnn2"
+literal "false"
+
+\end_inset
+
+T.
+ Chen and S.
+ Zhong, Privacy-Preserving Backpropagation Neural Network Learning, IEEE
+ Transactions on Neural Networks 
+\series bold
+20
+\series default
+, , pp.
+ 1554-1564, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geneticnn1"
+literal "false"
+
+\end_inset
+
+F.
+ H.
+ F.
+ Leung, H.
+ K.
+ Lam, S.
+ H.
+ Ling and P.
+ K.
+ S.
+ Tam, Tuning of the structure and parameters of a neural network using an
+ improved genetic algorithm, IEEE Transactions on Neural Networks 
+\series bold
+14
+\series default
+, pp.
+ 79-88, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geneticnn2"
+literal "false"
+
+\end_inset
+
+A.
+ Sedki, D.
+ Ouazar, E.
+ El Mazoudi, Evolving neural network using real coded genetic algorithm
+ for daily rainfall–runoff forecasting, Expert Systems with Applications
+ 
+\series bold
+36
+\series default
+, pp.
+ 4523-4527, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geneticnn3"
+literal "false"
+
+\end_inset
+
+A.
+ Majdi, M.
+ Beiki, Evolving neural network using a genetic algorithm for predicting
+ the deformation modulus of rock masses, International Journal of Rock Mechanics
+ and Mining Sciences 
+\series bold
+47
+\series default
+, pp.
+ 246-253, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Powell"
+literal "true"
+
+\end_inset
+
+M.J.D Powell, A Tolerant Algorithm for Linearly Constrained Optimization Calculati
+ons, Mathematical Programming 
+\series bold
+45
+\series default
+, pp.
+ 547-566, 1989.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndimension"
+literal "false"
+
+\end_inset
+
+M.
+ Verleysen, D.
+ Francois, G.
+ Simon, V.
+ Wertz, On the effects of dimensionality on data analysis with neural networks.
+ In: Mira J., Álvarez J.R.
+ (eds) Artificial Neural Nets Problem Solving Methods.
+ IWANN 2003.
+ Lecture Notes in Computer Science, vol 2687.
+ Springer, Berlin, Heidelberg.
+ 2003.
 \end_layout
 
 \begin_layout Bibliography
