@@ -419,88 +419,29 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-A common approach to overcome this problem is to use the PCA technique to
- reduce the dimensionality of the objective problem 
+ Some common approaches to reduce the dimension of the input datasets are
+ the Principal Component Analysis (PCA) method 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "nnpca1,nnpca2,nnpca3"
 literal "false"
 
 \end_inset
 
- i.e.
- the parameter 
-\begin_inset Formula $d$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-The overfitting problem.
- It is quite common for these methods to produce poor results when they
- are applied to data (test data) not previously used in the training procedure.
- This problem is discussed in detail in the article by Geman et all 
+ as well as the Minimum redundancy feature selection (MRMR) technique 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "nngeman"
-literal "true"
-
-\end_inset
-
- as well as in the article of Hawkins 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nnhawkins"
+LatexCommand citep
+key "mrmr1,mrmr2"
 literal "false"
 
 \end_inset
 
 .
- A variety of methods have been proposed to overcome this problem, such
- as weight sharing 
+ Furthermore, Wang et al proposed an auto - encoder reduction method, applied
+ on a seires of large datasets
 \begin_inset CommandInset citation
 LatexCommand cite
-key "nnsharing1"
-literal "true"
-
-\end_inset
-
-, pruning 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nnprunning1,nnprunning2,nnprunning3"
-literal "true"
-
-\end_inset
-
-, the dropout technique 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nndrop1"
-literal "false"
-
-\end_inset
-
-, early stopping 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nnearly1,nnearly2"
-literal "true"
-
-\end_inset
-
-, and weight decaying 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "nndecay1,nndecay2"
+key "nn_autoencoder"
 literal "false"
 
 \end_inset
@@ -509,42 +450,80 @@ literal "false"
  
 \end_layout
 
-\begin_layout Standard
-
-\series bold
- A common approach to reduce the dimension of the input data is the Principal
- Component Analysis (PCA) technique 
+\begin_layout Itemize
+The problem of reduced performance of models on unknown data, also known
+ as overfitting problem.
+ The paper of Geman et al 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "nnpca1,nnpca2,nnpca3"
+LatexCommand citep
+key "nngeman"
 literal "false"
 
 \end_inset
 
- or the Minimum redundancy feature selection (MRMR) technique 
+ as well the article of Hawkins 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "mrmr1,mrmr2"
+LatexCommand citep
+key "nnhawkins"
+literal "false"
+
+\end_inset
+
+ thoroughly discuss on the topic of overfitting.
+ Examples of techniques proposed to overcome this problem are the weight
+ sharing methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnsharing1,nnsharing2"
+literal "false"
+
+\end_inset
+
+, the prunning methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnprunning1,nnprunning2,nnprunning3"
+literal "false"
+
+\end_inset
+
+, weight elimination 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnelim1,nnelim2,nnelim3"
+literal "false"
+
+\end_inset
+
+, weight decaying methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nndecay1,nndecay2"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+This article proposes a two phase method to overcome the above problems.
+ During the first phase, a limited number of artificial features are created
+ from the original ones using a method based on the Grammatical Evolution
+ procedure 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ge1"
 literal "false"
 
 \end_inset
 
 .
- Also, Wang et al 
+ These features are iteratively adjusted using a technique based on particle
+ swarm optimization (PSO)
 \begin_inset CommandInset citation
-LatexCommand cite
-key "nn_autoencoder"
-literal "false"
-
-\end_inset
-
- proposed an auto-encoder based dimensionality reduction method for large
- datasets.
- An overview of dimensionality reduction techniques can be found in the
- work of Ayesha et al 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "reduction_comparison"
+LatexCommand citep
+key "pso_major,pso1,pso2"
 literal "false"
 
 \end_inset
@@ -919,7 +898,7 @@ noprefix "false"
  using the following operation:
 \begin_inset Formula 
 \begin{equation}
-x_{i}=x_{i}+u_{i+1}\label{eq:eq3}
+x_{i}=x_{i}+u_{i}\label{eq:eq3}
 \end{equation}
 
 \end_inset
@@ -8457,6 +8436,403 @@ M.
  Lecture Notes in Computer Science, vol 2687.
  Springer, Berlin, Heidelberg.
  2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca1"
+literal "false"
+
+\end_inset
+
+Burcu Erkmen, Tülay Yıldırım, Improving classification performance of sonar
+ targets by applying general regression neural network with PCA, Expert
+ Systems with Applications 
+\series bold
+35
+\series default
+, pp.
+ 472-475, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca2"
+literal "false"
+
+\end_inset
+
+Jing Zhou, Aihuang Guo, Branko Celler, Steven Su, Fault detection and identifica
+tion spanning multiple processes by integrating PCA with neural network,
+ Applied Soft Computing 
+\series bold
+14
+\series default
+, pp.
+ 4-11, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpca3"
+literal "false"
+
+\end_inset
+
+Ravi Kumar G., Nagamani K., Anjan Babu G., A Framework of Dimensionality Reduction
+ Utilizing PCA for Neural Network Prediction.
+ In: Borah S., Emilia Balas V., Polkowski Z.
+ (eds) Advances in Data Science and Management.
+ Lecture Notes on Data Engineering and Communications Technologies, vol
+ 37.
+ Springer, Singapore.
+ 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mrmr1"
+literal "true"
+
+\end_inset
+
+Hanchuan Peng, Fuhui Long, and Chris Ding, Feature selection based on mutual
+ information: criteria of max-dependency, max-relevance, and min-redundancy,
+ IEEE Transactions on Pattern Analysis and Machine Intelligence 
+\series bold
+27
+\series default
+, pp.1226-1238, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mrmr2"
+literal "true"
+
+\end_inset
+
+Chris Ding, and Hanchuan Peng, Minimum redundancy feature selection from
+ microarray gene expression data, Journal of Bioinformatics and Computational
+ Biology 
+\series bold
+3
+\series default
+, pp.185-205, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_autoencoder"
+literal "false"
+
+\end_inset
+
+Y.
+ Wang, H.
+ Yao, S.
+ Zhao, Auto-encoder based dimensionality reduction, Neurocomputing 
+\series bold
+184
+\series default
+, pp.
+ 232-242, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nngeman"
+literal "true"
+
+\end_inset
+
+S.
+ Geman, E.
+ Bienenstock and R.
+ Doursat, Neural networks and the bias/variance dilemma, Neural Computation
+ 4 , pp.
+ 1 - 58, 1992.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnhawkins"
+literal "false"
+
+\end_inset
+
+Douglas M.
+ Hawkins, The Problem of Overfitting, J.
+ Chem.
+ Inf.
+ Comput.
+ Sci.
+ 
+\series bold
+44
+\series default
+, pp.
+ 1–12, 2004.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnsharing1"
+literal "true"
+
+\end_inset
+
+S.J.
+ Nowlan and G.E.
+ Hinton, Simplifying neural networks by soft weight sharing, Neural Computation
+ 4, pp.
+ 473-493, 1992.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnsharing2"
+literal "false"
+
+\end_inset
+
+W.
+ Roth, F.
+ Pernkopf, Bayesian Neural Networks with Weight Sharing Using Dirichlet
+ Processes, IEEE Transactions on Pattern Analysis and Machine Intelligence
+ 
+\series bold
+42
+\series default
+, pp.
+ 246-252, 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnprunning1"
+literal "true"
+
+\end_inset
+
+S.J.
+ Hanson and L.Y.
+ Pratt, Comparing biases for minimal network construction with back propagation,
+ In D.S.
+ Touretzky (Ed.), Advances in Neural Information Processing Systems, Volume
+ 1, pp.
+ 177-185, San Mateo, CA: Morgan Kaufmann, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnprunning2"
+literal "true"
+
+\end_inset
+
+M.C.
+ Mozer and P.
+ Smolensky, Skeletonization: a technique for trimming the fat from a network
+ via relevance assesment.
+ In D.S.
+ Touretzky (Ed.), Advances in Neural Processing Systems, Volume 1, pp.
+ 107-115, San Mateo CA: Morgan Kaufmann, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnprunning3"
+literal "false"
+
+\end_inset
+
+M.
+ Augasta and T.
+ Kathirvalavakumar, Pruning algorithms of neural networks — a comparative
+ study, Central European Journal of Computer Science, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnelim1"
+literal "false"
+
+\end_inset
+
+F.
+ Hergert, W.
+ Finnoff, H.
+ G.
+ Zimmermann, A comparison of weight elimination methods for reducing complexity
+ in neural networks, In: Proceedings 1992] IJCNN International Joint Conference
+ on Neural Networks, Baltimore, MD, USA, pp.
+ 980-987 vol.3, 1992.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnelim2"
+literal "false"
+
+\end_inset
+
+M.
+ Cottrell, B.
+ Girard, Y.
+ Girard, M.
+ Mangeas, C.
+ Muller, Neural modeling for time series: A statistical stepwise method
+ for weight elimination, IEEE Transactions on Neural Networks 
+\series bold
+6
+\series default
+, pp.
+ 1355-1364, 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnelim3"
+literal "false"
+
+\end_inset
+
+C.
+ M.
+ Ennett, M.
+ Frize, Weight-elimination neural networks applied to coronary surgery mortality
+ prediction, IEEE Transactions on Information Technology in Biomedicine
+ 
+\series bold
+7
+\series default
+, pp.
+ 86-92, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndecay1"
+literal "false"
+
+\end_inset
+
+N.
+ K.
+ Treadgold and T.
+ D.
+ Gedeon, Simulated annealing and weight decay in adaptive learning: the
+ SARPROP algorithm,IEEE Transactions on Neural Networks 
+\series bold
+9
+\series default
+, pp.
+ 662-668, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndecay2"
+literal "false"
+
+\end_inset
+
+M.
+ Carvalho and T.
+ B.
+ Ludermir, Particle Swarm Optimization of Feed-Forward Neural Networks with
+ Weight Decay, 2006 Sixth International Conference on Hybrid Intelligent
+ Systems (HIS'06), Rio de Janeiro, Brazil, 2006, pp.
+ 5-5.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ge1"
+literal "true"
+
+\end_inset
+
+M.
+ O’Neill, C.
+ Ryan, Grammatical evolution, IEEE Trans.
+ Evol.
+ Comput.
+ 
+\series bold
+5,
+\series default
+pp.
+ 349–358, 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "pso_major"
+literal "false"
+
+\end_inset
+
+J.
+ Kennedy and R.
+ Eberhart, "Particle swarm optimization," Proceedings of ICNN'95 - International
+ Conference on Neural Networks, 1995, pp.
+ 1942-1948 vol.4, doi: 10.1109/ICNN.1995.488968.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "pso1"
+literal "true"
+
+\end_inset
+
+Riccardo Poli, James Kennedy kennedy, Tim Blackwell, Particle swarm optimization
+ An Overview, Swarm Intelligence 
+\series bold
+1
+\series default
+, pp 33-57, 2007.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "pso2"
+literal "true"
+
+\end_inset
+
+Ioan Cristian Trelea, The particle swarm optimization algorithm: convergence
+ analysis and parameter selection, Information Processing Letters 
+\series bold
+85
+\series default
+, pp.
+ 317-325, 2003.
 \end_layout
 
 \begin_layout Bibliography
