@@ -519,8 +519,196 @@ literal "false"
 \end_inset
 
 .
- These features are iteratively adjusted using a technique based on particle
- swarm optimization (PSO).
+ Grammatical Evolution is an evolutionary process, where the chromosomes
+ are production rules of the target BNF grammar and it has been used sucesfully
+ in a variety of applications, such as music composition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "geApp1"
+literal "true"
+
+\end_inset
+
+, economics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "geApp2"
+literal "true"
+
+\end_inset
+
+, symbolic regression 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "geApp3"
+literal "true"
+
+\end_inset
+
+, robotics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "geApp4"
+literal "true"
+
+\end_inset
+
+, caching algorithms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "geApp5"
+literal "true"
+
+\end_inset
+
+ etc.
+ These features are iteratively adjusted using a hybrid technique based
+ on particle swarm optimization (PSO)
+\begin_inset CommandInset citation
+LatexCommand citep
+key "pso_major,pso1,pso2"
+literal "false"
+
+\end_inset
+
+, where the generated features are constrained using penalty factors to
+ be within a pre-defined value interval and their evaluation is done using
+ an RBF network.
+ The RBF network was preferred over other machine learning models to be
+ used to evaluate the generated features due to its training speed.
+ The PSO method has been selected as the optimization method due to its
+ simplicity and the small number of parameters that should be set.
+ Also, the PSO method has been used in many difficult problems from all
+ areas of the sciences, such as problems that arise in physics
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psophysics1,psophysics2"
+literal "true"
+
+\end_inset
+
+, chemistry 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psochem1,psochem2"
+literal "false"
+
+\end_inset
+
+, medicine 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psomed1,psomed2"
+literal "true"
+
+\end_inset
+
+, economics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "psoecon"
+literal "true"
+
+\end_inset
+
+ etc.
+ Furthermore, the PSO method was successfully applied recently in many practical
+ problems such as flow shop scheduling 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp1"
+literal "false"
+
+\end_inset
+
+, successful development of electric vehicle charging strategies 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp2"
+literal "false"
+
+\end_inset
+
+, emotion recognition 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp3"
+literal "false"
+
+\end_inset
+
+, robotics 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp4"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+The idea of creating artificial features using Grammatical Evolution was
+ firstly introduced in the paper of Gavrilis et al
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc1"
+literal "false"
+
+\end_inset
+
+ and it has been succesfully applied on a series of problems, such as Spam
+ Identification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc2"
+literal "true"
+
+\end_inset
+
+, Fetal heart classification 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc3"
+literal "true"
+
+\end_inset
+
+, epileptic oscillations
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fc4"
+literal "true"
+
+\end_inset
+
+, construction of Covid-19 predictive models 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fc5"
+literal "false"
+
+\end_inset
+
+, performance and early drop prediction for higher education students 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fc6"
+literal "false"
+
+\end_inset
+
+ etc.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -536,6 +724,14 @@ name "sec:The-proposed-method"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Feature construction with Grammatical Evolution 
+\end_layout
+
+\begin_layout Subsection
+The proposed PSO method
 \end_layout
 
 \begin_layout Standard
@@ -8781,6 +8977,84 @@ pp.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "geApp1"
+literal "true"
+
+\end_inset
+
+Alfonso Ortega, Rafael Sánchez, Manuel Alfonseca Moreno, Automatic composition
+ of music by means of grammatical evolution, APL '02 Proceedings of the
+ 2002 conference on APL: array processing languages: lore, problems, and
+ applications Pages 148 - 155.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geApp2"
+literal "true"
+
+\end_inset
+
+Michael O’Neill, Anthony Brabazon, Conor Ryan, J.
+ J.
+ Collins, Evolving Market Index Trading Rules Using Grammatical Evolution,
+ Applications of Evolutionary Computing Volume 2037 of the series Lecture
+ Notes in Computer Science pp 343-352.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geApp3"
+literal "true"
+
+\end_inset
+
+M.
+ O’Neill, C.
+ Ryan, Grammatical Evolution: Evolutionary Automatic Programming in a Arbitary
+ Language, Genetic Programming, vol.
+ 4, Kluwer Academic Publishers, Dordrecht, 2003
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geApp4"
+literal "true"
+
+\end_inset
+
+J.J.
+ Collins, C.
+ Ryan, in: Proceedings of AROB 2000, Fifth International Symposium on Artificial
+ Life and Robotics, 2000.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geApp5"
+literal "true"
+
+\end_inset
+
+M.
+ O’Neill, C.
+ Ryan, in: K.
+ Miettinen, M.M.
+ Mkel, P.
+ Neittaanmki, J.
+ Periaux (Eds.), Evolutionary Algorithms in Engineering and Computer Science,
+ Jyvskyl, Finland, 1999, pp.
+ 127–134.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "pso_major"
 literal "false"
 
@@ -8825,6 +9099,366 @@ Ioan Cristian Trelea, The particle swarm optimization algorithm: convergence
 \series default
 , pp.
  317-325, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psophysics1"
+literal "true"
+
+\end_inset
+
+Anderson Alvarenga de Moura Meneses, Marcelo Dornellas, Machado Roberto
+ Schirru, Particle Swarm Optimization applied to the nuclear reload problem
+ of a Pressurized Water Reactor, Progress in Nuclear Energy 
+\series bold
+51
+\series default
+, pp.
+ 319-326, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psophysics2"
+literal "true"
+
+\end_inset
+
+Ranjit Shaw, Shalivahan Srivastava, Particle swarm optimization: A new tool
+ to invert geophysical data, Geophysics 
+\series bold
+72
+\series default
+, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psochem1"
+literal "false"
+
+\end_inset
+
+C.
+ O.
+ Ourique, E.C.
+ Biscaia, J.C.
+ Pinto, The use of particle swarm optimization for dynamical analysis in
+ chemical processes, Computers & Chemical Engineering 
+\series bold
+26
+\series default
+, pp.
+ 1783-1793, 2002.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psochem2"
+literal "false"
+
+\end_inset
+
+H.
+ Fang, J.
+ Zhou, Z.
+ Wang et al, Hybrid method integrating machine learning and particle swarm
+ optimization for smart chemical process operations, Front.
+ Chem.
+ Sci.
+ Eng.
+ 
+\series bold
+16
+\series default
+, pp.
+ 274–287, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psomed1"
+literal "true"
+
+\end_inset
+
+M.P.
+ Wachowiak, R.
+ Smolikova, Yufeng Zheng, J.M.
+ Zurada, A.S.
+ Elmaghraby, An approach to multimodal biomedical image registration utilizing
+ particle swarm optimization, IEEE Transactions on Evolutionary Computation
+ 
+\series bold
+8
+\series default
+, pp.
+ 289-301, 2004.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psomed2"
+literal "true"
+
+\end_inset
+
+Yannis Marinakis.
+ Magdalene Marinaki, Georgios Dounias, Particle swarm optimization for pap-smear
+ diagnosis, Expert Systems with Applications 
+\series bold
+35
+\series default
+, pp.
+ 1645-1656, 2008.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoecon"
+literal "true"
+
+\end_inset
+
+Jong-Bae Park, Yun-Won Jeong, Joong-Rin Shin, Kwang Y.
+ Lee, An Improved Particle Swarm Optimization for Nonconvex Economic Dispatch
+ Problems, IEEE Transactions on Power Systems 
+\series bold
+25
+\series default
+, pp.
+ 156-16
+\series bold
+216
+\series default
+6, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp1"
+literal "false"
+
+\end_inset
+
+B.
+ Liu, L.
+ Wang, Y.H.
+ Jin, An Effective PSO-Based Memetic Algorithm for Flow Shop Scheduling,
+ IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics)
+ 
+\series bold
+37
+\series default
+, pp.
+ 18-27, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp2"
+literal "false"
+
+\end_inset
+
+J.
+ Yang, L.
+ He, S.
+ Fu, An improved PSO-based charging strategy of electric vehicles in electrical
+ distribution grid, Applied Energy 
+\series bold
+128
+\series default
+, pp.
+ 82-92, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp3"
+literal "false"
+
+\end_inset
+
+K.
+ Mistry, L.
+ Zhang, S.
+ C.
+ Neoh, C.
+ P.
+ Lim, B.
+ Fielding, A Micro-GA Embedded PSO Feature Selection Approach to Intelligent
+ Facial Emotion Recognition, IEEE Transactions on Cybernetics.
+ 
+\series bold
+47
+\series default
+, pp.
+ 1496-1509, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp4"
+literal "false"
+
+\end_inset
+
+S.
+ Han, X.
+ Shan, J.
+ Fu, W.
+ Xu, H.
+ Mi, Industrial robot trajectory planning based on improved pso algorithm,
+ J.
+ Phys.: Conf.
+ Ser.
+ 
+\series bold
+1820
+\series default
+, 012185, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc1"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Selecting and constructing features using
+ grammatical evolution, Pattern Recognition Letters 
+\series bold
+29
+\series default
+,pp.
+ 1358-1365, 2008.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc2"
+literal "true"
+
+\end_inset
+
+Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
+ for Robust Detection of E-Mail Spam, Advances in Artificial Intelligence
+ Volume 3955 of the series Lecture Notes in Computer Science pp 498-501,
+ 2006.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc3"
+literal "true"
+
+\end_inset
+
+George Georgoulas, Dimitris Gavrilis, Ioannis G.
+ Tsoulos, Chrysostomos Stylios, João Bernardes, Peter P.
+ Groumpos, Novel approach for fetal heart rate classification introducing
+ grammatical evolution, Biomedical Signal Processing and Control 
+\series bold
+2
+\series default
+,pp.
+ 69-79, 2007 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc4"
+literal "true"
+
+\end_inset
+
+Otis Smart, Ioannis G.
+ Tsoulos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
+ features of epileptic oscillations in clinical intracranial electroencephalogra
+ms, Expert Systems with Applications 
+\series bold
+38
+\series default
+, pp.
+ 9991-9999, 2011.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc5"
+literal "false"
+
+\end_inset
+
+I.G.
+ Tsoulos, C.
+ Stylios, V.
+ Charalampous, COVID-19 Predictive Models Based on Grammatical Evolution,
+ SN COMPUT.
+ SCI.
+ 
+\series bold
+4
+\series default
+, 191, 2023.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fc6"
+literal "false"
+
+\end_inset
+
+V.
+ Christou, I.G.
+ Tsoulos, V.
+ Loupas, A.T.
+ Tzallas, C.
+ Gogos, P.S.
+ Karvelis, N.
+ Antoniadis, E.
+ Glavas, N.
+ Giannakeas, Performance and early drop prediction for higher education
+ students using machine learning, Expert Systems with Applications 
+\series bold
+225
+\series default
+, 120079, 2023.
 \end_layout
 
 \begin_layout Bibliography
