@@ -217,6 +217,10 @@ Ioannis G.
 \begin_inset Formula $^{1,*}$
 \end_inset
 
+, Alexandros Tzallas
+\begin_inset Formula $^{2}$
+\end_inset
+
 
 \end_layout
 
@@ -239,6 +243,15 @@ Tsoulos, I.G.
 
 Department of Informatics and Telecommunications, University of Ioannina,
  Greece;itsoulos@uoi.gr
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $^{2}\quad$
+\end_inset
+
+Department of Informatics and Telecommunications, University of Ioannina,
+ Greece;tzallas@uoi.gr
 \end_layout
 
 \begin_layout Corresponding Author
@@ -804,18 +817,12 @@ The basic steps by which the Grammatical Evolution technique produces the
 \end_layout
 
 \begin_layout Subsection
-Feature construction with Grammatical Evolution 
+The technique of Grammatical Evolution 
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-(Change....)
-\end_layout
-
-\begin_layout Standard
-Grammatical evolution is an evolutionary procedure where the chromosomes
- represent production rules from a BNF (Backus–Naur form) grammar
+The process of Grammatical Evolution uses chromosomes that represent production
+ rules of the underlying BNF (Backus–Naur form) grammar
 \begin_inset CommandInset citation
 LatexCommand cite
 key "bnf1"
@@ -823,9 +830,10 @@ literal "false"
 
 \end_inset
 
-, which is used very often to describe the syntax of programming languages,
- document formats etc.
- These grammars are defined as the set 
+ of the objective problem.
+ BNF grammars have been widely used to describe the syntax of programming
+ languages.
+ Any BNF grammar is a set 
 \series bold
 
 \begin_inset Formula $G=\left(N,T,S,P\right)$
@@ -837,15 +845,17 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-
+The set 
 \series bold
+
 \begin_inset Formula $N$
 \end_inset
 
  
 \series default
-is the set of non-terminal symbols, which produce through production rules
- series of terminal symbols.
+represents the non-terminal symbols of the grammar.
+ Any non - terminal symbol is analyzed to a series of terminal symbols using
+ the production rules of the grammar.
 \end_layout
 
 \begin_layout Itemize
@@ -863,21 +873,24 @@ is the set of terminal symbols.
 \end_layout
 
 \begin_layout Itemize
+The non - terminal symbol 
 \begin_inset Formula $S$
 \end_inset
 
- is a non-terminal symbol also called the start symbol
+ represents the start symbol of the grammar.
 \end_layout
 
 \begin_layout Itemize
-
+The set 
 \series bold
+
 \begin_inset Formula $P$
 \end_inset
 
  
 \series default
-is a set of production rules in the form 
+contains the production rules of the grammar.
+ Typically, any production rule is expressed in the form 
 \series bold
 
 \begin_inset Formula $A\rightarrow a$
@@ -895,38 +908,745 @@ or
 \end_layout
 
 \begin_layout Standard
-The production procedure initiates from the start symbol of the BNF grammar
- and iteratively produces programs by replacing non-terminal symbols with
- the right hand of the production rules that will be selected according
- to the value of each element in the chromosome
-\series bold
-.
+The process that creates a valid program, starts from the symbol 
+\begin_inset Formula $S$
+\end_inset
 
+ and gradually replaces non-terminal symbols with the right hand of the
+ selected production rule from the provided chromosome.
+ The rule is selected with the following steps:
+\end_layout
+
+\begin_layout Itemize
+Get the next element from the chromosome and denote it as V.
+ 
+\end_layout
+
+\begin_layout Itemize
+Select the production rule with the scheme Rule = V mod 
+\begin_inset Formula $N_{R}$
+\end_inset
+
+, where 
+\begin_inset Formula $N_{R}$
+\end_inset
+
+ is the total number of production rules for the current non – terminal
+ symbol.
+ 
+\end_layout
+
+\begin_layout Standard
+The BNF grammar for the proposed method is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The constant N is the dimension of the input dataset.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+BNF grammar of the proposed method.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:BNF-grammar-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+S::=<expr>   (0) 
+\end_layout
+
+\begin_layout LyX-Code
+<expr> ::=  (<expr> <op> <expr>)  (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | <func> ( <expr> )    (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           |<terminal>            (2) 
+\end_layout
+
+\begin_layout LyX-Code
+<op> ::=     +      (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | -      (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           | *      (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           | /      (3)
+\end_layout
+
+\begin_layout LyX-Code
+<func> ::=   sin  (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | cos  (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           |exp   (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           |log   (3)
+\end_layout
+
+\begin_layout LyX-Code
+<terminal>::=<xlist>                (0)                      
+\end_layout
+
+\begin_layout LyX-Code
+           |<digitlist>.<digitlist> (1)
+\end_layout
+
+\begin_layout LyX-Code
+<xlist>::=x1    (0)              
+\end_layout
+
+\begin_layout LyX-Code
+           | x2 (1)              
+\end_layout
+
+\begin_layout LyX-Code
+           ………             
+\end_layout
+
+\begin_layout LyX-Code
+           | xN (N)
+\end_layout
+
+\begin_layout LyX-Code
+<digitlist>::=<digit>                  (0)                 
+\end_layout
+
+\begin_layout LyX-Code
+           | <digit><digit>            (1)
+\end_layout
+
+\begin_layout LyX-Code
+           | <digit><digit><digit>     (2)
+\end_layout
+
+\begin_layout LyX-Code
+<digit>  ::= 0 (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 1 (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 2 (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 3 (3)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 4 (4)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 5 (5)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 6 (6)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 7 (7)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 8 (8)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 9 (9)
+\end_layout
+
+\end_inset
+
+ An example that produces a valid expression for the chromosome 
+\begin_inset Formula 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $N=3$
+\end_inset
+
+ is shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:table_with_steps"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The final expression that created is 
+\series bold
+
+\begin_inset Formula $f(x)=x_{2}+\cos\left(x_{3}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Steps to produce a valid expression from the BNF grammar.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:table_with_steps"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Expression
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chromosome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<expr>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9,8,6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9\mod3=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<expr><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8\mod3=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<terminal><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6\mod2=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<xlist><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4\mod3=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2<op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16\mod4=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+<expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10\mod3=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+<func>(<expr>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $17\mod4=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<expr>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $23\mod2=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<terminal>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8\mod2=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<xlist>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $14\mod3=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(x3))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Feature construction
+\end_layout
+
+\begin_layout Standard
+The proposed method is used to created 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ artificial features from the original ones.
+ The new features will be considered as non - linear combinations of the
+ old features and the process for any chromosome 
+\begin_inset Formula $X$
+\end_inset
+
+ has as follows:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Divide
 \series default
- In the proposed method, the BNF grammar of Figure 
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ into 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ parts.
+ Every part is considered as the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ sub - chromosome.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ each sub - chromosome 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ a new artificial feature 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is constructed with the grammer of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:BNF-grammar-of"
 
 \end_inset
 
- was used to create a new feature from the initial features.
- The symbols that are in <> are considered as non-terminal symbols.
- The parameter N denotes the number of original features.
- Typically, a chromosome 
-\begin_inset Formula $x$
+.
+\end_layout
+
+\begin_layout Standard
+The final set of features will be considered as mapping functions of the
+ original ones.
+ For example the set:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y(x)=\begin{cases}
+\begin{array}{ccc}
+y_{1}(x) & = & x_{1}^{2}+2x_{3}\\
+y_{2}(x) & = & 3\cos\left(x_{2}\right)
+\end{array}\end{cases}
+\]
+
 \end_inset
 
- in grammatical evolution is expressed as a series of binary values 0 or
- 1.
- In the current work, in order to simplify the mapping procedure and to
- increase the speed of the algorithm, every element of each chromosome is
- considered as an integer in a predefined range.
- In our case, the range 
-\begin_inset Formula $[0,255]$
+is a set of mapping functions for the original features 
+\begin_inset Formula $\left(x_{1},x_{2},x_{3}\right)$
 \end_inset
 
- was used but of course, this could be easily changed.
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(bound the producted features)
 \end_layout
 
 \begin_layout Subsection
