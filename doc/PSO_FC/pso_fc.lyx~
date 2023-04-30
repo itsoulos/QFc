@@ -712,7 +712,78 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-(The rest of this article is divided as follows: )
+Feature selection using neural networks has been also proposed in a series
+ of papers, such as the work of Verikas and Bacauskiene 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fsel1"
+literal "false"
+
+\end_inset
+
+ or the work of Kabir et al 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fsel2"
+literal "false"
+
+\end_inset
+
+.
+ Moreover, Devi utlized a Simulated Annealing approach 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "genfc_anneal"
+literal "false"
+
+\end_inset
+
+ to select the most important features for classification datasets.
+ Also, Neshatian et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "genfc2"
+literal "false"
+
+\end_inset
+
+ developed a genetic algorithm that produces features using an entropy based
+ fitness function.
+\end_layout
+
+\begin_layout Standard
+The rest of this article is divided as follows: in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-proposed-method"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the steps of the proposed method are fully described, in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experiments"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the used experimental datasets as well as the results obtained by the incorpora
+tion of the proposed method are outlined and finally in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ some conclusions are listed.
 \end_layout
 
 \begin_layout Section
@@ -726,8 +797,136 @@ name "sec:The-proposed-method"
 
 \end_layout
 
+\begin_layout Standard
+The basic steps by which the Grammatical Evolution technique produces the
+ artificial features are then analyzed as well as the steps of the overall
+ process of creating and evaluating the artificial features.
+\end_layout
+
 \begin_layout Subsection
 Feature construction with Grammatical Evolution 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(Change....)
+\end_layout
+
+\begin_layout Standard
+Grammatical evolution is an evolutionary procedure where the chromosomes
+ represent production rules from a BNF (Backus–Naur form) grammar
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bnf1"
+literal "false"
+
+\end_inset
+
+, which is used very often to describe the syntax of programming languages,
+ document formats etc.
+ These grammars are defined as the set 
+\series bold
+
+\begin_inset Formula $G=\left(N,T,S,P\right)$
+\end_inset
+
+
+\series default
+, where
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $N$
+\end_inset
+
+ 
+\series default
+is the set of non-terminal symbols, which produce through production rules
+ series of terminal symbols.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $T$
+\end_inset
+
+ 
+\series default
+is the set of terminal symbols.
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ is a non-terminal symbol also called the start symbol
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $P$
+\end_inset
+
+ 
+\series default
+is a set of production rules in the form 
+\series bold
+
+\begin_inset Formula $A\rightarrow a$
+\end_inset
+
+ 
+\series default
+or
+\series bold
+ 
+\begin_inset Formula $A\rightarrow aB,\ A,B\in N,\ a\in T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The production procedure initiates from the start symbol of the BNF grammar
+ and iteratively produces programs by replacing non-terminal symbols with
+ the right hand of the production rules that will be selected according
+ to the value of each element in the chromosome
+\series bold
+.
+
+\series default
+ In the proposed method, the BNF grammar of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+
+\end_inset
+
+ was used to create a new feature from the initial features.
+ The symbols that are in <> are considered as non-terminal symbols.
+ The parameter N denotes the number of original features.
+ Typically, a chromosome 
+\begin_inset Formula $x$
+\end_inset
+
+ in grammatical evolution is expressed as a series of binary values 0 or
+ 1.
+ In the current work, in order to simplify the mapping procedure and to
+ increase the speed of the algorithm, every element of each chromosome is
+ considered as an integer in a predefined range.
+ In our case, the range 
+\begin_inset Formula $[0,255]$
+\end_inset
+
+ was used but of course, this could be easily changed.
 \end_layout
 
 \begin_layout Subsection
@@ -2139,7 +2338,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -3658,7 +3857,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -4726,7 +4925,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -6554,7 +6753,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -9459,6 +9658,84 @@ V.
 225
 \series default
 , 120079, 2023.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fsel1"
+literal "false"
+
+\end_inset
+
+A.
+ Verikas, M.
+ Bacauskiene, Feature selection with neural networks, Pattern Recognition
+ Letters 
+\series bold
+23
+\series default
+, pp.
+ 1323-1335, 2002.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fsel2"
+literal "false"
+
+\end_inset
+
+Md.
+ Monirul Kabir, Md.
+ Monirul Islam, K.
+ Murase, A new wrapper feature selection approach using neural network,
+ Neurocomputing 
+\series bold
+73
+\series default
+, pp.
+ 3273-3283, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc_anneal"
+literal "false"
+
+\end_inset
+
+V.S.
+ Devi, Class Specific Feature Selection Using Simulated Annealing.
+ In: Prasath, R., Vuppala, A., Kathirvalavakumar, T.
+ (eds) Mining Intelligence and Knowledge Exploration.
+ MIKE 2015.
+ Lecture Notes in Computer Science(), vol 9468.
+ Springer, Cham.
+ 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "genfc2"
+literal "false"
+
+\end_inset
+
+K.
+ Neshatian, M.
+ Zhang, P.
+ Andreae, A Filter Approach to Multiple Feature Construction for Symbolic
+ Learning Classifiers Using Genetic Programming, IEEE Transactions on Evolutiona
+ry Computation 
+\series bold
+16
+\series default
+, pp.
+ 645-661, 2012.
 \end_layout
 
 \begin_layout Bibliography
