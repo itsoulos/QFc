@@ -208,7 +208,7 @@ Creating features using particle swarm optimization
 \end_layout
 
 \begin_layout Title Citation
-Creating features using particle swamr optimization
+Creating features using particle swarm optimization
 \end_layout
 
 \begin_layout Author
@@ -226,11 +226,11 @@ Ioannis G.
 
 \begin_layout Author Names for PDF
 Ioannis G.
- Tsoulos
+ Tsoulos; Alexandros Tzallas
 \end_layout
 
 \begin_layout Author Names for Citation
-Tsoulos, I.G.
+Tsoulos, I.G.; Tzallas A
 \end_layout
 
 \begin_layout Address
@@ -259,7 +259,23 @@ Correspondence: itsoulos@uoi.gr;
 \end_layout
 
 \begin_layout Abstract
-Write some abstract
+The problem of data classification or data fitting is widely applicable
+ in a multitude of scientific areas, and for this reason a number of machine
+ learning models have been developed.
+ However, in many cases, these models present problems of overfitting and
+ cannot generalize satisfactorily to unknown data.
+ Furthermore, in many cases, many of the features of the input data do not
+ contribute to learning, or there may even be hidden correlations between
+ the features of the dataset.
+ The current article proposes a method based on Particle Swarm Optimization
+ and Grammatical Evolution, that creates artificial features from the original
+ ones.
+ In addition, this new technique utilizes penalty factors to limit the generated
+ features to a range of values to make training machine learning models
+ more efficient.
+ The method was tested on a series of well - known datasets from the relevant
+ literature and was tested against a series of widely used machine learning
+ models.
 \end_layout
 
 \begin_layout Keywords
@@ -1557,6 +1573,13 @@ Operation
 
 \begin_layout Subsection
 Feature construction
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Feature-construction"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1566,8 +1589,8 @@ The proposed method is used to created
 
  artificial features from the original ones.
  The new features will be considered as non - linear combinations of the
- old features and the process for any chromosome 
-\begin_inset Formula $X$
+ old features and the process for any particle 
+\begin_inset Formula $p$
 \end_inset
 
  has as follows:
@@ -1579,7 +1602,7 @@ The proposed method is used to created
 Divide
 \series default
  
-\begin_inset Formula $X$
+\begin_inset Formula $p$
 \end_inset
 
  into 
@@ -1587,11 +1610,11 @@ Divide
 \end_inset
 
  parts.
- Every part is considered as the 
-\begin_inset Formula $x_{i}$
+ Every part is denoted as the 
+\begin_inset Formula $p_{i}$
 \end_inset
 
- sub - chromosome.
+ sub - particle.
 \end_layout
 
 \begin_layout Enumerate
@@ -1599,19 +1622,23 @@ Divide
 \series bold
 For
 \series default
- each sub - chromosome 
-\begin_inset Formula $x_{i}$
+ each sub - particle 
+\begin_inset Formula $p_{i}$
 \end_inset
 
  a new artificial feature 
-\begin_inset Formula $y_{i}$
+\begin_inset Formula $g_{i}\left(\overrightarrow{x},p_{i}\right)$
 \end_inset
 
- is constructed with the grammer of Figure 
+ is constructed with the grammar of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:BNF-grammar-of"
 
+\end_inset
+
+ as a non - linear combination of the original set of features 
+\begin_inset Formula $\overrightarrow{x}$
 \end_inset
 
 .
@@ -1626,25 +1653,228 @@ The final set of features will be considered as mapping functions of the
 \begin_layout Standard
 \begin_inset Formula 
 \[
-y(x)=\begin{cases}
+g(\overrightarrow{x},p)=\begin{cases}
 \begin{array}{ccc}
-y_{1}(x) & = & x_{1}^{2}+2x_{3}\\
-y_{2}(x) & = & 3\cos\left(x_{2}\right)
+g_{1}(\overrightarrow{x},p_{1}) & = & x_{1}^{2}+2x_{3}\\
+g_{2}(\overrightarrow{x},p_{2}) & = & 3\cos\left(x_{2}\right)
 \end{array}\end{cases}
 \]
 
 \end_inset
 
 is a set of mapping functions for the original features 
-\begin_inset Formula $\left(x_{1},x_{2},x_{3}\right)$
+\begin_inset Formula $\overrightarrow{x}=\left(x_{1},x_{2},x_{3}\right)$
 \end_inset
 
 .
+ However, sometimes the generated features can lead to extreme values and
+ this will result in generalization problems from the used machine learning
+ models.
+ For this reason and in the present work, penalty factors are used so that
+ the mapping functions do not lead to extreme values.
+
+\series bold
  
+\series default
+These penalty factors also modify the fitness function that the Particle
+ Swarm Optimization technique will minimize each time and are considered
+ next.
+\end_layout
+
+\begin_layout Subsection
+Fitness calculation
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Fitness-calculation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-(bound the producted features)
+The following steps calculates the fitness for any given particle 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Denote as
+\series default
+ 
+\begin_inset Formula $\mbox{TO}=\left\{ \left(\overrightarrow{x_{1}},y_{1}\right),\left(\overrightarrow{x_{2}},y_{2}\right),\ldots,\left(\overrightarrow{x_{M}},y_{M}\right)\right\} $
+\end_inset
+
+ the original train set.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $V=0$
+\end_inset
+
+, the penalty factor
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Compute
+\series default
+ the mapping function 
+\begin_inset Formula $g(\overrightarrow{x},p)$
+\end_inset
+
+ as suggested in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Feature-construction"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $\mbox{TF=\ensuremath{\emptyset}},$
+\end_inset
+
+the modified train set
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ 
+\begin_inset Formula $i=1,\ldots,M$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $\widetilde{x_{i}}=g\left(\overrightarrow{x_{i}},p\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $\mbox{TF}=\mbox{TF}\cup\left(\widetilde{x_{i}},y_{i}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $\left\Vert \widetilde{x_{i}}\right\Vert >L_{\mbox{max}}$
+\end_inset
+
+, 
+\series bold
+then
+\series default
+ 
+\begin_inset Formula $V=V+1$
+\end_inset
+
+, where 
+\begin_inset Formula $L_{\mbox{max}}$
+\end_inset
+
+ a predefined positive value.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+End For 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Train
+\series default
+ an RBF 
+\begin_inset Formula $C(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $H$
+\end_inset
+
+ processing NODES on 
+\begin_inset Formula $\mbox{TF}$
+\end_inset
+
+ and obtain the following error:
+\begin_inset Formula 
+\begin{equation}
+f_{p}=\sum_{j=1}^{M}\left(C\left(\widetilde{x_{i}}\right)-y_{j}\right)^{2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Compute
+\series default
+ the final fitness value: 
+\begin_inset Formula 
+\begin{equation}
+f_{p}=f_{p}\times\left(1+\lambda V^{2}\right)
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1652,10 +1882,7 @@ The proposed PSO method
 \end_layout
 
 \begin_layout Standard
-In every parallel processing unit a PSO algorithm is executed to locate
- the global minimum of the objective function.
- The mains steps for this algorithm are outlined in detail in Algorithm
- 
+The mains steps for this algorithm are outlined in detail in Algorithm 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:psoSerial"
@@ -1673,7 +1900,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1741,7 +1968,7 @@ Set
 \begin_inset Formula $\mbox{iter}_{\mbox{max}}$
 \end_inset
 
- as the maximum number of iterations allowed for the serial algorithm.
+ as the maximum number of iterations allowed.
 \end_layout
 
 \begin_layout Enumerate
@@ -1750,11 +1977,12 @@ Set
 Initialize
 \series default
  randomly, the positions 
-\begin_inset Formula $x_{1},x_{2},...,x_{m}$
+\begin_inset Formula $p_{1},p_{2},...,p_{m}$
 \end_inset
 
  for the particles.
- The initial positions must be within the domain of the objective function.
+ For the grammatical evolution, every chromosome is a series of randomly
+ selected integers.
 \end_layout
 
 \begin_layout Enumerate
@@ -1764,6 +1992,17 @@ Initialize
 \series default
  randomly the velocities 
 \begin_inset Formula $u_{1},u_{2},...,u_{m}$
+\end_inset
+
+.
+ For the current work every vector of velocities is a series of randomly
+ selected integers in a the range 
+\begin_inset Formula $\left[u_{\mbox{min}},u_{\mbox{max}}\right]$
+\end_inset
+
+.
+ In the current work 
+\begin_inset Formula $u_{\mbox{min}}=-5,\ u_{\mbox{max}}=5$
 \end_inset
 
 .
@@ -1779,16 +2018,16 @@ For
 \end_inset
 
  do 
-\begin_inset Formula $p_{i}=x_{i}$
+\begin_inset Formula $b_{i}=p_{i}$
 \end_inset
 
 .
  The vector 
-\begin_inset Formula $p_{i}$
+\begin_inset Formula $b_{i}$
 \end_inset
 
- represents the best located position of particle 
-\begin_inset Formula $i$
+ denotes the best located position of particle 
+\begin_inset Formula $p_{i}$
 \end_inset
 
 .
@@ -1800,7 +2039,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(x_{i}\right)$
+\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
 \end_inset
 
 
@@ -1819,8 +2058,21 @@ name "enu:Check-Termination."
 
 \end_inset
 
- The termination criterion for the serial algorithm is checked.
- If the termination criterion is true, then the method terminates.
+ If 
+\begin_inset Formula $\mbox{iter}\ge\mbox{iter}_{\mbox{max}}$
+\end_inset
+
+ then goto step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Termination-step."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1877,7 +2129,7 @@ the velocity
 Set
 \series default
  the new position for the particle as: 
-\begin_inset Formula $x_{i}=x_{i}+u_{i}$
+\begin_inset Formula $p_{i}=p_{i}+u_{i}$
 \end_inset
 
 
@@ -1895,16 +2147,22 @@ name "enu:Update-the-position"
 \series bold
 Calculate
 \series default
- the 
-\begin_inset Formula $f\left(x_{i}\right)$
+ the fitness 
+\begin_inset Formula $f\left(p_{i}\right)$
 \end_inset
 
  for particle 
-\begin_inset Formula $x_{i}$
+\begin_inset Formula $p_{i}$
 \end_inset
 
- using the objective function 
-\begin_inset Formula $f(x)$
+ using the procedure described in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Fitness-calculation"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
 .
@@ -1916,11 +2174,11 @@ Calculate
 If
 \series default
  
-\begin_inset Formula $f\left(x_{i}\right)\le f\left(p_{i}\right)$
+\begin_inset Formula $f\left(p_{i}\right)\le f\left(b_{i}\right)$
 \end_inset
 
  then 
-\begin_inset Formula $p_{i}=x_{i}$
+\begin_inset Formula $b_{i}=p_{i}$
 \end_inset
 
 
@@ -1943,7 +2201,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(x_{i}\right)$
+\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
 \end_inset
 
 
@@ -1984,44 +2242,54 @@ reference "enu:Check-Termination."
 
 \end_layout
 
+\begin_layout Enumerate
+
+\series bold
+Test step
+\series default
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Termination-step."
+
 \end_inset
 
-The base PSO algorithm as described in Algorithm 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:psoSerial"
-plural "false"
-caps "false"
-noprefix "false"
+ Apply the mapping function of the best particle 
+\begin_inset Formula $p_{\mbox{best}}$
+\end_inset
+
+ to the test set of the problem and apply a machine learning model obtaining
+ the corresponding test error.
+\end_layout
 
 \end_inset
 
-, computes at every iteration the new position of the particle 
+The above calculates at every iteration the new position of the particle
+ 
 \begin_inset Formula $i$
 \end_inset
 
- using the following operation:
+ using:
 \begin_inset Formula 
 \begin{equation}
-x_{i}=x_{i}+u_{i}\label{eq:eq3}
+p_{i}=p_{i}+u_{i}\label{eq:eq3}
 \end{equation}
 
 \end_inset
 
 In most cases the new velocity could be a linear combination of the previously
  computed velocity and the best values 
-\begin_inset Formula $p_{i}$
+\begin_inset Formula $b_{i}$
 \end_inset
 
  and 
 \begin_inset Formula $p_{\mbox{best}}$
 \end_inset
 
-.
- A typical computation of the new velocity is defined as:
+ and it can be defined as:
 \begin_inset Formula 
 \begin{equation}
-u_{i}=\omega u_{i}+r_{1}c_{1}\left(p_{i}-x_{i}\right)+r_{2}c_{2}\left(p_{\mbox{best}}-x_{i}\right)\label{eq:eq4-1}
+u_{i}=\omega u_{i}+r_{1}c_{1}\left(b_{i}-p_{i}\right)+r_{2}c_{2}\left(p_{\mbox{best}}-p_{i}\right)\label{eq:eq4-1}
 \end{equation}
 
 \end_inset
@@ -2046,7 +2314,7 @@ The constants
 \begin_inset Formula $c_{1},\ c_{2}$
 \end_inset
 
- are defined in 
+ are defined in range 
 \begin_inset Formula $[1,2]$
 \end_inset
 
@@ -2059,7 +2327,7 @@ The variable
 \begin_inset Formula $\omega$
 \end_inset
 
- is called inertia and it was suggested by Shi and Eberhart 
+, commnly called inertia, was suggested by Shi and Eberhart 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "pso_major"
@@ -2067,9 +2335,7 @@ literal "false"
 
 \end_inset
 
-.
- In the current article a simple inertia calculation is used and calculated
- using:
+ and in the current work was computer through the following equation
 \end_layout
 
 \begin_layout Standard
@@ -2089,7 +2355,6 @@ The variable
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Section
@@ -2802,7 +3067,7 @@ name "tab:values"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
+<lyxtabular version="3" rows="6" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2901,11 +3166,75 @@ Number of hidden nodes
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{iter}_{\mbox{max}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Maximum number of iterations
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $L_{\mbox{max}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Limit used in penalty calculation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $G$
+\begin_inset Formula $\lambda$
 \end_inset
 
 
@@ -2917,7 +3246,7 @@ Number of hidden nodes
 \begin_inset Text
 
 \begin_layout Plain Layout
-Number of iterations
+Penalty factor
 \end_layout
 
 \end_inset
@@ -2926,7 +3255,7 @@ Number of iterations
 \begin_inset Text
 
 \begin_layout Plain Layout
-200
+100
 \end_layout
 
 \end_inset
@@ -8722,11 +9051,21 @@ As can be seen from the experimental results, the proposed technique is
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 (Na grafei pos ta features exon ftiaxtei me RBF epeidi einai grigori diadikasia)
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 (Na grafei pos yparxei simantiki meiosi stin diastasi ton dedomenon eisodou)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(Grafimata apo alexandros)
 \end_layout
 
 \begin_layout Section
@@ -8741,7 +9080,56 @@ name "sec:Conclusions"
 \end_layout
 
 \begin_layout Standard
-In 
+A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
+ creation method using Grammatical Evolution was introduced here.
+ The proposed method can identify possible dependecies between the original
+ features and also can reduce the number of required features to a limited
+ number.
+ Also, the method can remove from the set of features those features that
+ may not contribute to the learning of the data set by some machine learning
+ model.
+ In addition, to make learning more efficient the values of the generated
+ features are bounded within a value interval using penalty factors.
+ The constructed features are evaluated in terms of their effectiveness
+ with the help of a fast machine learning model such as the RBF network,
+ even though other more effective models could also be used.
+ Among the advantages of the proposed procedure is the fact that it does
+ not require any prior knowledge of the data set to which it will be applied
+ and furthermore the procedure is exactly the same whether it is a data
+ classification problem or a data fitting problem.
+ The Particle Swarm Optimization method was used for the production of the
+ characteristics as it has been proven by the relevant literature to be
+ an extremely efficient technique and has a limited number of parameters
+ that must be defined by the user.
+\end_layout
+
+\begin_layout Standard
+The proposed method was applied on a extended series of widely used datasets
+ from the relevant literature and was compared against some machine learning
+ models on the same datasets.
+ From the experimental results, it was seen that the proposed technique
+ dramatically improves the performance of traditional learning techniques
+ when applied to artificial features.
+ This improvement reaches an average of 30% for data classification and
+ 50% for data fitting problems.
+ Furthermore, as shown in the experimental results, the proposed technique
+ is able to give excellent results even when only two features are used.
+ Future extensions of the method may include the use of parallel techniques
+ for feature construction to drastically reduce the required execution time.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+However, the proposed technique is much slower than other processes, as
+ it requires two computational phases to reach a conclusion.
+ However, with the use of parallel techniques, acceleration can be achieved.
+ The method can be made more efficient in a number of ways.
+ For example, by using parallel genetic algorithms, by using smarter evaluators
+ to construct features instead of radial base networks such as SVM, by using
+ more sophisticated termination techniques for genetic algorithms to achieve
+ acceleration of the export of the results etc.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -8753,11 +9141,14 @@ In
 
 \begin_layout Author Contributions
 I.G.T.
- conceived of the idea, the methodology and he has implemented the corresponding
- software.
+ and A.T.
+ conceived of the idea and the methodology and I.G.T has implemented the correspon
+ding software.
  I.G.T.
  conducted the experiments, employing objective functions as test cases,
  and provided the comparative experiments.
+ A.T.
+ has performed the necessary statistical tests.
  All authors have read and agreed to the published version of the manuscript.
 \end_layout
 
@@ -10016,16 +10407,6 @@ Ioan Cristian Trelea, The particle swarm optimization algorithm: convergence
 \series default
 , pp.
  317-325, 2003.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-3"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Bibliography
