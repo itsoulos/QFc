@@ -58,6 +58,12 @@ class Model :public Problem
 		void	print(char *train,char *itest,char *otest);
 		void	randomizeWeights();
         void    dumpFile(QString input,QString output);
+		int nearestClassIndex(vector<double> &dclass,double y);
+		void	printConfusionMatrix(
+				int nclass,
+				vector<double> &T,vector<double> &O,
+                             vector<double> &precision,
+                             vector<double> &recall);
 		~Model();
 };
 

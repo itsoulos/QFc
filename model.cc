@@ -389,6 +389,9 @@ double	Model::classTestError(QString filename,double &precision,double &recall)
 	Matrix xx2;
 	xx2.resize(dim);
 	int count1=0,count2=0,est1=0,est2=0;
+	vector<double> T,O;
+	T.resize(count);
+	O.resize(count);
 	for(int i=0;i<count;i++)
 	{
 		for(int j=0;j<dim;j++) 
@@ -409,6 +412,8 @@ double	Model::classTestError(QString filename,double &precision,double &recall)
 				found=j;
 				dmin=fabs(classes[j]-c);
 			}
+		T[i]=classes[found];
+		O[i]=testy;
 		if(classes.size()==2)
 		{
 			if(isone(classes[found]) && isone(testy)) tp++;
@@ -433,6 +438,24 @@ double	Model::classTestError(QString filename,double &precision,double &recall)
 //	printf("CLASS1 = %2.lf%% CLASS2=%.2lf%%\n",est1*100.0/count1,est2*100.0/count2);
 	recall=tp*1.0/(tp*1.0+fn*1.0);
 	precision=tp*1.0/(tp*1.0+fp*1.0);
+	vector<double> aprecision;
+	vector<double> arecall;
+	aprecision.resize(classes.size());
+	arecall.resize(classes.size());
+	printConfusionMatrix(classes.size(),
+				T,O,aprecision,arecall);
+	precision = 0.0;
+	recall  = 0.0;
+	for(int i=0;i<aprecision.size();i++)
+	{
+		if(isnan(aprecision[i]) || isinf(aprecision[i])) aprecision[i]=arecall[i];
+		if(isnan(arecall[i]) || isinf(arecall[i])) arecall[i]=aprecision[i];
+		precision+=aprecision[i];
+		recall+=arecall[i];
+	}
+	precision/=classes.size();
+	recall/=classes.size();
+	printf("PRECISION  %20.10lf RECALL: %20.10lf\n",precision,recall);
 	return (sum)/count;
 }
 
@@ -442,6 +465,63 @@ void	Model::enableValidation()
 }
 
 
+int Model::nearestClassIndex(vector<double> &dclass,double y)
+{
+    int ifound=-1;
+    double dmin=1e+100;
+    for(unsigned int i=0;i<dclass.size();i++)
+    {
+        if(fabs(dclass[i]-y)<dmin)
+        {
+            dmin=fabs(dclass[i]-y);
+            ifound=i;
+        }
+    }
+    return ifound;
+}
+
+void	Model::printConfusionMatrix(int nclass,
+				vector<double> &T,vector<double> &O,
+                             vector<double> &precision,
+                             vector<double> &recall)
+{
+    int i,j;
+
+    int N=T.size();
+    precision.resize(nclass);
+    recall.resize(nclass);
+    int **CM;
+    printf("** CONFUSION MATRIX ** Number of classes: %d\n",nclass);
+    CM=new int*[nclass];
+    for(i=0;i<nclass;i++) CM[i]=new int[nclass];
+    for(i=0;i<nclass;i++)
+        for(j=0;j<nclass;j++) CM[i][j] = 0;
+
+    for(i=0;i<N;i++) CM[(int)T[i]][(int)O[i]]++;
+
+    for(i=0;i<nclass;i++)
+    {
+        double sum = 0.0;
+        for(j=0;j<nclass;j++)
+            sum+=CM[j][i];
+
+        precision[i]=CM[i][i]/sum;
+        sum = 0.0;
+        for(j=0;j<nclass;j++)
+            sum+=CM[i][j];
+        recall[i]=CM[i][i]/sum;
+    }
+    for(i=0;i<nclass;i++)
+    {
+        for(j=0;j<nclass;j++)
+        {
+            printf("%4d ",CM[i][j]);
+        }
+        printf("\n");
+        delete[] CM[i];
+    }
+    delete[] CM;
+}
 void    Model::dumpFile(QString input,QString output)
 {
     FILE *Fp=fopen(input.toStdString().c_str(),"r");

@@ -397,7 +397,6 @@ void makeGrammaticalEvolution()
         }
         else
         {
-            //printf("Enter heere \n");
             for(int i=0;i<threads;i++)
             {
                 tmodel[i]=new OsamaRbf(tmapper[i]);
@@ -516,6 +515,8 @@ void    makeTest()
     double average_train_error = 0.0;
     double average_test_error  = 0.0;
     double average_class_error = 0.0;
+    double average_precision = 0.0;
+    double average_recall = 0.0;
 
     if(featureEvaluateModel=="knn")
     {
@@ -545,6 +546,10 @@ void    makeTest()
         double t=evalModel->testError(testFile);
         double precision=0.0,recall=0.0;
         double c=evalModel->classTestError(testFile,precision,recall);
+	if(isnan(precision) || isinf(precision)) average_precision+=0.0;
+	else average_precision+=precision;
+	if(isnan(recall) || isinf(recall)) average_recall+=0.0;
+	else average_recall+=recall;
         average_train_error+=d;
         average_test_error+=t;
         average_class_error+=c;
@@ -554,6 +559,8 @@ void    makeTest()
     printf("AVERAGES(TRAIN,TEST,CLASS): %15.8lg %15.8lg %15.8lg%%\n",
            average_train_error/testIters,average_test_error/testIters,
            average_class_error*100.0/testIters);
+    printf("AVERAGES(PRECISION,RECALL): %15.8lg %15.8lg\n",average_precision/testIters,
+		    average_recall/testIters);
     delete evalModel;
 }
 
