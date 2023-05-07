@@ -332,7 +332,7 @@ literal "false"
 
  etc.
  In the relevant literature there is a wide range of techniques that one
- can use to handle such problems such as the k nearest neighboors model
+ can use to handle such problems, such as the k nearest neighbors model
  (k-NN) 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -398,8 +398,8 @@ literal "false"
 
 \end_inset
 
- for the artificial neural networks or more advanced optimization methods
- such as the Genetic algorithms 
+ for artificial neural networks or more advanced optimization methods such
+ as the Genetic algorithms 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "geneticnn1,geneticnn2,geneticnn3"
@@ -422,9 +422,9 @@ Requirement for large training time, which is proportional to the dimension
 \end_inset
 
  parameters are required to build the neural network.
- Therefore the size of the network will grow proportionally to the problem
- and therefore longer training times will be required for the model.
- In addition, in some techniques such as for example Bfgs 
+ Therefore, the size of the network will grow proportionally to the problem
+ and therefore, longer training times will be required for the model.
+ In addition, in some techniques, such as for example Bfgs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Powell"
@@ -467,7 +467,7 @@ literal "false"
 
 .
  Furthermore, Wang et al proposed an auto - encoder reduction method, applied
- on a seires of large datasets
+ on a series of large datasets
 \begin_inset CommandInset citation
 LatexCommand cite
 key "nn_autoencoder"
@@ -480,7 +480,7 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-The problem of reduced performance of models on unknown data, also known
+The problem of reduced performance of models on unknown data, is also known
  as overfitting problem.
  The paper of Geman et al 
 \begin_inset CommandInset citation
@@ -498,7 +498,7 @@ literal "false"
 
 \end_inset
 
- thoroughly discuss on the topic of overfitting.
+ thoroughly discuss the topic of overfitting.
  Examples of techniques proposed to overcome this problem are the weight
  sharing methods 
 \begin_inset CommandInset citation
@@ -536,7 +536,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-This article proposes a two phase method to overcome the above problems.
+This article proposes a two-phase method to overcome the above problems.
  During the first phase, a limited number of artificial features are created
  from the original ones using a method based on the Grammatical Evolution
  procedure 
@@ -549,8 +549,8 @@ literal "false"
 
 .
  Grammatical Evolution is an evolutionary process, where the chromosomes
- are production rules of the target BNF grammar and it has been used sucesfully
- in a variety of applications, such as music composition 
+ are production rules of the target BNF grammar and it has been used successfull
+y in a variety of applications, such as music composition 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "geApp1"
@@ -601,14 +601,14 @@ literal "false"
 \end_inset
 
 , where the generated features are constrained using penalty factors to
- be within a pre-defined value interval and their evaluation is done using
+ be within a predefined value interval and their evaluation is done using
  an RBF network.
  The RBF network was preferred over other machine learning models to be
  used to evaluate the generated features due to its training speed.
  The PSO method has been selected as the optimization method due to its
  simplicity and the small number of parameters that should be set.
- Also, the PSO method has been used in many difficult problems from all
- areas of the sciences, such as problems that arise in physics
+ Also, the PSO method has been used in many difficult problems in all areas
+ of the sciences, such as problems that arise in physics
 \series bold
  
 \series default
@@ -683,7 +683,7 @@ literal "false"
 
 \begin_layout Standard
 The idea of creating artificial features using Grammatical Evolution was
- firstly introduced in the paper of Gavrilis et al
+ first introduced in the paper of Gavrilis et al
 \series bold
  
 \series default
@@ -695,7 +695,7 @@ literal "false"
 
 \end_inset
 
- and it has been succesfully applied on a series of problems, such as Spam
+ and it has been successfully applied on a series of problems, such as Spam
  Identification 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -759,7 +759,7 @@ literal "false"
 \end_inset
 
 .
- Moreover, Devi utlized a Simulated Annealing approach 
+ Moreover, Devi utilized a Simulated Annealing approach 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "genfc_anneal"
@@ -828,7 +828,7 @@ name "sec:The-proposed-method"
 
 \begin_layout Standard
 The basic steps by which the Grammatical Evolution technique produces the
- artificial features are then analyzed as well as the steps of the overall
+ artificial features are then analyzed in as well as the steps in the overall
  process of creating and evaluating the artificial features.
 \end_layout
 
@@ -1583,7 +1583,7 @@ name "subsec:Feature-construction"
 \end_layout
 
 \begin_layout Standard
-The proposed method is used to created 
+The proposed method is used to create 
 \begin_inset Formula $N_{f}$
 \end_inset
 
@@ -1593,7 +1593,7 @@ The proposed method is used to created
 \begin_inset Formula $p$
 \end_inset
 
- has as follows:
+ is as follows:
 \end_layout
 
 \begin_layout Enumerate
@@ -2327,7 +2327,7 @@ The variable
 \begin_inset Formula $\omega$
 \end_inset
 
-, commnly called inertia, was suggested by Shi and Eberhart 
+, commonly called inertia, was suggested by Shi and Eberhart 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "pso_major"
@@ -2446,7 +2446,7 @@ The classification problems used in the experiments have as follows:
 \begin_layout Enumerate
 
 \series bold
-Appendictis
+Appendicitis
 \series default
 , a medical dataset that represents 7 medical measures for 106 patients
  on which the class label represents if the patient has appendicitis 
@@ -2555,7 +2555,7 @@ literal "false"
 
 \end_inset
 
-, a mecical dataset used to detect heart diseases.
+, a medical dataset used to detect heart diseases.
  
 \end_layout
 
@@ -2572,7 +2572,7 @@ literal "false"
 
 \end_inset
 
-, a dataset related to the conressional voting records of USA.
+, a dataset related to the Congressional voting records of USA.
 \end_layout
 
 \begin_layout Enumerate
@@ -2669,7 +2669,7 @@ literal "false"
 
 \end_inset
 
-, a dataset related to meterological data.
+, a dataset related to meteorological data.
 \end_layout
 
 \begin_layout Enumerate
@@ -2998,9 +2998,9 @@ Experimental results
 \end_layout
 
 \begin_layout Standard
-For greater reliability in the experimental results the method of 10 - fold
- cross validation was incorporated for every experimental dataset.
- Every experiment was repeated 30 times using different seed for the random
+For greater reliability in the experimental results, the method of 10 -
+ fold cross validation was incorporated for every experimental dataset.
+ Every experiment was repeated 30 times using different seeds for the random
  generator each time.
  All the used code was implemented in ANSI C++ using the OPTIMUS programming
  library for optimization purposes, freely available from 
@@ -3015,10 +3015,10 @@ https://github.com/itsoulos/OPTIMUS/
 \end_inset
 
 .
- For the classification datasets the average classification error as measured
- in the test set is reported while for the regression datasets the average
+ For the classification datasets, the average classification error as measured
+ in the test set is reported, while for the regression datasets the average
  regression error is reported.
- Also, in every table and additional column denoted as AVERAGE is added
+ Also, in every table, an additional column denoted as AVERAGE is added
  to show the average classification or regression error for the corresponding
  datasets.
  The values for the experimental parameters are shown in Table 
@@ -3049,7 +3049,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The values for every parameter used in the experimens.
+The values for every parameter used in the experiments.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:values"
@@ -3320,7 +3320,7 @@ literal "false"
 
 \end_inset
 
-, used to train an artificial neural netwok with 
+, used to train an artificial neural network with 
 \begin_inset Formula $H$
 \end_inset
 
@@ -5911,7 +5911,7 @@ AVERAGE
 \end_inset
 
 The results using the proposed method and for the construction of 2,3 and
- 4 artificial features are presented in the relevant tables 
+ 4 artificial features are presented in the relevant tables, 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:tabClass"
@@ -5932,8 +5932,8 @@ noprefix "false"
 \end_inset
 
 .
- The RBF column represents the experimental results in which after the construct
-ion of the artificial features, a RBF network with 
+ The RBF column represents the experimental results in which, after the
+ construction of the artificial features, a RBF network with 
 \begin_inset Formula $H$
 \end_inset
 
@@ -9048,24 +9048,130 @@ As can be seen from the experimental results, the proposed technique is
  Moreover, the usage of a neural network trained by a genetic algorithm
  on the modified datasets, gives clearly better results than the use of
  an RBF neural network, especially in the classification datasets.
+ Moreover, a graphical comparison between the genetic algorithm when applied
+ to artificial datasets and the genetic algorithm when applied to the original
+ classification datasets is given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:geneticComparison"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The same graphical comparison is also shown for the RBF model in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:comparisonRbf"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ And in these figures, the ability of the proposed method to drastically
+ reduce learning error through the construction of artificial features is
+ evident.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
 
-\series bold
-(Na grafei pos ta features exon ftiaxtei me RBF epeidi einai grigori diadikasia)
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename genetic_all.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of the proposed Genetic classification algorithm for the construction
+ of 2,3 and 4 artificial features (blue color) vs.
+ a well-known Genetic classification algorithm (grey color) to the 24 different
+ datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:geneticComparison"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
 
-\series bold
-(Na grafei pos yparxei simantiki meiosi stin diastasi ton dedomenon eisodou)
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename rbf_all.eps
+	scale 45
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Caption Standard
 
-\series bold
-(Grafimata apo alexandros)
+\begin_layout Plain Layout
+Comparison of the proposed RBF classification network for the construction
+ of 2,3 and 4 artificial features (blue color) vs.
+ a well-known RBF classification network (grey color) to the 24 different
+ datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:comparisonRbf"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -9082,20 +9188,20 @@ name "sec:Conclusions"
 \begin_layout Standard
 A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
  creation method using Grammatical Evolution was introduced here.
- The proposed method can identify possible dependecies between the original
- features and also can reduce the number of required features to a limited
+ The proposed method can identify possible dependencies between the original
+ features and can also reduce the number of required features to a limited
  number.
  Also, the method can remove from the set of features those features that
  may not contribute to the learning of the data set by some machine learning
  model.
- In addition, to make learning more efficient the values of the generated
+ In addition, to make learning more efficient, the values of the generated
  features are bounded within a value interval using penalty factors.
  The constructed features are evaluated in terms of their effectiveness
  with the help of a fast machine learning model such as the RBF network,
  even though other more effective models could also be used.
  Among the advantages of the proposed procedure is the fact that it does
  not require any prior knowledge of the data set to which it will be applied
- and furthermore the procedure is exactly the same whether it is a data
+ and furthermore, the procedure is exactly the same whether it is a data
  classification problem or a data fitting problem.
  The Particle Swarm Optimization method was used for the production of the
  characteristics as it has been proven by the relevant literature to be
@@ -9116,20 +9222,6 @@ The proposed method was applied on a extended series of widely used datasets
  is able to give excellent results even when only two features are used.
  Future extensions of the method may include the use of parallel techniques
  for feature construction to drastically reduce the required execution time.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-However, the proposed technique is much slower than other processes, as
- it requires two computational phases to reach a conclusion.
- However, with the use of parallel techniques, acceleration can be achieved.
- The method can be made more efficient in a number of ways.
- For example, by using parallel genetic algorithms, by using smarter evaluators
- to construct features instead of radial base networks such as SVM, by using
- more sophisticated termination techniques for genetic algorithms to achieve
- acceleration of the export of the results etc.
- 
 \end_layout
 
 \begin_layout Standard
