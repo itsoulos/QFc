@@ -38,13 +38,15 @@ these models present problems of overfitting and cannot generalize
 satisfactorily to unknown data. Furthermore, in many cases, many of
 the features of the input data do not contribute to learning, or there
 may even be hidden correlations between the features of the dataset.
-The current article proposes a method based on Particle Swarm Optimization
-and Grammatical Evolution, that creates artificial features from the
-original ones. In addition, this new technique utilizes penalty factors
+The current article proposes a method that combines Particle Swarm
+Optimization and Grammatical Evolution, that can produce artificial
+features from the original ones for a variety of pattern recognition
+problems. In addition, this new technique utilizes penalty factors
 to limit the generated features to a range of values to make training
-machine learning models more efficient. The method was tested on a
-series of well - known datasets from the relevant literature and was
-tested against a series of widely used machine learning models.}
+machine learning models more efficient. The performance of the proposed
+method was measured on some benchmark datasets from the relevant literature.
+Also, the method was tested against a series of widely used machine
+learning models.}
 
 
 \keyword{Particle swarm optimization, Grammatical Evolution, Evolutionary
@@ -179,7 +181,7 @@ techniques, Stochastic methods.}
 \section{Introduction}
 
 A multitude of everyday problems from various sciences can be treated
-as a problem of categorization or regression problems, such as problems
+as a problem of categorization or data fitting problems, such as problems
 that appear in the fields of physics \citep{fc_physics1,nnphysics1,nnphysics2,nnphysics3},
 chemistry \citep{fc_chem1,fc_chem2,fc_chem3}, economics \citep{fc_econ1,fc_econ2},
 environmental problems \citep{fc_pollution1,fc_pollution2,fc_pollution3},
@@ -188,16 +190,17 @@ there is a wide range of techniques that one can use to handle such
 problems, such as the k nearest neighbors model (k-NN) \citep{knn1,knn2},
 artificial neural networks (ANNs) \citep{nn1,nn2}, Radial Basis Function
 (RBF) networks \citep{rbf2,rbf3,rbf4}, Support Vector Machines (SVM)
-\citep{svm,svm2}, decision trees \citep{dt1,dt2} etc. A systematic
-review of methods used in classification problems can be found in
-the paper of Kotsiantis et al \citep{class_review}. 
+\citep{svm,svm2}, decision trees \citep{dt1,dt2} etc. A brief description
+of the methods that can be used for classification datasets is given
+in the publication of Kotsiantis et al \citep{class_review}. 
 
-In most cases, learning models have a number of parameters that should
-be determined through some algorithms, such as the Back Propagation
-method \citep{bpnn,bpnn2} for artificial neural networks or more
-advanced optimization methods such as the Genetic algorithms \citep{geneticnn1,geneticnn2,geneticnn3}.
-However, most of the time there are two main problems in the parameterization
-of learning models:
+In the majority of cases, the machine learning models have a number
+of parameters that should be determined through some algorithms, such
+as the Back Propagation method \citep{bpnn,bpnn2} for artificial
+neural networks or more advanced optimization methods such as the
+Genetic algorithms \citep{geneticnn1,geneticnn2,geneticnn3}. However,
+most of the time there are some problems in the parameterization of
+machine learning models:
 \begin{itemize}
 \item Requirement for large training time, which is proportional to the
 dimension of the input data. For example, in a neural network with
@@ -205,13 +208,17 @@ one hidden layer equipped with 10 processing nodes and a provided
 dataset with 10 inputs, then more than $N=100$ parameters are required
 to build the neural network. Therefore, the size of the network will
 grow proportionally to the problem and therefore, longer training
-times will be required for the model. In addition, in some techniques,
-such as for example Bfgs \citep{Powell}, $O\left(N^{2}\right)$ storage
-space will be required for the training model and for the partial
-derivatives required by the optimization method. An extensive discussion
-of the problems caused by increased data dimensionality is presented
-in the paper by Verleysen et al \citep{nndimension}. Some common
-approaches to reduce the dimension of the input datasets are the Principal
+times will be required for the model. 
+\item Another important problem presented in machine learning techniques
+is the fact that many models require significant storage space in
+the computer's memory for their parameters, and in fact this space
+increases significantly with the increase in the dimension of the
+objective problem. For example in Bfgs \citep{Powell} optimization
+method, $O\left(N^{2}\right)$ storage space will be required for
+the training model and for the partial derivatives required by the
+optimization method. This issue is thoroughly discussed in the paper
+of Verleysen et al \citep{nndimension}. Some common approaches proposed
+in order to reduce the dimension of the input datasets are the Principal
 Component Analysis (PCA) method \citep{nnpca1,nnpca2,nnpca3} as well
 as the Minimum redundancy feature selection (MRMR) technique \citep{mrmr1,mrmr2}.
 Furthermore, Wang et al proposed an auto - encoder reduction method,
@@ -219,7 +226,7 @@ applied on a series of large datasets\citep{nn_autoencoder}.
 \item The problem of reduced performance of models on unknown data, is also
 known as overfitting problem. The paper of Geman et al \citep{nngeman}
 as well the article of Hawkins \citep{nnhawkins} thoroughly discuss
-the topic of overfitting. Examples of techniques proposed to overcome
+the topic of overfitting. Examples of techniques proposed to tackle
 this problem are the weight sharing methods \citep{nnsharing1,nnsharing2},
 the prunning methods \citep{nnprunning1,nnprunning2,nnprunning3},
 weight elimination \citep{nnelim1,nnelim2,nnelim3}, weight decaying
@@ -228,22 +235,23 @@ methods \citep{nndecay1,nndecay2} etc.
 This article proposes a two-phase method to overcome the above problems.
 During the first phase, a limited number of artificial features are
 created from the original ones using a method based on the Grammatical
-Evolution procedure \citep{ge1}. Grammatical Evolution is an evolutionary
-process, where the chromosomes are production rules of the target
-BNF grammar and it has been used successfully in a variety of applications,
-such as music composition \citep{geApp1}, economics \citep{geApp2},
-symbolic regression \citep{geApp3}, robotics \citep{geApp4}, caching
-algorithms \citep{geApp5} etc. These features are iteratively adjusted
-using a hybrid technique based on particle swarm optimization (PSO)\citep{pso_major,pso1,pso2},
-where the generated features are constrained using penalty factors
-to be within a predefined value interval and their evaluation is done
-using an RBF network. The RBF network was preferred over other machine
-learning models to be used to evaluate the generated features due
-to its training speed. The PSO method has been selected as the optimization
-method due to its simplicity and the small number of parameters that
-should be set. Also, the PSO method has been used in many difficult
-problems in all areas of the sciences, such as problems that arise
-in physics\textbf{ }\citep{psophysics1,psophysics2}, chemistry \citep{psochem1,psochem2},
+Evolution procedure \citep{ge1}. Grammatical Evolution is a variation
+of genetic programming, where the chromosomes are production rules
+of the target BNF grammar and it has been used successfully in a variety
+of applications, such as music composition \citep{geApp1}, economics
+\citep{geApp2}, symbolic regression \citep{geApp3}, robotics \citep{geApp4},
+caching algorithms \citep{geApp5} etc. These features are iteratively
+adjusted using a hybrid technique based on particle swarm optimization
+(PSO)\citep{pso_major,pso1,pso2}, where the generated features are
+constrained using penalty factors to be within a predefined value
+interval and their evaluation is done using an RBF network. The RBF
+network was preferred over other machine learning models to be used
+to evaluate the generated features due to its training speed. The
+PSO method has been selected as the optimization method due to its
+simplicity and the small number of parameters that should be set.
+Also, the PSO method has been used in many difficult problems in all
+areas of the sciences, such as problems that arise in physics\textbf{
+}\citep{psophysics1,psophysics2}, chemistry \citep{psochem1,psochem2},
 medicine \citep{psomed1,psomed2}, economics \citep{psoecon} etc.
 Furthermore, the PSO method was successfully applied recently in many
 practical problems such as flow shop scheduling \citep{psoApp1},
@@ -301,9 +309,13 @@ and gradually replaces non-terminal symbols with the right hand of
 the selected production rule from the provided chromosome. The rule
 is selected with the following steps:
 \begin{itemize}
-\item Get the next element from the chromosome and denote it as V. 
-\item Select the production rule with the scheme Rule = V mod $N_{R}$,
-where $N_{R}$ is the total number of production rules for the current
+\item In the first step, the next element is taken from the current chromosome.
+Let us denote it as V. 
+\item The next production rule is selected through
+\[
+\mbox{Rule}=V\ \mbox{mod}\ N_{R}
+\]
+ where $N_{R}$ is the total number of production rules for the current
 non -- terminal symbol. 
 \end{itemize}
 The BNF grammar for the proposed method is shown in Figure \ref{fig:BNF-grammar-of}.
@@ -377,10 +389,10 @@ S::=\textless expr\textgreater ~~~(0)~
 \end{figure}
  An example that produces a valid expression for the chromosome 
 \[
-x=\left[9,8,6,4,16,10,17,23,8,14\right]
+x=\left[10,12,20,8,11\right]
 \]
 with $N=3$ is shown in Table \ref{tab:table_with_steps}. The final
-expression that created is \textbf{$f(x)=x_{2}+\cos\left(x_{3}\right)$.}
+expression that created is \textbf{$f(x)=\sin\left(x_{3}\right)$.}
 
 \begin{table}[H]
 \caption{Steps to produce a valid expression from the BNF grammar.\label{tab:table_with_steps}}
@@ -390,27 +402,17 @@ expression that created is \textbf{$f(x)=x_{2}+\cos\left(x_{3}\right)$.}
 Expression & Chromosome & Operation\tabularnewline
 \hline 
 \hline 
-\textless expr\textgreater{} & 9,8,6,4,16,10,17,23,8,14 & $9\mod3=0$\tabularnewline
+\textless expr\textgreater{} & 10,12,20,8,11 & $10\mod3=1$\tabularnewline
 \hline 
-(\textless expr\textgreater\textless op\textgreater\textless expr\textgreater ) & 8,6,4,16,10,17,23,8,14 & $8\mod3=2$\tabularnewline
+\textless func\textgreater (\textless expr\textgreater ) & 12,20,8,11 & $12\mod4=0$\tabularnewline
 \hline 
-(\textless terminal\textgreater\textless op\textgreater\textless expr\textgreater ) & 6,4,16,10,17,23,8,14 & $6\mod2=0$\tabularnewline
+sin(\textless expr\textgreater ) & 20,8,11 & $20\mod3=2$\tabularnewline
 \hline 
-(\textless xlist\textgreater\textless op\textgreater\textless expr\textgreater ) & 4,16,10,17,23,8,14 & $4\mod3=1$\tabularnewline
+sin(\textless terminal\textgreater ) & 8,11 & $8\mod2=0$\tabularnewline
 \hline 
-(x2\textless op\textgreater\textless expr\textgreater ) & 16,10,17,23,8,14 & $16\mod4=0$\tabularnewline
+sin(\textless xlist\textgreater ) & 11 & $11\mod3=2$\tabularnewline
 \hline 
-(x2+\textless expr\textgreater ) & 10,17,23,8,14 & $10\mod3=1$\tabularnewline
-\hline 
-(x2+\textless func\textgreater (\textless expr\textgreater )) & 17,23,8,14 & $17\mod4=1$\tabularnewline
-\hline 
-(x2+cos(\textless expr\textgreater )) & 23,8,14 & $23\mod2=1$\tabularnewline
-\hline 
-(x2+cos(\textless terminal\textgreater )) & 8,14 & $8\mod2=0$\tabularnewline
-\hline 
-(x2+cos(\textless xlist\textgreater )) & 14 & $14\mod3=2$\tabularnewline
-\hline 
-(x2+cos(x3)) &  & \tabularnewline
+sin(x3) &  & \tabularnewline
 \hline 
 \end{tabular}
 \end{table}
@@ -418,9 +420,9 @@ Expression & Chromosome & Operation\tabularnewline
 
 \subsection{Feature construction\label{subsec:Feature-construction}}
 
-The proposed method is used to create $N_{f}$ artificial features
+The current method is used to create $N_{f}$ artificial features
 from the original ones. The new features will be considered as non
-- linear combinations of the old features and the process for any
+- linear transformations of the old features and the process for any
 particle $p$ is as follows:
 \begin{enumerate}
 \item \textbf{Divide} $p$ into $N_{f}$ parts. Every part is denoted as
@@ -482,7 +484,7 @@ f_{p}=f_{p}\times\left(1+\lambda V^{2}\right)
 where $\lambda>0$.
 \end{enumerate}
 
-\subsection{The proposed PSO method}
+\subsection{The used PSO method}
 
 The mains steps for this algorithm are outlined in detail in Algorithm
 \ref{alg:psoSerial}.
@@ -559,8 +561,8 @@ The variable $r$ is a a random number with $r\in[0,1]$.
 
 The ability of the proposed technique to produce effective artificial
 features for class prediction and feature learning will be measured
-in this section on a range of datasets from the relevant literature.
-This data comes from the relevant websites:
+in this section on a some datasets from the relevant literature. This
+data comes from the relevant websites:
 \begin{enumerate}
 \item UCI dataset repository, \url{https://archive.ics.uci.edu/ml/index.php}
 \item Keel repository, \url{https://sci2s.ugr.es/keel/datasets.php}\citep{Keel}.
@@ -574,9 +576,7 @@ in the relevant tables.
 
 The classification problems used in the experiments have as follows:
 \begin{enumerate}
-\item \textbf{Appendicitis}, a medical dataset that represents 7 medical
-measures for 106 patients on which the class label represents if the
-patient has appendicitis \citep{appendicitis,appendicitis2}. 
+\item \textbf{Appendicitis}, a medical dataset \citep{appendicitis,appendicitis2}. 
 \item \textbf{Australian} dataset \citep{australian}, an dataset concerning
 economical transactions in banks.
 \item \textbf{Balance} dataset, a dataset generated to model psychological
@@ -592,25 +592,25 @@ to the Congressional voting records of USA.
 \item \textbf{Ionosphere} dataset, used to classify measurements from the
 ionosphere and it has been examined in a variety of research papers
 \citep{ion1,ion2}.
-\item \textbf{Liverdisorder} dataset \citep{liver1,liver2}, a medical dataset.
+\item \textbf{Liverdisorder} dataset \citep{liver1,liver2}, a dataset used
+for medical purposes.
 \item \textbf{Mammographic} dataset \citep{mammographic}, a medical dataset
 used for breast cancer diagnosis.
 \item \textbf{Parkinsons} dataset \citep{parkinsons1,parkinsons2}, a dataset
 used to detect the Parkinson's decease using voice measurements.
-\item \textbf{Pima} dataset \citep{pima}, a medical dataset.
+\item \textbf{Pima} dataset \citep{pima}, a dataset used for medical purposes.
 \item \textbf{Popfailures} dataset \citep{popfailures}, a dataset related
 to meteorological data.
-\item \textbf{Regions2} dataset, a medical dataset produced by liver biopsy
-images of patients with hepatitis C \citep{regions}. 
+\item \textbf{Regions2} dataset, a medical dataset for liver biopsy images
+\citep{regions}. 
 \item \textbf{Saheart} dataset \citep{saheart}, a medical dataset. 
 \item \textbf{Segment} dataset \citep{segment}, a dataset related to image
 segmentation.
-\item \textbf{Wdbc} dataset \citep{wdbc}, a dataset used to detect breast
-tumors. 
+\item \textbf{Wdbc} dataset \citep{wdbc} ussed in breast tumors. 
 \item \textbf{Wine} dataset, a dataset related to chemical analysis of wines
 \citep{wine1,wine2}.
-\item \textbf{Eeg} datasets \citep{eeg1,eeg2}, it is medical datasets about
-EEG signals and the following cases were used in the experiments: 
+\item \textbf{Eeg} datasets \citep{eeg1,eeg2}, it is an EEG dataset and
+the following cases were used in the experiments: 
 \begin{enumerate}
 \item Z\_F\_S, 
 \item ZO\_NF\_S
@@ -648,12 +648,12 @@ of USA, where the the goal is to predict 1-Month CD Rate.
 
 \subsection{Experimental results}
 
-For greater reliability in the experimental results, the method of
-10 - fold cross validation was incorporated for every experimental
-dataset. Every experiment was repeated 30 times using different seeds
-for the random generator each time. All the used code was implemented
-in ANSI C++ using the OPTIMUS programming library for optimization
-purposes, freely available from \url{https://github.com/itsoulos/OPTIMUS/}.
+In order to give greater credibility to the experiments carried out,
+the method of 10 - fold cross validation was incorporated for every
+experimental dataset. Every experiment was repeated 30 times using
+different seeds for the random generator each time. All the used code
+was implemented in ANSI C++ using the OPTIMUS programming library
+for optimization purposes, freely available from \url{https://github.com/itsoulos/OPTIMUS/}.
 For the classification datasets, the average classification error
 as measured in the test set is reported, while for the regression
 datasets the average regression error is reported. Also, in every
@@ -686,7 +686,7 @@ $\lambda$ & Penalty factor & 100\tabularnewline
 
 The proposed technique that created artificial features is compared
 on the same datasets against a series of well - known method from
-the relevant literature:
+the relevant literature: 
 \begin{enumerate}
 \item A genetic algorithm with $m$ chromosomes, denotes as GENETIC in the
 experimental tables. This genetic algorithm is used to train an artificial
@@ -935,20 +935,21 @@ TREASURY & 0.912 & 0.088 & 0.874 & 0.084 & 0.173 & 0.076\tabularnewline
 \end{tabular}
 \end{table}
 
-As can be seen from the experimental results, the proposed technique
-is able to significantly reduce the error in the corresponding test
-sets. Especially in the case of regression problems, the reduction
-in error is on average greater than 50\%. Moreover, the usage of a
-neural network trained by a genetic algorithm on the modified datasets,
-gives clearly better results than the use of an RBF neural network,
-especially in the classification datasets. Moreover, a graphical comparison
-between the genetic algorithm when applied to artificial datasets
-and the genetic algorithm when applied to the original classification
-datasets is given in Figure \ref{fig:geneticComparison}. The same
-graphical comparison is also shown for the RBF model in Figure \ref{fig:comparisonRbf}.
-And in these figures, the ability of the proposed method to drastically
-reduce learning error through the construction of artificial features
-is evident.
+The experimental results are of great interest, as one can see from
+their careful study, the proposed technique is able to significantly
+reduce the error in the corresponding test sets. Especially in the
+case of regression problems, the reduction in error is on average
+greater than 50\%. Moreover, the usage of a neural network trained
+by a genetic algorithm on the modified datasets, gives clearly better
+results than the use of an RBF neural network, especially in the classification
+datasets. Moreover, a graphical comparison between the genetic algorithm
+when applied to artificial datasets and the genetic algorithm when
+applied to the original classification datasets is given in Figure
+\ref{fig:geneticComparison}. The same graphical comparison is also
+shown for the RBF model in Figure \ref{fig:comparisonRbf}. And in
+these figures, the ability of the proposed method to drastically reduce
+learning error through the construction of artificial features is
+evident.
 
 \begin{figure}[H]
 \includegraphics[scale=0.5]{genetic_all}
@@ -993,18 +994,17 @@ been proven by the relevant literature to be an extremely efficient
 technique and has a limited number of parameters that must be defined
 by the user.
 
-The proposed method was applied on an extended series of widely used
-datasets from the relevant literature and was compared against some
-machine learning models on the same datasets. From the experimental
-results, it was seen that the proposed technique dramatically improves
-the performance of traditional learning techniques when applied to
-artificial features. This improvement reaches an average of 30\% for
-data classification and 50\% for data fitting problems. Furthermore,
-as shown in the experimental results, the proposed technique is able
-to give excellent results even when only two features are used. Future
-extensions of the method may include the use of parallel techniques
-for feature construction to drastically reduce the required execution
-time.
+The current work was applied on an extended series of widely used
+datasets from the various fields and was compared against some machine
+learning models on the same datasets. From the experimental results,
+it was seen that the proposed technique dramatically improves the
+performance of traditional learning techniques when applied to artificial
+features. This improvement reaches an average of 30\% for data classification
+and 50\% for data fitting problems. Furthermore, as shown in the experimental
+results, the proposed technique is able to give excellent results
+even when only two features are used. Future work in the nethod may
+include the use of parallel techniques for feature construction to
+drastically reduce the required execution time.
 
 \vspace{6pt}
 

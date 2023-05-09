@@ -2528,7 +2528,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-(STOPPED HERE)Regions2
+Regions2
 \series default
  dataset, a medical dataset for liver biopsy images 
 \begin_inset CommandInset citation
@@ -2588,7 +2588,7 @@ literal "false"
 
 \end_inset
 
-, a dataset used to detect breast tumors.
+ ussed in breast tumors.
  
 \end_layout
 
@@ -2621,8 +2621,8 @@ literal "true"
 
 \end_inset
 
-, it is medical datasets about EEG signals and the following cases were
- used in the experiments: 
+, it is an EEG dataset and the following cases were used in the experiments:
+ 
 \end_layout
 
 \begin_deeper
@@ -2850,8 +2850,9 @@ Experimental results
 \end_layout
 
 \begin_layout Standard
-For greater reliability in the experimental results, the method of 10 -
- fold cross validation was incorporated for every experimental dataset.
+In order to give greater credibility to the experiments carried out, the
+ method of 10 - fold cross validation was incorporated for every experimental
+ dataset.
  Every experiment was repeated 30 times using different seeds for the random
  generator each time.
  All the used code was implemented in ANSI C++ using the OPTIMUS programming
@@ -3128,7 +3129,7 @@ Penalty factor
 \begin_layout Standard
 The proposed technique that created artificial features is compared on the
  same datasets against a series of well - known method from the relevant
- literature:
+ literature: 
 \end_layout
 
 \begin_layout Enumerate
@@ -8893,8 +8894,9 @@ AVERAGE
 \end_layout
 
 \begin_layout Standard
-As can be seen from the experimental results, the proposed technique is
- able to significantly reduce the error in the corresponding test sets.
+The experimental results are of great interest, as one can see from their
+ careful study, the proposed technique is able to significantly reduce the
+ error in the corresponding test sets.
  Especially in the case of regression problems, the reduction in error is
  on average greater than 50%.
  Moreover, the usage of a neural network trained by a genetic algorithm
@@ -9062,8 +9064,12 @@ A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
 \end_layout
 
 \begin_layout Standard
-The proposed method was applied on an extended series of widely used datasets
- from the relevant literature and was compared against some machine learning
+
+\series bold
+(STOPPED HERE)
+\series default
+The current work was applied on an extended series of widely used datasets
+ from the various fields and was compared against some machine learning
  models on the same datasets.
  From the experimental results, it was seen that the proposed technique
  dramatically improves the performance of traditional learning techniques
