@@ -267,14 +267,15 @@ The problem of data classification or data fitting is widely applicable
  Furthermore, in many cases, many of the features of the input data do not
  contribute to learning, or there may even be hidden correlations between
  the features of the dataset.
- The current article proposes a method based on Particle Swarm Optimization
- and Grammatical Evolution, that creates artificial features from the original
- ones.
+ The current article proposes a method that combines Particle Swarm Optimization
+ and Grammatical Evolution, that can produce artificial features from the
+ original ones for a variety of pattern recognition problems.
  In addition, this new technique utilizes penalty factors to limit the generated
  features to a range of values to make training machine learning models
  more efficient.
- The method was tested on a series of well - known datasets from the relevant
- literature and was tested against a series of widely used machine learning
+ The performance of the proposed method was measured on some benchmark datasets
+ from the relevant literature.
+ Also, the method was tested against a series of widely used machine learning
  models.
 \end_layout
 
@@ -289,8 +290,8 @@ Introduction
 
 \begin_layout Standard
 A multitude of everyday problems from various sciences can be treated as
- a problem of categorization or regression problems, such as problems that
- appear in the fields of physics 
+ a problem of categorization or data fitting problems, such as problems
+ that appear in the fields of physics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "fc_physics1,nnphysics1,nnphysics2,nnphysics3"
@@ -374,8 +375,8 @@ literal "false"
 \end_inset
 
  etc.
- A systematic review of methods used in classification problems can be found
- in the paper of Kotsiantis et al 
+ A brief description of the methods that can be used for classification
+ datasets is given in the publication of Kotsiantis et al 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "class_review"
@@ -388,9 +389,9 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In most cases, learning models have a number of parameters that should be
- determined through some algorithms, such as the Back Propagation method
- 
+In the majority of cases, the machine learning models have a number of parameter
+s that should be determined through some algorithms, such as the Back Propagatio
+n method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bpnn,bpnn2"
@@ -408,8 +409,8 @@ literal "false"
 \end_inset
 
 .
- However, most of the time there are two main problems in the parameterization
- of learning models:
+ However, most of the time there are some problems in the parameterization
+ of machine learning models:
 \end_layout
 
 \begin_layout Itemize
@@ -424,7 +425,15 @@ Requirement for large training time, which is proportional to the dimension
  parameters are required to build the neural network.
  Therefore, the size of the network will grow proportionally to the problem
  and therefore, longer training times will be required for the model.
- In addition, in some techniques, such as for example Bfgs 
+ 
+\end_layout
+
+\begin_layout Itemize
+Another important problem presented in machine learning techniques is the
+ fact that many models require significant storage space in the computer's
+ memory for their parameters, and in fact this space increases significantly
+ with the increase in the dimension of the objective problem.
+ For example in Bfgs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Powell"
@@ -432,14 +441,13 @@ literal "false"
 
 \end_inset
 
-, 
+ optimization method, 
 \begin_inset Formula $O\left(N^{2}\right)$
 \end_inset
 
  storage space will be required for the training model and for the partial
  derivatives required by the optimization method.
- An extensive discussion of the problems caused by increased data dimensionality
- is presented in the paper by Verleysen et al 
+ This issue is thoroughly discussed in the paper of Verleysen et al 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "nndimension"
@@ -448,8 +456,8 @@ literal "false"
 \end_inset
 
 .
- Some common approaches to reduce the dimension of the input datasets are
- the Principal Component Analysis (PCA) method 
+ Some common approaches proposed in order to reduce the dimension of the
+ input datasets are the Principal Component Analysis (PCA) method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "nnpca1,nnpca2,nnpca3"
@@ -499,8 +507,8 @@ literal "false"
 \end_inset
 
  thoroughly discuss the topic of overfitting.
- Examples of techniques proposed to overcome this problem are the weight
- sharing methods 
+ Examples of techniques proposed to tackle this problem are the weight sharing
+ methods 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "nnsharing1,nnsharing2"
@@ -548,9 +556,10 @@ literal "false"
 \end_inset
 
 .
- Grammatical Evolution is an evolutionary process, where the chromosomes
- are production rules of the target BNF grammar and it has been used successfull
-y in a variety of applications, such as music composition 
+ Grammatical Evolution is a variation of genetic programming, where the
+ chromosomes are production rules of the target BNF grammar and it has been
+ used successfully in a variety of applications, such as music composition
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "geApp1"
@@ -934,16 +943,21 @@ The process that creates a valid program, starts from the symbol
 \end_layout
 
 \begin_layout Itemize
-Get the next element from the chromosome and denote it as V.
+In the first step, the next element is taken from the current chromosome.
+ Let us denote it as V.
  
 \end_layout
 
 \begin_layout Itemize
-Select the production rule with the scheme Rule = V mod 
-\begin_inset Formula $N_{R}$
+The next production rule is selected through
+\begin_inset Formula 
+\[
+\mbox{Rule}=V\ \mbox{mod}\ N_{R}
+\]
+
 \end_inset
 
-, where 
+ where 
 \begin_inset Formula $N_{R}$
 \end_inset
 
@@ -969,7 +983,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1119,7 +1133,7 @@ S::=<expr>   (0)
  An example that produces a valid expression for the chromosome 
 \begin_inset Formula 
 \[
-x=\left[9,8,6,4,16,10,17,23,8,14\right]
+x=\left[10,12,20,8,11\right]
 \]
 
 \end_inset
@@ -1142,7 +1156,7 @@ noprefix "false"
  The final expression that created is 
 \series bold
 
-\begin_inset Formula $f(x)=x_{2}+\cos\left(x_{3}\right)$
+\begin_inset Formula $f(x)=\sin\left(x_{3}\right)$
 \end_inset
 
 .
@@ -1176,7 +1190,7 @@ name "tab:table_with_steps"
 
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="12" columns="3">
+<lyxtabular version="3" rows="7" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1224,167 +1238,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-9,8,6,4,16,10,17,23,8,14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $9\mod3=0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(<expr><op><expr>)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8,6,4,16,10,17,23,8,14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $8\mod3=2$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(<terminal><op><expr>)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6,4,16,10,17,23,8,14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $6\mod2=0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(<xlist><op><expr>)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4,16,10,17,23,8,14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $4\mod3=1$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(x2<op><expr>)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-16,10,17,23,8,14
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $16\mod4=0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(x2+<expr>)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10,17,23,8,14
+10,12,20,8,11
 \end_layout
 
 \end_inset
@@ -1407,7 +1261,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-(x2+<func>(<expr>))
+<func>(<expr>)
 \end_layout
 
 \end_inset
@@ -1416,7 +1270,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-17,23,8,14
+12,20,8,11
 \end_layout
 
 \end_inset
@@ -1425,7 +1279,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $17\mod4=1$
+\begin_inset Formula $12\mod4=0$
 \end_inset
 
 
@@ -1439,7 +1293,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-(x2+cos(<expr>))
+sin(<expr>)
 \end_layout
 
 \end_inset
@@ -1448,7 +1302,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-23,8,14
+20,8,11
 \end_layout
 
 \end_inset
@@ -1457,7 +1311,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $23\mod2=1$
+\begin_inset Formula $20\mod3=2$
 \end_inset
 
 
@@ -1471,7 +1325,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-(x2+cos(<terminal>))
+sin(<terminal>)
 \end_layout
 
 \end_inset
@@ -1480,7 +1334,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-8,14
+8,11
 \end_layout
 
 \end_inset
@@ -1503,7 +1357,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-(x2+cos(<xlist>))
+sin(<xlist>)
 \end_layout
 
 \end_inset
@@ -1512,7 +1366,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-14
+11
 \end_layout
 
 \end_inset
@@ -1521,7 +1375,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $14\mod3=2$
+\begin_inset Formula $11\mod3=2$
 \end_inset
 
 
@@ -1535,7 +1389,7 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
-(x2+cos(x3))
+sin(x3)
 \end_layout
 
 \end_inset
@@ -1583,13 +1437,13 @@ name "subsec:Feature-construction"
 \end_layout
 
 \begin_layout Standard
-The proposed method is used to create 
+The current method is used to create 
 \begin_inset Formula $N_{f}$
 \end_inset
 
  artificial features from the original ones.
- The new features will be considered as non - linear combinations of the
- old features and the process for any particle 
+ The new features will be considered as non - linear transformations of
+ the old features and the process for any particle 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1878,7 +1732,7 @@ where
 \end_layout
 
 \begin_layout Subsection
-The proposed PSO method
+The used PSO method
 \end_layout
 
 \begin_layout Standard
@@ -2371,7 +2225,7 @@ name "sec:Experiments"
 \begin_layout Standard
 The ability of the proposed technique to produce effective artificial features
  for class prediction and feature learning will be measured in this section
- on a range of datasets from the relevant literature.
+ on a some datasets from the relevant literature.
  This data comes from the relevant websites:
 \end_layout
 
@@ -2448,8 +2302,7 @@ The classification problems used in the experiments have as follows:
 \series bold
 Appendicitis
 \series default
-, a medical dataset that represents 7 medical measures for 106 patients
- on which the class label represents if the patient has appendicitis 
+, a medical dataset 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "appendicitis,appendicitis2"
@@ -2605,7 +2458,7 @@ literal "false"
 
 \end_inset
 
-, a medical dataset.
+, a dataset used for medical purposes.
 \end_layout
 
 \begin_layout Enumerate
@@ -2653,7 +2506,7 @@ literal "false"
 
 \end_inset
 
-, a medical dataset.
+, a dataset used for medical purposes.
 \end_layout
 
 \begin_layout Enumerate
@@ -2677,8 +2530,7 @@ literal "false"
 \series bold
 Regions2
 \series default
- dataset, a medical dataset produced by liver biopsy images of patients
- with hepatitis C 
+ dataset, a medical dataset for liver biopsy images 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "regions"
@@ -2726,7 +2578,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Wdbc
+(STOPPED HERE)Wdbc
 \series default
  dataset 
 \begin_inset CommandInset citation
