@@ -204,7 +204,8 @@ End
 \begin_body
 
 \begin_layout Title
-Creating features using particle swarm optimization
+A feature construction method that combines Particle Swarm Optimization
+ and Grammatical Evolution
 \end_layout
 
 \begin_layout Title Citation
@@ -277,6 +278,9 @@ The problem of data classification or data fitting is widely applicable
  from the relevant literature.
  Also, the method was tested against a series of widely used machine learning
  models.
+ Experiments performed show a significant improvement of 30% on average
+ in classification datasets and an even greater improvement of 60% in data
+ fitting dataset.
 \end_layout
 
 \begin_layout Keywords
@@ -290,7 +294,7 @@ Introduction
 
 \begin_layout Standard
 A multitude of everyday problems from various sciences can be treated as
- a problem of categorization or data fitting problems, such as problems
+ a problem of classification or data fitting problems, such as problems
  that appear in the fields of physics 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -519,7 +523,7 @@ literal "false"
 , the prunning methods 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "nnprunning1,nnprunning2,nnprunning3"
+key "nnprunning1,nnprunning2"
 literal "false"
 
 \end_inset
@@ -3184,7 +3188,7 @@ literal "false"
 The Rprop optimization method 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "rpropnn,rpropnn2,rpropnn3"
+key "rpropnn1,rpropnn2"
 literal "false"
 
 \end_inset
@@ -8937,7 +8941,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -8985,7 +8989,7 @@ name "fig:geneticComparison"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -9281,17 +9285,15 @@ literal "true"
 
 \end_inset
 
-J.
- J.
- Valdas and G.
- Bonham-Carter, Time dependent neural network models for detecting changes
- of state in complex processes: Applications in earth sciences and astronomy,
- Neural Networks 
+A.
+ K.
+ Aniyan, K.
+ Thorat, Classifying Radio Galaxies with the Convolutional Neural Network,
+ The Astrophysical Journal Supplement Series 
 \series bold
-19
+230
 \series default
-, pp.
- 196-207, 2006
+, 20, 2017.
 \end_layout
 
 \begin_layout Bibliography
@@ -9321,19 +9323,17 @@ literal "true"
 
 \end_inset
 
-C.
- Güler, G.
- D.
- Thyne, J.
- E.
- McCray, K.A.
- Turner, Evaluation of graphical and multivariate statistical methods for
- classification of water chemistry data, Hydrogeology Journal 
+J.N.
+ Wei, D.
+ Duvenaud, A.
+ A.
+ Guzik, Neural Networks for the Prediction of Organic Chemistry Reactions,
+ ACS Central Science 
 \series bold
-10
+2
 \series default
 , pp.
- 455-474, 2002
+ 725-732, 2016.
 \end_layout
 
 \begin_layout Bibliography
@@ -9344,21 +9344,16 @@ literal "true"
 
 \end_inset
 
-E.
- Byvatov ,U.
- Fechner ,J.
- Sadowski , G.
- Schneider, Comparison of Support Vector Machine and Artificial Neural Network
- Systems for Drug/Nondrug Classification, J.
- Chem.
- Inf.
- Comput.
- Sci.
- 
+C.Qi, A.
+ Fourie, Q.
+ Chen, Neural network and particle swarm optimization for predicting the
+ unconfined compressive strength of cemented paste backfill, Construction
+ and Building Materials 
 \series bold
-43
+159
 \series default
-, pp 1882–1889, 2003.
+, pp.
+ 473-478, 2018.
 \end_layout
 
 \begin_layout Bibliography
@@ -9369,15 +9364,21 @@ literal "true"
 
 \end_inset
 
-Kunwar P.
- Singh, Ankita Basant, Amrita Malik, Gunja Jain, Artificial neural network
- modeling of the river water quality—A case study, Ecological Modelling
- 
+H.
+ Gao, T.
+ J.
+ Struble, C.W.
+ Coley, Y.
+ Wang, W.H.
+ Green, K.
+ F.
+ Jensen, Using Machine Learning To Predict Suitable Conditions for Organic
+ Reactions, ACS Central Science 
 \series bold
-220
+4
 \series default
 , pp.
- 888-895, 2009.
+ 1465-1476, 2018.
 \end_layout
 
 \begin_layout Bibliography
@@ -9388,16 +9389,16 @@ literal "true"
 
 \end_inset
 
-I.
- Kaastra, M.
- Boyd, Designing a neural network for forecasting financial and economic
- time series, Neurocomputing 
+R.
+ Hafezi, J.
+ Shahrabi, E.
+ Hadavandi, A bat-neural network multi-agent system (BNNMAS) for stock price
+ prediction: Case study of DAX stock price, Applied Soft Computing 
 \series bold
-10
+29
 \series default
 , pp.
- 215-236, 1996.
- 
+ 196-210, 2015.
 \end_layout
 
 \begin_layout Bibliography
@@ -9408,13 +9409,16 @@ literal "true"
 
 \end_inset
 
-Moshe Leshno, Yishay Spector, Neural network prediction analysis: The bankruptcy
- case, Neurocomputing 
+X.
+ Pang, Y.
+ Zhou, P.
+ Wang et al, An innovative neural network approach for stock market prediction,
+ J Supercomput 
 \series bold
-10
+76
 \series default
 , pp.
- 125-147, 1996.
+ 2098–2118, 2020.
 \end_layout
 
 \begin_layout Bibliography
@@ -9426,15 +9430,18 @@ literal "false"
 \end_inset
 
 A.
- Astel, S.
- Tsakovski, V, Simeonov et al., Multivariate classification and modeling
- in surface water pollution estimation.
- Anal Bioanal Chem 
+ Russo, P.G.
+ Lind, F.
+ Raischel, R.
+ Trigo, M.
+ Mendes, Neural network forecast of daily pollution concentration using
+ optimal meteorological data at synoptic and local scales, Atmospheric Pollution
+ Research 
 \series bold
-390
+6
 \series default
 , pp.
- 1283–1292, 2008.
+ 540-549, 2015.
 \end_layout
 
 \begin_layout Bibliography
@@ -9522,26 +9529,6 @@ literal "false"
 
 \end_inset
 
-Y.
- Wu, K.
- Ianakiev, V.
- Govindaraju, Improved k-nearest neighbor classification, Pattern Recognition
- 
-\series bold
-35
-\series default
-, pp.
- 2311-2318, 2002.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "knn2"
-literal "false"
-
-\end_inset
-
 Z.-ga Liu, Q.
  Pan, J.
  Dezert, A new belief-based K-nearest neighbor classification method, Pattern
@@ -9556,14 +9543,38 @@ Z.-ga Liu, Q.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "knn2"
+literal "false"
+
+\end_inset
+
+Z.
+ Deng, X.
+ Zhu, D.
+ Cheng, M.
+ Zong, S.
+ Zhang, Efficient kNN classification algorithm for big data, Neurocomputing
+ 
+\series bold
+195
+\series default
+, pp.
+ 143-148, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "nn1"
 literal "true"
 
 \end_inset
 
-C.
- Bishop, Neural Networks for Pattern Recognition, Oxford University Press,
- 1995.
+D.
+ Graupe, Principles of artificial neural networks.
+ Vol.
+ 7.
+ World Scientific, 2013.
 \end_layout
 
 \begin_layout Bibliography
@@ -9574,14 +9585,10 @@ literal "true"
 
 \end_inset
 
-G.
- Cybenko, Approximation by superpositions of a sigmoidal function, Mathematics
- of Control Signals and Systems 
-\series bold
-2
-\series default
-, pp.
- 303-314, 1989.
+S.
+ Samarasinghe, Neural networks for applied sciences and engineering: from
+ fundamentals to complex pattern recognition.
+ Crc Press, 2016.
 \end_layout
 
 \begin_layout Bibliography
@@ -9655,10 +9662,15 @@ literal "false"
 
 \end_inset
 
-I.
- Steinwart, A.
- Christmann, Support Vector Machines, Information Science and Statistics,
- Springer, 2008.
+A.
+ Iranmehr, H.
+ Masnadi-Shirazi, N.
+ Vasconcelos, Cost-sensitive support vector machines, Neurocomputing 
+\series bold
+343
+\series default
+, pp.
+ 50-64, 2019.
 \end_layout
 
 \begin_layout Bibliography
@@ -9669,15 +9681,17 @@ literal "false"
 
 \end_inset
 
-A.
- Iranmehr, H.
- Masnadi-Shirazi, N.
- Vasconcelos, Cost-sensitive support vector machines, Neurocomputing 
+J.
+ Cervantes, F.G.
+ Lamont, L.R.
+ Mazahua, A.
+ Lopez, A comprehensive survey on support vector machine classification:
+ Applications, challenges and trends, Neurocomputing 
 \series bold
-343
+408
 \series default
 , pp.
- 50-64, 2019.
+ 189-215, 2020.
 \end_layout
 
 \begin_layout Bibliography
@@ -9743,15 +9757,15 @@ literal "false"
 
 \end_inset
 
-D.E.
- Rumelhart, G.E.
- Hinton and R.J.
- Williams, Learning representations by back-propagating errors, Nature 
-\series bold
-323
-\series default
-, pp.
- 533 - 536 , 1986.
+J.
+ Li, Jh Cheng, Jy.
+ Shi, F.
+ Huang, Brief Introduction of Back Propagation (BP) Neural Network Algorithm
+ and Its Improvement.
+ In: Jin, D., Lin, S.
+ (eds) Advances in Computer Science and Information Engineering.
+ Advances in Intelligent and Soft Computing, vol 169.
+ Springer, Berlin, Heidelberg, 2012.
 \end_layout
 
 \begin_layout Bibliography
@@ -9781,33 +9795,6 @@ literal "false"
 
 \end_inset
 
-F.
- H.
- F.
- Leung, H.
- K.
- Lam, S.
- H.
- Ling and P.
- K.
- S.
- Tam, Tuning of the structure and parameters of a neural network using an
- improved genetic algorithm, IEEE Transactions on Neural Networks 
-\series bold
-14
-\series default
-, pp.
- 79-88, 2003.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "geneticnn2"
-literal "false"
-
-\end_inset
-
 A.
  Sedki, D.
  Ouazar, E.
@@ -9819,6 +9806,26 @@ A.
 \series default
 , pp.
  4523-4527, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geneticnn2"
+literal "false"
+
+\end_inset
+
+F.
+ Ruehle, Evolving neural networks with genetic algorithms to study the string
+ landscape, J.
+ High Energ.
+ Phys.
+ 
+\series bold
+2017
+\series default
+, 38, 2017.
 \end_layout
 
 \begin_layout Bibliography
@@ -9959,13 +9966,16 @@ literal "true"
 
 \end_inset
 
-Chris Ding, and Hanchuan Peng, Minimum redundancy feature selection from
- microarray gene expression data, Journal of Bioinformatics and Computational
- Biology 
+M.
+ Radovic, M.
+ Ghalwash, N.
+ Filipovic, Minimum redundancy maximum relevance feature selection approach
+ for temporal gene expression data.
+ BMC Bioinformatics 
 \series bold
-3
+18
 \series default
-, pp.185-205, 2005.
+, 9, 2017.
 \end_layout
 
 \begin_layout Bibliography
@@ -10033,11 +10043,16 @@ literal "true"
 
 \end_inset
 
-S.J.
- Nowlan and G.E.
- Hinton, Simplifying neural networks by soft weight sharing, Neural Computation
- 4, pp.
- 473-493, 1992.
+J.K.
+ Kim, M.Y.
+ Lee, J.Y.
+ Kim, B.J.
+ Kim, J.H.
+ Lee, An efficient pruning and weight sharing method for neural network.
+ In 2016 IEEE International Conference on Consumer Electronics-Asia (ICCE-Asia)
+ (pp.
+ 1-2).
+ IEEE, 2016.
 \end_layout
 
 \begin_layout Bibliography
@@ -10068,13 +10083,10 @@ literal "true"
 
 \end_inset
 
-S.J.
- Hanson and L.Y.
- Pratt, Comparing biases for minimal network construction with back propagation,
- In D.S.
- Touretzky (Ed.), Advances in Neural Information Processing Systems, Volume
- 1, pp.
- 177-185, San Mateo, CA: Morgan Kaufmann, 1989.
+M.
+ Augasta and T.
+ Kathirvalavakumar, Pruning algorithms of neural networks — a comparative
+ study, Central European Journal of Computer Science, 2003.
 \end_layout
 
 \begin_layout Bibliography
@@ -10085,27 +10097,14 @@ literal "true"
 
 \end_inset
 
-M.C.
- Mozer and P.
- Smolensky, Skeletonization: a technique for trimming the fat from a network
- via relevance assesment.
- In D.S.
- Touretzky (Ed.), Advances in Neural Processing Systems, Volume 1, pp.
- 107-115, San Mateo CA: Morgan Kaufmann, 1989.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "nnprunning3"
-literal "false"
-
-\end_inset
-
-M.
- Augasta and T.
- Kathirvalavakumar, Pruning algorithms of neural networks — a comparative
- study, Central European Journal of Computer Science, 2003.
+N.M.
+ Hewahi, Neural network pruning based on input importance.
+ Journal of Intelligent & Fuzzy Systems 
+\series bold
+37
+\series default
+, pp.
+ 2243-2252, 2019.
 \end_layout
 
 \begin_layout Bibliography
@@ -10177,17 +10176,13 @@ literal "false"
 
 \end_inset
 
-N.
- K.
- Treadgold and T.
- D.
- Gedeon, Simulated annealing and weight decay in adaptive learning: the
- SARPROP algorithm,IEEE Transactions on Neural Networks 
-\series bold
-9
-\series default
-, pp.
- 662-668, 1998.
+M.
+ Carvalho and T.
+ B.
+ Ludermir, Particle Swarm Optimization of Feed-Forward Neural Networks with
+ Weight Decay, 2006 Sixth International Conference on Hybrid Intelligent
+ Systems (HIS'06), Rio de Janeiro, Brazil, 2006, pp.
+ 5-5.
 \end_layout
 
 \begin_layout Bibliography
@@ -10198,13 +10193,18 @@ literal "false"
 
 \end_inset
 
-M.
- Carvalho and T.
- B.
- Ludermir, Particle Swarm Optimization of Feed-Forward Neural Networks with
- Weight Decay, 2006 Sixth International Conference on Hybrid Intelligent
- Systems (HIS'06), Rio de Janeiro, Brazil, 2006, pp.
- 5-5.
+I.G.
+ Tsoulos, A.
+ Tzallas, D.
+ Tsalikakis, Evolutionary Based Weight Decaying Method for Neural Network
+ Training.
+ Neural Process Lett 
+\series bold
+47
+\series default
+, pp.
+ 463–473, 2018.
+ 
 \end_layout
 
 \begin_layout Bibliography
@@ -10236,10 +10236,13 @@ literal "true"
 
 \end_inset
 
-Alfonso Ortega, Rafael Sánchez, Manuel Alfonseca Moreno, Automatic composition
- of music by means of grammatical evolution, APL '02 Proceedings of the
- 2002 conference on APL: array processing languages: lore, problems, and
- applications Pages 148 - 155.
+R.
+ Loughran, J.
+ McDermott, M.
+ O'Neill, Tonality driven piano compositions with grammatical evolution,
+ In: 2015 IEEE Congress on Evolutionary Computation (CEC), Sendai, Japan,
+ pp.
+ 2168-2175, 2015.
 \end_layout
 
 \begin_layout Bibliography
@@ -10250,12 +10253,13 @@ literal "true"
 
 \end_inset
 
-Michael O’Neill, Anthony Brabazon, Conor Ryan, J.
- J.
- Collins, Evolving Market Index Trading Rules Using Grammatical Evolution,
- Applications of Evolutionary Computing Volume 2037 of the series Lecture
- Notes in Computer Science pp 343-352.
- 
+P.
+ Gabrielsson, U.
+ Johansson, R.
+ König, Co-evolving online high-frequency trading strategies using grammatical
+ evolution, In: 2014 IEEE Conference on Computational Intelligence for Financial
+ Engineering & Economics (CIFEr), London, UK, pp.
+ 473-480, 2014.
 \end_layout
 
 \begin_layout Bibliography
@@ -10266,11 +10270,14 @@ literal "true"
 
 \end_inset
 
-M.
- O’Neill, C.
- Ryan, Grammatical Evolution: Evolutionary Automatic Programming in a Arbitary
- Language, Genetic Programming, vol.
- 4, Kluwer Academic Publishers, Dordrecht, 2003
+M.S.
+ Ali, M.
+ Kshirsagar, E.
+ Naredo, C.
+ Ryan, Towards Automatic Grammatical Evolution for Real-world Symbolic Regressio
+n.
+ In IJCCI (pp.
+ 68-78), 2021.
 \end_layout
 
 \begin_layout Bibliography
@@ -10281,10 +10288,15 @@ literal "true"
 
 \end_inset
 
-J.J.
- Collins, C.
- Ryan, in: Proceedings of AROB 2000, Fifth International Symposium on Artificial
- Life and Robotics, 2000.
+E.
+ Ferrante, E.
+ Duéñez-Guzmán, A.E.
+ Turgut, T.
+ Wenseleers, GESwarm: Grammatical evolution for the automatic synthesis
+ of collective behaviors in swarm robotics.
+ In Proceedings of the 15th annual conference on Genetic and evolutionary
+ computation (pp.
+ 17-24), 2013.
 \end_layout
 
 \begin_layout Bibliography
@@ -10295,15 +10307,17 @@ literal "true"
 
 \end_inset
 
-M.
- O’Neill, C.
- Ryan, in: K.
- Miettinen, M.M.
- Mkel, P.
- Neittaanmki, J.
- Periaux (Eds.), Evolutionary Algorithms in Engineering and Computer Science,
- Jyvskyl, Finland, 1999, pp.
- 127–134.
+J.
+ Díaz Álvarez, J.M.
+ Colmenar, J.L.
+ Risco-Martín et al, Optimizing L1 cache for embedded systems through grammatica
+l evolution.
+ Soft Comput 
+\series bold
+20
+\series default
+, pp.
+ 2451–2465, 2016.
 \end_layout
 
 \begin_layout Bibliography
@@ -10381,12 +10395,20 @@ literal "true"
 
 \end_inset
 
-Ranjit Shaw, Shalivahan Srivastava, Particle swarm optimization: A new tool
- to invert geophysical data, Geophysics 
+Y.
+ Wang, M.
+ Miao, J.
+ Lv, L.
+ Zhu, K.
+ Yin, H.
+ Liu, Y.
+ Ma, An effective structure prediction method for layered materials based
+ on 2D particle swarm optimization algorithm.
+ The Journal of chemical physics 
 \series bold
-72
+137
 \series default
-, 2007.
+, 224108, 2012.
 \end_layout
 
 \begin_layout Bibliography
@@ -10397,17 +10419,22 @@ literal "false"
 
 \end_inset
 
-C.
- O.
- Ourique, E.C.
- Biscaia, J.C.
- Pinto, The use of particle swarm optimization for dynamical analysis in
- chemical processes, Computers & Chemical Engineering 
+X.
+ Chen, W.
+ Du, R.
+ Qi, F.
+ Qian, H.
+ Tianfield, Hybrid gradient particle swarm optimization for dynamic optimization
+ problems of chemical processes.
+ Asia-Pac.
+ J.
+ Chem.
+ Eng 
 \series bold
-26
+8
 \series default
 , pp.
- 1783-1793, 2002.
+ 708-720, 2013.
 \end_layout
 
 \begin_layout Bibliography
@@ -10442,18 +10469,17 @@ literal "true"
 
 \end_inset
 
-M.P.
- Wachowiak, R.
- Smolikova, Yufeng Zheng, J.M.
- Zurada, A.S.
- Elmaghraby, An approach to multimodal biomedical image registration utilizing
- particle swarm optimization, IEEE Transactions on Evolutionary Computation
- 
+P.C.
+ Chang, J.J.
+ Lin, C.H.
+ Liu, An attribute weight assignment and particle swarm optimization algorithm
+ for medical database classifications, Computer Methods and Programs in
+ Biomedicine 
 \series bold
-8
+107
 \series default
-, pp.
- 289-301, 2004.
+,pp.
+ 382-392, 2012.
 \end_layout
 
 \begin_layout Bibliography
@@ -10464,15 +10490,15 @@ literal "true"
 
 \end_inset
 
-Yannis Marinakis.
- Magdalene Marinaki, Georgios Dounias, Particle swarm optimization for pap-smear
- diagnosis, Expert Systems with Applications 
+R.
+ Radha, R.
+ Gopalakrishnan, A medical analytical system using intelligent fuzzy level
+ set brain image segmentation based on improved quantum particle swarm optimizat
+ion, Microprocessors and Microsystems 
 \series bold
-35
+79
 \series default
-, pp.
- 1645-1656, 2008.
- 
+, 103283, 2020.
 \end_layout
 
 \begin_layout Bibliography
@@ -11374,33 +11400,6 @@ M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-20"
-literal "true"
-
-\end_inset
-
-R.G.
- Andrzejak, K.
- Lehnertz, F.
- Mormann, C.
- Rieke, P.
- David, and C.
- E.
- Elger, Indications of nonlinear deterministic and finite-dimensional structures
- in time series of brain electrical activity: Dependence on recording region
- and brain state, Phys.
- Rev.
- E 
-\series bold
-64
-\series default
-, pp.
- 1-8, 2001.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
 key "abalone"
 literal "false"
 
@@ -11550,16 +11549,17 @@ literal "false"
 
 \end_inset
 
-J.
- Park and I.
- W.
- Sandberg, Universal Approximation Using Radial-Basis-Function Networks,
- Neural Computation 
+H.
+ Yu, T.
+ Xie, S.
+ Paszczynski, B.M.
+ Wilamowski, Advantages of Radial Basis Function Networks for Dynamic System
+ Design, IEEE Transactions on Industrial Electronics 
 \series bold
-3
+58
 \series default
 , pp.
- 246-257, 1991.
+ 5438-5450, 2011.
 \end_layout
 
 \begin_layout Bibliography
@@ -11582,25 +11582,7 @@ D.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "rpropnn"
-literal "false"
-
-\end_inset
-
-M.
- Riedmiller and H.
- Braun, A Direct Adaptive Method for Faster Backpropagation Learning: The
- RPROP algorithm, Proc.
- of the IEEE Intl.
- Conf.
- on Neural Networks, San Francisco, CA, pp.
- 586–591, 1993.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "rpropnn3"
+key "rpropnn1"
 literal "false"
 
 \end_inset
