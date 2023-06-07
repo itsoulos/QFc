@@ -268,19 +268,25 @@ The problem of data classification or data fitting is widely applicable
  Furthermore, in many cases, many of the features of the input data do not
  contribute to learning, or there may even be hidden correlations between
  the features of the dataset.
- The current article proposes a method that combines Particle Swarm Optimization
- and Grammatical Evolution, that can produce artificial features from the
- original ones for a variety of pattern recognition problems.
+ The purpose of the proposed method is to significantly reduce the data
+ classification or regression error through the usage of a technique that
+ utilizes the Particle Swarm Optimization method and Grammatical Evolution.
+ This method is divided into two phases: in the first phase artificial features
+ are constructed using Grammatical Evolution and the progress of the creation
+ of these features is controlled by the Particle Swarm Optimization method.
  In addition, this new technique utilizes penalty factors to limit the generated
  features to a range of values to make training machine learning models
  more efficient.
+ In the second phase of the proposed technique, these features are exploited
+ to transform the original data set and then any machine learning method
+ can be applied to this data set.
  The performance of the proposed method was measured on some benchmark datasets
  from the relevant literature.
  Also, the method was tested against a series of widely used machine learning
  models.
  Experiments performed show a significant improvement of 30% on average
  in classification datasets and an even greater improvement of 60% in data
- fitting dataset.
+ fitting datasets.
 \end_layout
 
 \begin_layout Keywords
@@ -374,6 +380,33 @@ literal "false"
 \begin_inset CommandInset citation
 LatexCommand citep
 key "dt1,dt2"
+literal "false"
+
+\end_inset
+
+ etc.
+ Also many practical problems have tackled using machine learning approaches
+ such as prediction of non-breaking waves 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp1"
+literal "false"
+
+\end_inset
+
+, energy conservation problems 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp2"
+literal "false"
+
+\end_inset
+
+, prediction of scour depth at seawalls using Genetic Programming and neural
+ networks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp3"
 literal "false"
 
 \end_inset
@@ -478,6 +511,20 @@ literal "false"
 \end_inset
 
 .
+ Morever, Pourzangbar proposed a feature selection method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "gpFSEL"
+literal "false"
+
+\end_inset
+
+ based on Genetic Programming for the determination of the most effective
+ parameters on on scour depth at seawalls.
+ The proposed technique essentially, in addition to creating artificial
+ features, also selects features at the same time, since it can remove from
+ the final features those that will not bring significant benefits to the
+ learning of the objective problem.
  Furthermore, Wang et al proposed an auto - encoder reduction method, applied
  on a series of large datasets
 \begin_inset CommandInset citation
@@ -687,6 +734,15 @@ literal "false"
 \begin_inset CommandInset citation
 LatexCommand citep
 key "psoApp4"
+literal "false"
+
+\end_inset
+
+, optimal design of brace-viscous damper and pendulum tuned mass damper
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp5"
 literal "false"
 
 \end_inset
@@ -2230,7 +2286,9 @@ name "sec:Experiments"
 The ability of the proposed technique to produce effective artificial features
  for class prediction and feature learning will be measured in this section
  on a some datasets from the relevant literature.
- This data comes from the relevant websites:
+ These problems have been studied by various researchers in the relevant
+ literature and cover a wide range of research areas from Physics to Economics.
+ These datasets comes from the relevant websites:
 \end_layout
 
 \begin_layout Enumerate
@@ -5845,7 +5903,13 @@ name "tab:tabClass"
 
 \end_inset
 
+.
+ The variable 
+\begin_inset Formula $f$
+\end_inset
 
+ corresponds to the number of artificial features created by the proposed
+ method.
 \end_layout
 
 \end_inset
@@ -7672,7 +7736,12 @@ name "tab:tabRegression"
 
 \end_inset
 
+The variable 
+\begin_inset Formula $f$
+\end_inset
 
+ corresponds to the number of artificial features created by the proposed
+ method.
 \end_layout
 
 \end_inset
@@ -9732,6 +9801,70 @@ D.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "mlapp1"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, M.A.
+ Losada, A.
+ Saber, L.
+ Rasoul Ahari, P.
+ Larroudé, M.
+ Vaezi, M.
+ Brocchini, Prediction of non-breaking wave induced scour depth at the trunk
+ section of breakwaters using Genetic Programming and Artificial Neural
+ Networks, Coastal Engineering 
+\series bold
+121
+\series default
+, pp.
+ 107-118, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp2"
+literal "false"
+
+\end_inset
+
+F.
+ Afsarian, A.
+ Saber, A.
+ Pourzangbar, A.G.
+ Olabi, M.A.
+ Khanmohammadi, Analysis of recycled aggregates effect on energy conservation
+ using M5′ model tree algorithm, Energy 156, pp.
+ 264-277, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp3"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, A.
+ Saber, A.Y.
+ Bakhtiary, L.R.
+ Ahari, Predicting scour depth at seawalls using GP and ANNs, Journal of
+ Hydroinformatics 
+\series bold
+19
+\series default
+, pp.
+ 349–363, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "class_review"
 literal "false"
 
@@ -9976,6 +10109,22 @@ M.
 18
 \series default
 , 9, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "gpFSEL"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, Determination of the most effective parameters on scour depth
+ at seawalls using genetic programming (GP).
+ In The 10th International Conference on Coasts, Ports and Marine Structures
+ (ICOPMASS 2012), Tehran, Iran, 9p, November 2012.
+ 
 \end_layout
 
 \begin_layout Bibliography
@@ -10611,6 +10760,24 @@ S.
 1820
 \series default
 , 012185, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp5"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, M.
+ Vaezi, Optimal design of brace-viscous damper and pendulum tuned mass damper
+ using Particle Swarm Optimization, Applied Ocean Research 
+\series bold
+112
+\series default
+, 102706, 2021.
 \end_layout
 
 \begin_layout Bibliography
