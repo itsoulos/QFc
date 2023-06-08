@@ -411,6 +411,48 @@ literal "false"
 
 \end_inset
 
+.
+ Furthermore, machine learning models have been used in various complex
+ tasks such as neural machine translation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp4"
+literal "false"
+
+\end_inset
+
+, oil distribution 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp5"
+literal "false"
+
+\end_inset
+
+, image processing 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp6"
+literal "false"
+
+\end_inset
+
+, robotics 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp7"
+literal "false"
+
+\end_inset
+
+, hydracarbon production 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp8"
+literal "false"
+
+\end_inset
+
  etc.
  A brief description of the methods that can be used for classification
  datasets is given in the publication of Kotsiantis et al 
@@ -427,8 +469,10 @@ literal "false"
 
 \begin_layout Standard
 In the majority of cases, the machine learning models have a number of parameter
-s that should be determined through some algorithms, such as the Back Propagatio
-n method 
+s that should be determined through some algorithms.
+ These parameters include, for example, the weights of artificial neural
+ networks, which can be estimated with techniques such as the Back Propagation
+ method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bpnn,bpnn2"
@@ -436,11 +480,19 @@ literal "false"
 
 \end_inset
 
- for artificial neural networks or more advanced optimization methods such
- as the Genetic algorithms 
+ or for example Genetic algorithms 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "geneticnn1,geneticnn2,geneticnn3"
+literal "false"
+
+\end_inset
+
+ but also the hyperparameters of learning models that require different
+ handling 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hyper1,hyper2,hyper3"
 literal "false"
 
 \end_inset
@@ -747,7 +799,23 @@ literal "false"
 
 \end_inset
 
- etc.
+, application to high - dimensional expensive industrial problems 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp6"
+literal "false"
+
+\end_inset
+
+, RFID readers 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp7"
+literal "false"
+
+\end_inset
+
+, etc.
 \end_layout
 
 \begin_layout Standard
@@ -899,6 +967,12 @@ name "sec:The-proposed-method"
 The basic steps by which the Grammatical Evolution technique produces the
  artificial features are then analyzed in as well as the steps in the overall
  process of creating and evaluating the artificial features.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(edo na baloume ena perigrama aytis tis enotitas)
 \end_layout
 
 \begin_layout Subsection
@@ -3019,6 +3093,8 @@ https://github.com/itsoulos/OPTIMUS/
  For the classification datasets, the average classification error as measured
  in the test set is reported, while for the regression datasets the average
  regression error is reported.
+ Here by the term classification error, we mean the percentage of patterns
+ in the test set that are classified into a different class than expected.
  Also, in every table, an additional column denoted as AVERAGE is added
  to show the average classification or regression error for the corresponding
  datasets.
@@ -3040,7 +3116,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -3271,12 +3347,19 @@ Penalty factor
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-The proposed technique that created artificial features is compared on the
- same datasets against a series of well - known method from the relevant
+In the first phase the proposed technique will generate new artificial features
+ from the existing ones with the help of a technique guided by the partnership
+ of Particle Swarm Optimization and Grammatical Evolution.
+ In the second phase of the technique, these features will be used to modify
+ the original test set to which any machine learning method can now be applied.
+ In the second phase of the current work, two different techniques will
+ be used: an RBF neural network and an artificial neural network which will
+ be trained using a genetic algorithm.
+ This is done in order to establish the potential of the proposed procedure
+ to improve the performance of both simple machine learning models and complex
+ models.
+ The proposed technique that created artificial features is compared on
+ the same datasets against a series of well - known method from the relevant
  literature: 
 \end_layout
 
@@ -9238,6 +9321,12 @@ The current work was applied on an extended series of widely used datasets
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+(Some more discussion here about the results and the speed of the method)
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace 6pt
 \end_inset
 
@@ -9951,6 +10040,118 @@ A.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "mlapp4"
+literal "false"
+
+\end_inset
+
+X.
+ Liu, J.
+ He, M.
+ Liu Z.
+ Yin, L.
+ Yin, W.A.
+ Zheng, Scenario-Generic Neural Machine Translation Data Augmentation Method.
+ Electronics 
+\series bold
+12
+\series default
+, 2320, 2023.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp5"
+literal "false"
+
+\end_inset
+
+X.
+ Xu, Z.
+ Lin, X.
+ Li, C.
+ Shang, Q.
+ Shen, Multi-objective robust optimisation model for MDVRPLS in refined
+ oil distribution, International Journal of Production Research 
+\series bold
+60
+\series default
+, pp.
+ 6772-6792, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp6"
+literal "false"
+
+\end_inset
+
+S.
+ Lu, Y.
+ Ding, M.
+ Liu, et al, Multiscale Feature Extraction and Fusion of Image and Text
+ in VQA.
+ Int J Comput Intell Syst 
+\series bold
+16
+\series default
+, 54, 2023.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp7"
+literal "false"
+
+\end_inset
+
+C.
+ Zheng, Y.
+ An, Z.
+ Wang, H.
+ Wu, X.
+ Qin, B.
+ Eynard, Y.
+ Zhang, Hybrid offline programming method for robotic welding systems, Robotics
+ and Computer-Integrated Manufacturing 
+\series bold
+73
+\series default
+, 102238, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp8"
+literal "false"
+
+\end_inset
+
+K.
+ Zhang, Z.
+ Wang, G.
+ Chen, L.
+ Zhang, Y.
+ Yang, C.
+ Yao, J.
+ Wang, J.
+ Yao, Training effective deep reinforcement learning agents for real-time
+ life-cycle production optimization, Journal of Petroleum Science and Engineerin
+g 
+\series bold
+208
+\series default
+ Part E, 109766, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "class_review"
 literal "false"
 
@@ -10065,6 +10266,67 @@ A.
 \series default
 , pp.
  246-253, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "hyper1"
+literal "false"
+
+\end_inset
+
+A.
+ Lentzas, C.
+ Nalmpantis, D.
+ Vrakas, Hyperparameter Tuning using Quantum Genetic Algorithms, In: 2019
+ IEEE 31st International Conference on Tools with Artificial Intelligence
+ (ICTAI), Portland, OR, USA, pp.
+ 1412-1416, 2019.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "hyper2"
+literal "false"
+
+\end_inset
+
+I.D.
+ Raji, H.
+ Bello-Salau, I.J.
+ Umoh, A.J.
+ Onumany, M.A.
+ Adegboye, A.T.
+ Salawudeen, Simple Deterministic Selection-Based Genetic Algorithm for
+ Hyperparameter Tuning of Machine Learning Models.
+ Applied Sciences 
+\series bold
+12
+\series default
+, 1186, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "hyper3"
+literal "false"
+
+\end_inset
+
+D.L.
+ Shanthi, N.
+ Chethan, Genetic Algorithm Based Hyper-Parameter Tuning to Improve the
+ Performance of Machine Learning Models.
+ SN COMPUT.
+ SCI.
+ 
+\series bold
+4
+\series default
+, 119, 2023.
 \end_layout
 
 \begin_layout Bibliography
@@ -10897,6 +11159,46 @@ A.
 112
 \series default
 , 102706, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp6"
+literal "false"
+
+\end_inset
+
+J.
+ Tian, M.
+ Hou, H.
+ Bian et al, Variable surrogate model-based particle swarm optimization
+ for high-dimensional expensive problems.
+ Complex Intell.
+ Syst., 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp7"
+literal "false"
+
+\end_inset
+
+B.
+ Cao, Y.
+ Gu, Z.
+ Lv, S.
+ Yang, J.
+ Zhao, Y.
+ Li, RFID Reader Anticollision Based on Distributed Parallel Particle Swarm
+ Optimization, IEEE Internet of Things Journal 
+\series bold
+8
+\series default
+, pp.
+ 3099-3107, 2021.
 \end_layout
 
 \begin_layout Bibliography
