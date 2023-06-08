@@ -1891,12 +1891,12 @@ Set
 Initialize
 \series default
  randomly, the positions 
-\begin_inset Formula $p_{1},p_{2},...,p_{m}$
+\begin_inset Formula $\overrightarrow{p_{1},}\overrightarrow{p_{2}},...,\overrightarrow{p_{m}}$
 \end_inset
 
  for the particles.
- For the grammatical evolution, every chromosome is a series of randomly
- selected integers.
+ For the grammatical evolution, every particle is a vector of randomly selected
+ integers.
 \end_layout
 
 \begin_layout Enumerate
@@ -1905,7 +1905,7 @@ Initialize
 Initialize
 \series default
  randomly the velocities 
-\begin_inset Formula $u_{1},u_{2},...,u_{m}$
+\begin_inset Formula $\overrightarrow{u_{1}},\overrightarrow{u_{2}},...,\overrightarrow{u_{m}}$
 \end_inset
 
 .
@@ -1932,16 +1932,16 @@ For
 \end_inset
 
  do 
-\begin_inset Formula $b_{i}=p_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}=\overrightarrow{p_{i}}$
 \end_inset
 
 .
  The vector 
-\begin_inset Formula $b_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}$
 \end_inset
 
  denotes the best located position of particle 
-\begin_inset Formula $p_{i}$
+\begin_inset Formula $\overrightarrow{p_{i}}$
 \end_inset
 
 .
@@ -1953,7 +1953,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}=\arg\min_{i\in1..m}f\left(\overrightarrow{p_{i}}\right)$
 \end_inset
 
 
@@ -2023,15 +2023,15 @@ name "enu:For"
 Compute 
 \series default
 the velocity 
-\begin_inset Formula $u_{i}$
+\begin_inset Formula $\overrightarrow{u_{i}}$
 \end_inset
 
  as a combination of the vectors 
-\begin_inset Formula $u_{i},\ p_{i}$
+\begin_inset Formula $\overrightarrow{u_{i}},\overrightarrow{p_{i}},\overrightarrow{b_{i}}$
 \end_inset
 
  and 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
 
@@ -2043,7 +2043,7 @@ the velocity
 Set
 \series default
  the new position for the particle as: 
-\begin_inset Formula $p_{i}=p_{i}+u_{i}$
+\begin_inset Formula $\overrightarrow{p_{i}}=\overrightarrow{p_{i}}+\overrightarrow{u_{i}}$
 \end_inset
 
 
@@ -2088,11 +2088,11 @@ noprefix "false"
 If
 \series default
  
-\begin_inset Formula $f\left(p_{i}\right)\le f\left(b_{i}\right)$
+\begin_inset Formula $f\left(\overrightarrow{p_{i}}\right)\le f\left(\overrightarrow{b_{i}}\right)$
 \end_inset
 
  then 
-\begin_inset Formula $b_{i}=p_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}=\overrightarrow{p_{i}}$
 \end_inset
 
 
@@ -2115,7 +2115,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}=\arg\min_{i\in1..m}f\left(\overrightarrow{p_{i}}\right)$
 \end_inset
 
 
@@ -2169,7 +2169,7 @@ name "enu:Termination-step."
 \end_inset
 
  Apply the mapping function of the best particle 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
  to the test set of the problem and apply a machine learning model obtaining
@@ -2186,24 +2186,24 @@ The above calculates at every iteration the new position of the particle
  using:
 \begin_inset Formula 
 \begin{equation}
-p_{i}=p_{i}+u_{i}\label{eq:eq3}
+\overrightarrow{p_{i}}=\overrightarrow{p_{i}}+\overrightarrow{u_{i}}\label{eq:eq3}
 \end{equation}
 
 \end_inset
 
 In most cases the new velocity could be a linear combination of the previously
- computed velocity and the best values 
-\begin_inset Formula $b_{i}$
+ computed velocity and the corresponding vectors for the best values 
+\begin_inset Formula $\overrightarrow{b_{i}}$
 \end_inset
 
  and 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
  and it can be defined as:
 \begin_inset Formula 
 \begin{equation}
-u_{i}=\omega u_{i}+r_{1}c_{1}\left(b_{i}-p_{i}\right)+r_{2}c_{2}\left(p_{\mbox{best}}-p_{i}\right)\label{eq:eq4-1}
+\overrightarrow{u}_{i}=\omega\overrightarrow{u}_{i}+r_{1}c_{1}\left(\overrightarrow{b}_{i}-\overrightarrow{p_{i}}\right)+r_{2}c_{2}\left(\overrightarrow{p}_{\mbox{best}}-\overrightarrow{p_{i}}\right)\label{eq:eq4-1}
 \end{equation}
 
 \end_inset
@@ -2249,13 +2249,20 @@ literal "false"
 
 \end_inset
 
- and in the current work was computer through the following equation
+.
+ In the original paper, they proposed the idea that large values for the
+ inertia coefficient can lead to a better exploration of the search space
+ while smaller values of the coefficient lead to the method being concentrated
+ around regions likely to contain the global minimum.
+ Hence, in their work, the value of the inertia factor generally starts
+ with large values and decreases with repetition.
+ In the current work was computed through the following equation
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\omega_{\mbox{iter}}=0.5+\frac{r}{2}
+\omega=0.5+\frac{r}{2}
 \end{equation}
 
 \end_inset
@@ -2269,6 +2276,77 @@ The variable
 \end_inset
 
 .
+ This inertia calculation was proposed in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "random_inertia"
+literal "false"
+
+\end_inset
+
+.
+ With this calculation of the inertia variable, an even better exploration
+ of the research space is achieved with the randomness it introduces, something
+ that was also found in the publication of Charilogis and Tsoulos.
+\end_layout
+
+\begin_layout Standard
+A flowchart for the overall process is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:flow"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagram.eps
+	scale 62
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart for the proposed method.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:flow"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2288,7 +2366,7 @@ The ability of the proposed technique to produce effective artificial features
  on a some datasets from the relevant literature.
  These problems have been studied by various researchers in the relevant
  literature and cover a wide range of research areas from Physics to Economics.
- This data comes from the relevant websites:
+ These datasets comes from the relevant websites:
 \end_layout
 
 \begin_layout Enumerate
@@ -10482,6 +10560,39 @@ J.
  Eberhart, "Particle swarm optimization," Proceedings of ICNN'95 - International
  Conference on Neural Networks, 1995, pp.
  1942-1948 vol.4, doi: 10.1109/ICNN.1995.488968.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "random_inertia"
+literal "false"
+
+\end_inset
+
+R.C.
+ Eberhart, Y.H.
+ Shi, Tracking and optimizing dynamic systems with particle swarms, in:
+ Congress on Evolutionary Computation, Korea, 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ipso"
+literal "false"
+
+\end_inset
+
+V.
+ Charilogis, I.G.
+ Tsoulos, Toward an Ideal Particle Swarm Optimizer for Multidimensional
+ Functions, Information 
+\series bold
+13
+\series default
+, 217, 2022.
+ 
 \end_layout
 
 \begin_layout Bibliography

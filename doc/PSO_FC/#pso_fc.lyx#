@@ -385,9 +385,35 @@ literal "false"
 \end_inset
 
  etc.
- Also many practical problems have tackled using machine learning approachA
- brief description of the methods that can be used for classification datasets
- is given in the publication of Kotsiantis et al 
+ Also many practical problems have tackled using machine learning approaches
+ such as prediction of non-breaking waves 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp1"
+literal "false"
+
+\end_inset
+
+, energy conservation problems 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp2"
+literal "false"
+
+\end_inset
+
+, prediction of scour depth at seawalls using Genetic Programming and neural
+ networks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mlapp3"
+literal "false"
+
+\end_inset
+
+ etc.
+ A brief description of the methods that can be used for classification
+ datasets is given in the publication of Kotsiantis et al 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "class_review"
@@ -485,6 +511,20 @@ literal "false"
 \end_inset
 
 .
+ Morever, Pourzangbar proposed a feature selection method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "gpFSEL"
+literal "false"
+
+\end_inset
+
+ based on Genetic Programming for the determination of the most effective
+ parameters on on scour depth at seawalls.
+ The proposed technique essentially, in addition to creating artificial
+ features, also selects features at the same time, since it can remove from
+ the final features those that will not bring significant benefits to the
+ learning of the objective problem.
  Furthermore, Wang et al proposed an auto - encoder reduction method, applied
  on a series of large datasets
 \begin_inset CommandInset citation
@@ -694,6 +734,15 @@ literal "false"
 \begin_inset CommandInset citation
 LatexCommand citep
 key "psoApp4"
+literal "false"
+
+\end_inset
+
+, optimal design of brace-viscous damper and pendulum tuned mass damper
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psoApp5"
 literal "false"
 
 \end_inset
@@ -1842,12 +1891,12 @@ Set
 Initialize
 \series default
  randomly, the positions 
-\begin_inset Formula $p_{1},p_{2},...,p_{m}$
+\begin_inset Formula $\overrightarrow{p_{1},}\overrightarrow{p_{2}},...,\overrightarrow{p_{m}}$
 \end_inset
 
  for the particles.
- For the grammatical evolution, every chromosome is a series of randomly
- selected integers.
+ For the grammatical evolution, every particle is a vector of randomly selected
+ integers.
 \end_layout
 
 \begin_layout Enumerate
@@ -1856,7 +1905,7 @@ Initialize
 Initialize
 \series default
  randomly the velocities 
-\begin_inset Formula $u_{1},u_{2},...,u_{m}$
+\begin_inset Formula $\overrightarrow{u_{1}},\overrightarrow{u_{2}},...,\overrightarrow{u_{m}}$
 \end_inset
 
 .
@@ -1883,16 +1932,16 @@ For
 \end_inset
 
  do 
-\begin_inset Formula $b_{i}=p_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}=\overrightarrow{p_{i}}$
 \end_inset
 
 .
  The vector 
-\begin_inset Formula $b_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}$
 \end_inset
 
  denotes the best located position of particle 
-\begin_inset Formula $p_{i}$
+\begin_inset Formula $\overrightarrow{p_{i}}$
 \end_inset
 
 .
@@ -1904,7 +1953,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}=\arg\min_{i\in1..m}f\left(\overrightarrow{p_{i}}\right)$
 \end_inset
 
 
@@ -1974,15 +2023,15 @@ name "enu:For"
 Compute 
 \series default
 the velocity 
-\begin_inset Formula $u_{i}$
+\begin_inset Formula $\overrightarrow{u_{i}}$
 \end_inset
 
  as a combination of the vectors 
-\begin_inset Formula $u_{i},\ p_{i}$
+\begin_inset Formula $\overrightarrow{u_{i}},\overrightarrow{p_{i}},\overrightarrow{b_{i}}$
 \end_inset
 
  and 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
 
@@ -1994,7 +2043,7 @@ the velocity
 Set
 \series default
  the new position for the particle as: 
-\begin_inset Formula $p_{i}=p_{i}+u_{i}$
+\begin_inset Formula $\overrightarrow{p_{i}}=\overrightarrow{p_{i}}+\overrightarrow{u_{i}}$
 \end_inset
 
 
@@ -2039,11 +2088,11 @@ noprefix "false"
 If
 \series default
  
-\begin_inset Formula $f\left(p_{i}\right)\le f\left(b_{i}\right)$
+\begin_inset Formula $f\left(\overrightarrow{p_{i}}\right)\le f\left(\overrightarrow{b_{i}}\right)$
 \end_inset
 
  then 
-\begin_inset Formula $b_{i}=p_{i}$
+\begin_inset Formula $\overrightarrow{b_{i}}=\overrightarrow{p_{i}}$
 \end_inset
 
 
@@ -2066,7 +2115,7 @@ For
 Set
 \series default
  
-\begin_inset Formula $p_{\mbox{best}}=\arg\min_{i\in1..m}f\left(p_{i}\right)$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}=\arg\min_{i\in1..m}f\left(\overrightarrow{p_{i}}\right)$
 \end_inset
 
 
@@ -2120,7 +2169,7 @@ name "enu:Termination-step."
 \end_inset
 
  Apply the mapping function of the best particle 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
  to the test set of the problem and apply a machine learning model obtaining
@@ -2137,24 +2186,24 @@ The above calculates at every iteration the new position of the particle
  using:
 \begin_inset Formula 
 \begin{equation}
-p_{i}=p_{i}+u_{i}\label{eq:eq3}
+\overrightarrow{p_{i}}=\overrightarrow{p_{i}}+\overrightarrow{u_{i}}\label{eq:eq3}
 \end{equation}
 
 \end_inset
 
 In most cases the new velocity could be a linear combination of the previously
- computed velocity and the best values 
-\begin_inset Formula $b_{i}$
+ computed velocity and the corresponding vectors for the best values 
+\begin_inset Formula $\overrightarrow{b_{i}}$
 \end_inset
 
  and 
-\begin_inset Formula $p_{\mbox{best}}$
+\begin_inset Formula $\overrightarrow{p}_{\mbox{best}}$
 \end_inset
 
  and it can be defined as:
 \begin_inset Formula 
 \begin{equation}
-u_{i}=\omega u_{i}+r_{1}c_{1}\left(b_{i}-p_{i}\right)+r_{2}c_{2}\left(p_{\mbox{best}}-p_{i}\right)\label{eq:eq4-1}
+\overrightarrow{u}_{i}=\omega\overrightarrow{u}_{i}+r_{1}c_{1}\left(\overrightarrow{b}_{i}-\overrightarrow{p_{i}}\right)+r_{2}c_{2}\left(\overrightarrow{p}_{\mbox{best}}-\overrightarrow{p_{i}}\right)\label{eq:eq4-1}
 \end{equation}
 
 \end_inset
@@ -2200,6 +2249,13 @@ literal "false"
 
 \end_inset
 
+.
+ In the original paper They argued that high values of the inertia coefficient
+ cause better exploration of the search area, while small values of this
+ variable are used when we want to achieve better local research around
+ promising areas for the global minimum.
+ The value of the inertia factor generally starts with large values and
+ decreases with repetition.
  and in the current work was computer through the following equation
 \end_layout
 
@@ -2220,6 +2276,62 @@ The variable
 \end_inset
 
 .
+ A flowchart for the overall process is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:flow"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename diagram.eps
+	scale 62
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart for the proposed method.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:flow"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2237,7 +2349,9 @@ name "sec:Experiments"
 The ability of the proposed technique to produce effective artificial features
  for class prediction and feature learning will be measured in this section
  on a some datasets from the relevant literature.
- This data comes from the relevant websites:
+ These problems have been studied by various researchers in the relevant
+ literature and cover a wide range of research areas from Physics to Economics.
+ These datasets comes from the relevant websites:
 \end_layout
 
 \begin_layout Enumerate
@@ -5852,7 +5966,13 @@ name "tab:tabClass"
 
 \end_inset
 
+.
+ The variable 
+\begin_inset Formula $f$
+\end_inset
 
+ corresponds to the number of artificial features created by the proposed
+ method.
 \end_layout
 
 \end_inset
@@ -7679,7 +7799,12 @@ name "tab:tabRegression"
 
 \end_inset
 
+The variable 
+\begin_inset Formula $f$
+\end_inset
 
+ corresponds to the number of artificial features created by the proposed
+ method.
 \end_layout
 
 \end_inset
@@ -9739,6 +9864,70 @@ D.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "mlapp1"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, M.A.
+ Losada, A.
+ Saber, L.
+ Rasoul Ahari, P.
+ Larroudé, M.
+ Vaezi, M.
+ Brocchini, Prediction of non-breaking wave induced scour depth at the trunk
+ section of breakwaters using Genetic Programming and Artificial Neural
+ Networks, Coastal Engineering 
+\series bold
+121
+\series default
+, pp.
+ 107-118, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp2"
+literal "false"
+
+\end_inset
+
+F.
+ Afsarian, A.
+ Saber, A.
+ Pourzangbar, A.G.
+ Olabi, M.A.
+ Khanmohammadi, Analysis of recycled aggregates effect on energy conservation
+ using M5′ model tree algorithm, Energy 156, pp.
+ 264-277, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "mlapp3"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, A.
+ Saber, A.Y.
+ Bakhtiary, L.R.
+ Ahari, Predicting scour depth at seawalls using GP and ANNs, Journal of
+ Hydroinformatics 
+\series bold
+19
+\series default
+, pp.
+ 349–363, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "class_review"
 literal "false"
 
@@ -9983,6 +10172,22 @@ M.
 18
 \series default
 , 9, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "gpFSEL"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, Determination of the most effective parameters on scour depth
+ at seawalls using genetic programming (GP).
+ In The 10th International Conference on Coasts, Ports and Marine Structures
+ (ICOPMASS 2012), Tehran, Iran, 9p, November 2012.
+ 
 \end_layout
 
 \begin_layout Bibliography
@@ -10618,6 +10823,24 @@ S.
 1820
 \series default
 , 012185, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psoApp5"
+literal "false"
+
+\end_inset
+
+A.
+ Pourzangbar, M.
+ Vaezi, Optimal design of brace-viscous damper and pendulum tuned mass damper
+ using Particle Swarm Optimization, Applied Ocean Research 
+\series bold
+112
+\series default
+, 102706, 2021.
 \end_layout
 
 \begin_layout Bibliography
