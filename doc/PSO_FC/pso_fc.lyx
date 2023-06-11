@@ -9144,7 +9144,75 @@ The experimental results are of great interest, as one can see from their
  Moreover, the usage of a neural network trained by a genetic algorithm
  on the modified datasets, gives clearly better results than the use of
  an RBF neural network, especially in the classification datasets.
- Moreover, a graphical comparison between the genetic algorithm when applied
+ An additional test was performed for the regression datasets, where the
+ number of particles in PSO algorithm increases from 100 to 400 and the
+ results are graphically illustrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:psodiagram"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pso_diagram.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average regression error for all regression datasets using the proposed
+ method.
+ The number of PSO particles increases from 100 to 400 and the number of
+ constructed features was set to 
+\begin_inset Formula $f=2$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:psodiagram"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Moreover, a graphical comparison between the genetic algorithm when applied
  to artificial datasets and the genetic algorithm when applied to the original
  classification datasets is given in Figure 
 \begin_inset CommandInset ref
