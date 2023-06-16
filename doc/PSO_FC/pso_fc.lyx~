@@ -214,7 +214,7 @@ Creating features using particle swarm optimization
 
 \begin_layout Author
 Ioannis G.
- Tsoulos
+ Solos
 \begin_inset Formula $^{1,*}$
 \end_inset
 
@@ -227,11 +227,11 @@ Ioannis G.
 
 \begin_layout Author Names for PDF
 Ioannis G.
- Tsoulos; Alexandros Tzallas
+ Solos; Alexandros Tzallas
 \end_layout
 
 \begin_layout Author Names for Citation
-Tsoulos, I.G.; Tzallas A
+Solos, I.G.; Tzallas A
 \end_layout
 
 \begin_layout Address
@@ -268,12 +268,13 @@ The problem of data classification or data fitting is widely applicable
  Furthermore, in many cases, many of the features of the input data do not
  contribute to learning, or there may even be hidden correlations between
  the features of the dataset.
- The purpose of the proposed method is to significantly reduce the data
- classification or regression error through the usage of a technique that
- utilizes the Particle Swarm Optimization method and Grammatical Evolution.
- This method is divided into two phases: in the first phase artificial features
- are constructed using Grammatical Evolution and the progress of the creation
- of these features is controlled by the Particle Swarm Optimization method.
+ The purpose of the proposed method is to significantly reduce data classificati
+on or regression errors through the usage of a technique that utilizes the
+ Particle Swarm Optimization method and Grammatical Evolution.
+ This method is divided into two phases: in the first phase, artificial
+ features are constructed using Grammatical Evolution and the progress of
+ the creation of these features is controlled by the Particle Swarm Optimization
+ method.
  In addition, this new technique utilizes penalty factors to limit the generated
  features to a range of values to make training machine learning models
  more efficient.
@@ -360,7 +361,7 @@ literal "false"
 
 \end_inset
 
-, Radial Basis Function (RBF) networks 
+, Radial Basis Function (RF) networks 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "rbf2,rbf3,rbf4"
@@ -385,8 +386,8 @@ literal "false"
 \end_inset
 
  etc.
- Also many practical problems have tackled using machine learning approaches
- such as prediction of non-breaking waves 
+ Also, many practical problems have been tackled using machine learning
+ approaches, such as prediction of non-breaking waves 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "mlapp1"
@@ -506,8 +507,7 @@ literal "false"
 Requirement for large training time, which is proportional to the dimension
  of the input data.
  For example, in a neural network with one hidden layer equipped with 10
- processing nodes and a provided dataset with 10 inputs, then more than
- 
+ processing nodes and a provided dataset with 10 inputs, more than 
 \begin_inset Formula $N=100$
 \end_inset
 
@@ -520,9 +520,9 @@ Requirement for large training time, which is proportional to the dimension
 \begin_layout Itemize
 Another important problem presented in machine learning techniques is the
  fact that many models require significant storage space in the computer's
- memory for their parameters, and in fact this space increases significantly
+ memory for their parameters, and in fact, this space increases significantly
  with the increase in the dimension of the objective problem.
- For example in Bfgs 
+ For example, in the Bfgs 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Powell"
@@ -563,7 +563,7 @@ literal "false"
 \end_inset
 
 .
- Morever, Pourzangbar proposed a feature selection method 
+ Moreover, Pourzangbar proposed a feature selection method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "gpFSEL"
@@ -572,7 +572,7 @@ literal "false"
 \end_inset
 
  based on Genetic Programming for the determination of the most effective
- parameters on on scour depth at seawalls.
+ parameters on scour depth at seawalls.
  The proposed technique essentially, in addition to creating artificial
  features, also selects features at the same time, since it can remove from
  the final features those that will not bring significant benefits to the
@@ -592,7 +592,7 @@ literal "false"
 
 \begin_layout Itemize
 The problem of reduced performance of models on unknown data, is also known
- as overfitting problem.
+ as the overfitting problem.
  The paper of Geman et al 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -619,7 +619,7 @@ literal "false"
 
 \end_inset
 
-, the prunning methods 
+, the pruning methods 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "nnprunning1,nnprunning2"
@@ -647,10 +647,11 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-This article proposes a two-phase method to overcome the above problems.
- During the first phase, a limited number of artificial features are created
- from the original ones using a method based on the Grammatical Evolution
- procedure 
+This paper recommends a two-phase method for data classification or regression
+ problems.
+ In the first phase, a global optimization method directs the production
+ of artificial features from the existing ones with the help of Grammatical
+ Evolution 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ge1"
@@ -703,8 +704,8 @@ literal "true"
 \end_inset
 
  etc.
- These features are iteratively adjusted using a hybrid technique based
- on particle swarm optimization (PSO)
+ The global optimization method used in this work was the particle swarm
+ optimization (PESO) method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "pso_major,pso1,pso2"
@@ -712,14 +713,10 @@ literal "false"
 
 \end_inset
 
-, where the generated features are constrained using penalty factors to
- be within a predefined value interval and their evaluation is done using
- an RBF network.
- The RBF network was preferred over other machine learning models to be
- used to evaluate the generated features due to its training speed.
- The PSO method has been selected as the optimization method due to its
+.
+ The PESO method has been selected as the optimization method due to its
  simplicity and the small number of parameters that should be set.
- Also, the PSO method has been used in many difficult problems in all areas
+ Also, the PESO method has been used in many difficult problems in all areas
  of the sciences, such as problems that arise in physics
 \series bold
  
@@ -757,8 +754,8 @@ literal "true"
 \end_inset
 
  etc.
- Furthermore, the PSO method was successfully applied recently in many practical
- problems such as flow shop scheduling 
+ Furthermore, the PESO method was successfully applied recently in many
+ practical problems such as flow shop scheduling 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "psoApp1"
@@ -816,6 +813,16 @@ literal "false"
 \end_inset
 
 , etc.
+ The generated artificial features are nonlinear combinations of the original
+ ones and any machine learning model can be used to effectively estimate
+ their dynamics.
+ In the present implementation, the RF network was used, since it is a widely
+ tested machine learning model but also because its training is much faster
+ compared to other models.
+ In the second phase, the best features obtained from the first phase are
+ also used to modify the test set of the objective problem and a machine
+ learning method can be used to estimate the error in the control set.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -964,15 +971,44 @@ name "sec:The-proposed-method"
 \end_layout
 
 \begin_layout Standard
-The basic steps by which the Grammatical Evolution technique produces the
- artificial features are then analyzed in as well as the steps in the overall
- process of creating and evaluating the artificial features.
-\end_layout
+This section will introduce the main parts of the proposed two-step method.
+ The first subsection will introduce the basics of Grammatical Evolution
+ and give a complete example of building a valid function from a chromosome.
+ Next, the process by which the Grammatical Evolution chromosomes can be
+ used to create artificial features from existing ones will be presented
+ in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Feature-construction"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
+\end_inset
 
-\series bold
-(edo na baloume ena perigrama aytis tis enotitas)
+ The procedure by which the fitness of each chromosome can be assessed is
+ presented in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Fitness-calculation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and finally in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:The-used-PSO"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the overall algorithm is presented along with a flowchart for its graphical
+ representation.
 \end_layout
 
 \begin_layout Subsection
@@ -1112,6 +1148,18 @@ noprefix "false"
 \end_inset
 
 .
+ Symbols in < > brackets denote non - terminal symbols that belong to set
+ 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ In every line of the grammar a production rule is shown for every non -
+ terminal symbol.
+ The numbers in parentheses represent the sequence number of the production
+ rule for the corresponding non-terminal symbol.
+ For example the non-terminal symbol <op> has 4 production rules, each leading
+ to a terminating arithmetic operation symbol.
  The constant N is the dimension of the input dataset.
 \begin_inset Float figure
 placement H
@@ -1124,6 +1172,7 @@ status open
 
 \begin_layout Plain Layout
 BNF grammar of the proposed method.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:BNF-grammar-of"
@@ -1287,6 +1336,11 @@ noprefix "false"
 \end_inset
 
 .
+ This chromosome represents a series of sequential numbers of production
+ rules from the above grammar.
+ The Grammar Evolution method takes the elements of the chromosome one by
+ one and finds the corresponding production rule by taking the remainder
+ of the division by the number of symbols of each non-terminal symbol.
  The final expression that created is 
 \series bold
 
@@ -1571,13 +1625,18 @@ name "subsec:Feature-construction"
 \end_layout
 
 \begin_layout Standard
-The current method is used to create 
+In the proposed technique the chromosomes of Grammatical Evolution are used
+ as a set of functions that create artificial features as nonlinear combinations
+ of the existing ones.
+ This process can also be considered as a feature selection method, since
+ possibly only a part of the original features can be used in the generated
+ features.
+ The proposed method creates 
 \begin_inset Formula $N_{f}$
 \end_inset
 
- artificial features from the original ones.
- The new features will be considered as non - linear transformations of
- the old features and the process for any particle 
+ artificial features from the original ones and the process for any chromosome
+ 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1681,7 +1740,16 @@ name "subsec:Fitness-calculation"
 \end_layout
 
 \begin_layout Standard
-The following steps calculates the fitness for any given particle 
+Each chromosome in grammatical evolution produces a series of artificial
+ features, which are nonlinear functions of existing features.
+ However, an evaluation and a distinction should be made between those sets
+ of features which will yield more in the learning process and those which
+ will yield less.
+ This is done by assessing the appropriateness of these features.
+ In order to be able to compute the fitness of each group of features, the
+ original training set should be reduced using the artificial features that
+ have been produced and the following steps should be executed for any given
+ chromosome 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1822,7 +1890,7 @@ End For
 \series bold
 Train
 \series default
- an RBF 
+ an RF 
 \begin_inset Formula $C(x)$
 \end_inset
 
@@ -1866,7 +1934,14 @@ where
 \end_layout
 
 \begin_layout Subsection
-The used PSO method
+The used PESO method
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:The-used-PSO"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1894,7 +1969,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The base PSO algorithm executed in one processing unit.
+The base PESO algorithm executed in one processing unit.
 \begin_inset CommandInset label
 LatexCommand label
 name "alg:psoSerial"
@@ -2050,7 +2125,7 @@ name "enu:Check-Termination."
 \begin_inset Formula $\mbox{iter}\ge\mbox{iter}_{\mbox{max}}$
 \end_inset
 
- then goto step 
+ then got step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:Termination-step."
@@ -2315,7 +2390,7 @@ The variable
 \begin_inset Formula $\omega$
 \end_inset
 
-, commonly called inertia, was suggested by Shi and Eberhart 
+, commonly called inertia, was suggested by Shim and Earhart 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "pso_major"
@@ -2361,7 +2436,7 @@ literal "false"
 .
  With this calculation of the inertia variable, an even better exploration
  of the research space is achieved with the randomness it introduces, something
- that was also found in the publication of Charilogis and Tsoulos 
+ that was also found in the publication of Charolais and Solos 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ipso"
@@ -2452,7 +2527,7 @@ The ability of the proposed technique to produce effective artificial features
 \end_layout
 
 \begin_layout Enumerate
-UCI dataset repository, 
+CI dataset repository, 
 \begin_inset Flex URL
 status open
 
@@ -2490,7 +2565,7 @@ literal "false"
 \end_layout
 
 \begin_layout Enumerate
-The Statlib URL 
+The Stat lib URL 
 \begin_inset Flex URL
 status open
 
@@ -2604,7 +2679,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Hayes roth
+Hayes Roth
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2637,7 +2712,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-HouseVotes
+House Votes
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2670,7 +2745,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Liverdisorder
+Liver disorder
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2686,7 +2761,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Mammographic
+Mammography
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2702,7 +2777,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Parkinsons
+Parkinson's
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2718,7 +2793,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Pima
+Puma
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2734,7 +2809,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Popfailures
+Pop failures
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2767,7 +2842,7 @@ literal "true"
 \begin_layout Enumerate
 
 \series bold
-Saheart
+Suharto
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2800,7 +2875,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Wdbc
+BC
 \series default
  dataset 
 \begin_inset CommandInset citation
@@ -2810,7 +2885,7 @@ literal "false"
 
 \end_inset
 
- ussed in breast tumors.
+ used in breast tumors.
  
 \end_layout
 
@@ -2833,7 +2908,7 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Eeg
+EEG
 \series default
  datasets 
 \begin_inset CommandInset citation
@@ -2853,11 +2928,11 @@ Z_F_S,
 \end_layout
 
 \begin_layout Enumerate
-ZO_NF_S
+ZOE_NF_S
 \end_layout
 
 \begin_layout Enumerate
-ZONF_S.
+ZONE_S.
 \end_layout
 
 \end_deeper
@@ -2967,8 +3042,8 @@ literal "false"
 \series bold
 Dee
 \series default
- dataset, used to estimate the daily average price of TkWhe electricity
- energy in Spain.
+ dataset, used to estimate the daily average price of KWh electricity energy
+ in Spain.
 \end_layout
 
 \begin_layout Enumerate
@@ -3034,7 +3109,7 @@ MORTGAGE
 \begin_layout Enumerate
 
 \series bold
-PY 
+PU 
 \series default
 dataset, (Pyrimidines problem)
 \begin_inset CommandInset citation
@@ -3077,14 +3152,14 @@ In order to give greater credibility to the experiments carried out, the
  dataset.
  Every experiment was repeated 30 times using different seeds for the random
  generator each time.
- All the used code was implemented in ANSI C++ using the OPTIMUS programming
+ All the used code was implemented in ANSI C++ using the OPTIMUMS programming
  library for optimization purposes, freely available from 
 \begin_inset Flex URL
 status open
 
 \begin_layout Plain Layout
 
-https://github.com/itsoulos/OPTIMUS/
+https://github.com/itsoulos/OPTIMUMS/
 \end_layout
 
 \end_inset
@@ -3093,7 +3168,7 @@ https://github.com/itsoulos/OPTIMUS/
  For the classification datasets, the average classification error as measured
  in the test set is reported, while for the regression datasets the average
  regression error is reported.
- Here by the term classification error, we mean the percentage of patterns
+ Here, by the term classification error, we mean the percentage of patterns
  in the test set that are classified into a different class than expected.
  Also, in every table, an additional column denoted as AVERAGE is added
  to show the average classification or regression error for the corresponding
@@ -3347,13 +3422,18 @@ Penalty factor
 
 \end_inset
 
+In all techniques the same parameter sets and the same random numbers have
+ been used in order to have a fair comparison of the experimental results.
+\end_layout
+
+\begin_layout Standard
 In the first phase the proposed technique will generate new artificial features
  from the existing ones with the help of a technique guided by the partnership
  of Particle Swarm Optimization and Grammatical Evolution.
  In the second phase of the technique, these features will be used to modify
  the original test set to which any machine learning method can now be applied.
  In the second phase of the current work, two different techniques will
- be used: an RBF neural network and an artificial neural network which will
+ be used: an RF neural network and an artificial neural network which will
  be trained using a genetic algorithm.
  This is done in order to establish the potential of the proposed procedure
  to improve the performance of both simple machine learning models and complex
@@ -3376,11 +3456,11 @@ A genetic algorithm with
 
  hidden nodes.
  After the termination of the genetic algorithm the local optimization method
- BFGS is applied to the best chromosome of the population.
+ BEFOGS is applied to the best chromosome of the population.
 \end_layout
 
 \begin_layout Enumerate
-The Radial Basis Function (RBF) network 
+The Radial Basis Function (RF) network 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "rbf1"
@@ -3412,7 +3492,7 @@ literal "false"
 \end_layout
 
 \begin_layout Enumerate
-The Rprop optimization method 
+The Prop optimization method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "rpropnn1,rpropnn2"
@@ -3428,7 +3508,7 @@ literal "false"
 \end_layout
 
 \begin_layout Enumerate
-The NEAT method (NeuroEvolution of Augmenting Topologies ) 
+The NEAT method (Revolution of Augmenting Typologies ) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "neat"
@@ -3526,7 +3606,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -3544,7 +3624,7 @@ ADAM
 \begin_inset Text
 
 \begin_layout Plain Layout
-RPROP
+PROP
 \end_layout
 
 \end_inset
@@ -3956,7 +4036,7 @@ Heart
 \begin_inset Text
 
 \begin_layout Plain Layout
-HouseVotes
+House Votes
 \end_layout
 
 \end_inset
@@ -4068,7 +4148,7 @@ Ionosphere
 \begin_inset Text
 
 \begin_layout Plain Layout
-Liverdisorder
+Liver disorder
 \end_layout
 
 \end_inset
@@ -4180,7 +4260,7 @@ Lymography
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mammographic
+Mammography
 \end_layout
 
 \end_inset
@@ -4236,7 +4316,7 @@ Mammographic
 \begin_inset Text
 
 \begin_layout Plain Layout
-Parkinsons
+Parkinson's
 \end_layout
 
 \end_inset
@@ -4292,7 +4372,7 @@ Parkinsons
 \begin_inset Text
 
 \begin_layout Plain Layout
-Pima
+Puma
 \end_layout
 
 \end_inset
@@ -4348,7 +4428,7 @@ Pima
 \begin_inset Text
 
 \begin_layout Plain Layout
-Popfailures
+Pop failures
 \end_layout
 
 \end_inset
@@ -4460,7 +4540,7 @@ Regions2
 \begin_inset Text
 
 \begin_layout Plain Layout
-Saheart
+Suharto
 \end_layout
 
 \end_inset
@@ -4572,7 +4652,7 @@ Segment
 \begin_inset Text
 
 \begin_layout Plain Layout
-Wdbc
+BC
 \end_layout
 
 \end_inset
@@ -4740,7 +4820,7 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
-ZO_NF_S
+ZOE_NF_S
 \end_layout
 
 \end_inset
@@ -4796,7 +4876,7 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
-ZONF_S
+ZONE_S
 \end_layout
 
 \end_inset
@@ -5044,7 +5124,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -5062,7 +5142,7 @@ ADAM
 \begin_inset Text
 
 \begin_layout Plain Layout
-RPROP
+PROP
 \end_layout
 
 \end_inset
@@ -5754,7 +5834,7 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
-PY
+PU
 \end_layout
 
 \end_inset
@@ -6016,8 +6096,8 @@ noprefix "false"
 \end_inset
 
 .
- The RBF column represents the experimental results in which, after the
- construction of the artificial features, a RBF network with 
+ The RF column represents the experimental results in which, after the construct
+ion of the artificial features, a RF network with 
 \begin_inset Formula $H$
 \end_inset
 
@@ -6186,7 +6266,7 @@ DATASET
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -6204,7 +6284,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -6222,7 +6302,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -6697,7 +6777,7 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
-HOUSEVOTES
+HOUSE VOTES
 \end_layout
 
 \end_inset
@@ -7607,7 +7687,7 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
-ZO_NF_S
+ZOE_NF_S
 \end_layout
 
 \end_inset
@@ -7672,7 +7752,7 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
-ZONF_S
+ZONE_S
 \end_layout
 
 \end_inset
@@ -8018,7 +8098,7 @@ DATASET
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -8036,7 +8116,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -8054,7 +8134,7 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
-RBF
+RF
 \end_layout
 
 \end_inset
@@ -8854,7 +8934,7 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
-PY
+PU
 \end_layout
 
 \end_inset
@@ -9143,9 +9223,9 @@ The experimental results are of great interest, as one can see from their
  on average greater than 50%.
  Moreover, the usage of a neural network trained by a genetic algorithm
  on the modified datasets, gives clearly better results than the use of
- an RBF neural network, especially in the classification datasets.
+ an RF neural network, especially in the classification datasets.
  An additional test was performed for the regression datasets, where the
- number of particles in PSO algorithm increases from 100 to 400 and the
+ number of particles in PESO algorithm increases from 100 to 400 and the
  results are graphically illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -9164,11 +9244,12 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename pso_diagram.eps
+	scale 50
 
 \end_inset
 
@@ -9181,7 +9262,7 @@ status open
 \begin_layout Plain Layout
 Average regression error for all regression datasets using the proposed
  method.
- The number of PSO particles increases from 100 to 400 and the number of
+ The number of PESO particles increases from 100 to 400 and the number of
  constructed features was set to 
 \begin_inset Formula $f=2$
 \end_inset
@@ -9207,7 +9288,11 @@ name "fig:psodiagram"
 
 \end_inset
 
-
+ Judging from the results, we can observe that the selection of 200 particles
+ in the experimental results was an optimal choice and a compromise between
+ the speed and efficiency of the method, as adding another 200 particles
+ to the Particle Swarm Optimization did not significantly improve the efficiency
+ of the proposed method.
 \end_layout
 
 \begin_layout Standard
@@ -9224,7 +9309,7 @@ noprefix "false"
 \end_inset
 
 .
- The same graphical comparison is also shown for the RBF model in Figure
+ The same graphical comparison is also shown for the RF model in Figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -9251,7 +9336,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename genetic_all.eps
-	scale 50
+	scale 45
 
 \end_inset
 
@@ -9264,7 +9349,7 @@ status open
 \begin_layout Plain Layout
 Comparison of the proposed Genetic classification algorithm for the construction
  of 2,3 and 4 artificial features (blue color) vs.
- a well-known Genetic classification algorithm (grey color) to the 24 different
+ a welkin Genetic classification algorithm (Grey color) to the 24 different
  datasets.
 \begin_inset CommandInset label
 LatexCommand label
@@ -9310,10 +9395,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of the proposed RBF classification network for the construction
+Comparison of the proposed RF classification network for the construction
  of 2,3 and 4 artificial features (blue color) vs.
- a well-known RBF classification network (grey color) to the 24 different
- datasets.
+ a welkin RF classification network (Grey color) to the 24 different datasets.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:comparisonRbf"
@@ -9334,7 +9418,134 @@ name "fig:comparisonRbf"
 
 \end_inset
 
+Also, in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:geneticStat"
+plural "false"
+caps "false"
+noprefix "false"
 
+\end_inset
+
+ a comparison for the regression datasets is outlined between the proposed
+ method with the application of the genetic algorithm in second phase and
+ the genetic algorithm on the original regression datasets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename genetic_regression.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of the proposed algorithm for the construction of 2,3 and 4 artificia
+l features (blue color) vs.
+ the genetic algorithm (Grey color) for the regression datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:geneticStat"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Finally, using the Wilcox on sandbank test a comparison is made between
+ the proposed method and all mentioned machine learning methods for the
+ classification datasets.
+ This comparison is graphically outlined in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:comparisonAll"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename comparison_all.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The comparison between the proposed method for constructing 2, 3, and 4
+ artificial features (blue colour) and several welkin classification methods
+ (black colour) on 24 different datasets revealed that the proposed method
+ demonstrated superior performance with statistical significance.
+ The results were obtained using the Wilcox on sandbank test.
+ Across all 24 datasets, the proposed method consistently outperformed the
+ welkin classification methods regarding classification error .
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:comparisonAll"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+These results suggest that the proposed method has a distinct advantage
+ over the welkin classification methods when it comes to constructing artificial
+ features for classification tasks.
+ It offers improved performance and provides a more effective solution for
+ these datasets
 \end_layout
 
 \begin_layout Section
@@ -9360,7 +9571,7 @@ A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
  In addition, to make learning more efficient, the values of the generated
  features are bounded within a value interval using penalty factors.
  The constructed features are evaluated in terms of their effectiveness
- with the help of a fast machine learning model such as the RBF network,
+ with the help of a fast machine learning model such as the RF network,
  even though other more effective models could also be used.
  Among the advantages of the proposed procedure is the fact that it does
  not require any prior knowledge of the data set to which it will be applied
@@ -9374,23 +9585,38 @@ A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
 
 \begin_layout Standard
 The current work was applied on an extended series of widely used datasets
- from the various fields and was compared against some machine learning
- models on the same datasets.
+ from  various fields and was compared against some machine learning models
+ on the same datasets.
  From the experimental results, it was seen that the proposed technique
  dramatically improves the performance of traditional learning techniques
  when applied to artificial features.
- This improvement reaches an average of 30% for data classification and
- 50% for data fitting problems.
- Furthermore, as shown in the experimental results, the proposed technique
- is able to give excellent results even when only two features are used.
- Future work in the nethod may include the use of parallel techniques for
- feature construction to drastically reduce the required execution time.
-\end_layout
-
-\begin_layout Standard
+ The proposed two-stage technique generated artificial features in the first
+ stage guided by the Particle Swarm Optimization technique, and in the second
+ stage, either a neural network trained by genetic algorithm or a RF network
+ was used in the modified test set.
+ In both cases, the improvement from artificial feature generation in control
+ error was significant for each learning model.
 
 \series bold
-(Some more discussion here about the results and the speed of the method)
+ 
+\series default
+This improvement reaches an average of 30% for data classification and 50%
+ for data fitting problems.
+
+\series bold
+ 
+\series default
+In fact, in many cases, the improvement in test error exceeds 75%.
+ Moreover, the method appears quite robust, since increasing the number
+ of particles in the particle swarm optimization method did not show to
+ significantly reduce the average error in the test sets.
+ Furthermore, increasing the number of features constructed does not seem
+ to have a dramatic effect on the performance of the method, which means
+ that the method is able to achieve good generalization results even with
+ a limited number of features, which in turn leads to greatly reducing the
+ number of dimensions of the original problem.
+ Future work in the method may include the use of parallel techniques for
+ feature construction to drastically reduce the required execution time.
 \end_layout
 
 \begin_layout Standard
@@ -9934,7 +10160,7 @@ literal "false"
 
 D.
  Chen, Research on Traffic Flow Prediction in the Big Data Environment Based
- on the Improved RBF Neural Network, IEEE Transactions on Industrial Informatics
+ on the Improved RF Neural Network, IEEE Transactions on Industrial Informatics
  
 \series bold
 13
@@ -9956,8 +10182,8 @@ Z.
  Mourshed, K.
  Liu, X.
  Xu, S.
- Feng, A novel competitive swarm optimized RBF neural network model for
- short-term solar power generation forecasting, Neurocomputing 
+ Feng, A novel competitive swarm optimized RF neural network model for short-ter
+m solar power generation forecasting, Neurocomputing 
 \series bold
 397
 \series default
@@ -10246,7 +10472,7 @@ literal "false"
 
 J.
  Li, Jh Cheng, Jy.
- Shi, F.
+ Shim, F.
  Huang, Brief Introduction of Back Propagation (BP) Neural Network Algorithm
  and Its Improvement.
  In: Jin, D., Lin, S.
@@ -10758,7 +10984,7 @@ literal "false"
 \end_inset
 
 I.G.
- Tsoulos, A.
+ Solos, A.
  Tzallas, D.
  Tsalikakis, Evolutionary Based Weight Decaying Method for Neural Network
  Training.
@@ -10894,7 +11120,7 @@ literal "false"
 
 J.
  Kennedy and R.
- Eberhart, "Particle swarm optimization," Proceedings of ICNN'95 - International
+ Earhart, "Particle swarm optimization," Proceedings of ICNN'95 - International
  Conference on Neural Networks, 1995, pp.
  1942-1948 vol.4, doi: 10.1109/ICNN.1995.488968.
 \end_layout
@@ -10908,8 +11134,8 @@ literal "false"
 \end_inset
 
 R.C.
- Eberhart, Y.H.
- Shi, Tracking and optimizing dynamic systems with particle swarms, in:
+ Earhart, Y.H.
+ Shim, Tracking and optimizing dynamic systems with particle swarms, in:
  Congress on Evolutionary Computation, Korea, 2001.
 \end_layout
 
@@ -10922,9 +11148,9 @@ literal "false"
 \end_inset
 
 V.
- Charilogis, I.G.
- Tsoulos, Toward an Ideal Particle Swarm Optimizer for Multidimensional
- Functions, Information 
+ Charolais, I.G.
+ Solos, Toward an Ideal Particle Swarm Optimizer for Multidimensional Functions,
+ Information 
 \series bold
 13
 \series default
@@ -11176,7 +11402,7 @@ K.
  Neoh, C.
  P.
  Lim, B.
- Fielding, A Micro-GA Embedded PSO Feature Selection Approach to Intelligent
+ Fielding, A Micro-GA Embedded PESO Feature Selection Approach to Intelligent
  Facial Emotion Recognition, IEEE Transactions on Cybernetics.
  
 \series bold
@@ -11277,8 +11503,8 @@ literal "true"
 \end_inset
 
 Dimitris Gavrilis, Ioannis G.
- Tsoulos, Evangelos Dermatas, Selecting and constructing features using
- grammatical evolution, Pattern Recognition Letters 
+ Solos, Evangelos Dermatas, Selecting and constructing features using grammatica
+l evolution, Pattern Recognition Letters 
 \series bold
 29
 \series default
@@ -11296,7 +11522,7 @@ literal "true"
 \end_inset
 
 Dimitris Gavrilis, Ioannis G.
- Tsoulos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
+ Solos, Evangelos Dermatas, Neural Recognition and Genetic Features Selection
  for Robust Detection of E-Mail Spam, Advances in Artificial Intelligence
  Volume 3955 of the series Lecture Notes in Computer Science pp 498-501,
  2006.
@@ -11311,7 +11537,7 @@ literal "true"
 \end_inset
 
 George Georgoulas, Dimitris Gavrilis, Ioannis G.
- Tsoulos, Chrysostomos Stylios, João Bernardes, Peter P.
+ Solos, Chrysostomos Stylios, João Bernardes, Peter P.
  Groumpos, Novel approach for fetal heart rate classification introducing
  grammatical evolution, Biomedical Signal Processing and Control 
 \series bold
@@ -11330,7 +11556,7 @@ literal "true"
 \end_inset
 
 Otis Smart, Ioannis G.
- Tsoulos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
+ Solos, Dimitris Gavrilis, George Georgoulas, Grammatical evolution for
  features of epileptic oscillations in clinical intracranial electroencephalogra
 ms, Expert Systems with Applications 
 \series bold
@@ -11349,7 +11575,7 @@ literal "false"
 \end_inset
 
 I.G.
- Tsoulos, C.
+ Solos, C.
  Stylios, V.
  Charalampous, COVID-19 Predictive Models Based on Grammatical Evolution,
  SN COMPUT.
@@ -11371,7 +11597,7 @@ literal "false"
 
 V.
  Christou, I.G.
- Tsoulos, V.
+ Solos, V.
  Loupas, A.T.
  Tzallas, C.
  Gogos, P.S.
@@ -12246,7 +12472,7 @@ T.
  Pajchrowski, K.
  Zawirski and K.
  Nowopolski, Neural Speed Controller Trained Online by Means of Modified
- RPROP Algorithm, IEEE Transactions on Industrial Informatics 
+ PROP Algorithm, IEEE Transactions on Industrial Informatics 
 \series bold
 11
 \series default
@@ -12263,7 +12489,7 @@ literal "false"
 \end_inset
 
 Rinda Parama Satya Hermanto, Suharjito, Diana, Ariadi Nugroho, Waiting-Time
- Estimation in Bank Customer Queues using RPROP Neural Networks, Procedia
+ Estimation in Bank Customer Queues using PROP Neural Networks, Procedia
  Computer Science 
 \series bold
  135
@@ -12283,7 +12509,7 @@ literal "false"
 K.
  O.
  Stanley, R.
- Miikkulainen, Evolving Neural Networks through Augmenting Topologies, Evolution
+ Miikkulainen, Evolving Neural Networks through Augmenting Typologies, Evolution
 ary Computation 
 \series bold
 10
