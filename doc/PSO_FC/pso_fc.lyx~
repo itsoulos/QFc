@@ -591,8 +591,12 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-The problem of reduced performance of models on unknown data, is also known
- as the overfitting problem.
+Another interesting problem, which has been tackled by dozens of researchers
+ in the last decades, is that of overfitting of neural networks or machine
+ learning models in general.
+ In this problem, although the machine learning model has achieved a satisfactor
+y level of training this is not reflected in unknown patterns (test set
+ ) that were not present during training.
  The paper of Geman et al 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -619,7 +623,8 @@ literal "false"
 
 \end_inset
 
-, the pruning methods 
+, methods that reduce the number of parameters of the model ( pruning methods
+ ) 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "nnprunning1,nnprunning2"
@@ -643,7 +648,54 @@ literal "false"
 
 \end_inset
 
+, dropout methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nndrop1,nndrop2"
+literal "false"
+
+\end_inset
+
+, the Sarprop method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sarprop"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+positive correlation methods 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnpositive"
+literal "false"
+
+\end_inset
+
  etc.
+ Recently, a variety of paper have been proposed to handle the overfitting
+ problem in various cases such as the evolution of RBF models using genetic
+ algorithms for rainfall prediction 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbfEvol"
+literal "false"
+
+\end_inset
+
+, pruning decision trees using genetic algorithms 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "treePrun1"
+literal "false"
+
+\end_inset
+
+, 
 \end_layout
 
 \begin_layout Standard
@@ -705,7 +757,7 @@ literal "true"
 
  etc.
  The global optimization method used in this work was the particle swarm
- optimization (PESO) method 
+ optimization (PSO) method 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "pso_major,pso1,pso2"
@@ -714,9 +766,9 @@ literal "false"
 \end_inset
 
 .
- The PESO method has been selected as the optimization method due to its
+ The PSO method has been selected as the optimization method due to its
  simplicity and the small number of parameters that should be set.
- Also, the PESO method has been used in many difficult problems in all areas
+ Also, the PSO method has been used in many difficult problems in all areas
  of the sciences, such as problems that arise in physics
 \series bold
  
@@ -754,8 +806,8 @@ literal "true"
 \end_inset
 
  etc.
- Furthermore, the PESO method was successfully applied recently in many
- practical problems such as flow shop scheduling 
+ Furthermore, the PSO method was successfully applied recently in many practical
+ problems such as flow shop scheduling 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "psoApp1"
@@ -1934,7 +1986,7 @@ where
 \end_layout
 
 \begin_layout Subsection
-The used PESO method
+The used PSO method
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:The-used-PSO"
@@ -1969,7 +2021,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The base PESO algorithm executed in one processing unit.
+The base PSO algorithm executed in one processing unit.
 \begin_inset CommandInset label
 LatexCommand label
 name "alg:psoSerial"
@@ -2436,7 +2488,7 @@ literal "false"
 .
  With this calculation of the inertia variable, an even better exploration
  of the research space is achieved with the randomness it introduces, something
- that was also found in the publication of Charolais and Solos 
+ that was also found in the publication of Charilogis and Tsoulos 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ipso"
@@ -9225,7 +9277,7 @@ The experimental results are of great interest, as one can see from their
  on the modified datasets, gives clearly better results than the use of
  an RF neural network, especially in the classification datasets.
  An additional test was performed for the regression datasets, where the
- number of particles in PESO algorithm increases from 100 to 400 and the
+ number of particles in PSO algorithm increases from 100 to 400 and the
  results are graphically illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -9262,7 +9314,7 @@ status collapsed
 \begin_layout Plain Layout
 Average regression error for all regression datasets using the proposed
  method.
- The number of PESO particles increases from 100 to 400 and the number of
+ The number of PSO particles increases from 100 to 400 and the number of
  constructed features was set to 
 \begin_inset Formula $f=2$
 \end_inset
@@ -9585,7 +9637,7 @@ A hybrid technique that utilizes a Particle Swarm Optimizer and a feature
 
 \begin_layout Standard
 The current work was applied on an extended series of widely used datasets
- from  various fields and was compared against some machine learning models
+ from various fields and was compared against some machine learning models
  on the same datasets.
  From the experimental results, it was seen that the proposed technique
  dramatically improves the performance of traditional learning techniques
@@ -9615,7 +9667,7 @@ In fact, in many cases, the improvement in test error exceeds 75%.
  that the method is able to achieve good generalization results even with
  a limited number of features, which in turn leads to greatly reducing the
  number of dimensions of the original problem.
- Future work in the method may include the use of parallel techniques for
+ Future work on the method may include the use of parallel techniques for
  feature construction to drastically reduce the required execution time.
 \end_layout
 
@@ -10984,7 +11036,7 @@ literal "false"
 \end_inset
 
 I.G.
- Solos, A.
+ TSoulos, A.
  Tzallas, D.
  Tsalikakis, Evolutionary Based Weight Decaying Method for Neural Network
  Training.
@@ -10994,6 +11046,135 @@ I.G.
 \series default
 , pp.
  463–473, 2018.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndrop1"
+literal "false"
+
+\end_inset
+
+Nitish Srivastava, G E Hinton, Alex Krizhevsky, Ilya Sutskever, Ruslan R
+ Salakhutdinov, Dropout: a simple way to prevent neural networks from overfittin
+g, Journal of Machine Learning Research 
+\series bold
+15
+\series default
+, pp.
+ 1929-1958, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndrop2"
+literal "false"
+
+\end_inset
+
+A.
+ Iosifidis, A.
+ Tefas, I.
+ Pitas, DropELM: Fast neural network regularization with Dropout and DropConnect
+, Neurocomputing 
+\series bold
+162
+\series default
+, pp.
+ 57-66, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "sarprop"
+literal "false"
+
+\end_inset
+
+N.K.
+ Treadgold, T.D.
+ Gedeon, Simulated annealing and weight decay in adaptive learning: the
+ SARPROP algorithm, IEEE Trans.
+ on Neural Networks 9, pp.
+ 662-668, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnpositive"
+literal "true"
+
+\end_inset
+
+M.D.
+ Shahjahan, M.
+ Kazuyuki, Neural network training algorithm with possitive correlation,
+ IEEE Trans.
+ Inf & Syst.
+ 
+\series bold
+88
+\series default
+, pp.
+ 2399-2409, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfEvol"
+literal "false"
+
+\end_inset
+
+J.
+ Wu, J.
+ Long, M.
+ Liu, Evolving RBF neural networks for rainfall prediction using hybrid
+ particle swarm optimization and genetic algorithm, Neurocomputing 
+\series bold
+148
+\series default
+, pp.
+ 136-142, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "treePrun1"
+literal "false"
+
+\end_inset
+
+J.
+ Chen, X.
+ Wang, J.
+ Zhai, Pruning Decision Tree Using Genetic Algorithms, In: 2009 International
+ Conference on Artificial Intelligence and Computational Intelligence, Shanghai,
+ China, pp.
+ 244-248, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "treePrun2"
+literal "false"
+
+\end_inset
+
+M.M.
+ Mijwil, R.
+ A.
+ Abttan, Utilizing the Genetic Algorithm to Pruning the C4.5 Decision Tree
+ Algorithm, Asian Journal of Applied Sciences 9, pp.
+ 45-52, 201.
  
 \end_layout
 
@@ -11402,7 +11583,7 @@ K.
  Neoh, C.
  P.
  Lim, B.
- Fielding, A Micro-GA Embedded PESO Feature Selection Approach to Intelligent
+ Fielding, A Micro-GA Embedded PSO Feature Selection Approach to Intelligent
  Facial Emotion Recognition, IEEE Transactions on Cybernetics.
  
 \series bold
