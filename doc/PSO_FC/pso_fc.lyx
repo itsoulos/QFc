@@ -678,8 +678,17 @@ literal "false"
 
  etc.
  Recently, a variety of paper have been proposed to handle the overfitting
- problem in various cases such as the evolution of RBF models using genetic
- algorithms for rainfall prediction 
+ problem in various cases such as usage of genetic algorithms for training
+ data selection in RBF networks
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbfTrain"
+literal "false"
+
+\end_inset
+
+, the evolution of RBF models using genetic algorithms for rainfall prediction
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "rbfEvol"
@@ -695,7 +704,7 @@ literal "false"
 
 \end_inset
 
-, 
+ etc.
 \end_layout
 
 \begin_layout Standard
@@ -11122,6 +11131,24 @@ M.D.
 \series default
 , pp.
  2399-2409, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfTrain"
+literal "false"
+
+\end_inset
+
+C.R.
+ Reeves, D.R.
+ Bush, Using Genetic Algorithms for Training Data Selection in RBF Networks.
+ In: Liu, H., Motoda, H.
+ (eds) Instance Selection and Construction for Data Mining.
+ The Springer International Series in Engineering and Computer Science,
+ vol 608.
+ Springer, Boston, MA, 2001.
 \end_layout
 
 \begin_layout Bibliography

@@ -249,13 +249,25 @@ at the same time, since it can remove from the final features those
 that will not bring significant benefits to the learning of the objective
 problem. Furthermore, Wang et al proposed an auto - encoder reduction
 method, applied on a series of large datasets\citep{nn_autoencoder}. 
-\item The problem of reduced performance of models on unknown data, is also
-known as the overfitting problem. The paper of Geman et al \citep{nngeman}
+\item Another interesting problem, which has been tackled by dozens of researchers
+in the last decades, is that of overfitting of neural networks or
+machine learning models in general. In this problem, although the
+machine learning model has achieved a satisfactory level of training
+this is not reflected in unknown patterns (test set ) that were not
+present during training. The paper of Geman et al \citep{nngeman}
 as well the article of Hawkins \citep{nnhawkins} thoroughly discuss
 the topic of overfitting. Examples of techniques proposed to tackle
 this problem are the weight sharing methods \citep{nnsharing1,nnsharing2},
-the pruning methods \citep{nnprunning1,nnprunning2}, weight elimination
-\citep{nnelim1,nnelim2,nnelim3}, weight decaying methods \citep{nndecay1,nndecay2}
+methods that reduce the number of parameters of the model ( pruning
+methods ) \citep{nnprunning1,nnprunning2}, weight elimination \citep{nnelim1,nnelim2,nnelim3},
+weight decaying methods \citep{nndecay1,nndecay2}, dropout methods
+\citep{nndrop1,nndrop2}, the Sarprop method \citep{sarprop},\textbf{
+}positive correlation methods \citep{nnpositive} etc. Recently, a
+variety of paper have been proposed to handle the overfitting problem
+in various cases such as usage of genetic algorithms for training
+data selection in RBF networks\citep{rbfTrain}, the evolution of
+RBF models using genetic algorithms for rainfall prediction \citep{rbfEvol},
+pruning decision trees using genetic algorithms \citep{treePrun1,treePrun2}
 etc.
 \end{itemize}
 This paper recommends a two-phase method for data classification or
@@ -268,13 +280,13 @@ in a variety of applications, such as music composition \citep{geApp1},
 economics \citep{geApp2}, symbolic regression \citep{geApp3}, robotics
 \citep{geApp4}, caching algorithms \citep{geApp5} etc. The global
 optimization method used in this work was the particle swarm optimization
-(PESO) method \citep{pso_major,pso1,pso2}. The PESO method has been
+(PSO) method \citep{pso_major,pso1,pso2}. The PSO method has been
 selected as the optimization method due to its simplicity and the
-small number of parameters that should be set. Also, the PESO method
+small number of parameters that should be set. Also, the PSO method
 has been used in many difficult problems in all areas of the sciences,
 such as problems that arise in physics\textbf{ }\citep{psophysics1,psophysics2},
 chemistry \citep{psochem1,psochem2}, medicine \citep{psomed1,psomed2},
-economics \citep{psoecon} etc. Furthermore, the PESO method was successfully
+economics \citep{psoecon} etc. Furthermore, the PSO method was successfully
 applied recently in many practical problems such as flow shop scheduling
 \citep{psoApp1}, successful development of electric vehicle charging
 strategies \citep{psoApp2}, emotion recognition \citep{psoApp3},
@@ -545,13 +557,13 @@ f_{p}=f_{p}\times\left(1+\lambda V^{2}\right)
 where $\lambda>0$.
 \end{enumerate}
 
-\subsection{The used PESO method\label{subsec:The-used-PSO}}
+\subsection{The used PSO method\label{subsec:The-used-PSO}}
 
 The mains steps for this algorithm are outlined in detail in Algorithm
 \ref{alg:psoSerial}.
 
 \begin{algorithm}[H]
-\caption{The base PESO algorithm executed in one processing unit.\label{alg:psoSerial}}
+\caption{The base PSO algorithm executed in one processing unit.\label{alg:psoSerial}}
 
 \begin{enumerate}
 \item \textbf{Initialization Step} . 
@@ -630,7 +642,7 @@ The variable $r$ is a a random number with $r\in[0,1]$. This inertia
 calculation was proposed in \citep{random_inertia}. With this calculation
 of the inertia variable, an even better exploration of the research
 space is achieved with the randomness it introduces, something that
-was also found in the publication of Charolais and Solos \citep{ipso}.
+was also found in the publication of Charilogis and Tsoulos \citep{ipso}.
 
 A flowchart for the overall process is shown in Figure \ref{fig:flow}.
 
@@ -1048,14 +1060,14 @@ greater than 50\%. Moreover, the usage of a neural network trained
 by a genetic algorithm on the modified datasets, gives clearly better
 results than the use of an RF neural network, especially in the classification
 datasets. An additional test was performed for the regression datasets,
-where the number of particles in PESO algorithm increases from 100
+where the number of particles in PSO algorithm increases from 100
 to 400 and the results are graphically illustrated in Figure \ref{fig:psodiagram}.
 
 \begin{figure}[H]
 \includegraphics[scale=0.5]{pso_diagram}
 
 \caption{Average regression error for all regression datasets using the proposed
-method. The number of PESO particles increases from 100 to 400 and
+method. The number of PSO particles increases from 100 to 400 and
 the number of constructed features was set to $f=2$.\label{fig:psodiagram}}
 
 \end{figure}
@@ -1484,9 +1496,45 @@ Optimization of Feed-Forward Neural Networks with Weight Decay, 2006
 Sixth International Conference on Hybrid Intelligent Systems (HIS'06),
 Rio de Janeiro, Brazil, 2006, pp. 5-5.
 
-\bibitem{nndecay2}I.G. Solos, A. Tzallas, D. Tsalikakis, Evolutionary
+\bibitem{nndecay2}I.G. TSoulos, A. Tzallas, D. Tsalikakis, Evolutionary
 Based Weight Decaying Method for Neural Network Training. Neural Process
 Lett \textbf{47}, pp. 463--473, 2018. 
+
+\bibitem{nndrop1}Nitish Srivastava, G E Hinton, Alex Krizhevsky,
+Ilya Sutskever, Ruslan R Salakhutdinov, Dropout: a simple way to prevent
+neural networks from overfitting, Journal of Machine Learning Research
+\textbf{15}, pp. 1929-1958, 2014.
+
+\bibitem{nndrop2}A. Iosifidis, A. Tefas, I. Pitas, DropELM: Fast
+neural network regularization with Dropout and DropConnect, Neurocomputing
+\textbf{162}, pp. 57-66, 2015.
+
+\bibitem{sarprop}N.K. Treadgold, T.D. Gedeon, Simulated annealing
+and weight decay in adaptive learning: the SARPROP algorithm, IEEE
+Trans. on Neural Networks 9, pp. 662-668, 1998.
+
+\bibitem{nnpositive}M.D. Shahjahan, M. Kazuyuki, Neural network training
+algorithm with possitive correlation, IEEE Trans. Inf \& Syst. \textbf{88},
+pp. 2399-2409, 2005.
+
+\bibitem{rbfTrain}C.R. Reeves, D.R. Bush, Using Genetic Algorithms
+for Training Data Selection in RBF Networks. In: Liu, H., Motoda,
+H. (eds) Instance Selection and Construction for Data Mining. The
+Springer International Series in Engineering and Computer Science,
+vol 608. Springer, Boston, MA, 2001.
+
+\bibitem{rbfEvol}J. Wu, J. Long, M. Liu, Evolving RBF neural networks
+for rainfall prediction using hybrid particle swarm optimization and
+genetic algorithm, Neurocomputing \textbf{148}, pp. 136-142, 2015.
+
+\bibitem{treePrun1}J. Chen, X. Wang, J. Zhai, Pruning Decision Tree
+Using Genetic Algorithms, In: 2009 International Conference on Artificial
+Intelligence and Computational Intelligence, Shanghai, China, pp.
+244-248, 2009.
+
+\bibitem{treePrun2}M.M. Mijwil, R. A. Abttan, Utilizing the Genetic
+Algorithm to Pruning the C4.5 Decision Tree Algorithm, Asian Journal
+of Applied Sciences 9, pp. 45-52, 201. 
 
 \bibitem{ge1}M. O’Neill, C. Ryan, Grammatical evolution, IEEE Trans.
 Evol. Comput. \textbf{5,}pp. 349--358, 2001.
@@ -1578,7 +1626,7 @@ strategy of electric vehicles in electrical distribution grid, Applied
 Energy \textbf{128}, pp. 82-92, 2014.
 
 \bibitem{psoApp3}K. Mistry, L. Zhang, S. C. Neoh, C. P. Lim, B. Fielding,
-A Micro-GA Embedded PESO Feature Selection Approach to Intelligent
+A Micro-GA Embedded PSO Feature Selection Approach to Intelligent
 Facial Emotion Recognition, IEEE Transactions on Cybernetics. \textbf{47},
 pp. 1496-1509, 2017.
 
