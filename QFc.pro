@@ -47,6 +47,7 @@ SOURCES += \
         problem.cc \
         program.cc \
         psoge.cpp \
+        qfcmethod.cpp \
         rbf_model.cc \
         rbfsolver.cc \
         rlsprogram.cc \
@@ -95,6 +96,7 @@ HEADERS += \
     problem.h \
     program.h \
     psoge.h \
+    qfcmethod.h \
     rbf_model.h \
     rbfsolver.h \
     rlsprogram.h \

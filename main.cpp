@@ -306,24 +306,9 @@ void    executePso()
     {
      pop = new PsoGE(ge_chromosomes,features * ge_length,tprogram);
     }
-
     pop->setMaxIters(ge_maxGenerations);
-
-    for(int g=1;g<=ge_maxGenerations;g++)
-    {
-            pop->nextGeneration();
-            genome = pop->getBestParticle();
-            string s = "";
-            if(threads<=1)
-                s=defaultProgram->printF(genome);
-            else
-                s=((NNprogram *)tprogram[0])->printF(genome);
-
-            qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
-                                pop->getBestFitness()<<
-                                " Best program:\n"<<s.c_str();
-    }
-
+    pop->run();
+    genome = pop->getBestParticle();
     delete pop;
 }
 

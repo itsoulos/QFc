@@ -3,8 +3,8 @@
 # include <program.h>
 # include <QString>
 # include "omp.h"
-
-class PsoGE
+# include <qfcmethod.h>
+class PsoGE :public QfcMethod
 {
 private:
     int **particle;
@@ -20,21 +20,24 @@ private:
     int particle_size;
     int generation;
 
-    Program	*program;
-    vector<Program*> tprogram;
     void    initParticle(int *p);
     void    initVelocity(int *v);
     double  fitness(vector<int> &g);
     void    calcVelocity();
     void    calcFitnessArray();
+    void    makePsoPopulation();
 public:
     PsoGE(int gcount,int gsize,Program *p);
     PsoGE(int gcount,int gsize,vector<Program *> p);
-    void    nextGeneration();
-    void    setMaxIters(int g);
+    void        setMaxIters(int g);
     vector<int> getBestParticle();
     double      getBestFitness();
-    void Solve(int g=200);
+
+    virtual void init();
+    virtual void step();
+    virtual bool terminated();
+    virtual void report();
+
     ~PsoGE();
 };
 

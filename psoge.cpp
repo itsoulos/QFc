@@ -1,41 +1,35 @@
 #include "psoge.h"
 # include <QfcRandom.h>
+# include <nnprogram.h>
 # define NMAX 255
 PsoGE::PsoGE(int gcount,int gsize,Program *p)
+    :QfcMethod(p)
 {
     pso_count = gcount;
     particle_size = gsize;
+    pso_iters = 200;
+    makePsoPopulation();
+}
+
+void    PsoGE::makePsoPopulation()
+{
     particle=new int*[pso_count];
     velocity=new int*[pso_count];
     bestParticle=new int*[pso_count];
     fitnessArray = new double[pso_count];
     bestFitnessArray= new double[pso_count];
     bestg = new int[particle_size];
-    program = p;
-    tprogram.resize(0);
+
     vector<int> gt;
     gt.resize(particle_size);
+
     for(int i=0;i<pso_count;i++)
     {
         particle[i]=new int[particle_size];
 
         bestParticle[i]=new int[particle_size];
         velocity[i] = new int[particle_size];
-        initParticle(particle[i]);
-        memcpy(bestParticle[i],particle[i],particle_size*sizeof(int));
-        initVelocity(velocity[i]);
-        for(int j=0;j<particle_size;j++)
-            gt[j]=particle[i][j];
-        fitnessArray[i]=fitness(gt);
-        bestFitnessArray[i]=fitnessArray[i];
-        if(i==0 || fitnessArray[i]<bestf)
-        {
-            bestf = fitnessArray[i];
-            memcpy(bestg,particle[i],sizeof(int)*particle_size);
-        }
-
     }
-    bestf = 1e+100;
 }
 
 void    PsoGE::initParticle(int *p)
@@ -58,8 +52,47 @@ void    PsoGE::initVelocity(int *v)
 }
 
 PsoGE::PsoGE(int gcount,int gsize,vector<Program *> p)
+    :QfcMethod(p)
 {
+    pso_count = gcount;
+    particle_size = gsize;
+    pso_iters = 200;
+    makePsoPopulation();
+}
 
+void    PsoGE::init()
+{
+    vector<int> gt;
+    gt.resize(particle_size);
+    for(int i=0;i<pso_count;i++)
+    {
+        initParticle(particle[i]);
+        memcpy(bestParticle[i],particle[i],particle_size*sizeof(int));
+        initVelocity(velocity[i]);
+        for(int j=0;j<particle_size;j++)
+            gt[j]=particle[i][j];
+        fitnessArray[i]=fitness(gt);
+        bestFitnessArray[i]=fitnessArray[i];
+        if(i==0 || fitnessArray[i]<bestf)
+        {
+            bestf = fitnessArray[i];
+            memcpy(bestg,particle[i],sizeof(int)*particle_size);
+        }
+
+    }
+    generation = 0;
+}
+
+void    PsoGE::step()
+{
+    ++generation;
+    calcVelocity();
+    calcFitnessArray();
+}
+
+bool    PsoGE::terminated()
+{
+    return generation>=pso_iters;
 }
 
 double  PsoGE::fitness(vector<int> &g)
@@ -107,6 +140,19 @@ vector<int> PsoGE::getBestParticle()
     return g;
 }
 
+void    PsoGE::report()
+{
+    vector<int> genome = getBestParticle();
+    string s = "";
+    if(!isParallel())
+        s=((NNprogram *)program)->printF(genome);
+    else
+        s=((NNprogram *)tprogram[0])->printF(genome);
+
+    qDebug().noquote()<<"Iteration: "<<generation<<" Best Fitness: "<<
+                        getBestFitness()<<
+                        " Best program:\n"<<s.c_str();
+}
 double      PsoGE::getBestFitness()
 {
     return bestf;
@@ -143,21 +189,6 @@ void    PsoGE::calcFitnessArray()
     }
 }
 
-void    PsoGE::nextGeneration()
-{
-    ++generation;
-    calcVelocity();
-    calcFitnessArray();
-}
-
-void    PsoGE::Solve(int g)
-{
-    pso_iters = g;
-    for(int i=1;i<=pso_iters;i++)
-    {
-        nextGeneration();
-    }
-}
 
 PsoGE::~PsoGE()
 {
