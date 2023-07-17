@@ -5,21 +5,21 @@
 # include <iostream>
 # include <math.h>
 # include <stdio.h>
-
+# include <QfcRandom.h>
 # define MAX_RULE	256
 # define CRAND
 # define MAXWEIGHT	50
 
 double xrand()
 {
-	return rand() *1.0/RAND_MAX;
+    return randDouble();
 }
 
 RbfSolver::RbfSolver(int gcount,Problem *p,double mx,int ff)
 {
     extern int randomSeed;
 	small_tolmin_flag=ff;
-    srand(randomSeed);
+    seedInt(randomSeed);
 	maxx=mx;
 	problem = p;
 	genome_size= 2 * MAXWEIGHT;
@@ -122,7 +122,7 @@ void	RbfSolver::crossover()
 			int r;
                         for(int j=0;j<tournament_size;j++)
                         {
-				r=rand() % (genome_count);
+                r=randInt(0,genome_count-1);
                                 if(j==0 || fitness_array[r]>max_fitness)
                                 {
                                         max_index=r;

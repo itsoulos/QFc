@@ -21,6 +21,7 @@ using namespace std;
 /*      n            : dimension of data vector   */
 /*      K            : number of centers          */ 
 /* ---------------------------------------------- */
+# include <QfcRandom.h>
 
 void myKmeans(double * data_vectors, double * centers, 
             double * variances, int m, int n, int K)
@@ -41,7 +42,7 @@ void myKmeans(double * data_vectors, double * centers,
 	int iters=0;
 	for(int i=0;i<m;i++)
 	{
-		int k=drand48()*K;
+        int k=randDouble()*K;
 		if(k==K) k=K-1;
 		member[k].push_back(i);
 	}
@@ -191,7 +192,7 @@ void Kmeans(double * data_vectors, double * centers,
 	for(i=0; i<K; i++)
 	{
         do{
-            double random =drand48();
+            double random =randDouble();
             random_centers[i]=(int)((m-1) * random);
 		}while(random_centers[i]>m);
 		

@@ -3,6 +3,7 @@
 
 # include <problem.h>
 # include <mapper.h>
+# include <QfcRandom.h>
 # include <QString>
 # define MODEL_NEURAL		1
 # define MODEL_RBF		2

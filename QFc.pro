@@ -18,6 +18,7 @@ INCLUDEPATH+=/usr/include/eigen3/
 QMAKE_LFLAGS += -O3
 SOURCES += \
         KmeansPP.cpp \
+        QfcRandom.cc \
         Rbf.cc \
         collection.cc \
         converter.cc \
@@ -63,6 +64,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     KmeansPP.h \
+    QfcRandom.h \
     Rbf.h \
     Util.h \
     collection.h \

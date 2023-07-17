@@ -1,5 +1,5 @@
 #include "osamarbf.h"
-
+# include <QfcRandom.h>
 OsamaRbf::OsamaRbf(Mapper *m)
     :Model(m)
 {
@@ -59,7 +59,7 @@ double 	OsamaRbf::train1()
     layer2_weights.assign(num_of_labels, vector<double>(num_weights,0));
     for(auto &label: layer2_weights)
         for(auto &arc: label)
-            arc =drand48();// random_real_gen(random_engine);
+            arc =randDouble();// random_real_gen(random_engine);
     double mse = 0;
         double accuracy=0;
 

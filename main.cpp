@@ -6,12 +6,13 @@
 # include <psoge.h>
 # include <nnc.h>
 # include <QDebug>
-
+# include <QfcRandom.h>
 #include <ostream>
 # define GEMETHOD_GENETIC "genetic"
 # define GEMETHOD_PSO     "pso"
 QString ge_method = GEMETHOD_GENETIC;
 vector<int> genome;
+
 
 namespace Color {
     enum Code {
@@ -431,8 +432,10 @@ void makeGrammaticalEvolution()
     genome.resize(features * ge_length);
     if(threads<=1)
     defaultProgram = new NNprogram(defaultMapper,defaultModel,features,trainFile);
-    srand(randomSeed);
-    srand48(randomSeed);
+
+    seedInt(randomSeed);
+    seedDouble(randomSeed);
+
     if(threads>1)
     {
         tprogram.resize(threads);
@@ -526,7 +529,7 @@ void    makeTest()
         KNN *knn=(KNN *)evalModel;
         knn->loadTest(testFile,testx,testy);
         knn->makeDistance(testx,distance);
-        srand48(randomSeed);
+        seedDouble(randomSeed);
         double d;
         d=knn->train2();
         average_train_error+=d;
@@ -539,8 +542,8 @@ void    makeTest()
     else
     for(int i=0;i<testIters;i++)
     {
-        srand(randomSeed+i);
-        srand48(randomSeed+i);
+        seedInt(randomSeed+i);
+        seedDouble(randomSeed+i);
         evalModel->setNumOfWeights(rbf_weights);
         double d=evalModel->train2();
         double t=evalModel->testError(testFile);
@@ -609,11 +612,20 @@ void    freeMemory()
      }
 
 }
+
+void    printSystem()
+{
+    qDebug() << "currentCpuArchitecture():" << QSysInfo::currentCpuArchitecture();
+    qDebug() << "productType():" << QSysInfo::productType();
+    qDebug() << "productVersion():" << QSysInfo::productVersion();
+    qDebug() << "prettyProductName():" << QSysInfo::prettyProductName();
+}
+
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc,argv);
     setlocale(LC_ALL,"C");
-
+    printSystem();
     //Parameter checking
     parseCmdLine(app.arguments());
     checkTrainAndTest();

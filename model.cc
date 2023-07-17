@@ -45,7 +45,7 @@ void	Model::randomizeWeights()
 {
 	weight.resize((pattern_dimension+2)*num_weights);
 	setDimension(weight.size());
-	for(int i=0;i<weight.size();i++) weight[i]=0.1*(2.0*drand48()-1.0);
+    for(int i=0;i<weight.size();i++) weight[i]=0.1*(2.0*randDouble()-1.0);
 }
 
 void	Model::setPatternDimension(int d)
@@ -405,15 +405,27 @@ double	Model::classTestError(QString filename,double &precision,double &recall)
 		double c=output(testx);
 		
 		int found =-1;
+        int yfound = -1;
 		double dmin=1e+10;
+        double ydmin = 1e+100;
 		for(int j=0;j<classes.size();j++)
+        {
 			if(fabs(classes[j]-c)<dmin)
 			{
 				found=j;
 				dmin=fabs(classes[j]-c);
 			}
-		T[i]=classes[found];
-		O[i]=testy;
+            if(fabs(classes[j]-testy)<ydmin)
+            {
+                yfound=j;
+                ydmin=fabs(classes[j]-testy);
+            }
+        }
+        /** ayta prepei na ginoun indexes **/
+
+
+        T[i]=found;
+        O[i]=yfound ;
 		if(classes.size()==2)
 		{
 			if(isone(classes[found]) && isone(testy)) tp++;
@@ -501,14 +513,30 @@ void	Model::printConfusionMatrix(int nclass,
 
     for(i=0;i<nclass;i++)
     {
+        bool fail_sum = false;
         double sum = 0.0;
         for(j=0;j<nclass;j++)
             sum+=CM[j][i];
 
+        if(fabs(sum)<1e-5)
+        {
+            fail_sum  = true;
+            sum = 1.0;
+        }
+        if(fail_sum) precision[i]=1.0;
+        else
         precision[i]=CM[i][i]/sum;
         sum = 0.0;
+        fail_sum = false;
         for(j=0;j<nclass;j++)
             sum+=CM[i][j];
+        if(fabs(sum)<1e-5)
+        {
+            fail_sum  = true;
+            sum = 1.0;
+        }
+        if(fail_sum) recall[i]=1.0;
+        else
         recall[i]=CM[i][i]/sum;
     }
     for(i=0;i<nclass;i++)

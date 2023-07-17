@@ -4,7 +4,7 @@
 # include <math.h>
 # include <iostream>
 # include <problem.h>
-
+# include <QfcRandom.h>
 
 # define MAX_RULE	1024
 
@@ -31,7 +31,7 @@ Population::Population(int gcount,int gsize,vector<Program *> p)
         genome[i]=new int[genome_size];
         children[i]=new int[genome_size];
             for(int j=0;j<genome_size;j++)
-                g[j]=genome[i][j]=rand()%MAX_RULE;
+                g[j]=genome[i][j]=randInt(0,MAX_RULE-1);
     }
     fitness_array=new double[genome_count];
 }
@@ -60,7 +60,7 @@ Population::Population(int gcount,int gsize,Program *p)
 		genome[i]=new int[genome_size];
 		children[i]=new int[genome_size];
 			for(int j=0;j<genome_size;j++)
-				g[j]=genome[i][j]=rand()%MAX_RULE;
+                g[j]=genome[i][j]=randInt(0,MAX_RULE-1);
 	}
 	fitness_array=new double[genome_count];
 }
@@ -71,7 +71,7 @@ void	Population::reset()
 	generation = 0;
 	for(int i=0;i<genome_count;i++)
 		for(int j=0;j<genome_size;j++)
-				genome[i][j]=rand()%MAX_RULE;
+                genome[i][j]=randInt(0,MAX_RULE-1);
 	for(int i=0;i<genome_count;i++)
 			fitness_array[i]=-1e+100;
 }
@@ -136,7 +136,7 @@ void	Population::crossover()
 			// Select the best parents of  the candidates 
                         for(int j=0;j<tournament_size;j++)
                         {
-				r=rand() % (genome_count);
+                r=randInt(0,genome_count-1);
                                 if(j==0 || fitness_array[r]>max_fitness)
                                 {
                                         max_index=r;
@@ -148,7 +148,7 @@ void	Population::crossover()
                 }
 		int pt1,pt2;
 		// The one-point crossover is performed here (the point is pt1)
-		pt1=rand() % genome_size;
+        pt1=randInt(0,genome_size-1);
 		memcpy(children[count_children],
 				genome[parent[0]],pt1 * sizeof(int));
 		memcpy(&children[count_children][pt1],
@@ -190,10 +190,10 @@ void	Population::mutate()
 	{
 		for(int j=0;j<genome_size;j++)
 		{
-			double r=rand()*1.0/RAND_MAX;
+            double r=randDouble();
 			if(r<mutation_rate)
 			{
-				genome[i][j]=rand() % MAX_RULE;
+                genome[i][j]=randInt(0,MAX_RULE-1);
 			}
 		}
 	}
@@ -284,7 +284,7 @@ void	Population::nextGeneration()
 
         for(int i=0;i<genome_count;i++)
         {
-              double r=rand()*1.0/RAND_MAX;
+              double r=randDouble();
         if(r<=localSearchRate)  localSearch(i);
         }
 	}
@@ -300,11 +300,11 @@ void	Population::replaceWorst()
 	vector<int> xtrial;
 	xtrial.resize(genome_size);
 	int randpos;
-	randpos=rand() % genome_count;
+    randpos=randInt(0,genome_count-1);
 	for(int i=0;i<genome_size;i++)
 	{
 		double gamma;
-		gamma=-0.5+2.0*drand48();
+        gamma=-0.5+2.0*randDouble();
 		xtrial[i]=(int)(fabs((1.0+gamma)*genome[0][i]-gamma*genome[randpos][i]));
 	}
 	double ftrial = fitness(xtrial);
@@ -414,8 +414,8 @@ void	Population::localSearch(int pos)
 
         for(int iters=1;iters<=100;iters++)
         {
-            int gpos=rand() % genome_count;
-            int cutpoint=rand() % genome_size;
+            int gpos=randInt(0,genome_count-1);
+            int cutpoint=randInt(0,genome_size-1);
             for(int j=0;j<cutpoint;j++) g[j]=genome[pos][j];
             for(int j=cutpoint;j<genome_size;j++) g[j]=genome[gpos][j];
             double f=fitness(g);
@@ -444,12 +444,12 @@ void	Population::localSearch(int pos)
     {
         for(int i=0;i<genome_size;i++)
         {
-            int ipos = rand() % genome_size;
+            int ipos =randInt(0,genome_size-1);
             int new_value;
             for(int k=0;k<20;k++)
             {
             int old_value = genome[pos][ipos];
-            new_value = rand() % 256;
+            new_value =randInt(0,MAX_RULE-1);
             genome[pos][ipos]=new_value;
             for(int j=0;j<genome_size;j++) g[j]=genome[pos][j];
             double trial_fitness=fitness(g);

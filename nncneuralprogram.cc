@@ -3,6 +3,7 @@
 # include <QFile>
 # include <QTextStream>
 //# define IMBALANCED
+# include <QfcRandom.h>
 NNCNeuralProgram::NNCNeuralProgram(int Dimension,QString TrainFile,QString TestFile):
 	NeuralProgram(Dimension)
 {

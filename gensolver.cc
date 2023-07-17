@@ -9,10 +9,11 @@
 # define MAX_RULE	256
 # define CRAND
 
+
 GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 {
 	small_tolmin_flag=ff;
-	srand(1);
+    seedInt(1);
 	maxx=mx;
 	problem = p;
 	genome_size=p->getDimension();
@@ -30,7 +31,7 @@ GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 		genome[i]=new double[genome_size];
 		children[i]=new double[genome_size];
 		for(int j=0;j<genome_size;j++)
-			genome[i][j]= (2.0*drand48()-1.0);
+            genome[i][j]= (2.0*randDouble()-1.0);
 				
 	}
 	fitness_array=new double[genome_count];
@@ -119,7 +120,7 @@ void	GenSolver::crossover()
 			int r;
                         for(int j=0;j<tournament_size;j++)
                         {
-				r=rand() % (genome_count);
+                r=randInt(0,genome_count-1);
                                 if(j==0 || fitness_array[r]>max_fitness)
                                 {
                                         max_index=r;
@@ -132,7 +133,7 @@ void	GenSolver::crossover()
 		
 		for(int i=0;i<genome_size;i++)
 		{
-			double a =drand48();
+            double a =randDouble();
 			children[count_children][i]=a*genome[parent[0]][i]+
 				(1.0-a)*genome[parent[1]][i];
 			children[count_children+1][i]=a*genome[parent[1]][i]+
@@ -176,12 +177,12 @@ void	GenSolver::mutate()
 	{
 		for(int j=0;j<genome_size;j++)
 		{
-			double r=drand48();
+            double r=randDouble();
 			if(r<mutation_rate)
 			{
 			double percent=exp(-generation * 1.0/2.0);
 				percent = 0.25;
-				genome[i][j]*=(1.0+2.0*drand48()*percent-percent);
+                genome[i][j]*=(1.0+2.0*randDouble()*percent-percent);
 	
 				
 			}

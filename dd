@@ -1,0 +1,127 @@
+In file included from ./model.h:4,
+                 from ./neural.h:3,
+                 from neural.cc:1:
+./problem.h:57:1: warning: ‘typedef’ was ignored in this declaration
+   57 | typedef struct MinInfo
+      | ^~~~~~~
+neural.cc: In member function ‘void Neural::setWeights(Matrix)’:
+neural.cc:36:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   36 |         for(int i=0;i<weight.size();i++) weight[i]=x[i];
+      |                     ~^~~~~~~~~~~~~~
+neural.cc: In member function ‘virtual double Neural::train1()’:
+neural.cc:41:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   41 |         for(int i=0;i<xpoint.size();i++)
+      |                     ~^~~~~~~~~~~~~~
+neural.cc: In member function ‘double Neural::countViolate(double)’:
+neural.cc:84:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   84 |         for(int i=0;i<xpoint.size();i++)
+      |                     ~^~~~~~~~~~~~~~
+neural.cc: In member function ‘double Neural::localSearch()’:
+neural.cc:141:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  141 |     for(int i=0;i<weight.size();i++)
+      |                 ~^~~~~~~~~~~~~~
+neural.cc:171:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  171 |         for(int i=0;i<weight.size();i++)
+      |                     ~^~~~~~~~~~~~~~
+neural.cc: In member function ‘virtual double Neural::train2()’:
+neural.cc:201:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  201 |         for(int i=0;i<xpoint.size();i++)
+      |                     ~^~~~~~~~~~~~~~
+neural.cc:200:16: warning: unused variable ‘v’ [-Wunused-variable]
+  200 |         double v;
+      |                ^
+neural.cc: In member function ‘virtual void Neural::getDeriv(Matrix, Matrix&)’:
+neural.cc:242:16: warning: unused variable ‘s’ [-Wunused-variable]
+  242 |         double s;
+      |                ^
+neural.cc: In member function ‘double Neural::localSearch()’:
+neural.cc:195:1: warning: control reaches end of non-void function [-Wreturn-type]
+  195 | }
+      | ^
+neural.cc: At global scope:
+neural.cc:18:15: warning: ‘double sigder(double)’ defined but not used [-Wunused-function]
+   18 | static double sigder(double x)
+      |               ^~~~~~
+neural.cc:217:28: optimized: loop vectorized using 32 byte vectors
+neural.cc:217:28: optimized: loop vectorized using 16 byte vectors
+neural.cc:217:28: optimized: loop turned into non-loop; it never loops
+neural.cc:209:8: optimized: loop turned into non-loop; it never loops
+neural.cc:259:30: optimized: loop vectorized using 32 byte vectors
+neural.cc:259:30: optimized:  loop versioned for vectorization because of possible aliasing
+neural.cc:259:30: optimized: loop vectorized using 16 byte vectors
+neural.cc:249:30: optimized: loop vectorized using 32 byte vectors
+neural.cc:249:30: optimized: loop vectorized using 16 byte vectors
+neural.cc:259:30: optimized: loop turned into non-loop; it never loops
+neural.cc:239:8: optimized: loop turned into non-loop; it never loops
+neural.cc:249:30: optimized: loop turned into non-loop; it never loops
+neural.cc:239:8: optimized: loop turned into non-loop; it never loops
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+neural.cc:36:15: optimized: loop vectorized using 32 byte vectors
+neural.cc:36:15: optimized:  loop versioned for vectorization because of possible aliasing
+neural.cc:36:15: optimized: loop vectorized using 16 byte vectors
+neural.cc:36:15: optimized: loop turned into non-loop; it never loops
+neural.cc:34:6: optimized: loop turned into non-loop; it never loops
+neural.cc:89:30: optimized: loop vectorized using 32 byte vectors
+neural.cc:89:30: optimized: loop vectorized using 16 byte vectors
+neural.cc:89:30: optimized: loop turned into non-loop; it never loops
+neural.cc:79:8: optimized: loop turned into non-loop; it never loops
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 1 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 2 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+neural.cc:171:22: optimized: loop vectorized using 32 byte vectors
+neural.cc:171:22: optimized:  loop versioned for vectorization because of possible aliasing
+neural.cc:171:22: optimized: loop vectorized using 16 byte vectors
+neural.cc:171:22: optimized: loop turned into non-loop; it never loops
+neural.cc:136:11: optimized: loop turned into non-loop; it never loops
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+In file included from ./model.h:4,
+                 from nnc.h:3,
+                 from nnc.cpp:1:
+./problem.h:57:1: warning: ‘typedef’ was ignored in this declaration
+   57 | typedef struct MinInfo
+      | ^~~~~~~
+nnc.cpp: In member function ‘virtual double NNC::train1()’:
+nnc.cpp:128:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  128 |                        for(int i=0;i<trial_genome.size();i++)
+      |                                    ~^~~~~~~~~~~~~~~~~~~~
+nnc.cpp:79:24: warning: variable ‘iflag’ set but not used [-Wunused-but-set-variable]
+   79 |                    int iflag=0;
+      |                        ^~~~~
+nnc.cpp:72:15: warning: unused variable ‘class_test’ [-Wunused-variable]
+   72 |        double class_test=p->getClassTestError(genome);
+      |               ^~~~~~~~~~
+nnc.cpp: In destructor ‘virtual NNC::~NNC()’:
+nnc.cpp:199:1: warning: deleting object of abstract class type ‘NeuralProgram’ which has non-virtual destructor will cause undefined behavior [-Wdelete-non-virtual-dtor]
+  199 | delete program;
+      | ^~~~~~~~~~~~~~
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 1 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 2 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_uninitialized.h:637:19: optimized: loop vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_uninitialized.h:1091:22: optimized: loop vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_uninitialized.h:1091:22: optimized:  loop versioned for vectorization because of possible aliasing
+/usr/include/c++/12/bits/stl_uninitialized.h:1091:22: optimized: loop vectorized using 16 byte vectors
+/usr/include/c++/12/bits/stl_uninitialized.h:637:19: optimized: loop vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_uninitialized.h:637:19: optimized: loop with 2 iterations completely unrolled (header execution count 72506056)
+/usr/include/c++/12/bits/stl_uninitialized.h:1091:22: optimized: loop turned into non-loop; it never loops
+/usr/include/c++/12/bits/vector.tcc:626:5: optimized: loop turned into non-loop; it never loops
+/usr/include/c++/12/bits/stl_uninitialized.h:637:19: optimized: loop with 2 iterations completely unrolled (header execution count 33746060)
+/usr/include/c++/12/bits/stl_vector.h:100:4: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:100:4: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 1 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_algobase.h:921:22: optimized: Loop 2 distributed: split to 0 loops and 1 library calls.
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:115:13: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:100:4: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:100:4: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/stl_vector.h:395:25: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/basic_string.h:229:26: optimized: basic block part vectorized using 32 byte vectors
+/usr/include/c++/12/bits/basic_string.h:229:26: optimized: basic block part vectorized using 32 byte vectors

@@ -1,4 +1,5 @@
 # include <nnprogram.h>
+# include <QfcRandom.h>
 NNprogram::NNprogram(int type,int pdimension,QString filename)
 {
     setModelOutside=false;
@@ -76,8 +77,7 @@ double 	NNprogram::fitness(vector<int> &genome)
 	}
 	mapper->setExpr(pstring);
     extern int randomSeed;
-
-    srand48(randomSeed);
+    seedDouble(randomSeed);
 
 	model->setPatternDimension(pattern_dimension);
 	if(model_type==MODEL_NEURAL) model->randomizeWeights();

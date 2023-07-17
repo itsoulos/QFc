@@ -4,6 +4,7 @@
 # include <math.h>
 # include <gensolver.h>
 # include <model.h>
+
 static double getDistance(double *x1,double *x2,int d)
 {
 	double s=0.0;
@@ -26,8 +27,6 @@ KNN::KNN(Mapper *m):Model(m)
 
 double KNN::train1()
 {
-    extern int randomSeed;
-    srand48(randomSeed);
 
 	vector<double> classes;
 	double v;

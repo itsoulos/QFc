@@ -1,6 +1,7 @@
 #include "nnc.h"
 # include <getoptions.h>
 # include <converter.h>
+
 NNC::NNC(Mapper *m)
     :Model(m)
 {
@@ -82,10 +83,7 @@ d=ttx[0].size();
                        int trial_pos;
                        Data x;
        again:
-                       if(iflag==0)
-                       trial_pos=rand() % pop->getCount();//(rand()%2==1)?0:(rand() % genome_count);//genome_count-1;
-                       else
-                       trial_pos=rand() % pop->getCount();
+                       trial_pos=randInt(0,pop->getCount()-1);
                        iflag=1;
 
                        pop->getGenome(trial_pos,trial_genome);

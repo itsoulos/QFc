@@ -2,7 +2,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-
+# include <QfcRandom.h>
 
 static double sum2(Matrix x)
 {
@@ -129,12 +129,12 @@ void	Problem::getSample(Matrix &x)
 	if(has_margins==(MARGINS_LEFT|MARGINS_RIGHT))
 	{
 		for(int i=0;i<dimension;i++) 
-			x[i]=lmargin[i]+(rmargin[i]-lmargin[i])*(drand48());
+            x[i]=lmargin[i]+(rmargin[i]-lmargin[i])*(randDouble());
 	}
 	else
 	{
 		for(int i=0;i<dimension;i++)
-			x[i]=2.0*drand48()-1.0;
+            x[i]=2.0*randDouble()-1.0;
 	}
 }
 
@@ -146,12 +146,12 @@ void	Problem::getSample(Matrix &x1,double rc,Matrix &x)
 	ksi.resize(s);
 	double nrm=0.0;
 	for(int i=0;i<s;i++)
-		ksi[i]=2.0*drand48()-1.0;
+        ksi[i]=2.0*randDouble()-1.0;
 	nrm=sqrt(sum2(ksi));
 	for(int i=0;i<s;i++)
 		do{
 			
-		x[i]=x1[i]+rc*drand48()*ksi[i]/nrm;
+        x[i]=x1[i]+rc*randDouble()*ksi[i]/nrm;
 		}while(x[i]<lmargin[i] || x[i]>rmargin[i]);
 }
 
@@ -255,12 +255,12 @@ void	Problem::getSample(double *x)
 	if(has_margins==(MARGINS_LEFT|MARGINS_RIGHT))
 	{
 		for(int i=0;i<dimension;i++) 
-			x[i]=lmargin[i]+(rmargin[i]-lmargin[i])*drand48();
+            x[i]=lmargin[i]+(rmargin[i]-lmargin[i])*randDouble();
 	}
 	else
 	{
 		for(int i=0;i<dimension;i++)
-			x[i]=2.0*drand48()-1.0;
+            x[i]=2.0*randDouble()-1.0;
 	}
 }
 

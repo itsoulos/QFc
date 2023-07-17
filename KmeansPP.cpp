@@ -1,4 +1,5 @@
 #include "KmeansPP.h"
+# include <QfcRandom.h>
 # include <stdlib.h>
 using namespace std;
 
@@ -17,7 +18,7 @@ vector<vector<int> > KmeansPP::RunKMeansPP(int K, vector<datapoint> &centroids)
 	vector<vector<int> > clusters_vec(K); 
 	// First: initalize the initial centroids according to K-Means Plus Plus Algorithm
 	init();
-    int first_centroid =(int)drand48()*input_data.size();// random_index_gen(random_engine);
+    int first_centroid =(int)randDouble()*input_data.size();// random_index_gen(random_engine);
     if(first_centroid==input_data.size()) first_centroid--;
 
 	initial_centroids_.push_back(input_data[first_centroid]);
@@ -63,7 +64,7 @@ int KmeansPP::getNextInitialCentroidIndex()
 		cumm_prob[i] += cumm_prob[i-1];
 
 	// Choosing the next point with a probabilty D(x)/SIGMA(D(x))
-    int rand_num = drand48();// random_real_gen(random_engine);
+    double rand_num = randDouble();// random_real_gen(random_engine);
 	for (int i = 0; i < cumm_prob.size() ; ++i)
 		if (rand_num < cumm_prob[i])
 			return i;

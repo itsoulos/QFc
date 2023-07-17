@@ -1,5 +1,6 @@
 # include <rbf_model.h>
 # include <rbfsolver.h>
+# include <QfcRandom.h>
 //# define CLASS
 
 Rbf::Rbf(Mapper *m)
@@ -75,7 +76,7 @@ double Rbf::train1()
 #endif
 
     if(!isTrain2)
-        srand48(1);
+        seedDouble(1);
         Kmeans(input,centers,variances,
             xpoint.size(),pattern_dimension,num_weights);
 	
@@ -167,7 +168,7 @@ double	Rbf::setWeightValuesFromPattern(double *pattern,int size)
 
 
 
-    srand48(1);
+    seedDouble(1);
         Kmeans(input,centers,variances,
 			xpoint.size(),pattern_dimension,num_weights);
 	
