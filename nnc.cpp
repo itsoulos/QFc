@@ -55,7 +55,7 @@ d=ttx[0].size();
     Matrix bestWeights;
     for(int i=1;i<=ge_maxGenerations;i++)
     {
-       pop->nextGeneration();
+       pop->step();
        f=pop->getBestFitness();
        genome=pop->getBestGenome();
        str=program->printProgram(genome);

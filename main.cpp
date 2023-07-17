@@ -276,21 +276,9 @@ void    executeGenetic()
     pop->setLocalSearchGenerations(ge_localSearchGenerations);
     pop->setLocalSearchMethod(ge_localSearchMethod);
     pop->setLocalSearchRate(ge_localSearchRate);
-
-    for(int g=1;g<=ge_maxGenerations;g++)
-    {
-            pop->nextGeneration();
-            genome = pop->getBestGenome();
-            string s = "";
-            if(threads<=1)
-                s=defaultProgram->printF(genome);
-            else
-                s=((NNprogram *)tprogram[0])->printF(genome);
-
-            qDebug().noquote()<<"Iteration: "<<g<<" Best Fitness: "<<
-                                pop->getBestFitness()<<
-                                " Best program:\n"<<s.c_str();
-    }
+    pop->setMaxIters(ge_maxGenerations);
+    pop->run();
+    genome = pop->getBestGenome();
 
     delete pop;
 }

@@ -93,7 +93,7 @@ int	Grs::getGradientEvaluations()
 
 void	Grs::Solve(Data &x,double &y)
 {
-	pop->reset();
+    pop->init();
 	double *xx=new double[x.size()];
 	double *xx1=new double[x.size()];
 	for(int i=0;i<x.size();i++) xx[i]=x[i];
@@ -103,7 +103,7 @@ void	Grs::Solve(Data &x,double &y)
         printf("GRS. Iter = %4d Value = %10.5lf\n",iters,y);
 
 		program->setX0(xx,y);
-		pop->nextGeneration();
+        pop->step();
 		
 		double f=pop->getBestFitness();
         y=program->getBestValue();

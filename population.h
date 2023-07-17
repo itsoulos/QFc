@@ -1,10 +1,13 @@
 # ifndef __POPULATION__H
 # include <program.h>
 # include <QString>
+# include <QDebug>
+# include <qfcmethod.h>
 # include "omp.h"
 /* The Population class holds the current population. */
 /* The mutation, selection and crossover operators are defined here */
-class Population
+
+class Population :public QfcMethod
 {
 	private:
 		int	**children;
@@ -16,6 +19,7 @@ class Population
 		int	genome_count;
 		int	genome_size;
 		int	generation;
+        int maxIters;
 		Program	*program;
         vector<Program*> tprogram;
 
@@ -39,7 +43,6 @@ class Population
 		int	getGeneration() const;
 		int	getCount() const;
 		int	getSize() const;
-		void	nextGeneration();
 		void	setMutationRate(double r);
 		void	setSelectionRate(double r);
 		double	getSelectionRate() const;
@@ -47,7 +50,6 @@ class Population
 		double	getBestFitness() const;
 		double	evaluateBestFitness();
 		vector<int> getBestGenome() const;
-		void	reset();
         void    setLocalSearchRate(double r);
         double  getLocalSearchRate() const;
         void    setLocalSearchGenerations(int g);
@@ -58,6 +60,14 @@ class Population
             void	getGenome(int pos,vector<int> &genome);
             void	setGenome(int pos,vector<int> &genome,double f);
             void	setGenome(int pos,vector<int> &genome,double f,int k);
+
+       void setMaxIters(int t);
+       int getMaxIters() const;
+
+       virtual void init();
+       virtual void step();
+       virtual void report();
+       virtual bool terminated();
 		~Population();
 		
 };

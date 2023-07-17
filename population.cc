@@ -4,11 +4,13 @@
 # include <math.h>
 # include <iostream>
 # include <problem.h>
+# include <nnprogram.h>
 # include <QfcRandom.h>
 
 # define MAX_RULE	1024
 
 Population::Population(int gcount,int gsize,vector<Program *> p)
+    :QfcMethod(p)
 {
 
     elitism=1;
@@ -18,6 +20,7 @@ Population::Population(int gcount,int gsize,vector<Program *> p)
     genome_size    = gsize;
     generation     = 0;
     tprogram        = p;
+    maxIters = 200;
 
     /* Create the population and based on genome count and size */
     /* Initialize the genomes to random */
@@ -34,11 +37,13 @@ Population::Population(int gcount,int gsize,vector<Program *> p)
                 g[j]=genome[i][j]=randInt(0,MAX_RULE-1);
     }
     fitness_array=new double[genome_count];
+    init();
 }
 
 /* Population constructor */
 /* Input: genome count , genome size, pointer to Program instance */
 Population::Population(int gcount,int gsize,Program *p)
+    :QfcMethod(p)
 {
 	elitism=1;
 	selection_rate = 0.1;
@@ -63,10 +68,11 @@ Population::Population(int gcount,int gsize,Program *p)
                 g[j]=genome[i][j]=randInt(0,MAX_RULE-1);
 	}
 	fitness_array=new double[genome_count];
+    init();
 }
 
 /* Reinitialize the population to random */
-void	Population::reset()
+void	Population::init()
 {
 	generation = 0;
 	for(int i=0;i<genome_count;i++)
@@ -272,29 +278,6 @@ int	Population::getSize() const
 	return genome_size;
 }
 
-/* Evolve the next generation */
-void	Population::nextGeneration()
-{
-	calcFitnessArray();
-	
-    const int mod=localSearchGenerations;
-
-	if((generation+1) % mod==0) 
-	{
-
-        for(int i=0;i<genome_count;i++)
-        {
-              double r=randDouble();
-        if(r<=localSearchRate)  localSearch(i);
-        }
-	}
-	
-	select();
-	crossover();
-	if(generation) mutate();
-	++generation;
-}
-
 void	Population::replaceWorst()
 {
 	vector<int> xtrial;
@@ -401,6 +384,56 @@ class PopulationProblem: public Problem
 	}
 
 };
+
+void    Population::setMaxIters(int t)
+{
+    maxIters = t;
+}
+
+int     Population::getMaxIters() const
+{
+    return maxIters;
+}
+
+void Population::step()
+{
+    calcFitnessArray();
+    const int mod=localSearchGenerations;
+    if((generation+1) % mod==0)
+    {
+
+        for(int i=0;i<genome_count;i++)
+        {
+              double r=randDouble();
+        if(r<=localSearchRate)  localSearch(i);
+        }
+    }
+    select();
+    crossover();
+    if(generation) mutate();
+    ++generation;
+}
+
+void Population::report()
+{
+    vector<int> g;
+    g.resize(genome_size);
+    g = getBestGenome();
+    string s = "";
+    if(!isParallel())
+        s=((NNprogram *)program)->printF(g);
+    else
+        s=((NNprogram *)tprogram[0])->printF(g);
+
+    qDebug().noquote()<<"Iteration: "<<generation<<" Best Fitness: "<<
+                        getBestFitness()<<
+                        " Best program:\n"<<s.c_str();
+}
+
+bool Population::terminated()
+{
+    return generation>=maxIters;
+}
 
 void	Population::localSearch(int pos)
 {
