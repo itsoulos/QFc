@@ -88,6 +88,7 @@ void    PsoGE::step()
     ++generation;
     calcVelocity();
     calcFitnessArray();
+
 }
 
 bool    PsoGE::terminated()
@@ -165,6 +166,10 @@ void    PsoGE::calcFitnessArray()
 {
     vector<int> g;
     g.resize(particle_size);
+    extern int threads;
+    if(isParallel())
+    {
+    #pragma omp parallel for num_threads(threads)
     for(int i=0;i<pso_count;i++)
     {
         for(int j=0;j<particle_size;j++)
@@ -181,10 +186,37 @@ void    PsoGE::calcFitnessArray()
                    sizeof(int)*particle_size);
 
         }
+#pragma omp critical
         if(fitnessArray[i]<bestf)
         {
             bestf = fitnessArray[i];
             memcpy(bestg,particle[i],sizeof(int)*particle_size);
+        }
+    }
+    }
+    else
+    {
+        for(int i=0;i<pso_count;i++)
+        {
+            for(int j=0;j<particle_size;j++)
+            {
+
+                g[j]=particle[i][j];
+            }
+            fitnessArray[i]=fitness(g);
+            if(fitnessArray[i]<bestFitnessArray[i]
+                    || generation<=1)
+            {
+                bestFitnessArray[i]=fitnessArray[i];
+                memcpy(bestParticle[i],particle[i],
+                       sizeof(int)*particle_size);
+
+            }
+            if(fitnessArray[i]<bestf)
+            {
+                bestf = fitnessArray[i];
+                memcpy(bestg,particle[i],sizeof(int)*particle_size);
+            }
         }
     }
 }

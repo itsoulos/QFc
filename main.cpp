@@ -478,7 +478,7 @@ void    makeTest()
          evalModel = new OsamaRbf(defaultMapper);
           evalModel->readPatterns(trainFile);
          evalModel->setPatternDimension(features);
-         ((OsamaRbf *)evalModel)->setNumOfWeights(knn_weights);
+         ((OsamaRbf *)evalModel)->setNumOfWeights(rbf_weights);
     }
     else
     if(featureEvaluateModel=="nnc")
@@ -522,10 +522,10 @@ void    makeTest()
         double t=evalModel->testError(testFile);
         double precision=0.0,recall=0.0;
         double c=evalModel->classTestError(testFile,precision,recall);
-	if(isnan(precision) || isinf(precision)) average_precision+=0.0;
-	else average_precision+=precision;
-	if(isnan(recall) || isinf(recall)) average_recall+=0.0;
-	else average_recall+=recall;
+        if(isnan(precision) || isinf(precision)) average_precision+=0.0;
+        else average_precision+=precision;
+        if(isnan(recall) || isinf(recall)) average_recall+=0.0;
+        else average_recall+=recall;
         average_train_error+=d;
         average_test_error+=t;
         average_class_error+=c;

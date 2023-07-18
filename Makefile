@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_CORE_LIB
 CFLAGS        = -pipe -O3 -march=native -fopenmp -unroll-loops -omit-frame-pointer -Winline -unsafe-math-optimizations -mtune=native -pthread -fopt-info-optimized-vec-loop-omp -O2 -O3 -march=native -fopenmp -unroll-loops -omit-frame-pointer -Winline -unsafe-math-optimizations -mtune=native -pthread -fopt-info-optimized-vec-loop-omp -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O3 -march=native -fopenmp -unroll-loops -omit-frame-pointer -Winline -unsafe-math-optimizations -mtune=native -pthread -fopt-info-optimized-vec-loop-omp -O2 -O3 -march=native -fopenmp -unroll-loops -omit-frame-pointer -Winline -unsafe-math-optimizations -mtune=native -pthread -fopt-info-optimized-vec-loop-omp -std=gnu++11 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I/usr/include/eigen3 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -594,6 +594,7 @@ grs.o: grs.cc grs.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
+		qfcmethod.h \
 		rlsprogram.h \
 		problem.h \
 		fparser.hh \
@@ -624,6 +625,7 @@ main.o: main.cpp getoptions.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
+		qfcmethod.h \
 		nnprogram.h \
 		cprogram.h \
 		fparser.hh \
@@ -675,6 +677,7 @@ neural.o: neural.cc neural.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
+		qfcmethod.h \
 		rlsprogram.h \
 		collection.h \
 		lbfgs.h \
@@ -711,6 +714,7 @@ nnc.o: nnc.cpp nnc.h \
 		cprogram.h \
 		neuralparser.h \
 		population.h \
+		qfcmethod.h \
 		getoptions.h \
 		converter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nnc.o nnc.cpp
@@ -762,8 +766,20 @@ population.o: population.cc population.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
+		qfcmethod.h \
 		problem.h \
-		QfcRandom.h
+		nnprogram.h \
+		cprogram.h \
+		fparser.hh \
+		model.h \
+		mapper.h \
+		QfcRandom.h \
+		neural.h \
+		rbf_model.h \
+		Rbf.h \
+		matrix_functions.h \
+		kmeans.h \
+		knn.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o population.o population.cc
 
 problem.o: problem.cc problem.h \
@@ -781,7 +797,20 @@ psoge.o: psoge.cpp psoge.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
-		QfcRandom.h
+		qfcmethod.h \
+		QfcRandom.h \
+		nnprogram.h \
+		cprogram.h \
+		fparser.hh \
+		model.h \
+		problem.h \
+		mapper.h \
+		neural.h \
+		rbf_model.h \
+		Rbf.h \
+		matrix_functions.h \
+		kmeans.h \
+		knn.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o psoge.o psoge.cpp
 
 qfcmethod.o: qfcmethod.cpp qfcmethod.h \
@@ -822,6 +851,7 @@ rlsprogram.o: rlsprogram.cc rlsprogram.h \
 		symbol.h \
 		rule.h \
 		doublestack.h \
+		qfcmethod.h \
 		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rlsprogram.o rlsprogram.cc
 
