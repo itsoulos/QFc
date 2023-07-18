@@ -1,6 +1,5 @@
 # include <neural.h>
 # include <math.h>
-# include <QfcRandom.h>
 # include <gensolver.h>
 # include <QDebug>
 # include <grs.h>
@@ -139,7 +138,6 @@ double    Neural::localSearch()
     rmargin.resize(weight.size());
     for(int i=0;i<weight.size();i++)
     {
-        weight[i]=0.01 * (2.0*randDouble()-1.0);
         lmargin[i]=-100.0;
         rmargin[i]= 100.0;
     }

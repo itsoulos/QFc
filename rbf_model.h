@@ -8,6 +8,8 @@ class Rbf :public Model
 	        double *input,*centers,*variances,*weights;
             bool first=true;
             bool isTrain2=false;
+            double *Output;
+
 	public:
 		Rbf(Mapper *m);
 		double	setWeightValuesFromPattern(double *pattern,int size);

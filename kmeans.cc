@@ -21,11 +21,11 @@ using namespace std;
 /*      n            : dimension of data vector   */
 /*      K            : number of centers          */ 
 /* ---------------------------------------------- */
-# include <QfcRandom.h>
 
-void myKmeans(double * data_vectors, double * centers, 
+void myKmeans(Model *model,double * data_vectors, double * centers,
             double * variances, int m, int n, int K)
 {
+    /*
 	for(int i=0;i<K;i++)
 		for(int j=0;j<n;j++)
 			centers[i*n+j]=0.0;
@@ -42,7 +42,7 @@ void myKmeans(double * data_vectors, double * centers,
 	int iters=0;
 	for(int i=0;i<m;i++)
 	{
-        int k=randDouble()*K;
+        int k=model->randomDouble()*K;
 		if(k==K) k=K-1;
 		member[k].push_back(i);
 	}
@@ -84,23 +84,7 @@ void myKmeans(double * data_vectors, double * centers,
 			}
 			member[imin].push_back(i);
 		}
-		/*
-		for(int i=0;i<K;i++)
-		{
-			if(member[i].size()==0) 
-			{
-				for(int j=0;j<K;j++)
-				{
-					if(member[j].size()>=2)
-					{
-						member[i].push_back(member[j][member[j].size()-1]);
-						member[j].resize(member[j].size()-1);
-						break;
-					}
-				}
-			}
-		}
-		*/
+
 		sumdiff=0.0;
 		for(int i=0;i<K;i++)
 		{
@@ -154,14 +138,15 @@ void myKmeans(double * data_vectors, double * centers,
 		for(int k=0;k<n;k++) variances[i*n+k]/=count;
 	}
 	delete[] pattern;
-	delete[] old;
+    delete[] old;*/
 }
 
 # include <random>
 using namespace std;
 
 
-void Kmeans(double * data_vectors, double * centers, 
+void Kmeans(Model *model,
+            double * data_vectors, double * centers,
             double * variances, int m, int n, int K)
 {
 	int i=0;
@@ -191,11 +176,7 @@ void Kmeans(double * data_vectors, double * centers,
 	// Assign a random center to each example in the training set
 	for(i=0; i<K; i++)
 	{
-        do{
-            double random =randDouble();
-            random_centers[i]=(int)((m-1) * random);
-		}while(random_centers[i]>m);
-		
+        random_centers[i]=model->randomInt(0,m-1);
 	}
 	// Search the dataset and assign duplicate examples to different centers
 	for(i=0; i<K; i++)

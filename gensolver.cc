@@ -13,7 +13,6 @@
 GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 {
 	small_tolmin_flag=ff;
-    seedInt(1);
 	maxx=mx;
 	problem = p;
 	genome_size=p->getDimension();
@@ -26,12 +25,16 @@ GenSolver::GenSolver(int gcount,Problem *p,double mx,int ff)
 	double f;
 	genome=new double*[genome_count];
 	children=new double*[genome_count];
+    Model *m = (Neural *)problem;
+
 	for(int i=0;i<genome_count;i++)
 	{
 		genome[i]=new double[genome_size];
 		children[i]=new double[genome_size];
 		for(int j=0;j<genome_size;j++)
-            genome[i][j]= (2.0*randDouble()-1.0);
+        {
+            genome[i][j]= (2.0*m->randomDouble()-1.0);
+        }
 				
 	}
 	fitness_array=new double[genome_count];
@@ -109,6 +112,7 @@ void	GenSolver::crossover()
 	if(!(nchildren%2==0)) nchildren++;
         const int tournament_size =(genome_count<=100)?4:10;
         int count_children=0;
+        Model *m = (Model *)problem;
         while(1)
         {
                 //epilogi ton goneon
@@ -120,7 +124,7 @@ void	GenSolver::crossover()
 			int r;
                         for(int j=0;j<tournament_size;j++)
                         {
-                r=randInt(0,genome_count-1);
+                r=m->randomInt(0,genome_count-1);
                                 if(j==0 || fitness_array[r]>max_fitness)
                                 {
                                         max_index=r;
@@ -133,7 +137,7 @@ void	GenSolver::crossover()
 		
 		for(int i=0;i<genome_size;i++)
 		{
-            double a =randDouble();
+            double a =m->randomDouble();
 			children[count_children][i]=a*genome[parent[0]][i]+
 				(1.0-a)*genome[parent[1]][i];
 			children[count_children+1][i]=a*genome[parent[1]][i]+
@@ -173,16 +177,17 @@ void	GenSolver::mutate()
 {
 	int start = elitism * (int)(genome_count*selection_rate);
 	start = 1;
+    Model *m = (Model *)problem;
 	for(int i=start;i<genome_count;i++)
 	{
 		for(int j=0;j<genome_size;j++)
 		{
-            double r=randDouble();
+            double r=m->randomDouble();
 			if(r<mutation_rate)
 			{
 			double percent=exp(-generation * 1.0/2.0);
 				percent = 0.25;
-                genome[i][j]*=(1.0+2.0*randDouble()*percent-percent);
+                genome[i][j]*=(1.0+2.0*m->randomDouble()*percent-percent);
 	
 				
 			}

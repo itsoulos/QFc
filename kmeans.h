@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
+# include <model.h>
 
 /* ---------------------------------------------- */
 /* K-Means Clusteriing Algorithm                  */
@@ -22,10 +23,10 @@
 /* ---------------------------------------------- */
 
 
-void Kmeans(double * data_vectors, double * centers, 
+void Kmeans(Model *model,double * data_vectors, double * centers,
             double * variances, int m, int n, int K);
 
-void myKmeans(double * data_vectors, double * centers, 
+void myKmeans(Model *model,double * data_vectors, double * centers,
             double * variances, int m, int n, int K);
 
 

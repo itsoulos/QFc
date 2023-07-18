@@ -45,7 +45,7 @@ void	Model::randomizeWeights()
 {
 	weight.resize((pattern_dimension+2)*num_weights);
 	setDimension(weight.size());
-    for(int i=0;i<weight.size();i++) weight[i]=0.1*(2.0*randDouble()-1.0);
+    for(int i=0;i<weight.size();i++) weight[i]=0.1*(2.0*randomDouble()-1.0);
 }
 
 void	Model::setPatternDimension(int d)
@@ -585,6 +585,21 @@ void    Model::dumpFile(QString input,QString output)
     }
     fclose(Fp);
     fclose(fout);
+}
+
+void    Model::randomSeed(int s)
+{
+    random.seed(s);
+}
+
+double  Model::randomDouble()
+{
+    return random.generateDouble();
+}
+
+int     Model::randomInt(int low,int upper)
+{
+    return random.bounded(low,upper);
 }
 
 Model::~Model()

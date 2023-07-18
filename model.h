@@ -3,7 +3,7 @@
 
 # include <problem.h>
 # include <mapper.h>
-# include <QfcRandom.h>
+# include <QRandomGenerator>
 # include <QString>
 # define MODEL_NEURAL		1
 # define MODEL_RBF		2
@@ -23,6 +23,7 @@ class Model :public Problem
 		vector<Matrix> 	xpoint;
 		Matrix		ypoint;
         int model_type;
+        QRandomGenerator random;
 	public:
 
 		Mapper	*mapper;
@@ -65,6 +66,9 @@ class Model :public Problem
 				vector<double> &T,vector<double> &O,
                              vector<double> &precision,
                              vector<double> &recall);
+        void    randomSeed(int s);
+        double  randomDouble();
+        int     randomInt(int low,int upper);
 		~Model();
 };
 

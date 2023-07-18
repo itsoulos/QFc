@@ -83,7 +83,7 @@ d=ttx[0].size();
                        int trial_pos;
                        Data x;
        again:
-                       trial_pos=randInt(0,pop->getCount()-1);
+                       trial_pos=randomInt(0,pop->getCount()-1);
                        iflag=1;
 
                        pop->getGenome(trial_pos,trial_genome);

@@ -348,6 +348,7 @@ void makeGrammaticalEvolution()
                 tmodel[i] = new Rbf(tmapper[i]);
                 tmodel[i]->setPatternDimension(features);
                 ((Rbf *)tmodel[i])->setNumOfWeights(rbf_weights);
+                ((Rbf *)tmodel[i])->randomSeed(1);
             }
         }
     }
@@ -406,8 +407,6 @@ void makeGrammaticalEvolution()
     if(threads<=1)
     defaultProgram = new NNprogram(defaultMapper,defaultModel,features,trainFile);
 
-    seedInt(randomSeed);
-    seedDouble(randomSeed);
 
     if(threads>1)
     {
@@ -420,10 +419,16 @@ void makeGrammaticalEvolution()
     if(ge_method==GEMETHOD_GENETIC)
         executeGenetic();
     else executePso();
+
+
     if(threads<=1)
+    {
+        defaultProgram->printF(genome);
         defaultProgram->fitness(genome);
+    }
     else
     {
+        ((NNprogram *)tprogram[0])->printF(genome);
         ((NNprogram *)tprogram[0])->fitness(genome);
         defaultMapper=tmapper[0];
         defaultModel = tmodel[0];
@@ -434,6 +439,7 @@ void makeGrammaticalEvolution()
 void    makeTest()
 {
     Model *evalModel = NULL;
+
 
     if(featureEvaluateModel=="neural")
     {
@@ -517,6 +523,7 @@ void    makeTest()
     {
         seedInt(randomSeed+i);
         seedDouble(randomSeed+i);
+        evalModel->randomSeed(randomSeed+i);
         evalModel->setNumOfWeights(rbf_weights);
         double d=evalModel->train2();
         double t=evalModel->testError(testFile);

@@ -76,8 +76,6 @@ double 	NNprogram::fitness(vector<int> &genome)
 		if(redo>=REDO_MAX) return -1e+100;
 	}
 	mapper->setExpr(pstring);
-    extern int randomSeed;
-    seedDouble(randomSeed);
 
 	model->setPatternDimension(pattern_dimension);
 	if(model_type==MODEL_NEURAL) model->randomizeWeights();

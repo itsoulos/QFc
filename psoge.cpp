@@ -1,5 +1,4 @@
 #include "psoge.h"
-# include <QfcRandom.h>
 # include <nnprogram.h>
 # define NMAX 255
 PsoGE::PsoGE(int gcount,int gsize,Program *p)
@@ -13,6 +12,8 @@ PsoGE::PsoGE(int gcount,int gsize,Program *p)
 
 void    PsoGE::makePsoPopulation()
 {
+    extern int randomSeed;
+    seedRandom(randomSeed);
     particle=new int*[pso_count];
     velocity=new int*[pso_count];
     bestParticle=new int*[pso_count];
@@ -36,7 +37,7 @@ void    PsoGE::initParticle(int *p)
 {
     for(int i=0;i<particle_size;i++)
     {
-        p[i] = randInt(0,NMAX-1);
+        p[i] = randomInt(0,NMAX-1);
         if(p[i]<0) p[i]=-p[i];
     }
 }
@@ -47,7 +48,7 @@ void    PsoGE::initVelocity(int *v)
     int right = 5;
     for(int i=0;i<particle_size;i++)
     {
-        v[i]=randInt(left,right);
+        v[i]=randomInt(left,right);
     }
 }
 
@@ -64,21 +65,22 @@ void    PsoGE::init()
 {
     vector<int> gt;
     gt.resize(particle_size);
+    bestf=1e+100;
     for(int i=0;i<pso_count;i++)
     {
         initParticle(particle[i]);
         memcpy(bestParticle[i],particle[i],particle_size*sizeof(int));
         initVelocity(velocity[i]);
-        for(int j=0;j<particle_size;j++)
-            gt[j]=particle[i][j];
-        fitnessArray[i]=fitness(gt);
+    }
+    calcFitnessArray();
+    for(int i=0;i<pso_count;i++)
+    {
         bestFitnessArray[i]=fitnessArray[i];
         if(i==0 || fitnessArray[i]<bestf)
         {
             bestf = fitnessArray[i];
             memcpy(bestg,particle[i],sizeof(int)*particle_size);
         }
-
     }
     generation = 0;
 }
@@ -103,8 +105,8 @@ double  PsoGE::fitness(vector<int> &g)
     if(threads>1 && tprogram.size()!=0)
     {
         double tf=tprogram[omp_get_thread_num()]->fitness(g);
-       // printf("TF[%4d]=%10.lg\n",omp_get_thread_num(),tf);
-        return tf;
+    //   printf("TF[%4d]=%10.lg\n",omp_get_thread_num(),tf);
+        return -tf;
     }
     return -program->fitness(g);
 }
@@ -112,7 +114,7 @@ double  PsoGE::fitness(vector<int> &g)
 void    PsoGE::calcVelocity()
 {
     double inertia = 0.9 - 0.05 * generation/pso_iters;
-    inertia = 0.5 + (randDouble())/2.0;
+    inertia = 0.5 + (randomDouble())/2.0;
     double c1 = 1.0;
     double c2 = 1.0;
     for(int i=0;i<pso_count;i++)
@@ -120,8 +122,8 @@ void    PsoGE::calcVelocity()
         for(int j=0;j<particle_size;j++)
         {
             velocity[i][j] =(int)( inertia * velocity[i][j]
-                    +c1 * randDouble()*(bestg[j]-particle[i][j])+
-                    c2 * randDouble() *(bestParticle[i][j]-particle[i][j]));
+                    +c1 * randomDouble()*(bestg[j]-particle[i][j])+
+                    c2 * randomDouble() *(bestParticle[i][j]-particle[i][j]));
             particle[i][j]=particle[i][j]+velocity[i][j];
             if(particle[i][j]<0) particle[i][j]=0;
             if(particle[i][j]>NMAX) particle[i][j]=NMAX;
@@ -164,14 +166,15 @@ void    PsoGE::setMaxIters(int g)
 }
 void    PsoGE::calcFitnessArray()
 {
-    vector<int> g;
-    g.resize(particle_size);
+
     extern int threads;
     if(isParallel())
     {
     #pragma omp parallel for num_threads(threads)
     for(int i=0;i<pso_count;i++)
     {
+        vector<int> g;
+        g.resize(particle_size);
         for(int j=0;j<particle_size;j++)
         {
 
@@ -190,12 +193,17 @@ void    PsoGE::calcFitnessArray()
         if(fitnessArray[i]<bestf)
         {
             bestf = fitnessArray[i];
+            printf("new best f %lf\n",bestf);
+
             memcpy(bestg,particle[i],sizeof(int)*particle_size);
         }
+
     }
     }
     else
     {
+        vector<int> g;
+        g.resize(particle_size);
         for(int i=0;i<pso_count;i++)
         {
             for(int j=0;j<particle_size;j++)

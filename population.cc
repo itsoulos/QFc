@@ -86,9 +86,8 @@ void	Population::init()
 /* Return the fitness of a genome */
 double 	Population::fitness(vector<int> &g)
 {
-    extern int threads;
 
-    if(threads>1)
+    if(isParallel())
     {
         double tf=tprogram[omp_get_thread_num()]->fitness(g);
        // printf("TF[%4d]=%10.lg\n",omp_get_thread_num(),tf);
@@ -209,18 +208,18 @@ void	Population::mutate()
 /* Evaluate the fitness for all chromosomes in the current population */
 void	Population::calcFitnessArray()
 {
-	vector<int> g;
-	g.resize(genome_size);
 
 	double dmin=1e+100;
 	int icount=0;
     extern int threads;
-    if(threads>1)
+    if(isParallel())
     {
-
 #pragma omp parallel for num_threads(threads)
         for(int i=0;i<genome_count;i++)
         {
+            vector<int> g;
+            g.resize(genome_size);
+
             for(int j=0;j<genome_size;j++) g[j]=genome[i][j];
             fitness_array[i]=fitness(g);
             //else
@@ -241,6 +240,8 @@ void	Population::calcFitnessArray()
     else
 	for(int i=0;i<genome_count;i++)
 	{
+        vector<int> g;
+        g.resize(genome_size);
 		for(int j=0;j<genome_size;j++) g[j]=genome[i][j];	
 		fitness_array[i]=fitness(g);
 		//else 
