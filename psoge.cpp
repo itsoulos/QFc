@@ -193,8 +193,6 @@ void    PsoGE::calcFitnessArray()
         if(fitnessArray[i]<bestf)
         {
             bestf = fitnessArray[i];
-            printf("new best f %lf\n",bestf);
-
             memcpy(bestg,particle[i],sizeof(int)*particle_size);
         }
 

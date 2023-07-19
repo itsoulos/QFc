@@ -2,20 +2,21 @@
 
 #include <vector>
 #include <assert.h>
-
+# include  <model.h>
 typedef std::vector<double> datapoint;
 
 class KmeansPP
 {	
-
+private:
+    Model *model;
 public:
 
 	//typedef std::vector<double> datapoint;
 
 	/*	Takes the input data where each data point is in a vector<double> format */
-	KmeansPP(const std::vector<datapoint> &input_data);
+    KmeansPP(Model *m,const std::vector<datapoint> &input_data);
 	
-	~KmeansPP(void);
+    ~KmeansPP();
 
 	/*	Run the K-Means++ (Plus Plus) Algorithm
 		Takes the number of desired clusters K and passed vector of datapoints (vector of doubles) as input

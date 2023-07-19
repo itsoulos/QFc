@@ -1,9 +1,8 @@
 #include "osamarbf.h"
-# include <QfcRandom.h>
 OsamaRbf::OsamaRbf(Mapper *m)
     :Model(m)
 {
-
+    istrain2 = false;
 }
 
 void OsamaRbf::buildRBFUnits()
@@ -41,13 +40,14 @@ void OsamaRbf::calculateGamma()
 
 double 	OsamaRbf::train1()
 {
-
+    if(!istrain2)
+randomSeed(1);
     for(unsigned int i=0;i<xpoint.size();i++)
     {
         mapper->map(origx[i],xpoint[i]);
     }
     // Calculate RBF Centroids
-    KmeansPP KMPP(xpoint);
+    KmeansPP KMPP(this,xpoint);
     rbf_centroids.clear();
 
     KMPP.RunKMeansPP(num_weights, rbf_centroids);
@@ -59,7 +59,7 @@ double 	OsamaRbf::train1()
     layer2_weights.assign(num_of_labels, vector<double>(num_weights,0));
     for(auto &label: layer2_weights)
         for(auto &arc: label)
-            arc =randDouble();// random_real_gen(random_engine);
+            arc =randomDouble();// random_real_gen(random_engine);
     double mse = 0;
         double accuracy=0;
 
@@ -126,7 +126,10 @@ datapoint OsamaRbf::predictLabel(const datapoint &data_point, const double &data
 
 double	OsamaRbf::train2()
 {
-    return train1();
+    istrain2= true;
+    double d=  train1();
+    istrain2 = false;
+    return d;
 }
 
 double	OsamaRbf::output(Matrix x)

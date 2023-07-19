@@ -8,6 +8,7 @@ class OsamaRbf :public Model
 private:
     int num_of_labels;
     double gamma;
+    bool istrain2;
     vector< std::vector<double> > rbf_units;
     vector< std::vector<double> > layer2_weights;
     vector<Matrix> rbf_centroids;

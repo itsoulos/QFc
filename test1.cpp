@@ -7,12 +7,6 @@ void fcMap(double *inx,double *outx){
 	double x5=inx[4];
 	double x6=inx[5];
 	double x7=inx[6];
-	double x8=inx[7];
-	double x9=inx[8];
-	double x10=inx[9];
-	double x11=inx[10];
-	double x12=inx[11];
-	double x13=inx[12];
-	outx[0]=(x5/(94.303*x10));
-	outx[1]=(x7/((-3.3)*x4/(x13*((-0.57)*x12))));
+	outx[0]=(-2.9)*x3+x7+sin(02.05*x7+sin(9.09*x4+sin(x3+(-51.43)*x5+sin(((-10.9)/02.05)*x7))));
+	outx[1]=((-85.8)/(-9.702))*x4+cos(6.353*x4+x1);
 }

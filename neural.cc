@@ -96,29 +96,6 @@ double	Neural::countViolate(double limit)
 	return count*1.0/(xpoint.size()*nodes);
 }
 
-
-double leve_func(double *par, int x, void *fdata)
-{
-    Neural *neural = (Neural *)fdata;
-    Matrix w;
-    w.resize(neural->getDimension());
-    for(unsigned int i=0;i<w.size();i++) w[i]=par[i];
-    neural->setWeights(w);
-    double v= neural->getValueAtPos(x);
-    return v;
-}
-
-void leve_gradient(double *g, double *par, int x, void *fdata)
-{
-    Neural *neural = (Neural *)fdata;
-    Matrix w;
-    w.resize(neural->getDimension());
-    for(unsigned int i=0;i<w.size();i++) w[i]=par[i];
-    neural->setWeights(w);
-    neural->gradientAtPos(x,w);
-    for(unsigned int i=0;i<w.size();i++) g[i]=w[i];
-}
-
 double  Neural::getValueAtPos(int pos)
 {
     return output(xpoint[pos]);
@@ -128,8 +105,6 @@ void    Neural::gradientAtPos(int pos,Matrix &g)
 {
     getDeriv(xpoint[pos],g);
 }
-
-
 
 double    Neural::localSearch()
 {
