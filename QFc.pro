@@ -22,12 +22,15 @@ SOURCES += \
         collection.cc \
         converter.cc \
         cprogram.cc \
+        doubleinterval.cpp \
         doublestack.cc \
         fparser.cc \
         fpoptimizer.cc \
         gensolver.cc \
         getoptions.cpp \
         grs.cc \
+        integergenetic.cpp \
+        interval.cpp \
         kmeans.cc \
         knn.cc \
         lbfgs.cpp \
@@ -70,6 +73,7 @@ HEADERS += \
     collection.h \
     converter.h \
     cprogram.h \
+    doubleinterval.h \
     doublestack.h \
     f2c.h \
     fparser.hh \
@@ -78,6 +82,8 @@ HEADERS += \
     gensolver.h \
     getoptions.h \
     grs.h \
+    integergenetic.h \
+    interval.h \
     kmeans.h \
     knn.h \
     lbfgs.h \

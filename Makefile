@@ -58,12 +58,15 @@ SOURCES       = KmeansPP.cpp \
 		collection.cc \
 		converter.cc \
 		cprogram.cc \
+		doubleinterval.cpp \
 		doublestack.cc \
 		fparser.cc \
 		fpoptimizer.cc \
 		gensolver.cc \
 		getoptions.cpp \
 		grs.cc \
+		integergenetic.cpp \
+		interval.cpp \
 		kmeans.cc \
 		knn.cc \
 		lbfgs.cpp \
@@ -96,12 +99,15 @@ OBJECTS       = KmeansPP.o \
 		collection.o \
 		converter.o \
 		cprogram.o \
+		doubleinterval.o \
 		doublestack.o \
 		fparser.o \
 		fpoptimizer.o \
 		gensolver.o \
 		getoptions.o \
 		grs.o \
+		integergenetic.o \
+		interval.o \
 		kmeans.o \
 		knn.o \
 		lbfgs.o \
@@ -220,6 +226,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		collection.h \
 		converter.h \
 		cprogram.h \
+		doubleinterval.h \
 		doublestack.h \
 		f2c.h \
 		fparser.hh \
@@ -228,6 +235,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		gensolver.h \
 		getoptions.h \
 		grs.h \
+		integergenetic.h \
+		interval.h \
 		kmeans.h \
 		knn.h \
 		lbfgs.h \
@@ -257,12 +266,15 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		collection.cc \
 		converter.cc \
 		cprogram.cc \
+		doubleinterval.cpp \
 		doublestack.cc \
 		fparser.cc \
 		fpoptimizer.cc \
 		gensolver.cc \
 		getoptions.cpp \
 		grs.cc \
+		integergenetic.cpp \
+		interval.cpp \
 		kmeans.cc \
 		knn.cc \
 		lbfgs.cpp \
@@ -488,8 +500,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents KmeansPP.h QfcRandom.h Rbf.h Util.h collection.h converter.h cprogram.h doublestack.h f2c.h fparser.hh fpconfig.hh fptypes.hh gensolver.h getoptions.h grs.h kmeans.h knn.h lbfgs.h mapper.h matrix_functions.h model.h neural.h neuralparser.h neuralprogram.h nnc.h nncneuralprogram.h nnprogram.h osamarbf.h population.h problem.h program.h psoge.h qfcmethod.h rbf_model.h rbfsolver.h rlsprogram.h rule.h sigprogram.h symbol.h $(DISTDIR)/
-	$(COPY_FILE) --parents KmeansPP.cpp QfcRandom.cc Rbf.cc collection.cc converter.cc cprogram.cc doublestack.cc fparser.cc fpoptimizer.cc gensolver.cc getoptions.cpp grs.cc kmeans.cc knn.cc lbfgs.cpp main.cpp mapper.cc matrix_functions.cc model.cc neural.cc neuralparser.cc neuralprogram.cc nnc.cpp nncneuralprogram.cc nnprogram.cc osamarbf.cpp population.cc problem.cc program.cc psoge.cpp qfcmethod.cpp rbf_model.cc rbfsolver.cc rlsprogram.cc rule.cc sigprogram.cc symbol.cc tolmin.cc $(DISTDIR)/
+	$(COPY_FILE) --parents KmeansPP.h QfcRandom.h Rbf.h Util.h collection.h converter.h cprogram.h doubleinterval.h doublestack.h f2c.h fparser.hh fpconfig.hh fptypes.hh gensolver.h getoptions.h grs.h integergenetic.h interval.h kmeans.h knn.h lbfgs.h mapper.h matrix_functions.h model.h neural.h neuralparser.h neuralprogram.h nnc.h nncneuralprogram.h nnprogram.h osamarbf.h population.h problem.h program.h psoge.h qfcmethod.h rbf_model.h rbfsolver.h rlsprogram.h rule.h sigprogram.h symbol.h $(DISTDIR)/
+	$(COPY_FILE) --parents KmeansPP.cpp QfcRandom.cc Rbf.cc collection.cc converter.cc cprogram.cc doubleinterval.cpp doublestack.cc fparser.cc fpoptimizer.cc gensolver.cc getoptions.cpp grs.cc integergenetic.cpp interval.cpp kmeans.cc knn.cc lbfgs.cpp main.cpp mapper.cc matrix_functions.cc model.cc neural.cc neuralparser.cc neuralprogram.cc nnc.cpp nncneuralprogram.cc nnprogram.cc osamarbf.cpp population.cc problem.cc program.cc psoge.cpp qfcmethod.cpp rbf_model.cc rbfsolver.cc rlsprogram.cc rule.cc sigprogram.cc symbol.cc tolmin.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -538,7 +550,10 @@ compiler_clean: compiler_moc_predefs_clean
 ####### Compile
 
 KmeansPP.o: KmeansPP.cpp KmeansPP.h \
-		QfcRandom.h
+		model.h \
+		problem.h \
+		mapper.h \
+		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o KmeansPP.o KmeansPP.cpp
 
 QfcRandom.o: QfcRandom.cc QfcRandom.h
@@ -546,7 +561,11 @@ QfcRandom.o: QfcRandom.cc QfcRandom.h
 
 Rbf.o: Rbf.cc Rbf.h \
 		matrix_functions.h \
-		kmeans.h
+		kmeans.h \
+		model.h \
+		problem.h \
+		mapper.h \
+		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Rbf.o Rbf.cc
 
 collection.o: collection.cc collection.h
@@ -561,6 +580,9 @@ cprogram.o: cprogram.cc cprogram.h \
 		doublestack.h \
 		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cprogram.o cprogram.cc
+
+doubleinterval.o: doubleinterval.cpp doubleinterval.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o doubleinterval.o doubleinterval.cpp
 
 doublestack.o: doublestack.cc doublestack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o doublestack.o doublestack.cc
@@ -581,7 +603,6 @@ gensolver.o: gensolver.cc gensolver.h \
 		model.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		getoptions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gensolver.o gensolver.cc
 
@@ -601,8 +622,35 @@ grs.o: grs.cc grs.h \
 		collection.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o grs.o grs.cc
 
+integergenetic.o: integergenetic.cpp integergenetic.h \
+		qfcmethod.h \
+		program.h \
+		symbol.h \
+		rule.h \
+		doublestack.h \
+		nnprogram.h \
+		cprogram.h \
+		fparser.hh \
+		model.h \
+		problem.h \
+		mapper.h \
+		neural.h \
+		rbf_model.h \
+		Rbf.h \
+		matrix_functions.h \
+		kmeans.h \
+		knn.h \
+		interval.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o integergenetic.o integergenetic.cpp
+
+interval.o: interval.cpp interval.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o interval.o interval.cpp
+
 kmeans.o: kmeans.cc kmeans.h \
-		QfcRandom.h
+		model.h \
+		problem.h \
+		mapper.h \
+		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o kmeans.o kmeans.cc
 
 knn.o: knn.cc knn.h \
@@ -610,7 +658,6 @@ knn.o: knn.cc knn.h \
 		problem.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		gensolver.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o knn.o knn.cc
 
@@ -632,7 +679,6 @@ main.o: main.cpp getoptions.h \
 		model.h \
 		problem.h \
 		mapper.h \
-		QfcRandom.h \
 		neural.h \
 		rbf_model.h \
 		Rbf.h \
@@ -647,7 +693,8 @@ main.o: main.cpp getoptions.h \
 		nncneuralprogram.h \
 		neuralprogram.h \
 		sigprogram.h \
-		neuralparser.h
+		neuralparser.h \
+		QfcRandom.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mapper.o: mapper.cc mapper.h \
@@ -660,8 +707,7 @@ matrix_functions.o: matrix_functions.cc matrix_functions.h
 model.o: model.cc model.h \
 		problem.h \
 		mapper.h \
-		fparser.hh \
-		QfcRandom.h
+		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o model.cc
 
 neural.o: neural.cc neural.h \
@@ -669,7 +715,6 @@ neural.o: neural.cc neural.h \
 		problem.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		gensolver.h \
 		grs.h \
 		population.h \
@@ -703,7 +748,6 @@ nnc.o: nnc.cpp nnc.h \
 		problem.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		nncneuralprogram.h \
 		neuralprogram.h \
 		program.h \
@@ -742,13 +786,13 @@ nnprogram.o: nnprogram.cc nnprogram.h \
 		model.h \
 		problem.h \
 		mapper.h \
-		QfcRandom.h \
 		neural.h \
 		rbf_model.h \
 		Rbf.h \
 		matrix_functions.h \
 		kmeans.h \
-		knn.h
+		knn.h \
+		QfcRandom.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nnprogram.o nnprogram.cc
 
 osamarbf.o: osamarbf.cpp osamarbf.h \
@@ -756,7 +800,6 @@ osamarbf.o: osamarbf.cpp osamarbf.h \
 		problem.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		Util.h \
 		KmeansPP.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o osamarbf.o osamarbf.cpp
@@ -773,7 +816,6 @@ population.o: population.cc population.h \
 		fparser.hh \
 		model.h \
 		mapper.h \
-		QfcRandom.h \
 		neural.h \
 		rbf_model.h \
 		Rbf.h \
@@ -798,7 +840,6 @@ psoge.o: psoge.cpp psoge.h \
 		rule.h \
 		doublestack.h \
 		qfcmethod.h \
-		QfcRandom.h \
 		nnprogram.h \
 		cprogram.h \
 		fparser.hh \
@@ -825,7 +866,6 @@ rbf_model.o: rbf_model.cc rbf_model.h \
 		problem.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		Rbf.h \
 		matrix_functions.h \
 		kmeans.h \
@@ -838,10 +878,10 @@ rbfsolver.o: rbfsolver.cc rbfsolver.h \
 		model.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		Rbf.h \
 		matrix_functions.h \
-		kmeans.h
+		kmeans.h \
+		QfcRandom.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rbfsolver.o rbfsolver.cc
 
 rlsprogram.o: rlsprogram.cc rlsprogram.h \
@@ -876,7 +916,6 @@ tolmin.o: tolmin.cc problem.h \
 		model.h \
 		mapper.h \
 		fparser.hh \
-		QfcRandom.h \
 		f2c.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tolmin.o tolmin.cc
 

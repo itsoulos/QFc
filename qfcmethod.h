@@ -22,6 +22,7 @@ public:
     virtual void step()=0;
     virtual void report()=0;
     virtual bool terminated()=0;
+    virtual void done();
     virtual void run();
     bool isParallel();
 

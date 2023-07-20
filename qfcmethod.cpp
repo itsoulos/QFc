@@ -37,6 +37,11 @@ int     QfcMethod::randomInt(int low,int upper)
         return random[0].bounded(low,upper);
 }
 
+void    QfcMethod::done()
+{
+    //nothing here
+}
+
 void    QfcMethod::run()
 {
     init();
@@ -45,6 +50,7 @@ void    QfcMethod::run()
         step();
         report();
     }
+    done();
 }
 
 bool QfcMethod::isParallel()

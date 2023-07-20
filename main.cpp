@@ -7,9 +7,13 @@
 # include <nnc.h>
 # include <QDebug>
 # include <QfcRandom.h>
+# include <integergenetic.h>
 #include <ostream>
+
 # define GEMETHOD_GENETIC "genetic"
 # define GEMETHOD_PSO     "pso"
+# define GEMETHOD_IGENETIC  "igenetic"
+
 QString ge_method = GEMETHOD_GENETIC;
 vector<int> genome;
 
@@ -261,6 +265,23 @@ void checkTrainAndTest()
 }
 
 
+void    executeIntervalGenetic()
+{
+    IntegerGenetic *pop;
+    if(threads<=1)
+    pop = new IntegerGenetic(ge_chromosomes,ge_length,defaultProgram);
+    else
+    {
+     pop = new IntegerGenetic(ge_chromosomes,ge_length,tprogram);
+    }
+    pop->setSelectionRate(ge_selectionRate);
+    pop->setMutationRate(ge_mutationRate);
+    pop->setMaxGenerations(ge_maxGenerations);
+    pop->run();
+   // genome = pop->getBestGenome();
+
+    delete pop;
+}
 void    executeGenetic()
 {
 
@@ -418,7 +439,11 @@ void makeGrammaticalEvolution()
     }
     if(ge_method==GEMETHOD_GENETIC)
         executeGenetic();
-    else executePso();
+    else
+    if(ge_method == GEMETHOD_PSO)
+        executePso();
+    else
+        executeIntervalGenetic();
 
 
     if(threads<=1)
