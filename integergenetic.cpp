@@ -33,20 +33,10 @@ void    IntegerGenetic::makeGenetic()
     for(int i=0;i<genome_count;i++)
     {
         genome[i].resize(2*maxDepth * genome_size);
-        for(int j=0;j<(int)genome[i].size();j++) genome[i][j]=randomInt(0,1);
+
         children[i].resize(genome[i].size());
         fitnessArray[i]=fitness(genome[i]);
     }
-}
-
-void    IntegerGenetic::setMaxRule(int m)
-{
-    maxRule = m;
-}
-
-int     IntegerGenetic::getMaxRule() const
-{
-    return maxRule;
 }
 
 /* Return the fitness of a genome */
@@ -71,7 +61,6 @@ DoubleInterval  IntegerGenetic::fitness(IDATA &x)
     double miny=1e+100,maxy=1e+100;
     QRandomGenerator g;
     g.seed(1);
-    //seedRandom(1);
     for(int k=1;k<=nsamples;k++)
     {
         for(int i=0;i<(int)xx.size();i++)
@@ -302,6 +291,29 @@ void    IntegerGenetic::done()
 {
     //nothing yet
     //run genetic here using the best interval
+    IntervalData bestI = produceInterval(genome[0]);
+    Population *pop;
+    if(!isParallel())
+    pop = new Population(genome_count,genome_size,program);
+    else
+    {
+     pop = new Population(genome_count,genome_size,tprogram[0]);
+    }
+    pop->setBounds(bestI);
+    extern int  randomSeed;
+    pop->seedRandom(randomSeed);
+
+    pop->setMaxIters(maxGenerations);
+    pop->run();
+
+    bestGenome = pop->getBestGenome();
+
+    delete pop;
+}
+
+vector<int> IntegerGenetic::getBestGenome() const
+{
+    return bestGenome;
 }
 
 void    IntegerGenetic::setSelectionRate(double r)

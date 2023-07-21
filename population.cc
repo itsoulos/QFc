@@ -37,7 +37,7 @@ Population::Population(int gcount,int gsize,vector<Program *> p)
         children[i]=new int[genome_size];
     }
     fitness_array=new double[genome_count];
-    init();
+
 }
 
 /* Population constructor */
@@ -68,7 +68,7 @@ Population::Population(int gcount,int gsize,Program *p)
 		children[i]=new int[genome_size];
 	}
 	fitness_array=new double[genome_count];
-    init();
+
 }
 
 /* Reinitialize the population to random */
@@ -77,7 +77,7 @@ void	Population::init()
 	generation = 0;
 	for(int i=0;i<genome_count;i++)
 		for(int j=0;j<genome_size;j++)
-                genome[i][j]=randomInt(0,MAX_RULE-1);
+                genome[i][j]=getElement(j);
 	for(int i=0;i<genome_count;i++)
 			fitness_array[i]=-1e+100;
 
@@ -86,6 +86,7 @@ void	Population::init()
 /* Return the fitness of a genome */
 double 	Population::fitness(vector<int> &g)
 {
+
 
     if(isParallel())
     {
@@ -199,7 +200,7 @@ void	Population::mutate()
             double r=randomDouble();
 			if(r<mutation_rate)
 			{
-                genome[i][j]=randomInt(0,MAX_RULE-1);
+                genome[i][j]=getElement(j);
 			}
 		}
 	}
@@ -484,7 +485,7 @@ void	Population::localSearch(int pos)
             for(int k=0;k<20;k++)
             {
             int old_value = genome[pos][ipos];
-            new_value =randomInt(0,MAX_RULE-1);
+            new_value =getElement(i);
             genome[pos][ipos]=new_value;
             for(int j=0;j<genome_size;j++) g[j]=genome[pos][j];
             double trial_fitness=fitness(g);

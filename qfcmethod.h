@@ -4,6 +4,7 @@
 # include <QString>
 # include <QDebug>
 # include <QRandomGenerator>
+# include <interval.h>
 # include "omp.h"
 
 class QfcMethod
@@ -12,6 +13,9 @@ protected:
     Program	*program;
     vector<Program*> tprogram;
     vector<QRandomGenerator> random;
+    vector<Interval> boundGenome;
+    int maxRule;
+    bool haveBounds;
 public:
     QfcMethod(Program *t);
     QfcMethod(vector<Program*> t);
@@ -24,8 +28,11 @@ public:
     virtual bool terminated()=0;
     virtual void done();
     virtual void run();
-    bool isParallel();
-
+    void    setMaxRule(int t);
+    int     getMaxRule() const;
+    bool    isParallel();
+    void    setBounds(vector<Interval> &g);
+    virtual int getElement(int pos=0);
     ~QfcMethod();
 };
 

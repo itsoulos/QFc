@@ -21,7 +21,6 @@ private:
     vector<IDATA> genome;
     vector<IDATA> children;
     const int maxDepth=20;
-    int maxRule;
 
     vector<DoubleInterval> fitnessArray;
 
@@ -29,6 +28,7 @@ private:
     DoubleInterval fitness(IDATA &x);
     IntervalData produceInterval(IDATA &x);
 
+    vector<int> bestGenome;
     //private methods
     void    makeGenetic();
     void mutate();
@@ -52,8 +52,7 @@ public:
     int     getGenerationCount() const;
     void    setMaxGenerations(int g);
     int     getMaxGenerations() const;
-    void    setMaxRule(int m);
-    int     getMaxRule() const;
+    vector<int> getBestGenome() const;
     ~IntegerGenetic();
 };
 

@@ -37,7 +37,7 @@ void    PsoGE::initParticle(int *p)
 {
     for(int i=0;i<particle_size;i++)
     {
-        p[i] = randomInt(0,NMAX-1);
+        p[i] = getElement(i);
         if(p[i]<0) p[i]=-p[i];
     }
 }
