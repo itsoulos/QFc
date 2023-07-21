@@ -276,7 +276,7 @@ void    executeIntervalGenetic()
     }
     pop->setSelectionRate(ge_selectionRate);
     pop->setMutationRate(ge_mutationRate);
-    pop->setMaxGenerations(10);
+    pop->setMaxGenerations(20);
     pop->run();
     genome = pop->getBestGenome();
 

@@ -297,13 +297,13 @@ void    IntegerGenetic::done()
     pop = new Population(genome_count,genome_size,program);
     else
     {
-     pop = new Population(genome_count,genome_size,tprogram[0]);
+     pop = new Population(genome_count,genome_size,tprogram);
     }
     pop->setBounds(bestI);
     extern int  randomSeed;
     pop->seedRandom(randomSeed);
-
-    pop->setMaxIters(maxGenerations);
+    pop->setLocalSearchGenerations(20000);
+    pop->setMaxIters(200);
     pop->run();
 
     bestGenome = pop->getBestGenome();

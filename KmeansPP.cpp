@@ -1,5 +1,6 @@
 #include "KmeansPP.h"
 # include <stdlib.h>
+# include <QRandomGenerator>
 using namespace std;
 
 KmeansPP::KmeansPP(Model *m,const std::vector<datapoint> &input_data)
@@ -12,14 +13,16 @@ KmeansPP::~KmeansPP()
 {
 
 }
-
+ QRandomGenerator gen;
 vector<vector<int> > KmeansPP::RunKMeansPP(int K, vector<datapoint> &centroids)
 {
 	assert(K<=input_data.size());
 	vector<vector<int> > clusters_vec(K); 
+
+    gen.seed(model->getSeed());
 	// First: initalize the initial centroids according to K-Means Plus Plus Algorithm
 	init();
-    int first_centroid =(int)model->randomDouble()*input_data.size();// random_index_gen(random_engine);
+    int first_centroid =(int)gen.generateDouble()*input_data.size();// random_index_gen(random_engine);
     if(first_centroid==input_data.size()) first_centroid--;
 
 	initial_centroids_.push_back(input_data[first_centroid]);
@@ -65,7 +68,7 @@ int KmeansPP::getNextInitialCentroidIndex()
 		cumm_prob[i] += cumm_prob[i-1];
 
 	// Choosing the next point with a probabilty D(x)/SIGMA(D(x))
-    double rand_num = model->randomDouble();// random_real_gen(random_engine);
+    double rand_num = gen.generateDouble();// random_real_gen(random_engine);
 	for (int i = 0; i < cumm_prob.size() ; ++i)
 		if (rand_num < cumm_prob[i])
 			return i;

@@ -22,6 +22,7 @@ Model::Model(Mapper *m)
 	pattern_dimension = 0;
 	mapper = m;
 	isvalidation=0;
+    seed_for_random = 1;
 }
 
 Matrix	Model::getWeights()
@@ -589,7 +590,13 @@ void    Model::dumpFile(QString input,QString output)
 
 void    Model::randomSeed(int s)
 {
+    seed_for_random = s;
     random.seed(s);
+}
+
+int     Model::getSeed() const
+{
+    return seed_for_random;
 }
 
 double  Model::randomDouble()

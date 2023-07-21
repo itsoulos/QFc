@@ -24,6 +24,7 @@ class Model :public Problem
 		Matrix		ypoint;
         int model_type;
         QRandomGenerator random;
+        int seed_for_random;
 	public:
 
 		Mapper	*mapper;
@@ -69,6 +70,7 @@ class Model :public Problem
         void    randomSeed(int s);
         double  randomDouble();
         int     randomInt(int low,int upper);
+        int     getSeed() const;
 		~Model();
 };
 

@@ -8,6 +8,8 @@ typedef std::vector<double> datapoint;
 class KmeansPP
 {	
 private:
+    QRandomGenerator gen;
+
     Model *model;
 public:
 
