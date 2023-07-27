@@ -273,6 +273,14 @@ void    IntegerGenetic::step()
     calcFitnessArray();
     selection();
     crossover();
+    if(generation%20==0)
+    {
+	    int count = 20;
+#pragma omp parallel for schedule(dynamic)
+	    for(int i=0;i<count;i++)
+		    localSearch(rand() % genome.size());
+	    selection();
+    }
     ++generation;
 }
 
@@ -350,3 +358,39 @@ IntegerGenetic::~IntegerGenetic()
 {
     //nothing here
 }
+void	IntegerGenetic::localSearch(int pos)
+{
+	int genome_size  = genome[0].size();
+	vector<int> g;
+	g.resize(genome_size);
+	for(int i=0;i<genome_size;i++) g[i]=genome[pos][i];
+	int genome_count = genome.size();
+	
+	for(int iters=1;iters<=100;iters++)
+	{
+		int gpos=rand() % genome_count;
+		int cutpoint=rand() % genome_size;
+		for(int j=0;j<cutpoint;j++) g[j]=genome[pos][j];
+		for(int j=cutpoint;j<genome_size;j++) g[j]=genome[gpos][j];
+                DoubleInterval fx=fitness(g);
+                if(lowerValue(fx,fitnessArray[pos]))
+		{
+			printf("NEW MIN[%4d]=[%10.4lg,%10.4lg]\n",pos,fx.leftValue(),fx.rightValue());
+			for(int j=0;j<genome_size;j++) genome[pos][j]=g[j];
+			fitnessArray[pos]=fx;
+		}
+		else
+		{
+			for(int j=0;j<cutpoint;j++) g[j]=genome[gpos][j];
+			for(int j=cutpoint;j<genome_size;j++) g[j]=genome[pos][j];
+                	fx=fitness(g);
+                	if(lowerValue(fx,fitnessArray[pos]))
+			{
+			//printf("NEW MIN[%4d]=[%10.4lg,%10.4lg]\n",pos,fx.leftValue(),fx.rightValue());
+				for(int j=0;j<genome_size;j++) genome[pos][j]=g[j];
+				fitnessArray[pos]=fx;
+			}
+		}
+	}
+}
+		

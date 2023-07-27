@@ -53,6 +53,7 @@ public:
     void    setMaxGenerations(int g);
     int     getMaxGenerations() const;
     vector<int> getBestGenome() const;
+    void	localSearch(int pos);
     ~IntegerGenetic();
 };
 
