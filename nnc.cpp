@@ -41,11 +41,17 @@ double 	NNC::train1()
 d=ttx[0].size();
     if(program==NULL)
     program=new NNCNeuralProgram (xpoint,ypoint,ttx,tty);
+    else
+    {
+	    delete program;
+   	program=new NNCNeuralProgram (xpoint,ypoint,ttx,tty);
+    }
     pop=new Population (ge_chromosomes,ge_length ,program);
     pop->setSelectionRate(ge_selectionRate);
     pop->setMutationRate(ge_mutationRate);
     pop->setLocalSearchGenerations(1000);
     pop->setLocalSearchRate(0.00);
+    pop->init();
     double f;
     vector<int> genome;
     genome.resize(pop->getSize());
@@ -66,13 +72,13 @@ d=ttx[0].size();
             bestError=fabs(f);
             old_test_error=program->getTestError();
         }
-     //  printf("BEST[%d]=%20.10lf Solution: y(x)=%s\n",i,f,str.c_str());
+       printf("BEST[%d]=%20.10lf Solution: y(x)=%s\n",i,f,str.c_str());
        NNCNeuralProgram *p=(NNCNeuralProgram*)program;
        double class_test=p->getClassTestError(genome);
-      // printf("CLASS  ERROR=%.2lf%%\n",class_test);
+       printf("CLASS  ERROR=%.2lf%%\n",class_test);
 
        //LOCALSEARCH
-               if(i%20==0)
+               if(i%2000==0)
                {
                    int imax=20;//localSearchChromosomes;
                    int iflag=0;

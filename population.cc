@@ -87,6 +87,8 @@ void	Population::init()
 double 	Population::fitness(vector<int> &g)
 {
 
+	if(genome_size!=g.size())
+		exit(printf("iteration: %d genome %d gsize %d \n",generation,genome_size,g.size()));
 
     if(isParallel())
     {
