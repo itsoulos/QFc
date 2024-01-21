@@ -440,6 +440,120 @@ bool Population::terminated()
     return generation>=maxIters;
 }
 
+
+class IntegerAnneal
+{
+private:
+    Population *pop;
+    vector<int> xpoint;
+    double ypoint;
+    vector<int> bestx;
+    double besty;
+    int neps=100;
+    double T0;
+    int k;
+public:
+    IntegerAnneal(Population *p);
+    void    setNeps(int n);
+    void    setT0(double t);
+    void setPoint(vector<int> &g,double &y);
+    void getPoint(vector<int> &g,double &y);
+    void Solve();
+    void    updateTemp();
+    ~IntegerAnneal();
+};
+IntegerAnneal::IntegerAnneal(Population *p)
+{
+    pop = p;
+    T0=1e+8;
+    neps=200;
+}
+void    IntegerAnneal::setNeps(int n)
+{
+    neps  = n;
+}
+
+void    IntegerAnneal::updateTemp()
+{
+    const double alpha = 0.8;
+
+    T0 =T0 * pow(alpha,k);
+    k=k+1;
+}
+void    IntegerAnneal::setT0(double t)
+{
+    T0  = t;
+}
+void    IntegerAnneal::setPoint(vector<int> &g,double &y)
+{
+    xpoint = g;
+    ypoint = y;
+
+}
+void    IntegerAnneal::getPoint(vector<int> &g,double &y)
+{
+    g = bestx;
+    y = besty;
+}
+
+void    IntegerAnneal::Solve()
+{
+    bestx = xpoint;
+    besty = ypoint;
+    int i;
+    k=1;
+    vector<int> y;
+    y.resize(bestx.size());
+    while(true)
+    {
+        for(i=1;i<=neps;i++)
+        {
+        double fy;
+        for(int j=0;j<y.size();j++)
+            y[j]=rand() % MAX_RULE;
+        fy = pop->fitness(y);
+        if(isnan(fy) || isinf(fy)) continue;
+
+        if(fy>ypoint)
+        {
+            xpoint = y;
+            ypoint = fy;
+            if(ypoint>besty)
+            {
+                                        bestx = xpoint;
+                                        besty = ypoint;
+            }
+        }
+        else
+        {
+            double r = fabs((rand()*1.0)/RAND_MAX);
+            double ratio = exp(-(fy-ypoint)/T0);
+            double xmin = ratio<1?ratio:1;
+            if(r<xmin)
+            {
+                                        xpoint = y;
+                                        ypoint = fy;
+                                        if(ypoint>besty)
+                                        {
+                                            bestx = xpoint;
+                                            besty = ypoint;
+                                        }
+            }
+        }
+        }
+        updateTemp();
+        if(T0<=1e-5) break;
+       // printf("Iteration: %4d Temperature: %20.10lg Value: %20.10lg\n",
+       //        k,T0,besty);
+
+    }
+}
+
+IntegerAnneal::~IntegerAnneal()
+{
+    //nothing here
+}
+
 void	Population::localSearch(int pos)
 {
     if(localSearchMethod=="none") return;
@@ -447,6 +561,25 @@ void	Population::localSearch(int pos)
 	g.resize(genome_size);
 
 	for(int i=0;i<genome_size;i++) g[i]=genome[pos][i];
+    if(localSearchMethod == "siman")
+    {
+        IntegerAnneal mt(this);
+        double t= fitness_array[pos];
+        mt.setPoint(g,t);
+        mt.Solve();
+        double y;
+        mt.getPoint(g,y);
+        fitness_array[pos]=y;
+        fprintf(stderr,"LOCAL SEARCH[%20.10lg]=>[%20.10lg]\n",t,y);
+        for(int i=0;i<genome_size;i++)
+        {
+        genome[pos][i]=g[i];
+        if(genome[pos][i]<0) genome[pos][i]=0;
+        }
+        // delete pr;
+        return;
+    }
+    else
     if(localSearchMethod=="crossover")
     {
 
