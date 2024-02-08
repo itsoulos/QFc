@@ -1,5 +1,6 @@
 #include "integergenetic.h"
 # include <population.h>
+# include <omp.h>
 # include <iostream>
 using namespace std;
 IntegerGenetic::IntegerGenetic(int gcount,int gsize,Program *p)

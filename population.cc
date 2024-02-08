@@ -5,7 +5,7 @@
 # include <iostream>
 # include <problem.h>
 # include <nnprogram.h>
-
+# include "omp.h"
 # define MAX_RULE	1024
 
 Population::Population(int gcount,int gsize,vector<Program *> p)
@@ -39,6 +39,7 @@ Population::Population(int gcount,int gsize,vector<Program *> p)
     fitness_array=new double[genome_count];
 
 }
+
 
 /* Population constructor */
 /* Input: genome count , genome size, pointer to Program instance */
@@ -407,11 +408,10 @@ void Population::step()
     if((generation+1) % mod==0)
     {
 
-        for(int i=0;i<genome_count;i++)
-        {
-              double r=randomDouble();
-        if(r<=localSearchRate)  localSearch(i);
-        }
+       const int K=20;
+       for(int i=0;i<K;i++)
+           localSearch(rand() % genome_count);
+       localSearch(0);
     }
     select();
     crossover();
@@ -592,6 +592,8 @@ void	Population::localSearch(int pos)
             double f=fitness(g);
             if(fabs(f)<fabs(fitness_array[pos]))
             {
+                printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],f);
+
                 for(int j=0;j<genome_size;j++) genome[pos][j]=g[j];
                 fitness_array[pos]=f;
             }
@@ -602,6 +604,7 @@ void	Population::localSearch(int pos)
                 double f=fitness(g);
                 if(fabs(f)<fabs(fitness_array[pos]))
                 {
+                    printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],f);
 
                     for(int j=0;j<genome_size;j++) genome[pos][j]=g[j];
                     fitness_array[pos]=f;
@@ -613,6 +616,27 @@ void	Population::localSearch(int pos)
     else
     if(localSearchMethod=="random")
     {
+      /*  vector<int> pt;
+        const int iters=10;
+        for(int k=1;k<=iters;k++)
+        {
+        pt.resize(genome_size);
+        for(int i=0;i<pt.size();i++)
+        {
+            //three states (0,1,-1)
+            int r = rand() % 3;
+            if(r==2 && genome[pos][i]!=0) r=-1;
+            pt[i]=genome[pos][i]+r;
+        }
+        double trial_fitness= fitness(pt);
+        if(fabs(trial_fitness)<=fabs(fitness_array[pos]))
+        {
+            printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
+              for(int i=0;i<pt.size();i++) genome[pos][i]=pt[i];
+            fitness_array[pos]=trial_fitness;
+        }
+        }*/
+
         for(int i=0;i<genome_size;i++)
         {
             int ipos =randomInt(0,genome_size-1);
@@ -626,8 +650,10 @@ void	Population::localSearch(int pos)
             double trial_fitness=fitness(g);
             if(fabs(trial_fitness)<fabs(fitness_array[pos]))
             {
+                printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
+
                 fitness_array[pos]=trial_fitness;
-                return;
+
             }
             else	genome[pos][ipos]=old_value;
             }
@@ -772,7 +798,8 @@ void	Population::setGenome(int pos,vector<int> &g,double f,int k)
 void	Population::setGenome(int pos,vector<int> &g,double f)
 {
     double tf=fitness(g);
-    if(tf<fitness_array[pos] && fabs(tf-f)>1e-4) return;
+    if(tf<fitness_array[pos] && fabs(tf-f)>1e-4)
+        return;
     if(g.size()>genome_size)
     {
         int *old=new int[genome_size];

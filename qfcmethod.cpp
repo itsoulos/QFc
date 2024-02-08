@@ -1,5 +1,5 @@
 #include "qfcmethod.h"
-
+# include <omp.h>
 QfcMethod::QfcMethod(Program *t)
 {
     program = t;

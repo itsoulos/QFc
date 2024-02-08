@@ -3,7 +3,7 @@
 # include <QString>
 # include <QDebug>
 # include <qfcmethod.h>
-# include "omp.h"
+
 /* The Population class holds the current population. */
 /* The mutation, selection and crossover operators are defined here */
 

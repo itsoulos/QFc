@@ -5,7 +5,6 @@
 # include <QDebug>
 # include <QRandomGenerator>
 # include <interval.h>
-# include "omp.h"
 
 class QfcMethod
 {
