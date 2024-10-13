@@ -41,7 +41,9 @@ void OsamaRbf::calculateGamma()
 double 	OsamaRbf::train1()
 {
     if(!istrain2)
-randomSeed(1);
+    {
+	randomSeed(1);
+    }
     for(unsigned int i=0;i<xpoint.size();i++)
     {
         mapper->map(origx[i],xpoint[i]);
@@ -57,9 +59,9 @@ randomSeed(1);
     num_of_labels=1;
     // Init the Second Layer with values [-1,1]
     layer2_weights.assign(num_of_labels, vector<double>(num_weights,0));
-    for(auto &label: layer2_weights)
+/*    for(auto &label: layer2_weights)
         for(auto &arc: label)
-            arc =randomDouble();// random_real_gen(random_engine);
+            arc =randomDouble();// random_real_gen(random_engine);*/
     double mse = 0;
         double accuracy=0;
 

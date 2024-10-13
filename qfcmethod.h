@@ -12,6 +12,7 @@ protected:
     Program	*program;
     vector<Program*> tprogram;
     vector<QRandomGenerator> random;
+    vector<QRandomGenerator> drandom;
     vector<Interval> boundGenome;
     int maxRule;
     bool haveBounds;

@@ -13,7 +13,6 @@ KmeansPP::~KmeansPP()
 {
 
 }
- QRandomGenerator gen;
 vector<vector<int> > KmeansPP::RunKMeansPP(int K, vector<datapoint> &centroids)
 {
 	assert(K<=input_data.size());

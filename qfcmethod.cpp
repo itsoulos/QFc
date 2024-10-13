@@ -5,8 +5,10 @@ QfcMethod::QfcMethod(Program *t)
     program = t;
     tprogram.resize(0);
     random.resize(1);
+    drandom.resize(1);
     maxRule = 255;
     haveBounds  = false;
+    seedRandom(1);
 }
 
 QfcMethod::QfcMethod(vector<Program*> t)
@@ -15,19 +17,22 @@ QfcMethod::QfcMethod(vector<Program*> t)
     tprogram = t;
     program = NULL;
     random.resize(t.size());
-    haveBounds  = false;
-
+    drandom.resize(t.size());
+    haveBounds  = false; 
+    seedRandom(1);
 }
 
 
 void    QfcMethod::seedRandom(int s)
 {
+	std::seed_seq seq{s+1,s+2,s+3,s+4,s+5};
     for(int i=0;i<random.size();i++)
-        random[i].seed(s);
+        random[i].seed(seq);
 }
 
 double  QfcMethod::randomDouble()
 {
+//	return rand()*1.0/RAND_MAX;
     if(isParallel())
         return random[omp_get_thread_num()].generateDouble();
     else
@@ -36,6 +41,7 @@ double  QfcMethod::randomDouble()
 
 int     QfcMethod::randomInt(int low,int upper)
 {
+//	return low+(rand() % (upper-low));
     if(isParallel())
         return random[omp_get_thread_num()].bounded(low,upper);
     else

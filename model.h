@@ -24,6 +24,7 @@ class Model :public Problem
 		Matrix		ypoint;
         int model_type;
         QRandomGenerator random;
+        QRandomGenerator drandom;
         int seed_for_random;
 	public:
 
