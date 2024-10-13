@@ -226,6 +226,8 @@ void	Population::calcFitnessArray()
 
             for(int j=0;j<genome_size;j++) g[j]=genome[i][j];
             fitness_array[i]=fitness(g);
+	    if(rand()*1.0/RAND_MAX<=0.001)
+		    localSearch(i);
             //else
             //localSearch(i);
             if(fabs(fitness_array[i])<dmin)
@@ -233,12 +235,12 @@ void	Population::calcFitnessArray()
                 dmin=fabs(fitness_array[i]);
             }
             if(fabs(fitness_array[i])>=1e+100) icount++;
-            /*
+            
             if((i+1)%10==0)
             {
                 printf(" %d:%.5lg ",i+1,dmin);
                 fflush(stdout);
-            }*/
+            }
         }
     }
     else
@@ -248,6 +250,8 @@ void	Population::calcFitnessArray()
         g.resize(genome_size);
 		for(int j=0;j<genome_size;j++) g[j]=genome[i][j];	
 		fitness_array[i]=fitness(g);
+	    if(rand()*1.0/RAND_MAX<=0.001)
+		    localSearch(i);
 		//else 
 		//localSearch(i);
 		if(fabs(fitness_array[i])<dmin)
@@ -255,12 +259,12 @@ void	Population::calcFitnessArray()
 			dmin=fabs(fitness_array[i]);
 		}
 		if(fabs(fitness_array[i])>=1e+100) icount++;	
-		/*
+		
 		if((i+1)%10==0)
 		{
 			printf(" %d:%.5lg ",i+1,dmin);
 			fflush(stdout);
-		}*/
+		}
 		
     }
 	
@@ -404,6 +408,7 @@ int     Population::getMaxIters() const
 void Population::step()
 {
     calcFitnessArray();
+    /*
     const int mod=localSearchGenerations;
     if((generation+1) % mod==0)
     {
@@ -412,7 +417,7 @@ void Population::step()
        for(int i=0;i<K;i++)
            localSearch(rand() % genome_count);
        localSearch(0);
-    }
+    }*/
     select();
     crossover();
     if(generation) mutate();
