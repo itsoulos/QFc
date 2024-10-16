@@ -226,8 +226,8 @@ void	Population::calcFitnessArray()
 
             for(int j=0;j<genome_size;j++) g[j]=genome[i][j];
             fitness_array[i]=fitness(g);
-	    if(rand()*1.0/RAND_MAX<=0.001)
-		    localSearch(i);
+//	    if(rand()*1.0/RAND_MAX<=0.005)
+//		    localSearch(i);
             //else
             //localSearch(i);
             if(fabs(fitness_array[i])<dmin)
@@ -236,11 +236,11 @@ void	Population::calcFitnessArray()
             }
             if(fabs(fitness_array[i])>=1e+100) icount++;
             
-            if((i+1)%10==0)
+            /*if((i+1)%10==0)
             {
                 printf(" %d:%.5lg ",i+1,dmin);
                 fflush(stdout);
-            }
+            }*/
         }
     }
     else
@@ -250,8 +250,8 @@ void	Population::calcFitnessArray()
         g.resize(genome_size);
 		for(int j=0;j<genome_size;j++) g[j]=genome[i][j];	
 		fitness_array[i]=fitness(g);
-	    if(rand()*1.0/RAND_MAX<=0.001)
-		    localSearch(i);
+//	    if(rand()*1.0/RAND_MAX<=0.005)
+//		    localSearch(i);
 		//else 
 		//localSearch(i);
 		if(fabs(fitness_array[i])<dmin)
@@ -260,11 +260,11 @@ void	Population::calcFitnessArray()
 		}
 		if(fabs(fitness_array[i])>=1e+100) icount++;	
 		
-		if((i+1)%10==0)
+		/*if((i+1)%10==0)
 		{
 			printf(" %d:%.5lg ",i+1,dmin);
 			fflush(stdout);
-		}
+		}*/
 		
     }
 	
@@ -408,8 +408,8 @@ int     Population::getMaxIters() const
 void Population::step()
 {
     calcFitnessArray();
-    /*
-    const int mod=localSearchGenerations;
+    
+    const int mod=20;//localSearchGenerations;
     if((generation+1) % mod==0)
     {
 
@@ -417,7 +417,7 @@ void Population::step()
        for(int i=0;i<K;i++)
            localSearch(rand() % genome_count);
        localSearch(0);
-    }*/
+    }
     select();
     crossover();
     if(generation) mutate();
@@ -649,13 +649,17 @@ void	Population::localSearch(int pos)
             for(int k=0;k<20;k++)
             {
             int old_value = genome[pos][ipos];
-            new_value =getElement(i);
+
+		int range = 20;
+		int direction = rand()%2==1?1:-1;
+		int new_value = old_value+direction*(rand()%range);
+		if(new_value<0) new_value=0;
             genome[pos][ipos]=new_value;
             for(int j=0;j<genome_size;j++) g[j]=genome[pos][j];
             double trial_fitness=fitness(g);
             if(fabs(trial_fitness)<fabs(fitness_array[pos]))
             {
-                printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
+                fprintf(stderr,"%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
 
                 fitness_array[pos]=trial_fitness;
 
@@ -680,6 +684,7 @@ void	Population::localSearch(int pos)
             Info.iters=2001;
             y=tolmin(x,Info);
 
+                fprintf(stderr,"%4d: BFGS[%lf]=>%lf\n",pos,fitness_array[pos],-y);
             fitness_array[pos]=-y;
             for(int i=0;i<genome_size;i++)
             {
