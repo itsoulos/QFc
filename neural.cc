@@ -113,8 +113,8 @@ double    Neural::localSearch()
     rmargin.resize(weight.size());
     for(int i=0;i<weight.size();i++)
     {
-        lmargin[i]=-100.0;
-        rmargin[i]= 100.0;
+        lmargin[i]=-10.0;
+        rmargin[i]= 10.0;
     }
 
     if(localSearchMethod=="bfgs")
