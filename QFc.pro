@@ -22,6 +22,7 @@ SOURCES += \
         collection.cc \
         converter.cc \
         cprogram.cc \
+        demethod.cpp \
         doubleinterval.cpp \
         doublestack.cc \
         fparser.cc \
@@ -73,6 +74,7 @@ HEADERS += \
     collection.h \
     converter.h \
     cprogram.h \
+    demethod.h \
     doubleinterval.h \
     doublestack.h \
     f2c.h \

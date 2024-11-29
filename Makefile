@@ -58,6 +58,7 @@ SOURCES       = KmeansPP.cpp \
 		collection.cc \
 		converter.cc \
 		cprogram.cc \
+		demethod.cpp \
 		doubleinterval.cpp \
 		doublestack.cc \
 		fparser.cc \
@@ -99,6 +100,7 @@ OBJECTS       = KmeansPP.o \
 		collection.o \
 		converter.o \
 		cprogram.o \
+		demethod.o \
 		doubleinterval.o \
 		doublestack.o \
 		fparser.o \
@@ -225,6 +227,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		collection.h \
 		converter.h \
 		cprogram.h \
+		demethod.h \
 		doubleinterval.h \
 		doublestack.h \
 		f2c.h \
@@ -265,6 +268,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		collection.cc \
 		converter.cc \
 		cprogram.cc \
+		demethod.cpp \
 		doubleinterval.cpp \
 		doublestack.cc \
 		fparser.cc \
@@ -497,8 +501,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents KmeansPP.h QfcRandom.h Rbf.h Util.h collection.h converter.h cprogram.h doubleinterval.h doublestack.h f2c.h fparser.hh fpconfig.hh fptypes.hh gensolver.h getoptions.h grs.h integergenetic.h interval.h kmeans.h knn.h lbfgs.h mapper.h matrix_functions.h model.h neural.h neuralparser.h neuralprogram.h nnc.h nncneuralprogram.h nnprogram.h osamarbf.h population.h problem.h program.h psoge.h qfcmethod.h rbf_model.h rbfsolver.h rlsprogram.h rule.h sigprogram.h symbol.h $(DISTDIR)/
-	$(COPY_FILE) --parents KmeansPP.cpp QfcRandom.cc Rbf.cc collection.cc converter.cc cprogram.cc doubleinterval.cpp doublestack.cc fparser.cc fpoptimizer.cc gensolver.cc getoptions.cpp grs.cc integergenetic.cpp interval.cpp kmeans.cc knn.cc lbfgs.cpp main.cpp mapper.cc matrix_functions.cc model.cc neural.cc neuralparser.cc neuralprogram.cc nnc.cpp nncneuralprogram.cc nnprogram.cc osamarbf.cpp population.cc problem.cc program.cc psoge.cpp qfcmethod.cpp rbf_model.cc rbfsolver.cc rlsprogram.cc rule.cc sigprogram.cc symbol.cc tolmin.cc $(DISTDIR)/
+	$(COPY_FILE) --parents KmeansPP.h QfcRandom.h Rbf.h Util.h collection.h converter.h cprogram.h demethod.h doubleinterval.h doublestack.h f2c.h fparser.hh fpconfig.hh fptypes.hh gensolver.h getoptions.h grs.h integergenetic.h interval.h kmeans.h knn.h lbfgs.h mapper.h matrix_functions.h model.h neural.h neuralparser.h neuralprogram.h nnc.h nncneuralprogram.h nnprogram.h osamarbf.h population.h problem.h program.h psoge.h qfcmethod.h rbf_model.h rbfsolver.h rlsprogram.h rule.h sigprogram.h symbol.h $(DISTDIR)/
+	$(COPY_FILE) --parents KmeansPP.cpp QfcRandom.cc Rbf.cc collection.cc converter.cc cprogram.cc demethod.cpp doubleinterval.cpp doublestack.cc fparser.cc fpoptimizer.cc gensolver.cc getoptions.cpp grs.cc integergenetic.cpp interval.cpp kmeans.cc knn.cc lbfgs.cpp main.cpp mapper.cc matrix_functions.cc model.cc neural.cc neuralparser.cc neuralprogram.cc nnc.cpp nncneuralprogram.cc nnprogram.cc osamarbf.cpp population.cc problem.cc program.cc psoge.cpp qfcmethod.cpp rbf_model.cc rbfsolver.cc rlsprogram.cc rule.cc sigprogram.cc symbol.cc tolmin.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -577,6 +581,13 @@ cprogram.o: cprogram.cc cprogram.h \
 		doublestack.h \
 		fparser.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cprogram.o cprogram.cc
+
+demethod.o: demethod.cpp demethod.h \
+		problem.h \
+		model.h \
+		mapper.h \
+		fparser.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o demethod.o demethod.cpp
 
 doubleinterval.o: doubleinterval.cpp doubleinterval.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o doubleinterval.o doubleinterval.cpp
@@ -729,8 +740,10 @@ neural.o: neural.cc neural.h \
 		interval.h \
 		rlsprogram.h \
 		collection.h \
+		demethod.h \
 		lbfgs.h \
-		f2c.h
+		f2c.h \
+		getoptions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o neural.o neural.cc
 
 neuralparser.o: neuralparser.cc neuralparser.h

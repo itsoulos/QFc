@@ -139,6 +139,13 @@ void printParams()
 
     printOption("--export_train_file","-e","Filepath where the modified test file will be printed",
                 export_test_file);
+
+    printOption("--de_fvalue","","The used differential weight for DE",de_fvalue);
+    printOption("--de_crvalue","","The used crossver rate for DE",de_crvalue);
+    printOption("--de_lrate","","The used local search rate for DE",de_lrate);
+    printOption("--de_np","","The number of agents for DE",de_np);
+    printOption("--de_fmethod","","The used weight method for DE",de_fmethod);
+    printOption("--de_maxiters","","Maximum number of iterations for DE",de_maxiters);
    exit(0);
 }
 
@@ -222,7 +229,12 @@ void parseCmdLine(QStringList args)
         checkParameter(name,value,"--export_test_file","-e",export_test_file);
         checkParameter(name,value,"--export_cpp_file","-e",export_cpp_file);
         checkParameter(name,value,"--ge_method","-g",ge_method);
-
+        checkParameter(name,value,"--de_fvalue","",de_fvalue);
+        checkParameter(name,value,"--de_crvalue","",de_crvalue);
+        checkParameter(name,value,"--de_lrate","",de_lrate);
+        checkParameter(name,value,"--de_np","",de_np);
+        checkParameter(name,value,"--de_maxiters","",de_maxiters);
+        checkParameter(name,value,"--de_fmethod","",de_fmethod);
     }
 }
 

@@ -49,3 +49,11 @@ QString  export_test_file="";
 
 /** The file contains the created features in c++ format **/
 QString export_cpp_file="";
+
+/** DE PARAMS **/
+int      de_np=200;
+double   de_fvalue=0.8;
+double   de_crvalue=0.9;
+int      de_maxiters=200;
+double   de_lrate=0.00;
+QString  de_fmethod="number";//values: number, random,adaptive, migrant

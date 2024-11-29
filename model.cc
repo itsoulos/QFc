@@ -168,7 +168,7 @@ double	Model::valError()
 	return s;
 }
 
-double	Model::funmin(Matrix x)
+double	Model::funmin(Matrix &x)
 {
 	if(weight.size()!=x.size()) weight.resize(x.size());
 	for(int i=0;i<x.size();i++) weight[i] = x[i];
@@ -203,7 +203,7 @@ double	Model::funmin(Matrix x)
 	return s;
 }
 
-void  Model::granal(Matrix x,Matrix &g)
+void  Model::granal(Matrix &x,Matrix &g)
 {
 	if(weight.size()!=x.size())
 	weight.resize(x.size());

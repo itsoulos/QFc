@@ -3,8 +3,9 @@
 # include <gensolver.h>
 # include <QDebug>
 # include <grs.h>
+# include <demethod.h>
 # include <lbfgs.h>
-
+# include <getoptions.h>
 int pass=0;
 double maxx=-1e+100;
 
@@ -150,6 +151,31 @@ double    Neural::localSearch()
         Info.p=this;
         Info.iters=2001;
         v=tolmin(weight,Info);
+        return v;
+    }
+    else
+    if(localSearchMethod == "de")
+    {
+        DeMethod de(this,de_np);
+        de.setFMethod(de_fmethod);
+        de.setCRValue(de_crvalue);
+        de.setFValue(de_fvalue);
+        de.setLocalSearchRate(de_lrate);
+        de.setMaxIters(de_maxiters);
+        de.Solve();
+
+        double v;
+        de.getBest(weight,v);
+        for(int i=0;i<weight.size();i++)
+        {
+
+            lmargin[i]=-2.0*fabs(weight[i]);
+            rmargin[i]= 2.0*fabs(weight[i]);
+        }
+        MinInfo Info;
+        Info.p=this;
+        Info.iters=2001;
+         v=tolmin(weight,Info);
         return v;
     }
     else

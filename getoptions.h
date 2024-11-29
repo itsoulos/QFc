@@ -59,4 +59,11 @@ extern QString  export_test_file;
 /** The file contains the created features in c++ format **/
 extern QString export_cpp_file;
 
+/** Params for DE METHOD **/
+extern int      de_np;
+extern double   de_fvalue;
+extern double   de_crvalue;
+extern int      de_maxiters;
+extern double   de_lrate;
+extern QString  de_fmethod;
 #endif // GETOPTIONS_H

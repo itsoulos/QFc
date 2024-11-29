@@ -85,27 +85,12 @@ void	Problem::getRightMargin(Matrix &x2)
 	x2 = rmargin;
 }
 
-double	Problem::funmin(Matrix x)
+double	Problem::funmin(Matrix &x)
 {
 	printf("Enter default funmin \n");
 	return 0.0;
 }
 
-/*	02-11-03
- *	Επιστρέφει την αντικειμενική συνάρτηση του προβλήματος.
- * */
-FUNCTION	Problem::getFunmin()
-{
-	return &Problem::funmin;
-}
-
-/*	02-11-03
- *	Επιστρέφει την αντικειμενική παράγωγο του προβλήματος.
- * */
-GRADIENT	Problem::getGranal()
-{
-	return &Problem::granal;
-}
 
 /*	02-11-03
  *	Επιστρέφει 1 αν το δοθέν σημεία είναι εντός των 
@@ -219,7 +204,7 @@ void	Problem::bound(Matrix &x)
  *	Είναι η αντικειμενική παράγωγος του προβλήματος.
  *	Αν δεν επανοριστεί υπολογίζεται με αριθμητικό τρόπο.
  * */
-void	Problem::granal(Matrix x,Matrix &g)
+void	Problem::granal(Matrix &x,Matrix &g)
 {
 	const double eps=1e-6;
 	for(int i=0;i<g.size();i++) g[i]=0.0;

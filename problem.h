@@ -29,14 +29,13 @@ class Problem
 		void	setMargin(Matrix x1,Matrix x2);
 		void	setLeftMargin(Matrix x1);
 		void	setRightMargin(Matrix x2);
-		virtual double  funmin(Matrix);
-		virtual void   granal(Matrix x,Matrix &g);
+        virtual double  funmin(Matrix&);
+        virtual void   granal(Matrix &x,Matrix &g);
 		
 		int		getDimension() const;
 		void		getLeftMargin(Matrix &x1);
 		void		getRightMargin(Matrix &x2);
-		FUNCTION	getFunmin();
-		GRADIENT	getGranal();
+
 		void		getSample(Matrix &x);
 		void		getSample(double *x);
 		void		getSample(Matrix &x1,double rc,Matrix &x);
