@@ -1,6 +1,7 @@
 #ifndef DEMETHOD_H
 #define DEMETHOD_H
 # include <problem.h>
+# include <neural.h>
 # include <vector>
 # include <QString>
 using namespace std;

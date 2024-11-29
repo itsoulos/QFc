@@ -584,6 +584,7 @@ cprogram.o: cprogram.cc cprogram.h \
 
 demethod.o: demethod.cpp demethod.h \
 		problem.h \
+		neural.h \
 		model.h \
 		mapper.h \
 		fparser.hh

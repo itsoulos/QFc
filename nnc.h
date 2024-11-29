@@ -12,10 +12,10 @@ public:
     NNC(Mapper *m);
     virtual	double 	train1();
     virtual double	train2();
-    virtual double	output(Matrix x);
-    virtual void	getDeriv(Matrix x,Matrix &g);
-    virtual double	funmin(Matrix x);
-    virtual void    granal(Matrix x,Matrix &g);
+    virtual double	output(Matrix &x);
+    virtual void	getDeriv(Matrix &x,Matrix &g);
+    virtual double	funmin(Matrix &x);
+    virtual void    granal(Matrix &x,Matrix &g);
 
     virtual ~NNC();
 };

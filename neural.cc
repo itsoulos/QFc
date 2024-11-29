@@ -204,7 +204,7 @@ double Neural::train2()
 }
 
 
-double Neural::output(Matrix x)
+double Neural::output(Matrix &x)
 {
 	double arg=0.0,per=0.0;
 	int dimension = pattern_dimension;
@@ -234,7 +234,7 @@ QString  Neural::getLocalSearchMethod( ) const
     return localSearchMethod;
 }
 
-void   Neural::getDeriv(Matrix x,Matrix &g)
+void   Neural::getDeriv(Matrix &x,Matrix &g)
 {
   	double arg;
         double s;

@@ -22,9 +22,9 @@ public:
     OsamaRbf(Mapper *m);
     virtual	double 	train1();
     virtual double	train2();
-    virtual double	output(Matrix x);
-    virtual void	getDeriv(Matrix x,Matrix &g);
-    virtual double	funmin(Matrix x);
+    virtual double	output(Matrix &x);
+    virtual void	getDeriv(Matrix &x,Matrix &g);
+    virtual double	funmin(Matrix &x);
     datapoint predictLabel(const datapoint &data_point, const double &data_label, double &error);
 };
 

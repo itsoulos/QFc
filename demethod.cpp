@@ -119,8 +119,11 @@ void    DeMethod::Solve()
     int best_index = -1;
     double besty=1e+100;
     Matrix trialx;
-    Model *m = (Model *)myProblem;
+    Neural *m = (Neural *)myProblem;
     double oldSumFitness = 1e+100;
+    int stopcount = 0;
+    int stoplimit = 5;
+    double old_best_fitness=1e+100;
     trialx.resize(myProblem->getDimension());
     do{
         de_iter++;
@@ -188,8 +191,11 @@ void    DeMethod::Solve()
                 sx/=myProblem->getDimension();
                 if(sx<minDist) minDist = sx;
             }
+            m->setWeights(trialx);
+            //double viol = m->countViolate(10.0);
+
             double ft=0.0;
-            if(de_lrate>0.0 && minDist>1e-4 && m->randomDouble()<=de_lrate)
+            if(de_lrate>0.0 && minDist>1e-4  && m->randomDouble()<=de_lrate)
                 ft = localSearch(trialx);
             else
                 ft = myProblem->funmin(trialx);
@@ -199,14 +205,17 @@ void    DeMethod::Solve()
                 for(int j=0;j<myProblem->getDimension();j++)
                     agentx[i][j]=trialx[j];
             }
+            if(agenty[i]<besty) besty=agenty[i];
         }
         double new_sum = sumFitness();
-        if(fabs(oldSumFitness - new_sum)<1e-4) break;
+        if(fabs(besty-old_best_fitness)<1e-5) stopcount++; else stopcount=0;
+        old_best_fitness = besty;
         if(de_iter%20==0)
         printf("DE. Iter=%4d Diff in fitness %20.10lg Best fitness:%20.10lg\n",
                de_iter,fabs(oldSumFitness - new_sum),agenty[best_index]);
         oldSumFitness = new_sum;
-    }while(de_iter<=de_maxiters );
+        if(stopcount>=stoplimit) break;
+    }while(de_iter<=de_maxiters);
     //done
 }
 double    DeMethod::localSearch(Matrix& x)

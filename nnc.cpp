@@ -176,24 +176,24 @@ double	NNC::train2()
     return train1();
 }
 
-double	NNC::output(Matrix x)
+double	NNC::output(Matrix &x)
 {
     return program->neuralparser->eval(x);
 }
 
-void	NNC::getDeriv(Matrix x,Matrix &g)
+void	NNC::getDeriv(Matrix &x,Matrix &g)
 {
     program->neuralparser->setWeights(x);
     program->getDeriv(g);
 
 }
-void    NNC::granal(Matrix x,Matrix &g)
+void    NNC::granal(Matrix &x,Matrix &g)
 {
     program->neuralparser->setWeights(x);
     program->getDeriv(g);
 }
 
-double	NNC::funmin(Matrix x)
+double	NNC::funmin(Matrix &x)
 {
     program->neuralparser->setWeights(x);
     return program->getTrainError();

@@ -193,7 +193,7 @@ double Rbf::train2()
 	return -v;//return train1();
 }
 
-double Rbf::output(Matrix x)
+double Rbf::output(Matrix &x)
 {
 	if(x.size()==0) return 1e+100;
 	int noutput=1;
@@ -217,7 +217,7 @@ double Rbf::output(Matrix x)
 #endif
 }
 
-void   Rbf::getDeriv(Matrix x,Matrix &g)
+void   Rbf::getDeriv(Matrix &x,Matrix &g)
 {
 }
 

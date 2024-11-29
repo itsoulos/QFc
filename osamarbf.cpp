@@ -134,18 +134,18 @@ double	OsamaRbf::train2()
     return d;
 }
 
-double	OsamaRbf::output(Matrix x)
+double	OsamaRbf::output(Matrix &x)
 {
     double e;
     return predictLabel(x,0.0,e)[0];
 }
 
-void	OsamaRbf::getDeriv(Matrix x,Matrix &g)
+void	OsamaRbf::getDeriv(Matrix &x,Matrix &g)
 {
 
 }
 
-double	OsamaRbf::funmin(Matrix x)
+double	OsamaRbf::funmin(Matrix &x)
 {
     return Model::funmin(x);
 }

@@ -117,7 +117,7 @@ double KNN::train2()
 	return train1();
 }
 
-double KNN::output(Matrix x)
+double KNN::output(Matrix &x)
 {
     int k = num_weights;
     vector<double> dist;
@@ -153,7 +153,7 @@ double KNN::output(Matrix x)
     return average;
 }
 
-void   KNN::getDeriv(Matrix x,Matrix &g)
+void   KNN::getDeriv(Matrix &xx,Matrix &g)
 {
 	/*	NOTHING TO DO
 	 * */
