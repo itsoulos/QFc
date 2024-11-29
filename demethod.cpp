@@ -206,6 +206,7 @@ void    DeMethod::Solve()
                     agentx[i][j]=trialx[j];
             }
             if(agenty[i]<besty) besty=agenty[i];
+	    if(fabs(agenty[i])<1e-6) return;
         }
         double new_sum = sumFitness();
         if(fabs(besty-old_best_fitness)<1e-5) stopcount++; else stopcount=0;
@@ -215,6 +216,7 @@ void    DeMethod::Solve()
                de_iter,fabs(oldSumFitness - new_sum),agenty[best_index]);
         oldSumFitness = new_sum;
         if(stopcount>=stoplimit) break;
+	
     }while(de_iter<=de_maxiters);
     //done
 }
