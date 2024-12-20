@@ -66,4 +66,5 @@ extern double   de_crvalue;
 extern int      de_maxiters;
 extern double   de_lrate;
 extern QString  de_fmethod;
+extern QString     de_usekmeans;
 #endif // GETOPTIONS_H

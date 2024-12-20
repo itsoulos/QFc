@@ -57,3 +57,4 @@ double   de_crvalue=0.9;
 int      de_maxiters=200;
 double   de_lrate=0.00;
 QString  de_fmethod="number";//values: number, random,adaptive, migrant
+QString     de_usekmeans = "no";

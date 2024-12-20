@@ -1,5 +1,6 @@
 #include "demethod.h"
 # include "model.h"
+# include "kmeans.h"
 DeMethod::DeMethod(Problem *p,int np)
 {
     myProblem = p;
@@ -8,11 +9,42 @@ DeMethod::DeMethod(Problem *p,int np)
     agenty=new double[np *sizeof(double)];
     F     =new double[np *sizeof(double)];
     Model *m = (Model *)myProblem;
+    extern QString de_usekmeans;
+    if(de_usekmeans == "no")
+
     for(int i=0;i<np;i++)
     {
         agentx[i]=new double[myProblem->getDimension()];
         for(int j=0;j<myProblem->getDimension();j++)
             agentx[i][j]=(2.0*m->randomDouble()-1.0);
+    }
+    else{
+    //perform kmeans here
+    int K = np;
+    int nsamples = 10 * K;
+    int n = myProblem->getDimension();
+    double *data_vectors = new double[nsamples *n];
+    double *centers = new double[K *n];
+    double *variances = new double[K*n];
+    for(int i=0;i<nsamples;i++)
+    {
+        for(int j=0;j<n;j++)
+            data_vectors[i*n+j]=2.0*m->randomDouble()-1.0;
+    }
+    Kmeans(m,data_vectors,centers,variances,nsamples,n,K);
+
+    for(int i=0;i<K;i++)
+    {
+        agentx[i]=new double[myProblem->getDimension()];
+
+        for(int j=0;j<n;j++)
+        {
+            agentx[i][j]=centers[i*n+j];
+        }
+    }
+    delete[] data_vectors;
+    delete[] centers;
+    delete[] variances;
     }
     xx.resize(myProblem->getDimension());
 }

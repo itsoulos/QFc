@@ -146,6 +146,7 @@ void printParams()
     printOption("--de_np","","The number of agents for DE",de_np);
     printOption("--de_fmethod","","The used weight method for DE",de_fmethod);
     printOption("--de_maxiters","","Maximum number of iterations for DE",de_maxiters);
+    printOption("--de_usekmeans","no","Use kmeans sampling",de_usekmeans);
    exit(0);
 }
 
@@ -235,6 +236,7 @@ void parseCmdLine(QStringList args)
         checkParameter(name,value,"--de_np","",de_np);
         checkParameter(name,value,"--de_maxiters","",de_maxiters);
         checkParameter(name,value,"--de_fmethod","",de_fmethod);
+        checkParameter(name,value,"--de_usekmeans","",de_usekmeans);
     }
 }
 
