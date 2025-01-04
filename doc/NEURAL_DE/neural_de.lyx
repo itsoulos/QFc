@@ -261,11 +261,32 @@ Correspondence: itsoulos@uoi.gr;
 \end_layout
 
 \begin_layout Abstract
-The
+Artificial neural networks have proven to be an important machine learning
+ model that has been widely used in recent decades in a number of difficult
+ problems of classification or data fitting from real - world areas.
+ Due to their importance, a number of techniques have been developed that
+ efficiently identify the parameter vector for these models.
+ These techniques usually come from the field of optimization and, by minimizing
+ the training error of artificial neural networks, estimate the vector of
+ their parameters.
+ However, many times these techniques either get trapped in local minima
+ of the training error or lead to overfitting the artificial neural network,
+ resulting in poor performance when applied to data that was not present
+ during the training process.
+ This paper presents an innovative training technique for artificial neural
+ networks based on the Differential Evolution optimization method.
+ This new technique creates an initial population of artificial neural networks
+ that evolve and periodically applies a local optimization technique in
+ order to accelerate the training of these networks.
+ The application of the local minimization technique is done in such a way
+ as to avoid the phenomenon of overfitting.
+ This new method was successfully applied to a series of classification
+ and data fitting problems and a comparative study was made with other training
+ techniques from the relevant literature.
 \end_layout
 
 \begin_layout Keywords
-Particle 
+Neural networks; Evolutionary methods; Differential Evolution; Machine learning
 \end_layout
 
 \begin_layout Section
@@ -1130,6 +1151,12 @@ Treasury
 
 \begin_layout Subsection
 Experimental results
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(WRITE SOME TEXT HERE)
 \end_layout
 
 \begin_layout Standard
@@ -5553,8 +5580,325 @@ AVERAGE
 
 \end_layout
 
+\begin_layout Standard
+The analysis of Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ evaluates the error rates of various machine learning models across multiple
+ classification datasets.
+ Each row corresponds to a dataset, and each column represents a specific
+ model.
+ The values indicate the error percentages, where lower values signify better
+ performance.
+ The last row provides the average error rate for each model, offering an
+ overall performance summary.
+ Starting with the averages, the NEURALDE model exhibits the best overall
+ performance, achieving the lowest mean error rate of 19.78%.
+ It is followed by GENETIC with an average error rate of 26.19% and RBF at
+ 30.08%.
+ The NEAT model has an average error rate of 32.66%, while BFGS and ADAM
+ display the highest average error rates, 33.43% and 35.88%, respectively.
+ This makes NEURALDE the most efficient model among those compared.
+ On a dataset-specific level, NEURALDE consistently delivers the lowest
+ error rates in numerous cases.
+ For instance, in the ALCOHOL dataset, it achieves the best result with
+ an error rate of 19.15%.
+ Similarly, in the CIRCULAR dataset, NEURALDE outperforms all other models
+ with an error rate of 4.23%, demonstrating its effectiveness in handling
+ complex data structures.
+ In the MAGIC and MAMMOGRAPHIC datasets, NEURALDE again proves superior,
+ with error rates of 11.73% and 17.52%, respectively.
+ There are, however, a few datasets where NEURALDE does not perform as dominantl
+y.
+ For example, in the HOUSEVOTES dataset, it ties with other models at 7.48%.
+ In the ZONF_S dataset, it records its worst performance with an error rate
+ of 2.41%, indicating that its efficiency can vary with certain data characterist
+ics.
+ Other models, such as GENETIC, show strong performance in isolated cases,
+ such as in the SPIRAL dataset (48.66%).
+ However, they generally fall short of NEURALDE’s consistent excellence.
+ RBF demonstrates strong stability, with notable results in the DERMATOLOGY
+ (62.34%) and PHONEME (23.32%) datasets.
+ Meanwhile, ADAM and BFGS tend to underperform, particularly in datasets
+ like SPAMBASE, where they record high error rates of 48.05% and 18.16%, respectiv
+ely.
+ In conclusion, the NEURALDE model stands out as the most effective model
+ overall, achieving the lowest average error rate and excelling in the majority
+ of datasets.
+ While other models, such as RBF and GENETIC, perform well in specific scenarios
+, NEURALDE demonstrates superior consistency and effectiveness across a
+ wide range of datasets.
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents the performance of various machine learning models on regression
+ problems, where the values represent the error.
+ Lower error values indicate better performance.
+ Each row corresponds to a specific dataset, while the last row shows the
+ average error for each model, providing an overall view of their effectiveness.B
+ased on the average error, NEURALDE demonstrates the best performance, with
+ the lowest overall error of 5.56.
+ This result suggests that the model consistently performs well across most
+ datasets.
+ Following NEURALDE are GENETIC with an average error of 9.29 and RBF with
+ an average error of 9.91.
+ ADAM, NEAT, and BFGS exhibit higher average errors, at 22.47, 24.35, and
+ 30.31 respectively, indicating lower performance compared to the other models.
+ Analyzing the results dataset by dataset, NEURALDE records the smallest
+ error in several cases.
+ For instance, in the AIRFOIL dataset, it achieves an error of 0.0014, outperform
+ing all other models.
+ In the CONCRETE dataset, its error is only 0.003, the lowest among all models.
+ Similarly, in the LASER dataset, it achieves an exceptionally low error
+ of 0.0026.
+ In the TREASURY dataset, NEURALDE demonstrates superior performance with
+ an error of 1.021, better than all other models.
+ GENETIC shows competitive performance in several datasets.
+ For example, in the HOUSING dataset, it achieves an error of 43.26, which
+ is better than ADAM and NEAT but not as strong as NEURALDE.
+ In the PLASTIC dataset, its error is 2.791, which is significantly lower
+ than most other models except NEURALDE.
+\end_layout
+
+\begin_layout Standard
+RBF achieves low errors in some datasets, such as MORTGAGE, where it records
+ an error of 1.45, the second-best result after NEURALDE (0.54).
+ However, in other datasets like STOCK, where it has an error of 12.23, RBF
+ underperforms compared to GENETIC and NEURALDE.
+ ADAM and NEAT exhibit higher errors across many datasets.
+ For example, in the STOCK dataset, ADAM records the highest error at 180.89,
+ followed by NEAT at 215.82.
+ Conversely, in the AIRFOIL dataset, ADAM achieves a relatively low error
+ of 0.005, though it still falls short of NEURALDE.
+ BFGS generally shows higher errors, such as in the BASEBALL dataset (119.63),
+ reflecting its limited performance.
+ In summary, NEURALDE stands out as the most effective regression model,
+ with consistently low errors and the lowest average error overall.
+ GENETIC and RBF display competitive performance in some datasets but lack
+ the same consistency.
+ ADAM, NEAT, and BFGS exhibit significantly higher errors, indicating their
+ inferior performance compared to NEURALDE.
+ 
+\end_layout
+
+\begin_layout Standard
+An extensive analysis was conducted on the performance of different machine
+ learning models using various optimization methods, with pairwise comparisons
+ made through the Wilcoxon Test.
+ The study was carried out on a set of well-known datasets and focused on
+ the NEURALDE model, comparing it with other popular optimization methods
+ such as ADAM, BFGS, GENETIC, NEAT, and RBF.
+ The Wilcoxon Test, a non-parametric statistical method, is ideal for evaluating
+ performance differences, especially when the data does not follow a normal
+ distribution Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The results revealed significant performance differences between NEURALDE
+ and other models.
+ Specifically, the p-value for the comparison between NEURALDE and ADAM
+ was p=4.7e-08, a very low value that indicates the differences between the
+ two models are statistically significant and unlikely to be due to chance.
+ The p-value for the comparison between NEURALDE and BFGS was even lower,
+ at p=1e-18, suggesting substantial performance differences, with NEURALDE
+ outperforming BFGS by a wide margin.
+ Similarly, the comparison between NEURALDE and GENETIC yielded p=2.9e-09,
+ confirming that the two methods show distinct performance, with NEURALDE
+ being superior.
+ The comparison between NEURALDE and NEAT showed p=2.3e-10, while the comparison
+ with RBF resulted in p=1.3e-08.
+ In both cases, the p-values were extremely low, proving that the performance
+ differences are statistically significant.
+ This analysis highlights NEURALDE as a standout model among the datasets
+ used, showing significant performance differences compared to the other
+ methods.
+ The very low p-values in all comparisons demonstrate that the observed
+ differences are not due to random chance, but rather reflect the true superiori
+ty or differentiation of NEURALDE.
+ The methods ADAM, BFGS, GENETIC, NEAT, and RBF are widely used and effective
+ in many cases, but this analysis suggests that NEURALDE excels in specific
+ problems or datasets.
+ This statistical analysis provides valuable insight into the selection
+ of appropriate models and optimization methods for machine learning tasks.
+ Although the specific p-values and results pertain to the datasets used
+ in this study, the significance of the findings underscores the importance
+ of careful evaluation when selecting models.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename s1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison of the used machine learning models for the classificatio
+n datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statClass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Furthermore, an analysis was conducted to compare various machine learning
+ models employing different optimization methods in terms of regression
+ error.
+ The study was performed using a script in R, employing the Wilcoxon Test
+ for pairwise comparisons.
+ This non-parametric statistical test is suitable for data that do not follow
+ a normal distribution Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The experiments were conducted on a series of well-known datasets, ensuring
+ diversity across problem domains.
+ The results revealed significant differences in regression error between
+ the NEURALDE model and other optimization methods.
+ Specifically, the comparison between NEURALDE and ADAM yielded a p-value
+ of 0.00051, indicating a statistically significant difference in favor of
+ NEURALDE.
+ Similarly, the comparison with BFGS showed an even smaller p-value of 9.5e-07,
+ highlighting the clear superiority of NEURALDE in this context.
+ The analysis of NEURALDE against GENETIC resulted in a p-value of 0.0033,
+ further supporting the significance of the observed difference.
+ Likewise, the comparison with NEAT gave a p-value of 2.9e-06, and with RBF,
+ the p-value was 0.0048, demonstrating statistically significant differences
+ in all cases.
+ These findings indicate that NEURALDE consistently outperforms the other
+ optimization methods analyzed in terms of reducing regression error.
+ The exceptionally low p-values across all comparisons suggest that these
+ differences are unlikely to be due to random variation and reflect a genuine
+ advantage.
+ While other methods such as ADAM, BFGS, GENETIC, NEAT, and RBF are generally
+ effective across various tasks, the results show that NEURALDE exhibits
+ superior performance in minimizing regression error for the datasets analyzed.
+ This analysis provides valuable insights for selecting appropriate models
+ and optimization techniques in regression tasks.
+ Although the results are specific to the datasets used in the study, the
+ statistical significance of the findings highlights the importance of careful
+ evaluation when choosing a model.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename s2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison between the machine learning models for the regression
+ datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statRegression"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Experiments with the differential weight 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(WRITE SOME TEXT HERE)
 \end_layout
 
 \begin_layout Standard
@@ -8175,12 +8519,283 @@ AVERAGE
 
 \end_layout
 
+\begin_layout Standard
+The table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experFClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides the performance of three differential weight computation methods
+ (MIGRANT, ADAPTIVE, and RANDOM) on various classification datasets.
+ The analysis reveals that the MIGRANT method achieves the smallest average
+ error rate of 19.34%, indicating the best overall performance among the
+ three methods.
+ The RANDOM method follows closely with an average error rate of 19.78%,
+ while the ADAPTIVE method has the highest average error rate of 19.98%,
+ suggesting it is the least effective on average.
+ Examining individual datasets, MIGRANT outperforms the other methods in
+ several cases.
+ For example, in the HEART dataset, MIGRANT records an error rate of 19.01%,
+ better than ADAPTIVE (17.29%) and RANDOM (17.60%).
+ Similarly, in the MAGIC dataset, MIGRANT achieves a competitive error rate
+ of 11.83%, which is close to RANDOM (11.73%) but higher than ADAPTIVE (11.28%).
+ MIGRANT also has the lowest error in datasets such as ALCOHOL (19.62%),
+ REGIONS2 (26.26%), and SPAMBASE (5.87%).
+ ADAPTIVE demonstrates strong performance in specific datasets, achieving
+ the lowest error rates in cases such as MAGIC (11.28%) and HEART (17.29%).
+ However, in many datasets, it performs worse than MIGRANT or RANDOM, such
+ as in SPAMBASE, where it records a lower error rate of 4.78% but is generally
+ outperformed in other critical datasets.
+ The RANDOM method exhibits competitive performance in several datasets,
+ achieving the lowest error rates in examples like ZOO (6.63%) and ZONF_S
+ (2.41%).
+ However, its performance fluctuates more significantly, with higher error
+ rates in datasets such as HEARTATTACK (19.70%) and REGIONS2 (28.77%), where
+ it is outperformed by MIGRANT and ADAPTIVE.
+ Notable observations include cases where the error rates are very close
+ across the methods, such as in datasets like CIRCULAR, where the differences
+ are minimal (MIGRANT at 4.28%, ADAPTIVE at 4.34%, and RANDOM at 4.23%).
+ In other cases, the differences are more pronounced, as in SEGMENT, where
+ MIGRANT achieves 9.71%, significantly better than ADAPTIVE (15.99%) and RANDOM
+ (15.60%).
+ Overall, MIGRANT demonstrates the most consistent and robust performance
+ across the datasets, with the lowest average error and competitive results
+ in many individual datasets.
+ RANDOM and ADAPTIVE have comparable average errors but show more variability
+ in their performance.
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experFWeightRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents the performance of three differential weight computation methods
+ (MIGRANT, ADAPTIVE, and RANDOM) on regression datasets.
+ The RANDOM method achieves the lowest average error, 5.56, making it the
+ most effective overall.
+ ADAPTIVE follows with an average error of 6.23, while MIGRANT exhibits the
+ highest average error at 8.03, indicating the least effective performance.
+ For specific datasets, RANDOM often outperforms the others.
+ For instance, in the HOUSING dataset, it records an error of 24.82, lower
+ than MIGRANT (14.58) and ADAPTIVE (32.62).
+ Similarly, in the PLASTIC dataset, RANDOM achieves the smallest error of
+ 3.27 compared to MIGRANT (5.36) and ADAPTIVE (3.57).
+ RANDOM also shows superior performance in datasets like MORTGAGE (0.54)
+ and STOCK (3.4).
+ ADAPTIVE demonstrates strong performance in certain datasets, such as FRIEDMAN,
+ where its error is 1.32, outperforming MIGRANT (1.66) and RANDOM (1.22).
+ In the QUAKE dataset, ADAPTIVE records the lowest error of 0.041.
+ However, its performance is noticeably weaker in other datasets, like HOUSING,
+ where it registers the highest error of the three.
+ MIGRANT outperforms in a few cases, such as the BL dataset, where its error
+ is 0.007, significantly lower than ADAPTIVE (0.019) and RANDOM (0.016).
+ However, it generally records higher errors in many datasets, such as AUTO
+ (45.37) and BASEBALL (79.24), where the other methods perform better.
+ In some cases, such as the LASER dataset, all methods perform similarly,
+ with errors of 0.0026 for MIGRANT and RANDOM, and 0.0027 for ADAPTIVE.
+ In the QUAKE dataset, the differences are also minimal, with RANDOM having
+ the highest error (0.042), but very close to the others.
+ Overall, RANDOM emerges as the most reliable and effective method, with
+ the lowest average error and frequent superiority across individual datasets.
+ ADAPTIVE performs well in selected datasets but shows greater variability,
+ while MIGRANT demonstrates the least effective performance, with higher
+ errors across numerous datasets.
+ 
+\end_layout
+
+\begin_layout Standard
+An analysis was conducted to compare different methods for computing differentia
+l weights in a proposed machine learning approach, focusing on classification
+ error.
+ The analysis employed the Wilcoxon Test for pairwise comparisons and was
+ applied to the classification datasets.
+ The goal was to examine whether statistically significant differences exist
+ among the three approaches: MIGRANT, ADAPTIVE, and RANDOM Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statFclass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The results showed that the comparison between MIGRANT and ADAPTIVE yielded
+ a p-value of 0.085.
+ Although this value suggests a trend of differentiation, it does not fall
+ below the conventional significance threshold of 0.05, indicating that the
+ difference is not statistically significant.
+ Similarly, the comparison between MIGRANT and RANDOM produced a p-value
+ of 0.064, which, while closer to significance, also does not meet the required
+ threshold.
+ Finally, the comparison between ADAPTIVE and RANDOM resulted in a p-value
+ of 0.23, indicating no statistically significant difference between these
+ two methods.
+ Overall, the findings suggest that while there are indications of differences
+ in behavior among the three approaches, none of these differences are statistic
+ally significant based on the data analyzed.
+ This implies that the three methods for computing differential weights
+ may be considered equivalent in terms of their impact on classification
+ error, at least for the datasets used in this study.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename s3.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison for the obtained results on the classification datasets
+ using a series of differential weight mechanisms.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statFclass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An analysis was conducted to compare different methods for calculating different
+ial weight in the proposed machine learning approach on the regression datasets.
+ The Wilcoxon Test was used for pairwise comparisons, applied across the
+ series of regression datasets, with a focus on regression error.
+ The aim was to determine the statistical significance of the observed differenc
+es between the methods Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statFRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The results showed that the comparison between MIGRANT and ADAPTIVE yielded
+ a p-value of 0.68, indicating no statistically significant difference between
+ these two methods.
+ Similarly, the comparison between MIGRANT and RANDOM resulted in a p-value
+ of 0.9, confirming the absence of a statistically significant difference
+ in this case as well.
+ However, the comparison between ADAPTIVE and RANDOM produced a p-value
+ of 0.00095, which is below the standard threshold for statistical significance
+ (commonly 0.05).
+ This suggests a statistically significant difference between these two
+ approaches.
+ Overall, the findings indicate that the MIGRANT and ADAPTIVE methods, as
+ well as the MIGRANT and RANDOM methods, exhibit similar performance regarding
+ regression error.
+ In contrast, the ADAPTIVE method shows a clear and statistically significant
+ differentiation from the RANDOM method.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename s4.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison between the various differential weight mechanisms
+ for the regression datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statFRegression"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Experiments with the factor 
 \begin_inset Formula $a$
 \end_inset
 
  
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(WRITE SOME TEXT HERE)
 \end_layout
 
 \begin_layout Standard
@@ -10674,7 +11289,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -12038,8 +12653,260 @@ AVERAGE
 
 \end_layout
 
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experAClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error percentages across classification datasets for different
+ values of the parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ (1.25, 1.5, 2, 4, and 8).
+ The lowest overall average error is observed for 
+\begin_inset Formula $a=2$
+\end_inset
+
+ with an average of 19.78%.
+ This suggests that 
+\begin_inset Formula $a=2$
+\end_inset
+
+ provides the most balanced performance across datasets.
+ The other parameter values—1.25, 1.5, 4, and 8—yield average errors of 19.98%,
+ 19.95%, 20.00%, and 19.95%, respectively.
+ These results indicate that 
+\begin_inset Formula $a=2$
+\end_inset
+
+ has a slight advantage in minimizing the overall error compared to other
+ values.
+ For individual datasets, the performance varies depending on the parameter
+ value.
+ For example, in the ALCOHOL dataset, the smallest error is achieved at
+ 
+\begin_inset Formula $a=2$
+\end_inset
+
+ with 19.15%, while other values result in slightly higher errors.
+ Similarly, in the SEGMENT dataset, the error is minimized at 
+\begin_inset Formula $a=8$
+\end_inset
+
+ with 14.27%.
+ However, in datasets like SPIRAL, the errors across all parameter values
+ are close, with no significant advantage for any specific value.
+ In certain datasets, there is a clear trend in error reduction as the parameter
+ value changes.
+ For example, in the SEGMENT dataset, errors decrease consistently from
+ 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ to 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ Conversely, in the ZOO dataset, the error decreases for lower values of
+ a but increases again at higher values, indicating that performance is
+ not always linear with changes in 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Some datasets exhibit minimal variability in performance across parameter
+ values.
+ For example, the error for the LIVERDISORDER dataset remains relatively
+ stable, ranging from 31.41% to 32.33%.
+ Similarly, the SPIRAL dataset shows little variation, with errors consistently
+ around 42%.
+ In other cases, specific parameter values consistently underperform.
+ For instance, in the Z_F_S dataset, 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ achieves the lowest error of 6.67%, while 
+\begin_inset Formula $a=2$
+\end_inset
+
+ and 
+\begin_inset Formula $a=4$
+\end_inset
+
+ result in slightly higher errors.
+ Similarly, 
+\begin_inset Formula $a=8$
+\end_inset
+
+ achieves the smallest error for certain datasets like SEGMENT but performs
+ poorly for datasets like WINE.
+ Overall, 
+\begin_inset Formula $a=2$
+\end_inset
+
+ emerges as the most effective parameter value, yielding the smallest average
+ error across datasets.
+ While other values of 
+\begin_inset Formula $a$
+\end_inset
+
+ perform well in individual cases, their overall performance is less consistent.
+ 
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experARegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error rates for regression datasets across different values of
+ the critical parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ (1.25, 1.5, 2, 4, and 8).
+ The lowest average error is observed for 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+, with an average of 5.39, suggesting it offers the best overall performance.
+ 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ ranks second with an average of 5.46, and 
+\begin_inset Formula $a=2$
+\end_inset
+
+ slightly higher at 5.56.
+ The values 
+\begin_inset Formula $a=4$
+\end_inset
+
+ and 
+\begin_inset Formula $a=8$
+\end_inset
+
+ show a marked increase in errors, with averages of 5.94 and 7.44, respectively.
+ This indicates that higher values of 
+\begin_inset Formula $a$
+\end_inset
+
+ are less effective compared to smaller ones.
+ For individual datasets, performance varies with the value of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For instance, in the AIRFOIL dataset, the error consistently decreases
+ as 
+\begin_inset Formula $a$
+\end_inset
+
+ increases, with the smallest error (0.0007) observed at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ Conversely, in the FRIEDMAN dataset, the error rises sharply at 
+\begin_inset Formula $a=8$
+\end_inset
+
+ (19.74), signaling a significant performance decline.
+ In some datasets, such as BASEBALL, the error steadily increases with higher
+ values of 
+\begin_inset Formula $a$
+\end_inset
+
+ rising from 57.67 at a=1.25 to 72.37 at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ In contrast, in the HOUSING dataset, the smallest error occurs at 
+\begin_inset Formula $a=4$
+\end_inset
+
+ (22.86), although larger values like 
+\begin_inset Formula $a=8$
+\end_inset
+
+ show only a slight increase.
+ Certain datasets exhibit minimal sensitivity to changes in 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For example, in the LASER dataset, errors remain almost constant regardless
+ of the parameter value, ranging from 0.0025 to 0.0035.
+ Similarly, in the DEE dataset, the errors are nearly identical across all
+ values of 
+\begin_inset Formula $a$
+\end_inset
+
+ showing minimal variation.
+ Interestingly, the PLASTIC dataset shows a gradual decrease in error from
+ 3.37 at a=1.25 to 2.8 at a=8, indicating improved performance with increasing
+ 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Conversely, in the STOCK dataset, the error increases significantly from
+ 2.82 at a=1.25 to 5.42 at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ In conclusion, 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ emerges as the optimal choice for minimizing overall error in this analysis.
+ Higher values of 
+\begin_inset Formula $a$
+\end_inset
+
+ demonstrate reduced effectiveness, especially at 
+\begin_inset Formula $a=8$
+\end_inset
+
+, where the average error rises notably.
+ However, the results reveal that the impact of 
+\begin_inset Formula $a$
+\end_inset
+
+ varies by dataset, with some benefiting from smaller values and others
+ exhibiting relative insensitivity to parameter changes.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Subsubsection
 Experiments with the local search rate
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(WRITE SOME TEXT HERE)
 \end_layout
 
 \begin_layout Standard
@@ -14144,7 +15011,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -15297,6 +16164,269 @@ AVERAGE
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experPLClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides error rates for classification datasets under different values
+ of periodic local search 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ (0.0025, 0.005, 0.01, and 0.02).
+ The analysis reveals that the lowest average error is observed 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, with an error rate of 19.43%, suggesting that this value yields the best
+ overall performance.
+ This is closely followed by 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ with an average error of 19.66% and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ with 19.78%.
+ The highest average error occurs at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ with 20.48%, indicating comparatively poorer performance.
+ Examining individual datasets, the impact of 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ varies.
+ For instance, in the ALCOHOL dataset, the smallest error is observed at
+ 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 16.49%, whereas larger values such as 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ result in higher errors (21.81% and 19.15%, respectively).
+ Conversely, in the SEGMENT dataset, the error consistently decreases as
+ 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ increases, reaching its lowest value at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 11.70%.
+ This trend is also evident in datasets such as SPAMBASE and WINE, where
+ the errors decrease significantly with higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ Some datasets exhibit minimal sensitivity to changes in 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+ For example, in the HEART and LIVERDISORDER datasets, the error rates remain
+ relatively stable across all 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values, showing only marginal fluctuations.
+ In other cases, such as CIRCULAR and HOUSEVOTES, the variations in error
+ rates are similarly minor.
+ However, certain datasets show exceptions to the general trend.
+ For example, in the SONAR dataset, the error rate is lowest at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 18.53%, but higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values like 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ produce increased errors (20.38%).
+ Similarly, the REGIONS2 dataset achieves its best performance at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with an error rate of 28.02%, but other 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values yield comparable results, such as 28.77% at both 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+.
+ The data suggests that higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values, particularly 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, generally result in improved performance across most datasets.
+ Nevertheless, the optimal 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ value may vary depending on specific dataset characteristics, and some
+ datasets show negligible or inconsistent responses to changes in 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+ Overall, 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ is recommended for achieving the lowest average error.
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experPlRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error rates for regression datasets under different values of
+ periodic local search 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ (0.0025, 0.005, 0.01, and 0.02).
+ The analysis indicates that the lowest average error is observed at 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ with a value of 5.04, suggesting that this setting offers the best overall
+ performance.
+ This is followed by 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with an average error of 5.10, 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ with 5.56, and 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ with 6.34, which has the highest average error and the poorest performance.
+ Examining individual datasets reveals variations in the impact of different
+ 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ In the AUTO dataset, the error decreases steadily as 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ increases, dropping from 17.63 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to its lowest point of 10.11 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ Similarly, in the HOUSING dataset, the error significantly reduces from
+ 32.72 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to 14.02 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ This decreasing trend is also evident in other datasets, such as MORTGAGE,
+ where the error falls from 1.22 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to just 0.032 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, and STOCK, where the error reduces from 6.58 to 1.47.
+ In some datasets, the 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ parameter has minimal impact.
+ For instance, in the CONCRETE dataset, the error remains constant across
+ all 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values at 0.003.
+ Similar stability is observed in the QUAKE and SN datasets, where variations
+ are minimal.
+ However, some datasets exhibit less predictable trends.
+ In the BASEBALL dataset, the error initially decreases from 63.05 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to 60.56 at 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+, but then increases again to 71.93 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ Similar inconsistent results are observed in the PY and BL datasets.
+ Overall, the analysis suggests that 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ delivers the best average performance.
+ Nevertheless, the effect of the 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ parameter varies across datasets, with some benefiting more from higher
+ or lower 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ 
 \end_layout
 
 \begin_layout Section
