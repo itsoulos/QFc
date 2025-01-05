@@ -12895,6 +12895,248 @@ noprefix "false"
  
 \end_layout
 
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statAClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, a comparison of various values of the parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ which defines the bounds of optimal values in the proposed machine learning
+ method, is presented.
+ The comparisons were conducted using the Wilcoxon Test across a series
+ of well-known datasets to evaluate the classification error.
+ The results indicate that the p-values for all pairwise comparisons between
+ different values of 
+\begin_inset Formula $a$
+\end_inset
+
+ are above the significance level of 0.05, suggesting no statistically significan
+t differences.
+ For instance, comparisons between 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ and other values (1.5, 2, 4, 8) yielded p-values ranging from 0.6 to 0.73,
+ while comparisons between 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ and other values (2, 4, 8) produced p-values ranging from 0.32 to 0.8.
+ Similarly, comparisons between 
+\begin_inset Formula $a=2$
+\end_inset
+
+ and higher values (4 and 8) resulted in p-values of 0.22 and 0.31, respectively,
+ whereas the comparison between 
+\begin_inset Formula $a=4$
+\end_inset
+
+ and 
+\begin_inset Formula $a=8$
+\end_inset
+
+ yielded a p-value of 0.69.
+ In conclusion, the results suggest that variations in the parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ within the specified range do not lead to statistically significant differences
+ in classification error, as all p-values remain well above the conventional
+ significance threshold.
+ Therefore, the choice of a specific value for 
+\begin_inset Formula $a$
+\end_inset
+
+ is likely to have little or no impact on the method's performance, based
+ on the current data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename s5.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison for the experiments with different values for the
+ parameter 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ The method was applied on the classification datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statAClass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statARegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the comparison of different values of parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ for the regression error is presented.
+ The results showed that statistically significant differences were observed
+ in some comparisons, as the p-values were below the significance level
+ of 0.05.
+ For example, the comparison between 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ and 
+\begin_inset Formula $a=4$
+\end_inset
+
+ yielded p=0.024, while between 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ and 
+\begin_inset Formula $a=8$
+\end_inset
+
+, p=0.017 was observed.
+ Similarly, the comparison between 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ and 
+\begin_inset Formula $a=8$
+\end_inset
+
+ resulted in p=0.0021, indicating strong statistical significance.
+ Conversely, some comparisons did not show statistically significant differences
+, as the p-values were above the significance level.
+ For instance, the comparison between 
+\begin_inset Formula $a=2$
+\end_inset
+
+ and 
+\begin_inset Formula $a=4$
+\end_inset
+
+ yielded p=0.22, while the comparison between 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ and 
+\begin_inset Formula $a=2$
+\end_inset
+
+ resulted in p=0.15.
+ In conclusion, the results suggest that the choice of parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ affects the regression error in certain cases, with statistically significant
+ differences primarily observed in comparisons between smaller and larger
+ values of the parameter.
+ However, the differences are not always consistent and depend on the specific
+ combinations of values being compared.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename s6.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison for the experiments using different values for the
+ parameter 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ The method was applied on the regression datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statARegression"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Experiments with the local search rate
 \end_layout
@@ -16425,6 +16667,235 @@ noprefix "false"
  
 \end_layout
 
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statPLClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the pairwise comparisons using the Wilcoxon Test are presented to examine
+ the impact of different values of the local optimization parameter (
+\begin_inset Formula $p_{l}$
+\end_inset
+
+) on the proposed machine learning method, based on a series of well-known
+ datasets, with the aim of evaluating the classification error.
+ The Wilcoxon Test results showed that comparisons between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+, 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+, and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ demonstrated statistically significant differences, as the p-values were
+ lower than the significance level of 0.05.
+ Specifically, the p-value for the comparison between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ was 0.0001, between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ was 0.00034, and between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ was 0.00048.
+ Conversely, the comparisons between 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+, as well as between 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, did not show statistically significant differences, with p-values of 0.21
+ and 0.57, respectively.
+ The comparison between 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ yielded a p-value of 0.052, indicating a marginal lack of significance.
+ Overall, the results suggest that the choice of the pl parameter value
+ affects the classification error primarily in comparisons involving the
+ value 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+, while the other comparisons do not exhibit clear statistically significant
+ differences.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename s7.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison for the conducted experiments on the classification
+ datasets using the proposed method and different values of local search
+ rate 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statPLClass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statPLRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the regression error for different values of the periodic local search
+ parameter is presented.
+ In the comparisons between pl=0.0025 and pl=0.005, the p-value was 0.011,
+ indicating a statistically significant difference, as it is below the significa
+nce level of 0.05.
+ In contrast, the comparisons between pl=0.0025 and pl=0.01, pl=0.0025 and
+ pl=0.02, pl=0.005 and pl=0.01, and pl=0.005 and pl=0.02 did not show statistically
+ significant differences, with p-values of 0.12, 0.18, 0.22, and 0.097, respectively
+, all of which are above the significance level of 0.05.
+ Finally, the comparison between pl=0.01 and pl=0.02 yielded a p-value of
+ 0.086, which is close to but above the significance level of 0.05, suggesting
+ borderline non-significance.
+ Overall, the results indicate that only the comparison between pl=0.0025
+ and pl=0.005 showed a statistically significant difference, while the remaining
+ comparisons did not present clear statistically significant differences.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename s8.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison for the conducted experiments on the regression datasets
+ using the proposed method and different values of local search rate 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statPLRegression"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Conclusions
 \begin_inset CommandInset label
@@ -16434,6 +16905,56 @@ name "sec:Conclusions"
 \end_inset
 
  
+\end_layout
+
+\begin_layout Standard
+The study focuses on the development and evaluation of the NEURALDE method,
+ an innovative approach to optimizing neural network training based on Different
+ial Evolution (DE).
+ The results demonstrate that NEURALDE outperforms traditional optimization
+ techniques such as ADAM, BFGS, GENETIC, NEAT, and RBF in both classification
+ and regression tasks.
+ Across a wide range of datasets, NEURALDE consistently achieved the lowest
+ error rates, confirming its robustness and efficiency.
+ Statistical analyses, including the Wilcoxon Test, were used to validate
+ the significance of the differences between NEURALDE and other methods.
+ The extremely low p-values indicate that the observed differences are not
+ random but reflect the actual superiority of NEURALDE.
+ Furthermore, the method proved resilient to common neural network training
+ challenges, such as overfitting and entrapment in local minima.
+ 
+\end_layout
+
+\begin_layout Standard
+NEURALDE is established as a reliable and high-performance optimization
+ method for machine learning applications.
+ Its exceptional performance in both classification and regression, combined
+ with statistical validation of its superiority, positions it as a strong
+ contender for broader adoption in various machine learning applications.
+ The method is particularly useful for complex datasets or scenarios where
+ traditional approaches fail to deliver satisfactory results.
+ 
+\end_layout
+
+\begin_layout Standard
+This study opens multiple avenues for further research.
+ Firstly, exploring the scalability of NEURALDE on larger and more diverse
+ datasets could provide valuable insights into its generalizability and
+ practical utility.
+ Incorporating adaptive mechanisms within the Differential Evolution framework
+ is another promising direction, as it could dynamically adjust parameters
+ based on dataset characteristics, further enhancing the method’s performance.
+ Another interesting avenue is applying NEURALDE to unsupervised learning
+ tasks, such as clustering, to evaluate its adaptability across different
+ machine learning paradigms.
+ Furthermore, integrating NEURALDE with cutting-edge techniques like transfer
+ learning and reinforcement learning could unlock new potential, particularly
+ for real-time applications and complex decision-making environments.
+ Future research could also focus on reducing the computational cost of
+ the method to make it more accessible for large-scale problems.
+ Overall, NEURALDE provides a robust foundation for further improvements
+ and extensions, aiming to establish it as a key optimization method in
+ machine learning.
 \end_layout
 
 \begin_layout Standard
