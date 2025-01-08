@@ -293,6 +293,467 @@ Neural networks; Evolutionary methods; Differential Evolution; Machine learning
 Introduction
 \end_layout
 
+\begin_layout Standard
+An artificial neural network 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn1,nn2"
+literal "false"
+
+\end_inset
+
+ is defined commonly as
+\series bold
+ 
+\series default
+a function 
+\begin_inset Formula $N(\overrightarrow{x},\overrightarrow{w})$
+\end_inset
+
+, where the vector 
+\series bold
+
+\begin_inset Formula $\overrightarrow{x}$
+\end_inset
+
+ 
+\series default
+stands for the input pattern and the vector 
+\begin_inset Formula $\overrightarrow{w}$
+\end_inset
+
+ (weight vector) represents the vector of parameters for this particular
+ network.
+ This function is used in classification and regression problems and the
+ training procedure refers to the adaptation of 
+\begin_inset Formula $\overrightarrow{w}$
+\end_inset
+
+ by minimizing the so-called training error defined as:
+\begin_inset Formula 
+\begin{equation}
+E\left(N\left(\overrightarrow{x},\overrightarrow{w}\right)\right)=\sum_{i=1}^{M}\left(N\left(\overrightarrow{x}_{i},\overrightarrow{w}\right)-y_{i}\right)^{2}\label{eq:eq1}
+\end{equation}
+
+\end_inset
+
+Where the set 
+\begin_inset Formula $\left(\overrightarrow{x_{i}},y_{i}\right),\ i=1,...,M$
+\end_inset
+
+
+\series bold
+ 
+\series default
+stands for the train set for the training process.
+ The values 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ denote the expected outputs for the 
+\begin_inset Formula $\overrightarrow{x_{i}}$
+\end_inset
+
+ patterns.
+ These model have been applied successfully on a variety of cases from real
+ world problems, such as problems found in physics
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnphysics1,nnphysics2,nnphysics3"
+literal "false"
+
+\end_inset
+
+, problems related to the solution of differential equations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnde1"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+problems related to solar radiation
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_solar"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+agriculture problems 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnagr2"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+problems appeared in chemistry 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnchem1,nnchem3"
+literal "false"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+economics problems 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnecon1,nnecon2"
+literal "false"
+
+\end_inset
+
+, medicine problems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnmed1,nnmed2"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+Due to the widespread use of artificial neural networks, a significant range
+ of methods has been developed that identify the optimal parameter vector
+ by minimizing equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eq1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ This set of methods included the Back Propagation method
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bpnn1,bpnn2"
+literal "false"
+
+\end_inset
+
+
+\series bold
+,
+\series default
+ the RPROP method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rpropnn-1"
+literal "false"
+
+\end_inset
+
+, the Adam optimizer
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Adam"
+literal "false"
+
+\end_inset
+
+ etc.
+ Also, more recent approaches have been used to train artificial neural
+ networks such as the Simulated Annealing method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_ann1"
+literal "false"
+
+\end_inset
+
+, modified version of the Genetic Algorithm 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "geneticnn"
+literal "false"
+
+\end_inset
+
+, the Particle Swarm Optimization (PSO) method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "psonn"
+literal "false"
+
+\end_inset
+
+, the Ant Colony Optimization technique 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "weight_aco"
+literal "false"
+
+\end_inset
+
+ etc.
+ Moreover, Sexton et al.
+ proposed the incorporation of the tabu search algorithm for neural network
+ training 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "tabunn"
+literal "false"
+
+\end_inset
+
+ and Zhang et al.
+ suggested a hybrid algorithm 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_hybrid"
+literal "false"
+
+\end_inset
+
+ that utilizes the PSO method and the Back Propagation method for efficient
+ neural network training.
+ Also, Karaboga suggested the application of the Artificial Bee Colony (ABC)
+ algorithm to train artificial neural networks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "weight_abc"
+literal "false"
+
+\end_inset
+
+.
+ Recently, Zhao et al proposed a new Cascaded Forward Algorithm to train
+ artificial neural networks 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_cascade"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+However, in many cases, although the above techniques can significantly
+ reduce the error of equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eq1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, they lead the artificial neural network to overfitting, that is, the network
+ exhibits significantly reduced performance on data that was not present
+ during training.
+ This problem has been studied extensively in the relevant literature and
+ a number of methods have been proposed to address it, such as weight sharing
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnsharing1,nnsharing2"
+literal "true"
+
+\end_inset
+
+, pruning 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnprunning1,nnprunning2"
+literal "true"
+
+\end_inset
+
+,
+\series bold
+ 
+\series default
+early stopping 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nnearly1,nnearly2"
+literal "true"
+
+\end_inset
+
+, weight decaying 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nndecay1,nndecay2"
+literal "false"
+
+\end_inset
+
+ etc.
+\end_layout
+
+\begin_layout Standard
+This paper proposed a new evolutionary optimization technique based on Different
+ial Evolution 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_review"
+literal "false"
+
+\end_inset
+
+ to efficiently train artificial neural networks.
+ The
+\series bold
+ 
+\series default
+Differential Evolution (DE) method was initially proposed by Storn and Price
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de1,de2"
+literal "false"
+
+\end_inset
+
+ and it has been applied successfully on a variety of optimization problems,
+ such as community detection 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_symmetry1"
+literal "false"
+
+\end_inset
+
+, structure prediction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_symmetry3"
+literal "false"
+
+\end_inset
+
+, motor fault diagnosis 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_symmetry6"
+literal "false"
+
+\end_inset
+
+, clustering techniques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_symmetry7"
+literal "false"
+
+\end_inset
+
+ etc.
+ The method also has been used in machine learning applications, such as
+\series bold
+ 
+\series default
+as classification methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-16,de_problem2"
+literal "false"
+
+\end_inset
+
+, feature selection techniques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_problem3,de_problem4"
+literal "false"
+
+\end_inset
+
+, deep learning 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_deep1,de_deep2"
+literal "false"
+
+\end_inset
+
+, etc.
+ In the current work a series of modifications are incorporated in the DE
+ method in order to efficient train artificial neural networks.
+ Among these modifications one finds the periodic and controlled application
+ of a local optimization method to randomly selected neural networks from
+ the population of the DE method.
+ The application of the local technique is done by ensuring that the parameters
+ of the neural network remain within a specific value range, thus avoiding,
+ to the extent possible, any overfitting that could occur.
+ Furthermore, in the modifications there is a termination rule that, on
+ the one hand, is based on stochastic observations regarding the evolution
+ of the population of the DE method and, on the other hand, uses the special
+ characteristics of the error function of the artificial neural network.
+ 
+\end_layout
+
+\begin_layout Standard
+The rest of this article is organized as follows: in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-proposed-method"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the proposed algorithm is fully outlined, in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experiments"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ the datasets used in the experiments are listed accompanied by a series
+ of experiments regarding various aspects of the proposed method and finally
+ some conclusions are presented in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 The proposed method
 \begin_inset CommandInset label
@@ -304,6 +765,696 @@ name "sec:The-proposed-method"
 
 \end_layout
 
+\begin_layout Standard
+The Differential Evolution method involves a series of candidate solutions
+ called agents.
+ These agents evolve through a series of iterations aiming to obtain the
+ global minimum of the corresponding objective function.
+ In the present method, each agent also constitutes a vector of parameters
+ of an artificial neural network and the objective function to be minimized
+ is the error function presented previously.
+ The neural networks used in the current work are expressed through the
+ equation:
+\begin_inset Formula 
+\begin{equation}
+N\left(\overrightarrow{x},\overrightarrow{w}\right)=\sum_{i=1}^{H}w_{(d+2)i-(d+1)}\sigma\left(\sum_{j=1}^{d}x_{j}w_{(d+2)i-(d+1)+j}+w_{(d+2)i}\right)\label{eq:nn}
+\end{equation}
+
+\end_inset
+
+that was initially suggested in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnc"
+literal "false"
+
+\end_inset
+
+.
+ The constant 
+\begin_inset Formula $H$
+\end_inset
+
+ denotes the number of processing units for the neural network and the constant
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ stands for the number of elements in the input pattern 
+\begin_inset Formula $\overrightarrow{x}$
+\end_inset
+
+.
+ Hence, the number of elements in the parameter vector 
+\begin_inset Formula $\overrightarrow{w}$
+\end_inset
+
+ are calculated as 
+\begin_inset Formula $n=\left(d+2\right)H$
+\end_inset
+
+.
+ The main steps of the proposed method are as follows:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Initialization Step
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ as NP the number of agents.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ randomly the NP agents 
+\begin_inset Formula $g_{i},\ i=1,\ldots,\mbox{NP}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Compute
+\series default
+ the fitness value 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ of each agent 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+ using the objective function as 
+\begin_inset Formula $f_{i}=f\left(g_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ as 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ the local search rate.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ as 
+\begin_inset Formula $a\ge1$
+\end_inset
+
+ the weight parameter for the method.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ as 
+\begin_inset Formula $N_{g}$
+\end_inset
+
+ the maximum number of iterations allowed.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ as 
+\begin_inset Formula $N_{I}$
+\end_inset
+
+ the number of iterations used in the stopping rule.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ the parameter CR, which represents the crossover probability with 
+\begin_inset Formula $\mbox{CR\ensuremath{\le1}}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $k=0$
+\end_inset
+
+, the iteration counter.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Main Step
+\series default
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Main-Step."
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+For 
+\begin_inset Formula $i=1,\ldots,$
+\end_inset
+
+
+\series default
+NP
+\series bold
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Obtain
+\series default
+ the agent 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Select
+\series default
+ randomly three distinct agents 
+\begin_inset Formula $g_{a},g_{b},g_{c}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Draw
+\series default
+ a random integer 
+\begin_inset Formula $R\in[1,n]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ a trial point 
+\begin_inset Formula $x_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ 
+\begin_inset Formula $j=1,\ldots.n$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Draw
+\series default
+ a random number 
+\begin_inset Formula $r\in[0,1]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $r\le\mbox{CR}$
+\end_inset
+
+ 
+\series bold
+or
+\series default
+ 
+\begin_inset Formula $i=R$
+\end_inset
+
+ 
+\series bold
+then
+\series default
+ 
+\begin_inset Formula $x_{t,j}=g_{a,j}+F\times\left(g_{b,j}-g_{c,j}\right)$
+\end_inset
+
+ 
+\series bold
+else
+\series default
+ 
+\begin_inset Formula $x_{t,j}=g_{i,j}$
+\end_inset
+
+.
+ The value 
+\begin_inset Formula $F$
+\end_inset
+
+ represents the differential weight of the DE method and it is calculated
+ as 
+\begin_inset Formula 
+\begin{equation}
+F=-0.5+2r
+\end{equation}
+
+\end_inset
+
+with 
+\begin_inset Formula $r$
+\end_inset
+
+ a random number number in 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+.
+ This calculation was introduced in the paper of Charilogis et al 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_char"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+End For
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $f_{t}=f\left(x_{t}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $f_{t}\le f_{i}$
+\end_inset
+
+ then 
+\begin_inset Formula $g_{i}=x_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Draw
+\series default
+ a random number 
+\begin_inset Formula $r\in[0,1]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $r\le p_{l}$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ the vectors 
+\begin_inset Formula $\overrightarrow{L},\overrightarrow{R}$
+\end_inset
+
+ with the properties
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+L_{i} & = & -a\left|g_{i}\right|\\
+R_{i} & = & a\left|g_{i}\right|
+\end{array},\ i=1,\ldots,n
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Minimize
+\series default
+ the error function 
+\begin_inset Formula 
+\begin{equation}
+E\left(N\left(\overrightarrow{x},\overrightarrow{g_{i}}\right)\right)=\sum_{j=1}^{M}\left(N\left(\overrightarrow{x}_{j},\overrightarrow{g_{i}}\right)-y_{j}\right)^{2}\label{eq:eq1-1}
+\end{equation}
+
+\end_inset
+
+ inside the bounds 
+\begin_inset Formula $\overrightarrow{L},\overrightarrow{R}$
+\end_inset
+
+ using some local optimization method.
+ In the current work the BFGS variant of Powell 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "powell"
+literal "false"
+
+\end_inset
+
+ was selected as the local optimization method.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $f_{i}=E\left(N\left(\overrightarrow{x},\overrightarrow{g_{i}}\right)\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+End if
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+End For
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Termination check Step
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $k=k+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $k\ge N_{g}$
+\end_inset
+
+ 
+\series bold
+then
+\series default
+ goto step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Testing-step."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Check
+\series default
+ the termination rule specified in the work of Charilogis et al 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_char"
+literal "false"
+
+\end_inset
+
+.
+ In this work the value 
+\begin_inset Formula 
+\begin{equation}
+\delta^{(k)}=\left|\sum_{i=1}^{\mbox{NP}}\left|f_{i}^{(k)}\right|-\sum_{i=1}^{\mbox{NP}}\left|f_{i}^{(k-1)}\right|\right|
+\end{equation}
+
+\end_inset
+
+is calculated, where the value 
+\begin_inset Formula $f_{i}^{(k)}$
+\end_inset
+
+ represents the fitness value of agent 
+\begin_inset Formula $i$
+\end_inset
+
+ at iteration 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\delta^{(k)}\le\epsilon$
+\end_inset
+
+ for a number of 
+\begin_inset Formula $N_{I}$
+\end_inset
+
+ iterations, then goto step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Testing-step."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Obtain
+\series default
+ the agent 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ with the lowest fitness value 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $f^{*}\le e$
+\end_inset
+
+ then goto step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Testing-step."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Goto
+\series default
+ step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Main-Step."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Testing step
+\series default
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Testing-step."
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Obtain
+\series default
+ the agent 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ with the lowest fitness value 
+\begin_inset Formula $f^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Apply the neural network 
+\begin_inset Formula $N\left(\overrightarrow{x},\overrightarrow{g^{*}}\right)$
+\end_inset
+
+ and report the associated test error.
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Experiments 
 \begin_inset CommandInset label
@@ -5906,7 +7057,7 @@ Experiments with the differential weight
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -16831,19 +17982,71 @@ noprefix "false"
 
 , the regression error for different values of the periodic local search
  parameter is presented.
- In the comparisons between pl=0.0025 and pl=0.005, the p-value was 0.011,
- indicating a statistically significant difference, as it is below the significa
-nce level of 0.05.
- In contrast, the comparisons between pl=0.0025 and pl=0.01, pl=0.0025 and
- pl=0.02, pl=0.005 and pl=0.01, and pl=0.005 and pl=0.02 did not show statistically
- significant differences, with p-values of 0.12, 0.18, 0.22, and 0.097, respectively
-, all of which are above the significance level of 0.05.
- Finally, the comparison between pl=0.01 and pl=0.02 yielded a p-value of
- 0.086, which is close to but above the significance level of 0.05, suggesting
- borderline non-significance.
- Overall, the results indicate that only the comparison between pl=0.0025
- and pl=0.005 showed a statistically significant difference, while the remaining
- comparisons did not present clear statistically significant differences.
+ In the comparisons between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+, the p-value was 0.011, indicating a statistically significant difference,
+ as it is below the significance level of 0.05.
+ In contrast, the comparisons between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+, 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+, and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ did not show statistically significant differences, with p-values of 0.12,
+ 0.18, 0.22, and 0.097, respectively, all of which are above the significance
+ level of 0.05.
+ Finally, the comparison between 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ yielded a p-value of 0.086, which is close to but above the significance
+ level of 0.05, suggesting borderline non-significance.
+ Overall, the results indicate that only the comparison between 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ showed a statistically significant difference, while the remaining comparisons
+ did not present clear statistically significant differences.
 \end_layout
 
 \begin_layout Standard
@@ -17107,6 +18310,754 @@ References
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "nn1"
+literal "true"
+
+\end_inset
+
+C.
+ Bishop, Neural Networks for Pattern Recognition, Oxford University Press,
+ 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn2"
+literal "true"
+
+\end_inset
+
+G.
+ Cybenko, Approximation by superpositions of a sigmoidal function, Mathematics
+ of Control Signals and Systems 
+\series bold
+2
+\series default
+, pp.
+ 303-314, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics1"
+literal "false"
+
+\end_inset
+
+P.
+ Baldi, K.
+ Cranmer, T.
+ Faucett et al, Parameterized neural networks for high-energy physics, Eur.
+ Phys.
+ J.
+ C 
+\series bold
+76
+\series default
+, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics2"
+literal "true"
+
+\end_inset
+
+Baldi, P., Cranmer, K., Faucett, T., Sadowski, P., & Whiteson, D.
+ (2016).
+ Parameterized neural networks for high-energy physics.
+ The European Physical Journal C, 76(5), 1-7.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnphysics3"
+literal "false"
+
+\end_inset
+
+G.
+ Carleo,M.
+ Troyer, Solving the quantum many-body problem with artificial neural networks,
+ Science 
+\series bold
+355
+\series default
+, pp.
+ 602-606, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnde1"
+literal "false"
+
+\end_inset
+
+Khoo, Y., Lu, J., & Ying, L.
+ (2021).
+ Solving parametric PDE problems with artificial neural networks.
+ European Journal of Applied Mathematics, 32(3), 421-435.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_solar"
+literal "false"
+
+\end_inset
+
+A.
+ Kumar Yadav, S.S.
+ Chandel, Solar radiation prediction using Artificial Neural Network techniques:
+ A review, Renewable and Sustainable Energy Reviews 
+\series bold
+33
+\series default
+, pp.
+ 772-781, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnagr2"
+literal "false"
+
+\end_inset
+
+A.
+ Escamilla-García, G.M.
+ Soto-Zarazúa, M.
+ Toledano-Ayala, E.
+ Rivas-Araiza, A.
+ Gastélum-Barrios, Abraham,Applications of Artificial Neural Networks in
+ Greenhouse Technology and Overview for Smart Agriculture Development, Applied
+ Sciences 
+\series bold
+10
+\series default
+, Article number 3835, 2020.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnchem1"
+literal "false"
+
+\end_inset
+
+Lin Shen, Jingheng Wu, and Weitao Yang, Multiscale Quantum Mechanics/Molecular
+ Mechanics Simulations with Neural Networks, Journal of Chemical Theory
+ and Computation 
+\series bold
+12
+\series default
+, pp.
+ 4934-4946, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnchem3"
+literal "false"
+
+\end_inset
+
+Jennifer N.
+ Wei, David Duvenaud, and Alán Aspuru-Guzik, Neural Networks for the Prediction
+ of Organic Chemistry Reactions, ACS Central Science 
+\series bold
+2
+\series default
+, pp.
+ 725-732, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnecon1"
+literal "false"
+
+\end_inset
+
+Lukas Falat and Lucia Pancikova, Quantitative Modelling in Economics with
+ Advanced Artificial Neural Networks, Procedia Economics and Finance 
+\series bold
+34
+\series default
+, pp.
+ 194-201, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnecon2"
+literal "false"
+
+\end_inset
+
+Mohammad Namazi, Ahmad Shokrolahi, Mohammad Sadeghzadeh Maharluie, Detecting
+ and ranking cash flow risk factors via artificial neural networks technique,
+ Journal of Business Research 
+\series bold
+69
+\series default
+, pp.
+ 1801-1806, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed1"
+literal "false"
+
+\end_inset
+
+Igor I.
+ Baskin, David Winkler and Igor V.
+ Tetko, A renaissance of neural networks in drug discovery, Expert Opinion
+ on Drug Discovery 
+\series bold
+11
+\series default
+, pp.
+ 785-795, 2016.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnmed2"
+literal "false"
+
+\end_inset
+
+Ronadl Bartzatt, Prediction of Novel Anti-Ebola Virus Compounds Utilizing
+ Artificial Neural Network (ANN), Chemistry Faculty Publications 
+\series bold
+49
+\series default
+, pp.
+ 16-34, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "bpnn1"
+literal "false"
+
+\end_inset
+
+D.E.
+ Rumelhart, G.E.
+ Hinton and R.J.
+ Williams, Learning representations by back-propagating errors, Nature 
+\series bold
+323
+\series default
+, pp.
+ 533 - 536 , 1986.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "bpnn2"
+literal "false"
+
+\end_inset
+
+Shihab, K.
+ (2006).
+ A backpropagation neural network for computer network security.
+ Journal of Computer Science, 2(9), 710-715.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rpropnn-1"
+literal "false"
+
+\end_inset
+
+M.
+ Riedmiller and H.
+ Braun, A Direct Adaptive Method for Faster Backpropagation Learning: The
+ RPROP algorithm, Proc.
+ of the IEEE Intl.
+ Conf.
+ on Neural Networks, San Francisco, CA, pp.
+ 586–591, 1993.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Adam"
+literal "false"
+
+\end_inset
+
+D.
+ P.
+ Kingma, J.
+ L.
+ Ba, ADAM: a method for stochastic optimization, in: Proceedings of the
+ 3rd International Conference on Learning Representations (ICLR 2015), pp.
+ 1–15, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_ann1"
+literal "false"
+
+\end_inset
+
+A.
+ Yamazaki, M.
+ C.
+ P.
+ de Souto,T.
+ B.
+ Ludermir, Optimization of neural network weights and architectures for
+ odor recognition using simulated annealing, In: Proceedings of the 2002
+ International Joint Conference on Neural Networks.
+ IJCNN'02 
+\series bold
+1
+\series default
+, pp.
+ 547-552 , 2002.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "geneticnn"
+literal "false"
+
+\end_inset
+
+F.
+ H.
+ F.
+ Leung, H.
+ K.
+ Lam, S.
+ H.
+ Ling and P.
+ K.
+ S.
+ Tam, Tuning of the structure and parameters of a neural network using an
+ improved genetic algorithm, IEEE Transactions on Neural Networks 
+\series bold
+14
+\series default
+, pp.
+ 79-88, 2003
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "psonn"
+literal "false"
+
+\end_inset
+
+C.
+ Zhang, H.
+ Shao and Y.
+ Li, Particle swarm optimization for evolving artificial neural network,
+ IEEE International Conference on Systems, Man, and Cybernetics, , pp.
+ 2487-2490, 2000.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "weight_aco"
+literal "false"
+
+\end_inset
+
+K.M.
+ Salama, A.M.
+ Abdelbar, Learning neural network structures with ant colony algorithms,
+ Swarm Intell 
+\series bold
+9
+\series default
+, pp.
+ 229–265, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "tabunn"
+literal "false"
+
+\end_inset
+
+R.S.
+ Sexton, B.
+ Alidaee, R.E.
+ Dorsey, J.D.
+ Johnson, Global optimization for artificial neural networks: A tabu search
+ application.
+ European Journal of Operational Research 
+\series bold
+106
+\series default
+, pp.
+ 570-584, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_hybrid"
+literal "false"
+
+\end_inset
+
+J.-R.
+ Zhang, J.
+ Zhang, T.-M.
+ Lok, M.R.
+ Lyu, A hybrid particle swarm optimization–back-propagation algorithm for
+ feedforward neural network training, Applied Mathematics and Computation
+ 
+\series bold
+185
+\series default
+, pp.
+ 1026-1037, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_cascade"
+literal "false"
+
+\end_inset
+
+G.
+ Zhao, T.
+ Wang, Y.
+ Jin, C.
+ Lang, Y.
+ Li, H.
+ Ling, The Cascaded Forward algorithm for neural network training, Pattern
+ Recognition 
+\series bold
+161
+\series default
+, 111292, 2025.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "weight_abc"
+literal "false"
+
+\end_inset
+
+D.
+ Karaboga and B.
+ Akay, "Artificial Bee Colony (ABC) Algorithm on Training Artificial Neural
+ Networks," 2007 IEEE 15th Signal Processing and Communications Applications,
+ Eskisehir, Turkey, 2007, pp.
+ 1-4, doi: 10.1109/SIU.2007.4298679.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnsharing1"
+literal "true"
+
+\end_inset
+
+S.J.
+ Nowlan and G.E.
+ Hinton, Simplifying neural networks by soft weight sharing, Neural Computation
+ 4, pp.
+ 473-493, 1992.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnsharing2"
+literal "false"
+
+\end_inset
+
+Nowlan, S.
+ J., & Hinton, G.
+ E.
+ (2018).
+ Simplifying neural networks by soft weight sharing.
+ In The mathematics of generalization (pp.
+ 373-394).
+ CRC Press.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnprunning1"
+literal "true"
+
+\end_inset
+
+S.J.
+ Hanson and L.Y.
+ Pratt, Comparing biases for minimal network construction with back propagation,
+ In D.S.
+ Touretzky (Ed.), Advances in Neural Information Processing Systems, Volume
+ 1, pp.
+ 177-185, San Mateo, CA: Morgan Kaufmann, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnprunning2"
+literal "false"
+
+\end_inset
+
+M.
+ Augasta and T.
+ Kathirvalavakumar, Pruning algorithms of neural networks — a comparative
+ study, Central European Journal of Computer Science, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnearly1"
+literal "false"
+
+\end_inset
+
+Lutz Prechelt, Automatic early stopping using cross validation: quantifying
+ the criteria, Neural Networks 
+\series bold
+11
+\series default
+, pp.
+ 761-767, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnearly2"
+literal "false"
+
+\end_inset
+
+X.
+ Wu and J.
+ Liu, A New Early Stopping Algorithm for Improving Neural Network Generalization
+, 2009 Second International Conference on Intelligent Computation Technology
+ and Automation, Changsha, Hunan, 2009, pp.
+ 15-18.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndecay1"
+literal "false"
+
+\end_inset
+
+N.
+ K.
+ Treadgold and T.
+ D.
+ Gedeon, Simulated annealing and weight decay in adaptive learning: the
+ SARPROP algorithm,IEEE Transactions on Neural Networks 
+\series bold
+9
+\series default
+, pp.
+ 662-668, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nndecay2"
+literal "false"
+
+\end_inset
+
+M.
+ Carvalho and T.
+ B.
+ Ludermir, Particle Swarm Optimization of Feed-Forward Neural Networks with
+ Weight Decay, 2006 Sixth International Conference on Hybrid Intelligent
+ Systems (HIS'06), Rio de Janeiro, Brazil, 2006, pp.
+ 5-5.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_review"
+literal "false"
+
+\end_inset
+
+Pant, M., Zaheer, H., Garcia-Hernandez, L., & Abraham, A.
+ (2020).
+ Differential Evolution: A review of more than two decades of research.
+ Engineering Applications of Artificial Intelligence, 90, 103479.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de1"
+literal "false"
+
+\end_inset
+
+Storn, R., & Price, K.
+ (1995).
+ Differential evolution-a simple and efficient adaptive scheme for global
+ optimization over continuous spaces.
+ International computer science institute.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring 999
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de2"
+literal "false"
+
+\end_inset
+
+Storn, R., & Price, K.
+ (1997).
+ Differential evolution–a simple and efficient heuristic for global optimization
+ over continuous spaces.
+ Journal of global optimization, 11, 341-359.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring 999
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_symmetry1"
+literal "false"
+
+\end_inset
+
+Y.H.
+ Li, J.Q.
+ Wang, X.J.
+ Wang, Y.L.
+ Zhao, X.H.
+ Lu, D.L.
+ Liu, Community Detection Based on Differential Evolution Using Social Spider
+ Optimization, Symmetry 
+\series bold
+9
+\series default
+, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_symmetry3"
+literal "false"
+
+\end_inset
+
+W.
+ Yang, E.M.
+ Dilanga Siriwardane, R.
+ Dong, Y.
+ Li, J.
+ Hu, Crystal structure prediction of materials with high symmetry using
+ differential evolution, J.
+ Phys.: Condens.
+ Matter 
+\series bold
+33
+\series default
+ 455902, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_symmetry6"
+literal "false"
+
+\end_inset
+
+C.Y.
+ Lee, C.H.
+ Hung, Feature Ranking and Differential Evolution for Feature Selection
+ in Brushless DC Motor Fault Diagnosis , Symmetry 
+\series bold
+13
+\series default
+, 2021.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_symmetry7"
+literal "false"
+
+\end_inset
+
+S.
+ Saha, R.
+ Das, Exploring differential evolution and particle swarm optimization to
+ develop some symmetry-based automatic clustering techniques: application
+ to gene clustering, Neural Comput & Applic 
+\series bold
+30
+\series default
+, pp.
+ 735–757, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 label "(1989)"
 key "uci"
 literal "false"
@@ -17117,6 +19068,159 @@ literal "false"
  Kelly, R.
  Longjohn, K.
  Nottingham, The UCI Machine Learning Repository, https://archive.ics.uci.edu.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-16"
+
+\end_inset
+
+Maulik, U., & Saha, I.
+ (2010).
+ Automatic fuzzy clustering using modified differential evolution for image
+ classification.
+ IEEE transactions on Geoscience and Remote sensing, 48(9), 3503-3510.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_problem2"
+literal "false"
+
+\end_inset
+
+Zhang, Y., Zhang, H., Cai, J., & Yang, B.
+ (2014).
+ A weighted voting classifier based on differential evolution.
+ In Abstract and applied analysis (Vol.
+ 2014, No.
+ 1, p.
+ 376950).
+ Hindawi Publishing Corporation.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_problem3"
+literal "false"
+
+\end_inset
+
+Hancer, E.
+ (2019).
+ Differential evolution for feature selection: a fuzzy wrapper–filter approach.
+ Soft Computing, 23, 5233-5248.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_problem4"
+literal "false"
+
+\end_inset
+
+Vivekanandan, T., & Iyengar, N.
+ C.
+ S.
+ N.
+ (2017).
+ Optimal feature selection using a modified differential evolution algorithm
+ and its effectiveness for prediction of heart disease.
+ Computers in biology and medicine, 90, 125-136.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_deep1"
+literal "false"
+
+\end_inset
+
+Deng, W., Liu, H., Xu, J., Zhao, H., & Song, Y.
+ (2020).
+ An improved quantum-inspired differential evolution algorithm for deep
+ belief network.
+ IEEE Transactions on Instrumentation and Measurement, 69(10), 7319-7327.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_deep2"
+literal "false"
+
+\end_inset
+
+Wu, T., Li, X., Zhou, D., Li, N., & Shi, J.
+ (2021).
+ Differential evolution based layer-wise weight pruning for compressing
+ deep neural networks.
+ Sensors, 21(3), 880.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nnc"
+literal "false"
+
+\end_inset
+
+I.G.
+ Tsoulos, D.
+ Gavrilis, E.
+ Glavas, Neural network construction and training using grammatical evolution,
+ Neurocomputing 
+\series bold
+72
+\series default
+, pp.
+ 269-277, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "Author1(year)"
+key "de_char"
+literal "false"
+
+\end_inset
+
+ V.
+ Charilogis, I.G.
+ Tsoulos, A.
+ Tzallas, E.
+ Karvounis, Modifications for the Differential Evolution Algorithm, Symmetry
+ 
+\series bold
+14
+\series default
+, 447, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "powell"
+literal "true"
+
+\end_inset
+
+M.J.D Powell, A Tolerant Algorithm for Linearly Constrained Optimization Calculati
+ons, Mathematical Programming 
+\series bold
+45
+\series default
+, pp.
+ 547-566, 1989.
+ 
 \end_layout
 
 \begin_layout Bibliography
