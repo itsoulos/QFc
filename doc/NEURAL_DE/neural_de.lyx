@@ -1458,7 +1458,75 @@ Apply
  and report the associated test error.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
 \end_deeper
+\begin_layout Standard
+The main steps of the proposed method are also outlined graphically in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:flow_de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename neural_de.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart of the proposed method.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:flow_de"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Experiments 
 \begin_inset CommandInset label
@@ -1471,9 +1539,14 @@ name "sec:Experiments"
 \end_layout
 
 \begin_layout Standard
-The new training procedure for the construction of weights of neural networks
- was tested on a wide series of classification and regression datasets,
- found in the recent literature and in the following websites:
+A series of experiments were carried out to determine the effectiveness
+ of the proposed technique and its ability to achieve low generalization
+ errors in classification and data fitting problems.
+ In addition, a series of experiments were performed to determine the stability
+ of the method when critical parameters take different values.
+ In order to perform the experiments a series of classification and regression
+ datasets from the relevant literature was obtained.
+ These datasets can be found in the following websites:
 \end_layout
 
 \begin_layout Enumerate
@@ -1488,7 +1561,7 @@ https://archive.ics.uci.edu/
 
 \end_inset
 
-(accessed on 24 November 2024)
+(accessed on 9 January 2025)
 \begin_inset CommandInset citation
 LatexCommand citep
 key "uci"
@@ -1511,7 +1584,7 @@ https://sci2s.ugr.es/keel/datasets.php
 
 \end_inset
 
-(accessed on 24 November 2024)
+(accessed on 9 January 2025)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Keel"
@@ -1529,12 +1602,12 @@ status open
 
 \begin_layout Plain Layout
 
-ftp://lib.stat.cmu.edu/datasets/index.html 
+https://lib.stat.cmu.edu/datasets/index
 \end_layout
 
 \end_inset
 
-(accessed on 24 November 2024).
+(accessed on 9 January 2025).
  
 \end_layout
 
@@ -1543,8 +1616,7 @@ Experimental datasets
 \end_layout
 
 \begin_layout Standard
-The following classification datasets were incorporated in the conducted
- experiments:
+The following series of classification datasets was used:
 \end_layout
 
 \begin_layout Enumerate
@@ -1552,8 +1624,7 @@ The following classification datasets were incorporated in the conducted
 \series bold
 Alcohol
 \series default
-.
- This dataset is related to experiments on alcohol consumption 
+, which is related to some experiments regarding alcohol consumption 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "alcohol"
@@ -1570,7 +1641,7 @@ literal "false"
 \series bold
 Australian
 \series default
-, related to economic risk in bank transactions 
+, which is related to bank transactions 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "australian"
@@ -1584,9 +1655,9 @@ literal "false"
 \begin_layout Enumerate
 
 \series bold
-Bands
+Bands,
 \series default
-, related to printing problems 
+ regarding printing problems 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bands"
@@ -1594,7 +1665,23 @@ literal "false"
 
 \end_inset
 
-, with two distinct classes.
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Balance
+\series default
+ dataset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "balance"
+literal "false"
+
+\end_inset
+
+, which is related to psychological experiments.
 \end_layout
 
 \begin_layout Enumerate
@@ -1602,7 +1689,8 @@ literal "false"
 \series bold
 Cleveland
 \series default
-, a medical dataset studied in many research papers 
+, a medical dataset which was thoroughly studied in the past in a series
+ of research papers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "cleveland1,cleveland2"
@@ -1619,7 +1707,8 @@ literal "false"
 \series bold
 Circular
 \series default
- dataset, which is an artificial dataset.
+ dataset, which created artificially.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -1635,7 +1724,7 @@ literal "false"
 
 \end_inset
 
- with 6 classes.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1643,7 +1732,7 @@ literal "false"
 \series bold
 Ecoli
 \series default
-, that is related to issues about proteins 
+, which is related to protein issues 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ecoli"
@@ -1659,8 +1748,7 @@ literal "false"
 \series bold
 Haberman
 \series default
-, a medical dataset used in the detection of breast cancer.
- 
+, a medical dataset used for breast cancer detection.
 \end_layout
 
 \begin_layout Enumerate
@@ -1676,7 +1764,7 @@ literal "false"
 
 \end_inset
 
-, a dataset with 3 classes.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1684,7 +1772,7 @@ literal "false"
 \series bold
 Heart
 \series default
-, a medical dataset about heart diseases 
+, a dataset related to heart diseases 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "heart"
@@ -1692,7 +1780,7 @@ literal "false"
 
 \end_inset
 
- with two classes.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1700,8 +1788,7 @@ literal "false"
 \series bold
 HeartAttack
 \series default
-, a medical dataset related to the presence of heart diseases, with two
- classes.
+, a dataset related to heart diseases
 \end_layout
 
 \begin_layout Enumerate
@@ -1709,7 +1796,7 @@ HeartAttack
 \series bold
 Hepatitis
 \series default
-, a dataset used for to detect the presence of hepatitis.
+, a medical dataset regarding hepatitis.
  
 \end_layout
 
@@ -1718,7 +1805,7 @@ Hepatitis
 \series bold
 Housevotes
 \series default
-, that uses data from the Congressional voting in USA 
+, that was used in the Congressional voting in USA 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "housevotes"
@@ -1734,7 +1821,7 @@ literal "false"
 \series bold
 Ionosphere
 \series default
-, that used data from various measurements in the ionosphere 
+, a dataset related to measurements from the ionosphere 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ion1,ion2"
@@ -1750,7 +1837,7 @@ literal "false"
 \series bold
 Liverdisorder
 \series default
-, which is a medical dataset 
+, which is a medical dataset studied in a series of papers
 \begin_inset CommandInset citation
 LatexCommand citep
 key "liver,liver1"
@@ -1758,7 +1845,7 @@ literal "false"
 
 \end_inset
 
- with two classes.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1774,7 +1861,7 @@ literal "false"
 
 \end_inset
 
-, which is a dataset with four distinct classes.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1782,7 +1869,7 @@ literal "false"
 \series bold
 Magic
 \series default
-, this dataset contains data from simulation regarding gamma particles 
+, this dataset contains measurements from physics simulations 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "magic"
@@ -1798,7 +1885,7 @@ literal "false"
 \series bold
 Mammographic
 \series default
-, a medical dataset used for the detection of  breast cancer 
+, a medical dataset related to breast cancer 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "mammographic"
@@ -1822,7 +1909,7 @@ literal "false"
 
 \end_inset
 
-, which is incorporated for the detection of page layout in documents.
+, related to the page layout of documents.
 \end_layout
 
 \begin_layout Enumerate
@@ -1830,7 +1917,7 @@ literal "false"
 \series bold
 Parkinsons
 \series default
-, a dataset used to detect the presence of Parkinson's disease 
+, a medical dataset for the detection of Parkinson's disease 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "parkinsons1,parkinsons2"
@@ -1846,7 +1933,7 @@ literal "false"
 \series bold
 Pima
 \series default
-, a medical dataset that used to detect the presence of diabetes
+, a medical dataset related to the presence of diabetes
 \begin_inset CommandInset citation
 LatexCommand citep
 key "pima"
@@ -1862,8 +1949,7 @@ literal "false"
 \series bold
 Phoneme
 \series default
-, where the purpose of this dataset is to distinguish between nasal and
- oral sounds.
+, a dataset regarding sounds.
 \end_layout
 
 \begin_layout Enumerate
@@ -1871,7 +1957,7 @@ Phoneme
 \series bold
 Popfailures
 \series default
-, a dataset related to climate measurements 
+, a dataset related to measurements from climate experiments 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "popfailures"
@@ -1887,7 +1973,7 @@ literal "false"
 \series bold
 Regions2
 \series default
-, used detect issues in the liver from various liver biopsy images 
+, a medical dataset used for the detection of issues in the liver 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "regions2"
@@ -1903,7 +1989,7 @@ literal "false"
 \series bold
 Ring
 \series default
-, a dataset related to some multivariate normal distributions.
+, a dataset related to a series of multivariate normal distributions.
  
 \end_layout
 
@@ -1912,7 +1998,7 @@ Ring
 \series bold
 Saheart
 \series default
-, used to detect the presence of some heart diseases.
+, used for the detection of heart diseases.
 \begin_inset CommandInset citation
 LatexCommand citep
 key "saheart"
@@ -1936,7 +2022,7 @@ literal "false"
 
 \end_inset
 
-, which is used for image processing .
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1944,7 +2030,23 @@ literal "false"
 \series bold
 Statheart
 \series default
-, a medical dataset about heart diseases.
+, a medical dataset used for the detection of heart diseases.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Sonar
+\series default
+ dataset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sonar"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -1952,7 +2054,7 @@ Statheart
 \series bold
 Spambase
 \series default
-, a dataset used for the detection of spam emails.
+, a dataset used to recognize spam emails.
  
 \end_layout
 
@@ -1969,7 +2071,7 @@ Spiral
 \series bold
 Student
 \series default
-, a dataset related to some experiments in schools 
+, a dataset concerning experiments in schools 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "student"
@@ -1985,7 +2087,7 @@ literal "false"
 \series bold
 Tae
 \series default
-, this dataset is related to evaluations of teaching performance.
+, used to evaluate teaching performance.
 \end_layout
 
 \begin_layout Enumerate
@@ -2009,7 +2111,7 @@ literal "false"
 \series bold
 Wdbc
 \series default
-, a medical dataset related to the detection of breast cancer 
+, a medical dataset which is used to detect breast cancer 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wdbc1,wdbc2"
@@ -2025,7 +2127,7 @@ literal "false"
 \series bold
 Wine
 \series default
-, a dataset related to the quality of wines 
+, a dataset used to detect the quality of wines 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wine1,wine2"
@@ -2041,7 +2143,7 @@ literal "false"
 \series bold
 EEG
 \series default
- dataset, which is a medical dataset related to EEG measurements
+ dataset, which is a medical dataset about EEG recordings
 \begin_inset CommandInset citation
 LatexCommand citep
 key "eeg1,eeg2"
@@ -2050,8 +2152,8 @@ literal "false"
 \end_inset
 
 .
- From the original dataset the following cases were obtained: Z_F_S, ZO_NF_S,
- Z_O_N_F_S and ZONF_S.
+ The following cases from this dataset were adopted here: Z_F_S, ZO_NF_S
+ and ZONF_S.
 \end_layout
 
 \begin_layout Enumerate
@@ -2059,7 +2161,7 @@ literal "false"
 \series bold
 Zoo
 \series default
-, that used to predict the class of some animals 
+, a dataset used for animal classification 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "zoo"
@@ -2071,7 +2173,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Also the following regression datasets were used in the conducted experiments:
+Additionally, the following series of regression datasets was adopted:
 \end_layout
 
 \begin_layout Enumerate
@@ -2079,7 +2181,7 @@ Also the following regression datasets were used in the conducted experiments:
 \series bold
 Abalone
 \series default
-, a dataset regarding the prediction of the age of abalones 
+, a dataset related to the age of abalones 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "abalone"
@@ -2095,7 +2197,7 @@ literal "false"
 \series bold
 Airfoil
 \series default
-, a dataset derived from NASA 
+, a dataset provided by NASA 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "airfoil"
@@ -2103,7 +2205,7 @@ literal "false"
 
 \end_inset
 
- with 5 features.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -2111,7 +2213,7 @@ literal "false"
 \series bold
 Auto
 \series default
-, a dataset used for the prediction of fuel consumption in cars.
+, a dataset related to the fuel consumption of cars.
 \end_layout
 
 \begin_layout Enumerate
@@ -2119,8 +2221,8 @@ Auto
 \series bold
 BK
 \series default
-, related to basketball games.
- The dataset has 4 features.
+, a dataset which is related to basketball games.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -2128,7 +2230,7 @@ BK
 \series bold
 BL
 \series default
-, a dataset used in some electricity experiments and it contains 7 features.
+, a dataset related to electricity experiments.
 \end_layout
 
 \begin_layout Enumerate
@@ -2136,8 +2238,7 @@ BL
 \series bold
 Baseball
 \series default
-, a dataset with 16 features used for the estimation of the income of baseball
- players.
+, a dataset used to estimate the income of baseball players.
 \end_layout
 
 \begin_layout Enumerate
@@ -2145,7 +2246,7 @@ Baseball
 \series bold
 Concrete
 \series default
-, a dataset with 8 features and it was used in civil engineering 
+, a civil engineering dataset 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "concrete"
@@ -2161,7 +2262,7 @@ literal "false"
 \series bold
 DEE
 \series default
-, a dataset with 6 features, used in the prediction of electricity prices.
+, used for the prediction of electricity prices.
 \end_layout
 
 \begin_layout Enumerate
@@ -2169,7 +2270,7 @@ DEE
 \series bold
 FA
 \series default
-, that contains related to body fat.
+, that contains measurements about body fat.
 \end_layout
 
 \begin_layout Enumerate
@@ -2177,7 +2278,7 @@ FA
 \series bold
 Friedman
 \series default
-, a synthetic dataset used in various benchmarks 
+, an artificial dataset
 \begin_inset CommandInset citation
 LatexCommand citep
 key "friedman"
@@ -2193,7 +2294,7 @@ literal "false"
 \series bold
 FY, 
 \series default
-this dataset used to measure the longevity of fruit flies.
+this dataset used in experiments regarding the longevity of fruit flies.
  
 \end_layout
 
@@ -2202,7 +2303,7 @@ this dataset used to measure the longevity of fruit flies.
 \series bold
 HO
 \series default
-, a dataset founded in the STATLIB repository with 13 features.
+, a dataset with 13 features obtained from the STATLIB repository.
 \end_layout
 
 \begin_layout Enumerate
@@ -2210,7 +2311,7 @@ HO
 \series bold
 Housing
 \series default
-, used to predict the price of houses 
+, used to estimate the price of houses 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "housing"
@@ -2226,8 +2327,7 @@ literal "false"
 \series bold
 Laser
 \series default
-, which is a dataset with 4 features and it has been used in various laser
- experiments.
+, used in a series of laser experiments.
 \end_layout
 
 \begin_layout Enumerate
@@ -2235,7 +2335,7 @@ Laser
 \series bold
 LW
 \series default
-, a dataset with 9 features used to measure the weight of babes.
+, a dataset used to detect the weight of babes.
 \end_layout
 
 \begin_layout Enumerate
@@ -2243,7 +2343,7 @@ LW
 \series bold
 Mortgage
 \series default
-, an economic dataset with 15 features.
+, an dataset related to economic measurements.
 \end_layout
 
 \begin_layout Enumerate
@@ -2251,23 +2351,25 @@ Mortgage
 \series bold
 Plastic
 \series default
-, a dataset related to the detection of pressure on plastics.
+, a dataset related to problems regarding pressure on plastics.
 \end_layout
 
 \begin_layout Enumerate
 
 \series bold
-PL
+PY 
 \series default
-, a dataset with 2 features founded in the STATLIB repository.
-\end_layout
+dataset, (Pyrimidines problem).
+ The task of this dataset is the learning of Learning Quantitative Structure
+ Activity Relationships (QSARs)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pydataset"
+literal "false"
 
-\begin_layout Enumerate
+\end_inset
 
-\series bold
-RealEstate, 
-\series default
-a dataset found in the STATLIB website with 5 features.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -2275,7 +2377,7 @@ a dataset found in the STATLIB website with 5 features.
 \series bold
 Quake
 \series default
-, a dataset used in earthquake measurements with 3 features.
+, a dataset used to measure earthquakes.
 \end_layout
 
 \begin_layout Enumerate
@@ -2283,8 +2385,7 @@ Quake
 \series bold
 SN
 \series default
-, a dataset that provides experimental measurements related to trellising
- and pruning, with 11 features.
+, a dataset related to trellising and pruning.
 \end_layout
 
 \begin_layout Enumerate
@@ -2292,8 +2393,7 @@ SN
 \series bold
 Stock
 \series default
-, a dataset with 9 features for the prediction of the prices of various
- stocks.
+, a dataset related to the prices of stocks.
 \end_layout
 
 \begin_layout Enumerate
@@ -2301,7 +2401,7 @@ Stock
 \series bold
 Treasury
 \series default
-, an economic dataset with 15 features.
+, which is related to economics.
 \end_layout
 
 \begin_layout Subsection
@@ -2309,9 +2409,493 @@ Experimental results
 \end_layout
 
 \begin_layout Standard
+The code used in the current work was implemented using the C++ programming
+ language and the Optimus optimization library, freely available from
+\series bold
+ 
+\series default
+
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/itsoulos/OPTIMUS
+\end_layout
+
+\end_inset
+
+ (accessed on 9 January 2025).
+ Every experiment was repeated 30 times, using different seed for the random
+ number generator each time.
+ For the validation of the experiments the 10 - fold cross validation technique
+ was incorporated.
+ The machine used in the experiments was an AMD Ryzen 5950X with 128GB of
+ ram, running Debian Linux as the operating system.
+ The values for the parameters of the proposed method are listed in Table
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:settings"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 
 \series bold
-(WRITE SOME TEXT HERE)
+ 
+\series default
+
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The values for the parameters of the proposed method.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:settings"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PARAMETER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MEANING
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VALUE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N_{g}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of maximum allowed generations.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of agents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Crossover probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N_{I}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of iterations for termination rule
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{l}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Local search rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.005
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Weight parameter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of processing nodes for neural network
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Standard
+The table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ depicts the experimental results for the classification datasets and Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the experimental results for the regression datasets.
+
+\series bold
+ 
+\series default
+The used formula for the classification error is:
+\begin_inset Formula 
+\begin{equation}
+E_{C}\left(M(x)\right)=100\times\frac{\sum_{i=1}^{N}\left(\mbox{class}\left(M\left(x_{i}\right)\right)-y_{i}\right)}{N}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $M(x)$
+\end_inset
+
+ denotes the used model and the set 
+\begin_inset Formula $T$
+\end_inset
+
+ represents the train dataset.
+
+\series bold
+ 
+\series default
+Likewise, the regression error is defined as:
+\begin_inset Formula 
+\begin{equation}
+E_{R}\left(M(x)\right)=\frac{\sum_{i=1}^{N}\left(M\left(x_{i}\right)-y_{i}\right)^{2}}{N}
+\end{equation}
+
+\end_inset
+
+In all experimental tables the following notation was adopted:
+\end_layout
+
+\begin_layout Enumerate
+The column DATASET denotes the name of the used dataset.
+\end_layout
+
+\begin_layout Enumerate
+The column ADAM represents the incorporation of the ADAM optimizer for the
+ training of a neural network with 
+\begin_inset Formula $H=10$
+\end_inset
+
+ processing nodes.
+\end_layout
+
+\begin_layout Enumerate
+The column BFGS stands for the usage of the BFGS optimization method provided
+ by Powell 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "powell"
+literal "false"
+
+\end_inset
+
+ for the training of a neural network with
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $H=10$
+\end_inset
+
+ processing nodes.
+\end_layout
+
+\begin_layout Enumerate
+The column GENETIC represents the usage of a genetic algorithm for the training
+ of a neural network with 
+\begin_inset Formula $H=10$
+\end_inset
+
+ processing nodes.
+ The number of chromosomes in this genetic algorithm are equal with the
+ number of agents in the proposed method.
+\end_layout
+
+\begin_layout Enumerate
+The column NEAT stands for the usage of the NEAT method (NeuroEvolution
+ of Augmenting Topologies ) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "neat"
+literal "false"
+
+\end_inset
+
+ for the training of a neural network.
+ This method was implemented in 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/BiagioFesta/EvolutionNet
+\end_layout
+
+\end_inset
+
+(accessed on 9 January 2025).
+ 
+\end_layout
+
+\begin_layout Enumerate
+The column RBF represents the usage of a Radial Basis Function (RBF) network
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbf1,rbf2"
+literal "false"
+
+\end_inset
+
+ with 
+\begin_inset Formula $H=10$
+\end_inset
+
+ processing nodes.
+\end_layout
+
+\begin_layout Enumerate
+The row AVERAGE stands for the average classification or regression error
+ for all datasets in the corresponding table.
 \end_layout
 
 \begin_layout Standard
@@ -7051,9 +7635,106 @@ Experiments with the differential weight
 \end_layout
 
 \begin_layout Standard
+Another series of experiments was carried out in order to determine the
+ effect that the specific differential weight calculation mechanism has
+ on the accuracy of the proposed technique.
+ For this reason the following methods for the calculation of the differential
+ weight (parameter 
+\begin_inset Formula $F$
+\end_inset
 
-\series bold
-(WRITE SOME TEXT HERE)
+) were used:
+\end_layout
+
+\begin_layout Itemize
+The method denoted as MIGRANT in the experimental tables.
+ In this case the differential weight mechanism proposed in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_migrant"
+literal "false"
+
+\end_inset
+
+ was used.
+\end_layout
+
+\begin_layout Itemize
+The method denoted as ADAPTIVE in the experimental tables.
+ This method uses the differential weight calculation proposed in 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_dynamic"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The method represented as RANDOM in the experimental tables.
+ This method is the default method, suggested by Charilogis 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "de_char"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experFClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides the performance of three differential weight computation methods
+ (MIGRANT, ADAPTIVE, and RANDOM) on the series of classification datasets.
+ The analysis reveals that the MIGRANT method achieves the smallest average
+ error rate of 19.34%, indicating the best overall performance among the
+ three methods.
+ The RANDOM method follows closely with an average error rate of 19.78%,
+ while the ADAPTIVE method has the highest average error rate of 19.98%,
+ suggesting it is the least effective on average.
+ Examining individual datasets, MIGRANT outperforms the other methods in
+ several cases.
+ For example, in the HEART dataset, MIGRANT records an error rate of 19.01%,
+ better than ADAPTIVE (17.29%) and RANDOM (17.60%).
+ Similarly, in the MAGIC dataset, MIGRANT achieves a competitive error rate
+ of 11.83%, which is close to RANDOM (11.73%) but higher than ADAPTIVE (11.28%).
+ MIGRANT also has the lowest error in datasets such as ALCOHOL (19.62%),
+ REGIONS2 (26.26%), and SPAMBASE (5.87%).
+ ADAPTIVE demonstrates strong performance in specific datasets, achieving
+ the lowest error rates in cases such as MAGIC (11.28%) and HEART (17.29%).
+ However, in many datasets, it performs worse than MIGRANT or RANDOM, such
+ as in SPAMBASE, where it records a lower error rate of 4.78% but is generally
+ outperformed in other critical datasets.
+ The RANDOM method exhibits competitive performance in several datasets,
+ achieving the lowest error rates in examples like ZOO (6.63%) and ZONF_S
+ (2.41%).
+ However, its performance fluctuates more significantly, with higher error
+ rates in datasets such as HEARTATTACK (19.70%) and REGIONS2 (28.77%), where
+ it is outperformed by MIGRANT and ADAPTIVE.
+ Notable observations include cases where the error rates are very close
+ across the methods, such as in datasets like CIRCULAR, where the differences
+ are minimal (MIGRANT at 4.28%, ADAPTIVE at 4.34%, and RANDOM at 4.23%).
+ In other cases, the differences are more pronounced, as in SEGMENT, where
+ MIGRANT achieves 9.71%, significantly better than ADAPTIVE (15.99%) and RANDOM
+ (15.60%).
+ Overall, MIGRANT demonstrates the most consistent and robust performance
+ across the datasets, with the lowest average error and competitive results
+ in many individual datasets.
+ RANDOM and ADAPTIVE have comparable average errors but show more variability
+ in their performance.
 \end_layout
 
 \begin_layout Standard
@@ -7061,7 +7742,7 @@ Experiments with the differential weight
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -8745,6 +9426,54 @@ AVERAGE
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experFWeightRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents the performance of three differential weight computation methods
+ (MIGRANT, ADAPTIVE, and RANDOM) on the regression datasets.
+ The RANDOM method achieves the lowest average error, 5.56, making it the
+ most effective overall.
+ ADAPTIVE follows with an average error of 6.23, while MIGRANT exhibits the
+ highest average error at 8.03, indicating the least effective performance.
+ For specific datasets, RANDOM often outperforms the others.
+ For instance, in the HOUSING dataset, it records an error of 24.82, lower
+ than MIGRANT (14.58) and ADAPTIVE (32.62).
+ Similarly, in the PLASTIC dataset, RANDOM achieves the smallest error of
+ 3.27 compared to MIGRANT (5.36) and ADAPTIVE (3.57).
+ RANDOM also shows superior performance in datasets like MORTGAGE (0.54)
+ and STOCK (3.4).
+ ADAPTIVE demonstrates strong performance in certain datasets, such as FRIEDMAN,
+ where its error is 1.32, outperforming MIGRANT (1.66) and RANDOM (1.22).
+ In the QUAKE dataset, ADAPTIVE records the lowest error of 0.041.
+ However, its performance is noticeably weaker in other datasets, like HOUSING,
+ where it registers the highest error of the three.
+ MIGRANT outperforms in a few cases, such as the BL dataset, where its error
+ is 0.007, significantly lower than ADAPTIVE (0.019) and RANDOM (0.016).
+ However, it generally records higher errors in many datasets, such as AUTO
+ (45.37) and BASEBALL (79.24), where the other methods perform better.
+ In some cases, such as the LASER dataset, all methods perform similarly,
+ with errors of 0.0026 for MIGRANT and RANDOM, and 0.0027 for ADAPTIVE.
+ In the QUAKE dataset, the differences are also minimal, with RANDOM having
+ the highest error (0.042), but very close to the others.
+ Overall, RANDOM emerges as the most reliable and effective method, with
+ the lowest average error and frequent superiority across individual datasets.
+ ADAPTIVE performs well in selected datasets but shows greater variability,
+ while MIGRANT demonstrates the least effective performance, with higher
+ errors across numerous datasets.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -9675,102 +10404,6 @@ AVERAGE
 \end_layout
 
 \begin_layout Standard
-The table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experFClass"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- provides the performance of three differential weight computation methods
- (MIGRANT, ADAPTIVE, and RANDOM) on various classification datasets.
- The analysis reveals that the MIGRANT method achieves the smallest average
- error rate of 19.34%, indicating the best overall performance among the
- three methods.
- The RANDOM method follows closely with an average error rate of 19.78%,
- while the ADAPTIVE method has the highest average error rate of 19.98%,
- suggesting it is the least effective on average.
- Examining individual datasets, MIGRANT outperforms the other methods in
- several cases.
- For example, in the HEART dataset, MIGRANT records an error rate of 19.01%,
- better than ADAPTIVE (17.29%) and RANDOM (17.60%).
- Similarly, in the MAGIC dataset, MIGRANT achieves a competitive error rate
- of 11.83%, which is close to RANDOM (11.73%) but higher than ADAPTIVE (11.28%).
- MIGRANT also has the lowest error in datasets such as ALCOHOL (19.62%),
- REGIONS2 (26.26%), and SPAMBASE (5.87%).
- ADAPTIVE demonstrates strong performance in specific datasets, achieving
- the lowest error rates in cases such as MAGIC (11.28%) and HEART (17.29%).
- However, in many datasets, it performs worse than MIGRANT or RANDOM, such
- as in SPAMBASE, where it records a lower error rate of 4.78% but is generally
- outperformed in other critical datasets.
- The RANDOM method exhibits competitive performance in several datasets,
- achieving the lowest error rates in examples like ZOO (6.63%) and ZONF_S
- (2.41%).
- However, its performance fluctuates more significantly, with higher error
- rates in datasets such as HEARTATTACK (19.70%) and REGIONS2 (28.77%), where
- it is outperformed by MIGRANT and ADAPTIVE.
- Notable observations include cases where the error rates are very close
- across the methods, such as in datasets like CIRCULAR, where the differences
- are minimal (MIGRANT at 4.28%, ADAPTIVE at 4.34%, and RANDOM at 4.23%).
- In other cases, the differences are more pronounced, as in SEGMENT, where
- MIGRANT achieves 9.71%, significantly better than ADAPTIVE (15.99%) and RANDOM
- (15.60%).
- Overall, MIGRANT demonstrates the most consistent and robust performance
- across the datasets, with the lowest average error and competitive results
- in many individual datasets.
- RANDOM and ADAPTIVE have comparable average errors but show more variability
- in their performance.
-\end_layout
-
-\begin_layout Standard
-The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experFWeightRegression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- presents the performance of three differential weight computation methods
- (MIGRANT, ADAPTIVE, and RANDOM) on regression datasets.
- The RANDOM method achieves the lowest average error, 5.56, making it the
- most effective overall.
- ADAPTIVE follows with an average error of 6.23, while MIGRANT exhibits the
- highest average error at 8.03, indicating the least effective performance.
- For specific datasets, RANDOM often outperforms the others.
- For instance, in the HOUSING dataset, it records an error of 24.82, lower
- than MIGRANT (14.58) and ADAPTIVE (32.62).
- Similarly, in the PLASTIC dataset, RANDOM achieves the smallest error of
- 3.27 compared to MIGRANT (5.36) and ADAPTIVE (3.57).
- RANDOM also shows superior performance in datasets like MORTGAGE (0.54)
- and STOCK (3.4).
- ADAPTIVE demonstrates strong performance in certain datasets, such as FRIEDMAN,
- where its error is 1.32, outperforming MIGRANT (1.66) and RANDOM (1.22).
- In the QUAKE dataset, ADAPTIVE records the lowest error of 0.041.
- However, its performance is noticeably weaker in other datasets, like HOUSING,
- where it registers the highest error of the three.
- MIGRANT outperforms in a few cases, such as the BL dataset, where its error
- is 0.007, significantly lower than ADAPTIVE (0.019) and RANDOM (0.016).
- However, it generally records higher errors in many datasets, such as AUTO
- (45.37) and BASEBALL (79.24), where the other methods perform better.
- In some cases, such as the LASER dataset, all methods perform similarly,
- with errors of 0.0026 for MIGRANT and RANDOM, and 0.0027 for ADAPTIVE.
- In the QUAKE dataset, the differences are also minimal, with RANDOM having
- the highest error (0.042), but very close to the others.
- Overall, RANDOM emerges as the most reliable and effective method, with
- the lowest average error and frequent superiority across individual datasets.
- ADAPTIVE performs well in selected datasets but shows greater variability,
- while MIGRANT demonstrates the least effective performance, with higher
- errors across numerous datasets.
- 
-\end_layout
-
-\begin_layout Standard
 An analysis was conducted to compare different methods for computing differentia
 l weights in a proposed machine learning approach, focusing on classification
  error.
@@ -9948,9 +10581,126 @@ Experiments with the factor
 \end_layout
 
 \begin_layout Standard
+In the next series of experiments, the effect of the parameter 
+\begin_inset Formula $a$
+\end_inset
 
-\series bold
-(WRITE SOME TEXT HERE)
+ on the behavior of the method on classification and data fitting data was
+ studied.
+ In this series of experiments, different values of this parameter were
+ studied.
+ This parameter determines the allowable range of values within which the
+ local minimization method can vary the parameters of the artificial neural
+ network.
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experAClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error percentages across the used classification datasets for
+ different values of the parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ (1.25, 1.5, 2, 4, and 8).
+ The lowest overall average error is observed for 
+\begin_inset Formula $a=2$
+\end_inset
+
+ with an average of 19.78%.
+ This suggests that 
+\begin_inset Formula $a=2$
+\end_inset
+
+ provides the most balanced performance across datasets.
+ The other parameter values—1.25, 1.5, 4, and 8—yield average errors of 19.98%,
+ 19.95%, 20.00%, and 19.95%, respectively.
+ These results indicate that 
+\begin_inset Formula $a=2$
+\end_inset
+
+ has a slight advantage in minimizing the overall error compared to other
+ values.
+ For individual datasets, the performance varies depending on the parameter
+ value.
+ For example, in the ALCOHOL dataset, the smallest error is achieved at
+ 
+\begin_inset Formula $a=2$
+\end_inset
+
+ with 19.15%, while other values result in slightly higher errors.
+ Similarly, in the SEGMENT dataset, the error is minimized at 
+\begin_inset Formula $a=8$
+\end_inset
+
+ with 14.27%.
+ However, in datasets like SPIRAL, the errors across all parameter values
+ are close, with no significant advantage for any specific value.
+ In certain datasets, there is a clear trend in error reduction as the parameter
+ value changes.
+ For example, in the SEGMENT dataset, errors decrease consistently from
+ 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ to 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ Conversely, in the ZOO dataset, the error decreases for lower values of
+ a but increases again at higher values, indicating that performance is
+ not always linear with changes in 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Some datasets exhibit minimal variability in performance across parameter
+ values.
+ For example, the error for the LIVERDISORDER dataset remains relatively
+ stable, ranging from 31.41% to 32.33%.
+ Similarly, the SPIRAL dataset shows little variation, with errors consistently
+ around 42%.
+ In other cases, specific parameter values consistently underperform.
+ For instance, in the Z_F_S dataset, 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ achieves the lowest error of 6.67%, while 
+\begin_inset Formula $a=2$
+\end_inset
+
+ and 
+\begin_inset Formula $a=4$
+\end_inset
+
+ result in slightly higher errors.
+ Similarly, 
+\begin_inset Formula $a=8$
+\end_inset
+
+ achieves the smallest error for certain datasets like SEGMENT but performs
+ poorly for datasets like WINE.
+ Overall, 
+\begin_inset Formula $a=2$
+\end_inset
+
+ emerges as the most effective parameter value, yielding the smallest average
+ error across datasets.
+ While other values of 
+\begin_inset Formula $a$
+\end_inset
+
+ perform well in individual cases, their overall performance is less consistent.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -12440,6 +13190,142 @@ AVERAGE
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experARegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error rates for the regression datasets across different values
+ of the critical parameter 
+\begin_inset Formula $a$
+\end_inset
+
+ (1.25, 1.5, 2, 4, and 8).
+ The lowest average error is observed for 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+, with an average of 5.39, suggesting it offers the best overall performance.
+ 
+\begin_inset Formula $a=1.25$
+\end_inset
+
+ ranks second with an average of 5.46, and 
+\begin_inset Formula $a=2$
+\end_inset
+
+ slightly higher at 5.56.
+ The values 
+\begin_inset Formula $a=4$
+\end_inset
+
+ and 
+\begin_inset Formula $a=8$
+\end_inset
+
+ show a marked increase in errors, with averages of 5.94 and 7.44, respectively.
+ This indicates that higher values of 
+\begin_inset Formula $a$
+\end_inset
+
+ are less effective compared to smaller ones.
+ For individual datasets, performance varies with the value of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For instance, in the AIRFOIL dataset, the error consistently decreases
+ as 
+\begin_inset Formula $a$
+\end_inset
+
+ increases, with the smallest error (0.0007) observed at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ Conversely, in the FRIEDMAN dataset, the error rises sharply at 
+\begin_inset Formula $a=8$
+\end_inset
+
+ (19.74), signaling a significant performance decline.
+ In some datasets, such as BASEBALL, the error steadily increases with higher
+ values of 
+\begin_inset Formula $a$
+\end_inset
+
+ rising from 57.67 at a=1.25 to 72.37 at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ In contrast, in the HOUSING dataset, the smallest error occurs at 
+\begin_inset Formula $a=4$
+\end_inset
+
+ (22.86), although larger values like 
+\begin_inset Formula $a=8$
+\end_inset
+
+ show only a slight increase.
+ Certain datasets exhibit minimal sensitivity to changes in 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For example, in the LASER dataset, errors remain almost constant regardless
+ of the parameter value, ranging from 0.0025 to 0.0035.
+ Similarly, in the DEE dataset, the errors are nearly identical across all
+ values of 
+\begin_inset Formula $a$
+\end_inset
+
+ showing minimal variation.
+ Interestingly, the PLASTIC dataset shows a gradual decrease in error from
+ 3.37 at a=1.25 to 2.8 at a=8, indicating improved performance with increasing
+ 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Conversely, in the STOCK dataset, the error increases significantly from
+ 2.82 at a=1.25 to 5.42 at 
+\begin_inset Formula $a=8$
+\end_inset
+
+.
+ In conclusion, 
+\begin_inset Formula $a=1.5$
+\end_inset
+
+ emerges as the optimal choice for minimizing overall error in this analysis.
+ Higher values of 
+\begin_inset Formula $a$
+\end_inset
+
+ demonstrate reduced effectiveness, especially at 
+\begin_inset Formula $a=8$
+\end_inset
+
+, where the average error rises notably.
+ However, the results reveal that the impact of 
+\begin_inset Formula $a$
+\end_inset
+
+ varies by dataset, with some benefiting from smaller values and others
+ exhibiting relative insensitivity to parameter changes.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -13809,248 +14695,6 @@ AVERAGE
 \end_layout
 
 \begin_layout Standard
-The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experAClass"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- presents error percentages across classification datasets for different
- values of the parameter 
-\begin_inset Formula $a$
-\end_inset
-
- (1.25, 1.5, 2, 4, and 8).
- The lowest overall average error is observed for 
-\begin_inset Formula $a=2$
-\end_inset
-
- with an average of 19.78%.
- This suggests that 
-\begin_inset Formula $a=2$
-\end_inset
-
- provides the most balanced performance across datasets.
- The other parameter values—1.25, 1.5, 4, and 8—yield average errors of 19.98%,
- 19.95%, 20.00%, and 19.95%, respectively.
- These results indicate that 
-\begin_inset Formula $a=2$
-\end_inset
-
- has a slight advantage in minimizing the overall error compared to other
- values.
- For individual datasets, the performance varies depending on the parameter
- value.
- For example, in the ALCOHOL dataset, the smallest error is achieved at
- 
-\begin_inset Formula $a=2$
-\end_inset
-
- with 19.15%, while other values result in slightly higher errors.
- Similarly, in the SEGMENT dataset, the error is minimized at 
-\begin_inset Formula $a=8$
-\end_inset
-
- with 14.27%.
- However, in datasets like SPIRAL, the errors across all parameter values
- are close, with no significant advantage for any specific value.
- In certain datasets, there is a clear trend in error reduction as the parameter
- value changes.
- For example, in the SEGMENT dataset, errors decrease consistently from
- 
-\begin_inset Formula $a=1.25$
-\end_inset
-
- to 
-\begin_inset Formula $a=8$
-\end_inset
-
-.
- Conversely, in the ZOO dataset, the error decreases for lower values of
- a but increases again at higher values, indicating that performance is
- not always linear with changes in 
-\begin_inset Formula $a$
-\end_inset
-
-.
- Some datasets exhibit minimal variability in performance across parameter
- values.
- For example, the error for the LIVERDISORDER dataset remains relatively
- stable, ranging from 31.41% to 32.33%.
- Similarly, the SPIRAL dataset shows little variation, with errors consistently
- around 42%.
- In other cases, specific parameter values consistently underperform.
- For instance, in the Z_F_S dataset, 
-\begin_inset Formula $a=1.5$
-\end_inset
-
- achieves the lowest error of 6.67%, while 
-\begin_inset Formula $a=2$
-\end_inset
-
- and 
-\begin_inset Formula $a=4$
-\end_inset
-
- result in slightly higher errors.
- Similarly, 
-\begin_inset Formula $a=8$
-\end_inset
-
- achieves the smallest error for certain datasets like SEGMENT but performs
- poorly for datasets like WINE.
- Overall, 
-\begin_inset Formula $a=2$
-\end_inset
-
- emerges as the most effective parameter value, yielding the smallest average
- error across datasets.
- While other values of 
-\begin_inset Formula $a$
-\end_inset
-
- perform well in individual cases, their overall performance is less consistent.
- 
-\end_layout
-
-\begin_layout Standard
-The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experARegression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- presents error rates for regression datasets across different values of
- the critical parameter 
-\begin_inset Formula $a$
-\end_inset
-
- (1.25, 1.5, 2, 4, and 8).
- The lowest average error is observed for 
-\begin_inset Formula $a=1.5$
-\end_inset
-
-, with an average of 5.39, suggesting it offers the best overall performance.
- 
-\begin_inset Formula $a=1.25$
-\end_inset
-
- ranks second with an average of 5.46, and 
-\begin_inset Formula $a=2$
-\end_inset
-
- slightly higher at 5.56.
- The values 
-\begin_inset Formula $a=4$
-\end_inset
-
- and 
-\begin_inset Formula $a=8$
-\end_inset
-
- show a marked increase in errors, with averages of 5.94 and 7.44, respectively.
- This indicates that higher values of 
-\begin_inset Formula $a$
-\end_inset
-
- are less effective compared to smaller ones.
- For individual datasets, performance varies with the value of 
-\begin_inset Formula $a$
-\end_inset
-
-.
- For instance, in the AIRFOIL dataset, the error consistently decreases
- as 
-\begin_inset Formula $a$
-\end_inset
-
- increases, with the smallest error (0.0007) observed at 
-\begin_inset Formula $a=8$
-\end_inset
-
-.
- Conversely, in the FRIEDMAN dataset, the error rises sharply at 
-\begin_inset Formula $a=8$
-\end_inset
-
- (19.74), signaling a significant performance decline.
- In some datasets, such as BASEBALL, the error steadily increases with higher
- values of 
-\begin_inset Formula $a$
-\end_inset
-
- rising from 57.67 at a=1.25 to 72.37 at 
-\begin_inset Formula $a=8$
-\end_inset
-
-.
- In contrast, in the HOUSING dataset, the smallest error occurs at 
-\begin_inset Formula $a=4$
-\end_inset
-
- (22.86), although larger values like 
-\begin_inset Formula $a=8$
-\end_inset
-
- show only a slight increase.
- Certain datasets exhibit minimal sensitivity to changes in 
-\begin_inset Formula $a$
-\end_inset
-
-.
- For example, in the LASER dataset, errors remain almost constant regardless
- of the parameter value, ranging from 0.0025 to 0.0035.
- Similarly, in the DEE dataset, the errors are nearly identical across all
- values of 
-\begin_inset Formula $a$
-\end_inset
-
- showing minimal variation.
- Interestingly, the PLASTIC dataset shows a gradual decrease in error from
- 3.37 at a=1.25 to 2.8 at a=8, indicating improved performance with increasing
- 
-\begin_inset Formula $a$
-\end_inset
-
-.
- Conversely, in the STOCK dataset, the error increases significantly from
- 2.82 at a=1.25 to 5.42 at 
-\begin_inset Formula $a=8$
-\end_inset
-
-.
- In conclusion, 
-\begin_inset Formula $a=1.5$
-\end_inset
-
- emerges as the optimal choice for minimizing overall error in this analysis.
- Higher values of 
-\begin_inset Formula $a$
-\end_inset
-
- demonstrate reduced effectiveness, especially at 
-\begin_inset Formula $a=8$
-\end_inset
-
-, where the average error rises notably.
- However, the results reveal that the impact of 
-\begin_inset Formula $a$
-\end_inset
-
- varies by dataset, with some benefiting from smaller values and others
- exhibiting relative insensitivity to parameter changes.
- 
-\end_layout
-
-\begin_layout Standard
 In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -14067,8 +14711,8 @@ noprefix "false"
 
  which defines the bounds of optimal values in the proposed machine learning
  method, is presented.
- The comparisons were conducted using the Wilcoxon Test across a series
- of well-known datasets to evaluate the classification error.
+ The comparisons were conducted using the Wilcoxon Test across the series
+ of used datasets to evaluate the classification error.
  The results indicate that the p-values for all pairwise comparisons between
  different values of 
 \begin_inset Formula $a$
@@ -14297,9 +14941,151 @@ Experiments with the local search rate
 \end_layout
 
 \begin_layout Standard
+In the last series of experiments, the effect of the execution rate of local
+ optimization methods was studied.
+ For this reason, values ranging from 0.25% to 2% were studied.
+\end_layout
 
-\series bold
-(WRITE SOME TEXT HERE)
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experPLClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ provides error rates for the used classification datasets under different
+ values of periodic local search 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ (0.0025, 0.005, 0.01, and 0.02).
+ The analysis reveals that the lowest average error is observed 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, with an error rate of 19.43%, suggesting that this value yields the best
+ overall performance.
+ This is closely followed by 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ with an average error of 19.66% and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ with 19.78%.
+ The highest average error occurs at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ with 20.48%, indicating comparatively poorer performance.
+ Examining individual datasets, the impact of 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ varies.
+ For instance, in the ALCOHOL dataset, the smallest error is observed at
+ 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 16.49%, whereas larger values such as 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ result in higher errors (21.81% and 19.15%, respectively).
+ Conversely, in the SEGMENT dataset, the error consistently decreases as
+ 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ increases, reaching its lowest value at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 11.70%.
+ This trend is also evident in datasets such as SPAMBASE and WINE, where
+ the errors decrease significantly with higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ Some datasets exhibit minimal sensitivity to changes in 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+ For example, in the HEART and LIVERDISORDER datasets, the error rates remain
+ relatively stable across all 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values, showing only marginal fluctuations.
+ In other cases, such as CIRCULAR and HOUSEVOTES, the variations in error
+ rates are similarly minor.
+ However, certain datasets show exceptions to the general trend.
+ For example, in the SONAR dataset, the error rate is lowest at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with 18.53%, but higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values like 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ produce increased errors (20.38%).
+ Similarly, the REGIONS2 dataset achieves its best performance at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with an error rate of 28.02%, but other 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values yield comparable results, such as 28.77% at both 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+.
+ The data suggests that higher 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values, particularly 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, generally result in improved performance across most datasets.
+ Nevertheless, the optimal 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ value may vary depending on specific dataset characteristics, and some
+ datasets show negligible or inconsistent responses to changes in 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+.
+ Overall, 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ is recommended for achieving the lowest average error.
 \end_layout
 
 \begin_layout Standard
@@ -14308,10 +15094,6 @@ placement H
 wide false
 sideways false
 status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -16400,6 +17182,130 @@ AVERAGE
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experPlRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents error rates for the used regression datasets under different values
+ of periodic local search 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ (0.0025, 0.005, 0.01, and 0.02).
+ The analysis indicates that the lowest average error is observed at 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ with a value of 5.04, suggesting that this setting offers the best overall
+ performance.
+ This is followed by 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+ with an average error of 5.10, 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+ with 5.56, and 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ with 6.34, which has the highest average error and the poorest performance.
+ Examining individual datasets reveals variations in the impact of different
+ 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ In the AUTO dataset, the error decreases steadily as 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ increases, dropping from 17.63 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to its lowest point of 10.11 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ Similarly, in the HOUSING dataset, the error significantly reduces from
+ 32.72 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to 14.02 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ This decreasing trend is also evident in other datasets, such as MORTGAGE,
+ where the error falls from 1.22 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to just 0.032 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+, and STOCK, where the error reduces from 6.58 to 1.47.
+ In some datasets, the 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ parameter has minimal impact.
+ For instance, in the CONCRETE dataset, the error remains constant across
+ all 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values at 0.003.
+ Similar stability is observed in the QUAKE and SN datasets, where variations
+ are minimal.
+ However, some datasets exhibit less predictable trends.
+ In the BASEBALL dataset, the error initially decreases from 63.05 at 
+\begin_inset Formula $p_{l}=0.0025$
+\end_inset
+
+ to 60.56 at 
+\begin_inset Formula $p_{l}=0.005$
+\end_inset
+
+, but then increases again to 71.93 at 
+\begin_inset Formula $p_{l}=0.02$
+\end_inset
+
+.
+ Similar inconsistent results are observed in the PY and BL datasets.
+ Overall, the analysis suggests that 
+\begin_inset Formula $p_{l}=0.01$
+\end_inset
+
+ delivers the best average performance.
+ Nevertheless, the effect of the 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ parameter varies across datasets, with some benefiting more from higher
+ or lower 
+\begin_inset Formula $p_{l}$
+\end_inset
+
+ values.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -17557,269 +18463,6 @@ AVERAGE
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experPLClass"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- provides error rates for classification datasets under different values
- of periodic local search 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- (0.0025, 0.005, 0.01, and 0.02).
- The analysis reveals that the lowest average error is observed 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-, with an error rate of 19.43%, suggesting that this value yields the best
- overall performance.
- This is closely followed by 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
- with an average error of 19.66% and 
-\begin_inset Formula $p_{l}=0.005$
-\end_inset
-
- with 19.78%.
- The highest average error occurs at 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- with 20.48%, indicating comparatively poorer performance.
- Examining individual datasets, the impact of 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- varies.
- For instance, in the ALCOHOL dataset, the smallest error is observed at
- 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- with 16.49%, whereas larger values such as 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
- and 
-\begin_inset Formula $p_{l}=0.005$
-\end_inset
-
- result in higher errors (21.81% and 19.15%, respectively).
- Conversely, in the SEGMENT dataset, the error consistently decreases as
- 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- increases, reaching its lowest value at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- with 11.70%.
- This trend is also evident in datasets such as SPAMBASE and WINE, where
- the errors decrease significantly with higher 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values.
- Some datasets exhibit minimal sensitivity to changes in 
-\begin_inset Formula $p_{l}$
-\end_inset
-
-.
- For example, in the HEART and LIVERDISORDER datasets, the error rates remain
- relatively stable across all 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values, showing only marginal fluctuations.
- In other cases, such as CIRCULAR and HOUSEVOTES, the variations in error
- rates are similarly minor.
- However, certain datasets show exceptions to the general trend.
- For example, in the SONAR dataset, the error rate is lowest at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- with 18.53%, but higher 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values like 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
- produce increased errors (20.38%).
- Similarly, the REGIONS2 dataset achieves its best performance at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- with an error rate of 28.02%, but other 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values yield comparable results, such as 28.77% at both 
-\begin_inset Formula $p_{l}=0.005$
-\end_inset
-
- and 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
-.
- The data suggests that higher 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values, particularly 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-, generally result in improved performance across most datasets.
- Nevertheless, the optimal 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- value may vary depending on specific dataset characteristics, and some
- datasets show negligible or inconsistent responses to changes in 
-\begin_inset Formula $p_{l}$
-\end_inset
-
-.
- Overall, 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- is recommended for achieving the lowest average error.
-\end_layout
-
-\begin_layout Standard
-The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:experPlRegression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- presents error rates for regression datasets under different values of
- periodic local search 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- (0.0025, 0.005, 0.01, and 0.02).
- The analysis indicates that the lowest average error is observed at 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
- with a value of 5.04, suggesting that this setting offers the best overall
- performance.
- This is followed by 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
- with an average error of 5.10, 
-\begin_inset Formula $p_{l}=0.005$
-\end_inset
-
- with 5.56, and 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- with 6.34, which has the highest average error and the poorest performance.
- Examining individual datasets reveals variations in the impact of different
- 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values.
- In the AUTO dataset, the error decreases steadily as 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- increases, dropping from 17.63 at 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- to its lowest point of 10.11 at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-.
- Similarly, in the HOUSING dataset, the error significantly reduces from
- 32.72 at 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- to 14.02 at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-.
- This decreasing trend is also evident in other datasets, such as MORTGAGE,
- where the error falls from 1.22 at 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- to just 0.032 at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-, and STOCK, where the error reduces from 6.58 to 1.47.
- In some datasets, the 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- parameter has minimal impact.
- For instance, in the CONCRETE dataset, the error remains constant across
- all 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values at 0.003.
- Similar stability is observed in the QUAKE and SN datasets, where variations
- are minimal.
- However, some datasets exhibit less predictable trends.
- In the BASEBALL dataset, the error initially decreases from 63.05 at 
-\begin_inset Formula $p_{l}=0.0025$
-\end_inset
-
- to 60.56 at 
-\begin_inset Formula $p_{l}=0.005$
-\end_inset
-
-, but then increases again to 71.93 at 
-\begin_inset Formula $p_{l}=0.02$
-\end_inset
-
-.
- Similar inconsistent results are observed in the PY and BL datasets.
- Overall, the analysis suggests that 
-\begin_inset Formula $p_{l}=0.01$
-\end_inset
-
- delivers the best average performance.
- Nevertheless, the effect of the 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- parameter varies across datasets, with some benefiting more from higher
- or lower 
-\begin_inset Formula $p_{l}$
-\end_inset
-
- values.
- 
 \end_layout
 
 \begin_layout Standard
@@ -19308,6 +19951,26 @@ B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "balance"
+literal "false"
+
+\end_inset
+
+T.
+ Shultz, D.
+ Mareschal, W.
+ Schmidt, Modeling Cognitive Development on Balance Scale Phenomena, Machine
+ Learning 
+\series bold
+16
+\series default
+, pp.
+ 59-88, 1994.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 label "(2004)"
 key "cleveland1"
 literal "false"
@@ -19767,6 +20430,25 @@ M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "sonar"
+literal "false"
+
+\end_inset
+
+R.P.
+ Gorman, T.J.
+ Sejnowski, Analysis of Hidden Units in a Layered Network Trained to Classify
+ Sonar Targets, Neural Networks 
+\series bold
+1
+\series default
+, pp.
+ 75-89, 1988.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 label "(2007)"
 key "student"
 literal "false"
@@ -20032,6 +20714,130 @@ D.
 \series default
 , pp.
  81-102, 1978.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "pydataset"
+literal "false"
+
+\end_inset
+
+R.D.
+ King, S.
+ Muggleton, R.
+ Lewis, M.J.E.
+ Sternberg, Proc.
+ Nat.
+ Acad.
+ Sci.
+ USA 
+\series bold
+89
+\series default
+, pp.
+ 11322–11326, 1992.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "neat"
+literal "false"
+
+\end_inset
+
+K.
+ O.
+ Stanley, R.
+ Miikkulainen, Evolving Neural Networks through Augmenting Topologies, Evolution
+ary Computation 
+\series bold
+10
+\series default
+, pp.
+ 99-127, 2002.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(1991)"
+key "rbf1"
+literal "false"
+
+\end_inset
+
+J.
+ Park and I.
+ W.
+ Sandberg, Universal Approximation Using Radial-Basis-Function Networks,
+ Neural Computation 
+\series bold
+3
+\series default
+, pp.
+ 246-257, 1991.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf2"
+literal "false"
+
+\end_inset
+
+G.A.
+ Montazer, D.
+ Giveki, M.
+ Karami, H.
+ Rastegar, Radial basis function neural networks: A review.
+ Comput.
+ Rev.
+ J 
+\series bold
+1
+\series default
+, pp.
+ 52-74, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_migrant"
+literal "false"
+
+\end_inset
+
+J.
+ Cheng, G.
+ Zhang, F.
+ Neri, Enhancing distributed differential evolution with multicultural migration
+ for global numerical optimization.
+ Information Sciences 
+\series bold
+247
+\series default
+, pp.
+ 72-93, 2013.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "de_dynamic"
+literal "false"
+
+\end_inset
+
+Wu, K., Liu, Z., Ma, N., & Wang, D.
+ (2022).
+ A Dynamic Adaptive Weighted Differential Evolutionary Algorithm.
+ Computational Intelligence and Neuroscience, 2022(1), 1318044.
 \end_layout
 
 \begin_layout End Whole Page
