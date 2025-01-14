@@ -625,9 +625,9 @@ void	Population::localSearch(int pos)
         int randomA,randomB,randomC;
         do
         {
-            randomA =  rand() % genome_count;
-            randomB =  rand() % genome_count;
-            randomC =  rand() % genome_count;
+            randomA =  tournament();
+            randomB =  tournament();
+            randomC =  tournament();
         }while(randomA == randomB || randomB == randomC || randomC == randomA);
         double CR= 0.9;
         double F = 0.8;
@@ -655,11 +655,11 @@ void	Population::localSearch(int pos)
             else	genome[pos][i]=old_value;
         }
     }
+    
 
-       /* for(int i=0;i<genome_size;i++)
+        for(int i=0;i<20;i++)
         {
             int ipos =randomInt(0,genome_size-1);
-            int new_value;
             for(int k=0;k<20;k++)
             {
             int old_value = genome[pos][ipos];
@@ -680,7 +680,7 @@ void	Population::localSearch(int pos)
             }
             else	genome[pos][ipos]=old_value;
             }
-        }*/
+        }
     }
     else
     if(localSearchMethod=="bfgs")
@@ -854,6 +854,26 @@ void	Population::getGenome(int pos,vector<int> &g)
     g.resize(genome_size);
     for(int i=0;i<g.size();i++) g[i]=genome[pos][i];
 }
+int Population::tournament()
+{
+    const int tournament_size =(genome_count<=100)?4:20;
+
+    double max_fitness=1e+10;
+    int    max_index=-1;
+int r;
+// Select the best parents of  the candidates
+    for(int j=0;j<tournament_size;j++)
+    {
+r= rand() % (genome_count);
+            if(j==0 || fitness_array[r]<max_fitness)
+            {
+                    max_index=r;
+                    max_fitness=fitness_array[r];
+            }
+    }
+    return max_index;
+}
+
 /* Destructor */
 Population::~Population()
 {

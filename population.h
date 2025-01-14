@@ -68,6 +68,7 @@ class Population :public QfcMethod
        virtual void step();
        virtual void report();
        virtual bool terminated();
+        int tournament() ;
 		~Population();
 		
 };
