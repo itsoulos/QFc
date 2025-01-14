@@ -622,28 +622,41 @@ void	Population::localSearch(int pos)
     else
     if(localSearchMethod=="random")
     {
-      /*  vector<int> pt;
-        const int iters=10;
-        for(int k=1;k<=iters;k++)
+        int randomA,randomB,randomC;
+        do
         {
-        pt.resize(genome_size);
-        for(int i=0;i<pt.size();i++)
+            randomA =  rand() % genome_count;
+            randomB =  rand() % genome_count;
+            randomC =  rand() % genome_count;
+        }while(randomA == randomB || randomB == randomC || randomC == randomA);
+        double CR= 0.9;
+        double F = 0.8;
+        int randomIndex = rand() % genome_size;
+    for(int i=0;i<genome_size;i++)
+    {
+        if(i==randomIndex || rand()*1.0/RAND_MAX <=CR)
         {
-            //three states (0,1,-1)
-            int r = rand() % 3;
-            if(r==2 && genome[pos][i]!=0) r=-1;
-            pt[i]=genome[pos][i]+r;
-        }
-        double trial_fitness= fitness(pt);
-        if(fabs(trial_fitness)<=fabs(fitness_array[pos]))
-        {
-            printf("%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
-              for(int i=0;i<pt.size();i++) genome[pos][i]=pt[i];
-            fitness_array[pos]=trial_fitness;
-        }
-        }*/
+            int old_value = genome[pos][i];
+            F = -0.5 + 2.0 * rand()*1.0/RAND_MAX;
+            genome[pos][i]=genome[randomA][i]+abs(F*(genome[randomB][i]-genome[randomC][i]));
+            if(genome[pos][i]<0)
+            {
+             genome[pos][i]=old_value;
+             continue;
+            }
 
-        for(int i=0;i<genome_size;i++)
+            for(int j=0;j<genome_size;j++) g[j]=genome[pos][j];
+            double trial_fitness=fitness(g);
+            if(fabs(trial_fitness)<fabs(fitness_array[pos]))
+            {
+             //printf("NEW DE VALUE[%d] = %lf=>%lf\n",pos,fitness_array[pos],trial_fitness);
+                fitness_array[pos]=trial_fitness;
+            }
+            else	genome[pos][i]=old_value;
+        }
+    }
+
+       /* for(int i=0;i<genome_size;i++)
         {
             int ipos =randomInt(0,genome_size-1);
             int new_value;
@@ -667,7 +680,7 @@ void	Population::localSearch(int pos)
             }
             else	genome[pos][ipos]=old_value;
             }
-        }
+        }*/
     }
     else
     if(localSearchMethod=="bfgs")
