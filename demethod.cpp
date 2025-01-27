@@ -244,7 +244,7 @@ void    DeMethod::Solve()
         double new_sum = sumFitness();
         if(fabs(besty-old_best_fitness)<1e-5) stopcount++; else stopcount=0;
         old_best_fitness = besty;
-        //if(de_iter%20==0)
+        if(de_iter%20==0)
         printf("DE. Iter=%4d Diff in fitness %20.10lg Best fitness:%20.10lg\n",
                de_iter,fabs(oldSumFitness - new_sum),agenty[best_index]);
         oldSumFitness = new_sum;
@@ -268,8 +268,7 @@ double    DeMethod::localSearch(Matrix& x)
     myProblem->setRightMargin(right);
     Info.p=myProblem;
     Info.iters=2001;
-    Lbfgs method(myProblem);
-    double v=method.Solve(x);//tolmin(x,Info);
+    double v=tolmin(x,Info);
     return v;
 }
 double  DeMethod::getAdaptiveWeight()
