@@ -1,6 +1,7 @@
 #include "demethod.h"
 # include "model.h"
 # include "kmeans.h"
+# include "lbfgs.h"
 DeMethod::DeMethod(Problem *p,int np)
 {
     myProblem = p;
@@ -243,7 +244,7 @@ void    DeMethod::Solve()
         double new_sum = sumFitness();
         if(fabs(besty-old_best_fitness)<1e-5) stopcount++; else stopcount=0;
         old_best_fitness = besty;
-        if(de_iter%20==0)
+        //if(de_iter%20==0)
         printf("DE. Iter=%4d Diff in fitness %20.10lg Best fitness:%20.10lg\n",
                de_iter,fabs(oldSumFitness - new_sum),agenty[best_index]);
         oldSumFitness = new_sum;
@@ -260,14 +261,15 @@ double    DeMethod::localSearch(Matrix& x)
     right.resize(x.size());
     for(int i=0;i<x.size();i++)
     {
-        left[i]=-2.0 *fabs(x[i]);
-        right[i]= 2.0 *fabs(x[i]);
+        left[i]=-4.0 *fabs(x[i]);
+        right[i]= 4.0 *fabs(x[i]);
     }
     myProblem->setLeftMargin(left);
     myProblem->setRightMargin(right);
     Info.p=myProblem;
     Info.iters=2001;
-    double v=tolmin(x,Info);
+    Lbfgs method(myProblem);
+    double v=method.Solve(x);//tolmin(x,Info);
     return v;
 }
 double  DeMethod::getAdaptiveWeight()

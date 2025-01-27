@@ -649,12 +649,14 @@ void	Population::localSearch(int pos)
             double trial_fitness=fitness(g);
             if(fabs(trial_fitness)<fabs(fitness_array[pos]))
             {
-             //printf("NEW DE VALUE[%d] = %lf=>%lf\n",pos,fitness_array[pos],trial_fitness);
+             printf("NEW DE VALUE[%d] = %lf=>%lf\n",pos,fitness_array[pos],trial_fitness);
                 fitness_array[pos]=trial_fitness;
             }
             else	genome[pos][i]=old_value;
         }
     }
+    
+    return;
     
 
         for(int i=0;i<20;i++)
@@ -673,7 +675,7 @@ void	Population::localSearch(int pos)
             double trial_fitness=fitness(g);
             if(fabs(trial_fitness)<fabs(fitness_array[pos]))
             {
-                //fprintf(stderr,"%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
+                fprintf(stderr,"%4d: LOCAL[%lf]=>%lf\n",pos,fitness_array[pos],trial_fitness);
 
                 fitness_array[pos]=trial_fitness;
 

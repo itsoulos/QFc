@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2024.12.24)  9 JAN 2025 20:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.1.13)  16 JAN 2025 07:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1928,13 +1928,13 @@ Package rerunfilecheck Info: File `neural_de.out' has not changed.
 (rerunfilecheck)             Checksum: 6FFF56C49FF3ECE60F0B73490105F6A5;1667.
  ) 
 Here is how much of TeX's memory you used:
- 32484 strings out of 477975
- 599341 string characters out of 5839280
+ 32478 strings out of 477975
+ 599293 string characters out of 5839281
  1909330 words of memory out of 5000000
  51194 multiletter control sequences out of 15000+600000
- 590703 words of font info for 501 fonts, out of 8000000 for 9000
+ 590459 words of font info for 497 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 123i,18n,120p,4340b,983s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,18n,120p,4340b,981s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/sheridan/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.
 375pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive
@@ -1945,7 +1945,7 @@ ype1/public/mathpazo/fplmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/u
 plb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on neural_de.pdf (27 pages, 1142492 bytes).
+Output written on neural_de.pdf (27 pages, 1142655 bytes).
 PDF statistics:
  694 PDF objects out of 1000 (max. 8388607)
  603 compressed objects within 7 object streams
