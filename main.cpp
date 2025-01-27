@@ -17,6 +17,14 @@
 QString ge_method = GEMETHOD_GENETIC;
 vector<int> genome;
 
+void red () {
+  printf("\033[1;31m");
+}
+
+
+void reset () {
+  printf("\033[0m");
+}
 
 namespace Color {
     enum Code {
@@ -575,8 +583,9 @@ void    makeTest()
         average_train_error+=d;
         average_test_error+=t;
         average_class_error+=c;
+	red();
         printf("train[%d] %.10lf test[%d] %lf class[%d] %lf%%\n",i,d,i,t,i,c*100.0);
-
+	reset();
     }
     printf("AVERAGES(TRAIN,TEST,CLASS): %15.8lg %15.8lg %15.8lg%%\n",
            average_train_error/testIters,average_test_error/testIters,
