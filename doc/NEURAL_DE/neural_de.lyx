@@ -18972,6 +18972,53 @@ Experiments with the local search method
 \end_layout
 
 \begin_layout Standard
+Another test was conducted, where the local optimization method of the proposed
+ technique was altered.
+ In this test the local optimization methods Limited Memory BFGS (LBFGS)
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "LBFGS"
+literal "false"
+
+\end_inset
+
+ and Adam 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Adam"
+literal "false"
+
+\end_inset
+
+ was used and the results were compared against that obtained by the application
+ of the BFGS local optimization methods.
+ The experimental results for the classification datasets are depicted in
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experLocalClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the experimental results for the regression datasets are shown in Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experLocalRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
@@ -20665,7 +20712,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -20675,7 +20722,7 @@ Experimental results for the regression datasets using different local search
  methods.
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:experPlRegression-1"
+name "tab:experLocalRegression"
 
 \end_inset
 
@@ -21582,6 +21629,250 @@ AVERAGE
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+The analysis of the Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experLocalClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ regarding the local search methods BFGS, LBFGS, and ADAM for the NEURALDE
+ model presents their performance on classification datasets, with the values
+ representing error percentages.
+ According to the results, the BFGS method achieves the lowest average error
+ rate at 19.78%, followed by LBFGS with 20.06% and ADAM with 21.48%.
+ This highlights the relative superiority of BFGS in minimizing error compared
+ to the other methods.
+ When analyzing individual datasets, BFGS records the lowest error rates
+ in several cases.
+ For instance, in the HOUSEVOTES dataset, both BFGS and LBFGS yield similar
+ results, while ADAM shows the lowest error at 5.39%.
+ In the SPAMBASE dataset, ADAM outperforms the others with an error rate
+ of 3.91%, compared to 4.95% and 4.78% for BFGS and LBFGS, respectively.
+ Similarly, in the STUDENT dataset, ADAM performs best with the lowest error
+ at 3.82%.
+ However, in datasets like SEGMENT, BFGS excels with a significantly lower
+ error of 15.60% compared to 19.46% for LBFGS and 27.47% for ADAM.
+ Notable differences are observed in datasets such as DERMATOLOGY, where
+ LBFGS records the lowest error at 9.09%, compared to 10.38% for BFGS and
+ 11.34% for ADAM.
+ In the MAGIC dataset, BFGS and LBFGS deliver comparable performance, with
+ error rates of 11.73% and 11.83%, respectively, while ADAM presents a higher
+ error of 12.72%.
+ Similarly, in the CIRCULAR dataset, BFGS achieves the lowest error at 4.23%,
+ closely followed by LBFGS at 4.29%, and ADAM at 4.52%.
+ Overall, BFGS demonstrates superior performance in most cases, maintaining
+ the lowest variation in error rates and achieving the smallest average
+ error.
+ However, LBFGS delivers competitive results with slightly higher average
+ error and outperforms in specific datasets like DERMATOLOGY.
+ While ADAM records lower error rates in isolated datasets such as SPAMBASE
+ and STUDENT, it exhibits a higher overall error, indicating greater variability
+ in its performance.
+ In conclusion, the BFGS method emerges as the most efficient overall, while
+ LBFGS offers consistently competitive performance.
+ ADAM shows advantages in certain datasets but has a higher overall average
+ error rate.
+\end_layout
+
+\begin_layout Standard
+The evaluation presented in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:experLocalRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ highlights the performance of the local search methods BFGS, LBFGS, and
+ ADAM applied to regression datasets within the NEURALDE model.
+ The reported values correspond to absolute errors.
+ Among the three methods, BFGS achieves the lowest mean error of 5.56, demonstrat
+ing a clear advantage over LBFGS and ADAM, which have mean errors of 6.03
+ and 8.27, respectively.
+ Examining individual datasets, BFGS achieves superior results in several
+ instances.
+ For example, in the AIRFOIL dataset, it records the smallest error at 0.0014,
+ while LBFGS and ADAM show slightly higher errors of 0.0024 and 0.0031, respective
+ly.
+ On the other hand, LBFGS outperforms in the BASEBALL dataset, achieving
+ the lowest error at 49.78, compared to 60.56 for BFGS and 78.73 for ADAM.
+ Similarly, LBFGS demonstrates the best performance in the BL dataset with
+ an error of 0.01, outperforming BFGS and ADAM, which exhibit errors of 0.016
+ and 0.024, respectively.
+ In the PLASTIC dataset, LBFGS again achieves the smallest error at 2.53,
+ followed by BFGS with 3.27 and ADAM with 3.4.
+ Conversely, in the MORTGAGE dataset, BFGS performs best, with an error
+ of 0.54, while LBFGS and ADAM display larger errors of 1.54 and 2.01.
+ In the STOCK dataset, BFGS also demonstrates superior performance, recording
+ the lowest error at 3.4, whereas LBFGS and ADAM show significantly higher
+ errors of 8.9 and 11.27, respectively.
+ Certain datasets exhibit negligible differences in performance among the
+ methods.
+ For instance, in the CONCRETE dataset, all three methods produce identical
+ errors of 0.003.
+ Similarly, in the LASER dataset, the errors are nearly identical, with
+ ADAM achieving 0.0025, BFGS 0.0026, and LBFGS 0.0027.
+ Overall, BFGS emerges as the most effective method, delivering the lowest
+ average error and consistently strong results across numerous datasets.
+ LBFGS, while slightly less efficient on average, demonstrates competitive
+ performance in specific datasets such as BASEBALL, BL, and PLASTIC.
+ ADAM, though occasionally effective, as observed in datasets like LASER,
+ shows greater variability and a higher mean error, limiting its overall
+ reliability.
+ In conclusion, BFGS stands out as the most robust and dependable method,
+ with LBFGS showing significant potential in select contexts.
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statLocalClass"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the critical parameter p, which indicates the level of statistical significanc
+e, showed no statistically significant difference between the BFGS and LBFGS
+ methods, with p=0.78.
+ This high value does not meet the common significance threshold (p<0.05).
+ In contrast, the comparison between BFGS and ADAM revealed a statistically
+ significant difference, with p=0.0017, indicating clear differentiation
+ between the two methods.
+ Similarly, the comparison between LBFGS and ADAM recorded p=0.0031, also
+ below the significance level, proving that the two methods exhibit statisticall
+y significant differences in classification error performance.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ls1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison of the experimental results using the proposed methods
+ and a variety of local optimization techniques for the classification datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statLocalClass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statLocalRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the results showed that the BFGS and LBFGS methods have no statistically
+ significant difference, with p=1.0, suggesting that the two methods perform
+ essentially the same regarding regression error.
+ However, the comparison between BFGS and ADAM resulted in p=0.037, which
+ is below the 0.05 threshold, highlighting a statistically significant difference
+ favoring BFGS.
+ Lastly, the comparison between LBFGS and ADAM recorded p=0.0054, confirming
+ a statistically significant differentiation between these two methods as
+ well.
+ In summary, the results of the Wilcoxon Test demonstrate that BFGS and
+ LBFGS have comparable performances in regression error, while they do not
+ exhibit statistically significant differences in classification error.
+ On the other hand, the differences between ADAM and the other two methods
+ (BFGS and LBFGS) are statistically significant in both cases, indicating
+ that ADAM shows distinct performance characteristics in both classification
+ and regression error.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ls2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistical comparison of the experimental results using a variety of local
+ optimization methods applied on the regression datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statLocalRegression"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -23811,6 +24102,26 @@ Wu, K., Liu, Z., Ma, N., & Wang, D.
  (2022).
  A Dynamic Adaptive Weighted Differential Evolutionary Algorithm.
  Computational Intelligence and Neuroscience, 2022(1), 1318044.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "LBFGS"
+literal "false"
+
+\end_inset
+
+D.C.
+ Liu, J.
+ Nocedal, On the Limited Memory Method for Large Scale Optimization, Mathematica
+l Programming B.
+ 
+\series bold
+45
+\series default
+, pp.
+ 503–528, 1989.
 \end_layout
 
 \begin_layout Bibliography
