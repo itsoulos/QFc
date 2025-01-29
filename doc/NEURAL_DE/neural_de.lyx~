@@ -561,6 +561,12 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+EVOLUTIONARY METHODS AND NEURAL NETWORK
+\end_layout
+
+\begin_layout Standard
 However, in many cases, although the above techniques can significantly
  reduce the error of equation 
 \begin_inset CommandInset ref
@@ -718,6 +724,14 @@ In the current work a series of modifications are incorporated in the DE
  the one hand, is based on stochastic observations regarding the evolution
  of the population of the DE method and, on the other hand, uses the special
  characteristics of the error function of the artificial neural network.
+ 
+\end_layout
+
+\begin_layout Standard
+The AA method was chosen among other evolutionary techniques for the simplicity
+ of its implementation, for the small number of parameters that the user
+ must specify compared to other evolutionary techniques, as well as for
+ the large number of applications in which it has been applied.
  
 \end_layout
 
@@ -7945,7 +7959,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -21806,9 +21820,19 @@ name "fig:statLocalClass"
 \end_layout
 
 \begin_layout Standard
-In Figure [ls2.png], the results showed that the BFGS and LBFGS methods have
- no statistically significant difference, with p=1.0, suggesting that the
- two methods perform essentially the same regarding regression error.
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statLocalRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the results showed that the BFGS and LBFGS methods have no statistically
+ significant difference, with p=1.0, suggesting that the two methods perform
+ essentially the same regarding regression error.
  However, the comparison between BFGS and ADAM resulted in p=0.037, which
  is below the 0.05 threshold, highlighting a statistically significant difference
  favoring BFGS.
@@ -21826,11 +21850,19 @@ In Figure [ls2.png], the results showed that the BFGS and LBFGS methods have
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ls2.png
+	scale 50
+
+\end_inset
+
 
 \end_layout
 
@@ -21840,6 +21872,13 @@ status open
 \begin_layout Plain Layout
 Statistical comparison of the experimental results using a variety of local
  optimization methods applied on the regression datasets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:statLocalRegression"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
