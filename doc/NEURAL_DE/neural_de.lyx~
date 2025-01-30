@@ -561,9 +561,74 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Also, many researchers have published papers regarding efficient techniques
+ for the initialization of the parameters of neural networks.
+ Among them one can find initialization with polynomial bases 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_init1"
+literal "false"
 
+\end_inset
+
+, incorporation of decision trees 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_init2"
+literal "false"
+
+\end_inset
+
+, application of interval arithmetic 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_init3"
+literal "false"
+
+\end_inset
+
+, discriminant learning 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_init4"
+literal "false"
+
+\end_inset
+
+ etc.
+ Furthermore, the identification of the optimal architecture of artificial
+ neural networks can reduce significantly the training error and in this
+ direction many researchers have proposed a variety of methods used to tackle
+ this problem
 \series bold
-EVOLUTIONARY METHODS AND NEURAL NETWORK
+, 
+\series default
+such as the usage of genetic algorithms 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_arch1,nn_arch2"
+literal "false"
+
+\end_inset
+
+, incorporation of the PSO method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_arch3"
+literal "false"
+
+\end_inset
+
+, application of reinforcement learning 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn_arch4"
+literal "false"
+
+\end_inset
+
+ etc.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -724,11 +789,7 @@ In the current work a series of modifications are incorporated in the DE
  the one hand, is based on stochastic observations regarding the evolution
  of the population of the DE method and, on the other hand, uses the special
  characteristics of the error function of the artificial neural network.
- 
-\end_layout
-
-\begin_layout Standard
-The AA method was chosen among other evolutionary techniques for the simplicity
+ The DE method was chosen among other evolutionary techniques for the simplicity
  of its implementation, for the small number of parameters that the user
  must specify compared to other evolutionary techniques, as well as for
  the large number of applications in which it has been applied.
@@ -749,6 +810,19 @@ literal "false"
  However, since it is an evolutionary technique that requires the use of
  many candidate solutions that must evolve over time, this method will significa
 ntly increase the execution time in such models.
+\end_layout
+
+\begin_layout Standard
+The key elements introduced by the new method are the use of a modified
+ evolutionary technique that has been shown to be useful for finding the
+ global minimum of functions.
+ This method effectively explores the parameter space of the artificial
+ neural network and periodically applies local optimization to randomly
+ selected candidate solutions, without significantly departing from their
+ identified values.
+ In this way, it seeks to prevent the artificial neural network from being
+ driven into a state of overfitting and losing any generalization capabilities
+ it possesses.
 \end_layout
 
 \begin_layout Standard
@@ -847,6 +921,28 @@ literal "false"
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Standard
+The proposed technique starts with a series of randomly selected parameter
+ vectors for the artificial neural network.
+ In the terminology of the differential evolution technique, these vectors
+ are called agents.
+ These agents evolve iteratively and in each iteration a small number of
+ them are randomly selected for the application of a local optimization
+ method.
+ The application of the local optimization method is done in such a way
+ that its result is in a range of values that is not far from the value
+ that has already been identified by the evolutionary technique.
+ In this way, an attempt is made to avoid the phenomenon of overfitting
+ since the parameter values cannot deviate significantly from the values
+ that have already been identified by the evolutionary technique.
+ Finally, the evolutionary technique is terminated by applying a termination
+ rule based on the difference from iteration to iteration in the sum of
+ the fitness values of agents.
+ If this sum no longer changes, then it is very likely that the method should
+ be terminated.
  The main steps of the proposed method are as follows:
 \end_layout
 
@@ -1519,7 +1615,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2936,6 +3032,26 @@ literal "false"
 \end_layout
 
 \begin_layout Enumerate
+The column PRUNE stands for the the application of OBS pruning method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "prune"
+literal "false"
+
+\end_inset
+
+, as implemented in the library Fast Compressed Neural Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fcn"
+literal "true"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
 The row AVERAGE stands for the average classification or regression error
  for all datasets in the corresponding table.
 \end_layout
@@ -2974,9 +3090,12 @@ name "tab:experClass"
 
 \begin_layout Plain Layout
 \align center
+
+\size footnotesize
 \begin_inset Tabular
-<lyxtabular version="3" rows="43" columns="7">
+<lyxtabular version="3" rows="43" columns="8">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2989,6 +3108,8 @@ name "tab:experClass"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 DATASET
 \end_layout
 
@@ -2998,6 +3119,8 @@ DATASET
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ADAM
 \end_layout
 
@@ -3007,6 +3130,8 @@ ADAM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BFGS
 \end_layout
 
@@ -3016,6 +3141,8 @@ BFGS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 GENETIC
 \end_layout
 
@@ -3025,6 +3152,8 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 NEAT
 \end_layout
 
@@ -3034,7 +3163,20 @@ NEAT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 RBF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+PRUNE
 \end_layout
 
 \end_inset
@@ -3043,6 +3185,8 @@ RBF
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 NEURALDE
 \end_layout
 
@@ -3054,6 +3198,8 @@ NEURALDE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ALCOHOL
 \end_layout
 
@@ -3063,6 +3209,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 57.78%
 \end_layout
 
@@ -3072,6 +3220,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 41.50%
 \end_layout
 
@@ -3081,6 +3231,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.57%
 \end_layout
 
@@ -3090,6 +3242,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 66.80%
 \end_layout
 
@@ -3099,7 +3253,20 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 49.32%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+15.75%
 \end_layout
 
 \end_inset
@@ -3108,6 +3275,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.15%
 \end_layout
 
@@ -3119,6 +3288,8 @@ ALCOHOL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 AUSTRALIAN
 \end_layout
 
@@ -3128,6 +3299,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.65%
 \end_layout
 
@@ -3137,6 +3310,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 38.13%
 \end_layout
 
@@ -3146,6 +3321,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 32.21%
 \end_layout
 
@@ -3155,6 +3332,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.98%
 \end_layout
 
@@ -3164,7 +3343,20 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.89%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+43.66%
 \end_layout
 
 \end_inset
@@ -3173,6 +3365,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.31%
 \end_layout
 
@@ -3184,6 +3378,8 @@ AUSTRALIAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BALANCE
 \end_layout
 
@@ -3193,6 +3389,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12.27%
 \end_layout
 
@@ -3202,6 +3400,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.64%
 \end_layout
 
@@ -3211,6 +3411,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.97%
 \end_layout
 
@@ -3220,6 +3422,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 23.14%
 \end_layout
 
@@ -3229,7 +3433,20 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 33.53%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+9.00%
 \end_layout
 
 \end_inset
@@ -3238,6 +3455,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.92%
 \end_layout
 
@@ -3249,6 +3468,8 @@ BALANCE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BANDS
 \end_layout
 
@@ -3258,6 +3479,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 36.92%
 \end_layout
 
@@ -3267,6 +3490,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 36.67%
 \end_layout
 
@@ -3276,6 +3501,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.92%
 \end_layout
 
@@ -3285,6 +3512,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.30%
 \end_layout
 
@@ -3294,7 +3523,20 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 37.17%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+37.68%
 \end_layout
 
 \end_inset
@@ -3303,6 +3545,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.00%
 \end_layout
 
@@ -3314,6 +3558,8 @@ BANDS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 CLEVELAND
 \end_layout
 
@@ -3323,6 +3569,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 67.55%
 \end_layout
 
@@ -3332,6 +3580,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 77.55%
 \end_layout
 
@@ -3341,6 +3591,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 51.60%
 \end_layout
 
@@ -3350,6 +3602,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 53.44%
 \end_layout
 
@@ -3359,7 +3613,20 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 67.10%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+51.48%
 \end_layout
 
 \end_inset
@@ -3368,6 +3635,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 45.07%
 \end_layout
 
@@ -3379,6 +3648,8 @@ CLEVELAND
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 CIRCULAR
 \end_layout
 
@@ -3388,6 +3659,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.95%
 \end_layout
 
@@ -3397,6 +3670,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.08%
 \end_layout
 
@@ -3406,6 +3681,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.99%
 \end_layout
 
@@ -3415,6 +3692,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.18%
 \end_layout
 
@@ -3424,7 +3703,20 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.98%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+12.76%
 \end_layout
 
 \end_inset
@@ -3433,6 +3725,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.23%
 \end_layout
 
@@ -3444,6 +3738,8 @@ CIRCULAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 DERMATOLOGY
 \end_layout
 
@@ -3453,6 +3749,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 26.14%
 \end_layout
 
@@ -3462,6 +3760,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 52.92%
 \end_layout
 
@@ -3471,6 +3771,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 30.58%
 \end_layout
 
@@ -3480,6 +3782,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 32.43%
 \end_layout
 
@@ -3489,7 +3793,20 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 62.34%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+9.02%
 \end_layout
 
 \end_inset
@@ -3498,6 +3815,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.38%
 \end_layout
 
@@ -3509,6 +3828,8 @@ DERMATOLOGY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ECOLI
 \end_layout
 
@@ -3518,6 +3839,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 64.43%
 \end_layout
 
@@ -3527,6 +3850,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 69.52%
 \end_layout
 
@@ -3536,6 +3861,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 54.67%
 \end_layout
 
@@ -3545,6 +3872,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 43.44%
 \end_layout
 
@@ -3554,7 +3883,20 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 59.48%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+60.32%
 \end_layout
 
 \end_inset
@@ -3563,6 +3905,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 45.22%
 \end_layout
 
@@ -3574,6 +3918,8 @@ ECOLI
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HABERMAN
 \end_layout
 
@@ -3583,6 +3929,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.00%
 \end_layout
 
@@ -3592,6 +3940,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.34%
 \end_layout
 
@@ -3601,6 +3951,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.66%
 \end_layout
 
@@ -3610,6 +3962,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.04%
 \end_layout
 
@@ -3619,7 +3973,20 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.10%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.38%
 \end_layout
 
 \end_inset
@@ -3628,6 +3995,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 27.55%
 \end_layout
 
@@ -3639,6 +4008,8 @@ HABERMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HAYES-ROTH
 \end_layout
 
@@ -3648,6 +4019,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 59.70%
 \end_layout
 
@@ -3657,6 +4030,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 37.33%
 \end_layout
 
@@ -3666,6 +4041,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 56.18%
 \end_layout
 
@@ -3675,6 +4052,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 50.15%
 \end_layout
 
@@ -3684,7 +4063,20 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 64.36%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+45.44%
 \end_layout
 
 \end_inset
@@ -3693,6 +4085,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.59%
 \end_layout
 
@@ -3704,6 +4098,8 @@ HAYES-ROTH
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HEART
 \end_layout
 
@@ -3713,6 +4109,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 38.53%
 \end_layout
 
@@ -3722,6 +4120,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.44%
 \end_layout
 
@@ -3731,6 +4131,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.34%
 \end_layout
 
@@ -3740,6 +4142,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.27%
 \end_layout
 
@@ -3749,7 +4153,20 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.20%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+27.21%
 \end_layout
 
 \end_inset
@@ -3758,6 +4175,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.60%
 \end_layout
 
@@ -3769,6 +4188,8 @@ HEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HEARTATTACK
 \end_layout
 
@@ -3778,6 +4199,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 45.55%
 \end_layout
 
@@ -3787,6 +4210,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 46.67%
 \end_layout
 
@@ -3796,6 +4221,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.03%
 \end_layout
 
@@ -3805,6 +4232,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 32.34%
 \end_layout
 
@@ -3814,7 +4243,20 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.00%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.26%
 \end_layout
 
 \end_inset
@@ -3823,6 +4265,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.70%
 \end_layout
 
@@ -3834,6 +4278,8 @@ HEARTATTACK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HEPATITIS
 \end_layout
 
@@ -3843,6 +4289,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 68.13%
 \end_layout
 
@@ -3852,6 +4300,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 72.47%
 \end_layout
 
@@ -3861,6 +4311,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 62.12%
 \end_layout
 
@@ -3870,6 +4322,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 67.04%
 \end_layout
 
@@ -3879,7 +4333,20 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 64.63%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+63.40%
 \end_layout
 
 \end_inset
@@ -3888,6 +4355,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 57.46%
 \end_layout
 
@@ -3899,6 +4368,8 @@ HEPATITIS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HOUSEVOTES
 \end_layout
 
@@ -3908,6 +4379,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.48%
 \end_layout
 
@@ -3917,6 +4390,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.13%
 \end_layout
 
@@ -3926,6 +4401,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.62%
 \end_layout
 
@@ -3935,6 +4412,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.89%
 \end_layout
 
@@ -3944,7 +4423,20 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.13%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+5.81%
 \end_layout
 
 \end_inset
@@ -3953,6 +4445,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.48%
 \end_layout
 
@@ -3964,6 +4458,8 @@ HOUSEVOTES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 IONOSPHERE
 \end_layout
 
@@ -3973,6 +4469,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16.64%
 \end_layout
 
@@ -3982,6 +4480,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.29%
 \end_layout
 
@@ -3991,6 +4491,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.14%
 \end_layout
 
@@ -4000,6 +4502,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.67%
 \end_layout
 
@@ -4009,7 +4513,20 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16.22%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+11.32%
 \end_layout
 
 \end_inset
@@ -4018,6 +4535,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16.17%
 \end_layout
 
@@ -4029,6 +4548,8 @@ IONOSPHERE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 LIVERDISORDER
 \end_layout
 
@@ -4038,6 +4559,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 41.53%
 \end_layout
 
@@ -4047,6 +4570,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 42.59%
 \end_layout
 
@@ -4056,6 +4581,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.11%
 \end_layout
 
@@ -4065,6 +4592,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 30.67%
 \end_layout
 
@@ -4074,7 +4603,20 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 30.84%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+49.72%
 \end_layout
 
 \end_inset
@@ -4083,6 +4625,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.72%
 \end_layout
 
@@ -4094,6 +4638,8 @@ LIVERDISORDER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 LYMOGRAPHY
 \end_layout
 
@@ -4103,6 +4649,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.79%
 \end_layout
 
@@ -4112,6 +4660,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.43%
 \end_layout
 
@@ -4121,6 +4671,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.42%
 \end_layout
 
@@ -4130,6 +4682,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 33.70%
 \end_layout
 
@@ -4139,7 +4693,20 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.50%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+22.02%
 \end_layout
 
 \end_inset
@@ -4148,6 +4715,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.86%
 \end_layout
 
@@ -4159,6 +4728,8 @@ LYMOGRAPHY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MAGIC
 \end_layout
 
@@ -4168,6 +4739,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 40.55%
 \end_layout
 
@@ -4177,6 +4750,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.30%
 \end_layout
 
@@ -4186,6 +4761,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.75%
 \end_layout
 
@@ -4195,6 +4772,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.85%
 \end_layout
 
@@ -4204,7 +4783,20 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.28%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+30.76%
 \end_layout
 
 \end_inset
@@ -4213,6 +4805,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 11.73%
 \end_layout
 
@@ -4224,6 +4818,8 @@ MAGIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MAMMOGRAPHIC
 \end_layout
 
@@ -4233,6 +4829,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 46.25%
 \end_layout
 
@@ -4242,6 +4840,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.24%
 \end_layout
 
@@ -4251,6 +4851,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.88%
 \end_layout
 
@@ -4260,6 +4862,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 22.85%
 \end_layout
 
@@ -4269,7 +4873,20 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.38%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+38.10%
 \end_layout
 
 \end_inset
@@ -4278,6 +4895,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.52%
 \end_layout
 
@@ -4289,6 +4908,8 @@ MAMMOGRAPHIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PARKINSONS
 \end_layout
 
@@ -4298,6 +4919,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.06%
 \end_layout
 
@@ -4307,6 +4930,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 27.58%
 \end_layout
 
@@ -4316,6 +4941,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 18.05%
 \end_layout
 
@@ -4325,6 +4952,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 18.56%
 \end_layout
 
@@ -4334,7 +4963,20 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.41%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+22.12%
 \end_layout
 
 \end_inset
@@ -4343,6 +4985,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 14.32%
 \end_layout
 
@@ -4354,6 +4998,8 @@ PARKINSONS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PAGE BLOCKS
 \end_layout
 
@@ -4363,6 +5009,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.27%
 \end_layout
 
@@ -4372,6 +5020,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.49%
 \end_layout
 
@@ -4381,6 +5031,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.84%
 \end_layout
 
@@ -4390,6 +5042,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.22%
 \end_layout
 
@@ -4399,7 +5053,20 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.09%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+12.47%
 \end_layout
 
 \end_inset
@@ -4408,6 +5075,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.04%
 \end_layout
 
@@ -4419,6 +5088,8 @@ PAGE BLOCKS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PHONEME
 \end_layout
 
@@ -4428,6 +5099,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.43%
 \end_layout
 
@@ -4437,6 +5110,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.58%
 \end_layout
 
@@ -4446,6 +5121,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.55%
 \end_layout
 
@@ -4455,6 +5132,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 22.34%
 \end_layout
 
@@ -4464,7 +5143,20 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 23.32%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.35%
 \end_layout
 
 \end_inset
@@ -4473,6 +5165,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.50%
 \end_layout
 
@@ -4484,6 +5178,8 @@ PHONEME
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PIMA
 \end_layout
 
@@ -4493,6 +5189,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.85%
 \end_layout
 
@@ -4502,6 +5200,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.59%
 \end_layout
 
@@ -4511,6 +5211,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 32.19%
 \end_layout
 
@@ -4520,6 +5222,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.51%
 \end_layout
 
@@ -4529,7 +5233,20 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.78%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+35.08%
 \end_layout
 
 \end_inset
@@ -4538,6 +5255,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.85%
 \end_layout
 
@@ -4549,6 +5268,8 @@ PIMA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 POPFAILURES
 \end_layout
 
@@ -4558,6 +5279,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.18%
 \end_layout
 
@@ -4567,6 +5290,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.24%
 \end_layout
 
@@ -4576,6 +5301,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.94%
 \end_layout
 
@@ -4585,6 +5312,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.05%
 \end_layout
 
@@ -4594,7 +5323,20 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.04%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+4.79%
 \end_layout
 
 \end_inset
@@ -4603,6 +5345,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.09%
 \end_layout
 
@@ -4614,6 +5358,8 @@ POPFAILURES
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 REGIONS2
 \end_layout
 
@@ -4623,6 +5369,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.85%
 \end_layout
 
@@ -4632,6 +5380,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 36.28%
 \end_layout
 
@@ -4641,6 +5391,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.39%
 \end_layout
 
@@ -4650,6 +5402,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 33.23%
 \end_layout
 
@@ -4659,7 +5413,20 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 38.29%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+34.26%
 \end_layout
 
 \end_inset
@@ -4668,6 +5435,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.77%
 \end_layout
 
@@ -4679,6 +5448,8 @@ REGIONS2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 RING
 \end_layout
 
@@ -4688,6 +5459,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.80%
 \end_layout
 
@@ -4697,6 +5470,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.44%
 \end_layout
 
@@ -4706,6 +5481,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 28.80%
 \end_layout
 
@@ -4715,6 +5492,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 30.85%
 \end_layout
 
@@ -4724,7 +5503,20 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.67%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+51.65%
 \end_layout
 
 \end_inset
@@ -4733,6 +5525,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 22.90%
 \end_layout
 
@@ -4744,6 +5538,8 @@ RING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SAHEART
 \end_layout
 
@@ -4753,6 +5549,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.04%
 \end_layout
 
@@ -4762,6 +5560,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 37.48%
 \end_layout
 
@@ -4771,6 +5571,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.86%
 \end_layout
 
@@ -4780,6 +5582,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.51%
 \end_layout
 
@@ -4789,7 +5593,20 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 32.19%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+37.70%
 \end_layout
 
 \end_inset
@@ -4798,6 +5615,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.63%
 \end_layout
 
@@ -4809,6 +5628,8 @@ SAHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SEGMENT
 \end_layout
 
@@ -4818,6 +5639,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 49.75%
 \end_layout
 
@@ -4827,6 +5650,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 68.97%
 \end_layout
 
@@ -4836,6 +5661,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 57.72%
 \end_layout
 
@@ -4845,6 +5672,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 66.72%
 \end_layout
 
@@ -4854,7 +5683,20 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 59.68%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+60.40%
 \end_layout
 
 \end_inset
@@ -4863,6 +5705,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.60%
 \end_layout
 
@@ -4874,6 +5718,8 @@ SEGMENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SONAR
 \end_layout
 
@@ -4883,6 +5729,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 30.33%
 \end_layout
 
@@ -4892,6 +5740,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.85%
 \end_layout
 
@@ -4901,6 +5751,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 22.40%
 \end_layout
 
@@ -4910,6 +5762,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 34.10%
 \end_layout
 
@@ -4919,7 +5773,20 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 27.90%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+23.80%
 \end_layout
 
 \end_inset
@@ -4928,6 +5795,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.80%
 \end_layout
 
@@ -4939,6 +5808,8 @@ SONAR
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SPAMBASE
 \end_layout
 
@@ -4948,6 +5819,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48.05%
 \end_layout
 
@@ -4957,6 +5830,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 18.16%
 \end_layout
 
@@ -4966,6 +5841,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.37%
 \end_layout
 
@@ -4975,6 +5852,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.77%
 \end_layout
 
@@ -4984,7 +5863,20 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.35%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3.91%
 \end_layout
 
 \end_inset
@@ -4993,6 +5885,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.95%
 \end_layout
 
@@ -5004,6 +5898,8 @@ SPAMBASE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SPIRAL
 \end_layout
 
@@ -5013,6 +5909,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 47.67%
 \end_layout
 
@@ -5022,6 +5920,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 47.99%
 \end_layout
 
@@ -5031,6 +5931,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48.66%
 \end_layout
 
@@ -5040,6 +5942,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48.66%
 \end_layout
 
@@ -5049,7 +5953,20 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 44.87%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+50.38%
 \end_layout
 
 \end_inset
@@ -5058,6 +5975,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 42.06%
 \end_layout
 
@@ -5069,6 +5988,8 @@ SPIRAL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 STATHEART
 \end_layout
 
@@ -5078,6 +5999,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 44.04%
 \end_layout
 
@@ -5087,6 +6010,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.65%
 \end_layout
 
@@ -5096,6 +6021,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 27.25%
 \end_layout
 
@@ -5105,6 +6032,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 44.36%
 \end_layout
 
@@ -5114,7 +6043,20 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.36%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+28.37%
 \end_layout
 
 \end_inset
@@ -5123,6 +6065,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 18.53%
 \end_layout
 
@@ -5134,6 +6078,8 @@ STATHEART
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 STUDENT
 \end_layout
 
@@ -5143,6 +6089,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.13%
 \end_layout
 
@@ -5152,6 +6100,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.14%
 \end_layout
 
@@ -5161,6 +6111,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.61%
 \end_layout
 
@@ -5170,6 +6122,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.20%
 \end_layout
 
@@ -5179,7 +6133,20 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.49%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+10.84%
 \end_layout
 
 \end_inset
@@ -5188,6 +6155,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.86%
 \end_layout
 
@@ -5199,6 +6168,8 @@ STUDENT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 TAE
 \end_layout
 
@@ -5208,6 +6179,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 60.20%
 \end_layout
 
@@ -5217,6 +6190,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 51.58%
 \end_layout
 
@@ -5226,6 +6201,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 49.84%
 \end_layout
 
@@ -5235,6 +6212,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 60.67%
 \end_layout
 
@@ -5244,7 +6223,20 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 60.02%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+60.16%
 \end_layout
 
 \end_inset
@@ -5253,6 +6245,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 45.62%
 \end_layout
 
@@ -5264,6 +6258,8 @@ TAE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 TRANSFUSION
 \end_layout
 
@@ -5273,6 +6269,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.68%
 \end_layout
 
@@ -5282,6 +6280,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.84%
 \end_layout
 
@@ -5291,6 +6291,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.87%
 \end_layout
 
@@ -5300,6 +6302,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24.87%
 \end_layout
 
@@ -5309,7 +6313,20 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 26.41%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.35%
 \end_layout
 
 \end_inset
@@ -5318,6 +6335,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 23.59%
 \end_layout
 
@@ -5329,6 +6348,8 @@ TRANSFUSION
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 WDBC
 \end_layout
 
@@ -5338,6 +6359,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 35.35%
 \end_layout
 
@@ -5347,6 +6370,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.91%
 \end_layout
 
@@ -5356,6 +6381,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.56%
 \end_layout
 
@@ -5365,6 +6392,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12.88%
 \end_layout
 
@@ -5374,7 +6403,20 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.27%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+15.48%
 \end_layout
 
 \end_inset
@@ -5383,6 +6425,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.29%
 \end_layout
 
@@ -5394,6 +6438,8 @@ WDBC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 WINE
 \end_layout
 
@@ -5403,6 +6449,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 29.40%
 \end_layout
 
@@ -5412,6 +6460,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 59.71%
 \end_layout
 
@@ -5421,6 +6471,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 19.20%
 \end_layout
 
@@ -5430,6 +6482,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 25.43%
 \end_layout
 
@@ -5439,7 +6493,20 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 31.41%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+16.62%
 \end_layout
 
 \end_inset
@@ -5448,6 +6515,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.39%
 \end_layout
 
@@ -5459,6 +6528,8 @@ WINE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Z_F_S
 \end_layout
 
@@ -5468,6 +6539,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 47.81%
 \end_layout
 
@@ -5477,6 +6550,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.37%
 \end_layout
 
@@ -5486,6 +6561,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.73%
 \end_layout
 
@@ -5495,6 +6572,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 38.41%
 \end_layout
 
@@ -5504,7 +6583,20 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 13.16%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+17.91%
 \end_layout
 
 \end_inset
@@ -5513,6 +6605,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.81%
 \end_layout
 
@@ -5524,6 +6618,8 @@ Z_F_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ZO_NF_S
 \end_layout
 
@@ -5533,6 +6629,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 47.43%
 \end_layout
 
@@ -5542,6 +6640,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 43.04%
 \end_layout
 
@@ -5551,6 +6651,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.54%
 \end_layout
 
@@ -5560,6 +6662,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 43.75%
 \end_layout
 
@@ -5569,7 +6673,20 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 9.02%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+15.57%
 \end_layout
 
 \end_inset
@@ -5578,6 +6695,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.73%
 \end_layout
 
@@ -5589,6 +6708,8 @@ ZO_NF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ZONF_S
 \end_layout
 
@@ -5598,6 +6719,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 11.99%
 \end_layout
 
@@ -5607,6 +6730,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.62%
 \end_layout
 
@@ -5616,6 +6741,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.36%
 \end_layout
 
@@ -5625,6 +6752,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.44%
 \end_layout
 
@@ -5634,7 +6763,20 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.03%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3.27%
 \end_layout
 
 \end_inset
@@ -5643,6 +6785,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.41%
 \end_layout
 
@@ -5654,6 +6798,8 @@ ZONF_S
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ZOO
 \end_layout
 
@@ -5663,6 +6809,8 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 14.13%
 \end_layout
 
@@ -5672,6 +6820,8 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 10.70%
 \end_layout
 
@@ -5681,6 +6831,8 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 9.50%
 \end_layout
 
@@ -5690,6 +6842,8 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 20.27%
 \end_layout
 
@@ -5699,7 +6853,20 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 21.93%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+8.53%
 \end_layout
 
 \end_inset
@@ -5708,6 +6875,8 @@ ZOO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 6.63%
 \end_layout
 
@@ -5721,6 +6890,7 @@ ZOO
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 AVERAGE
 \end_layout
 
@@ -5732,6 +6902,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 35.88%
 \end_layout
 
@@ -5743,6 +6914,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 33.43%
 \end_layout
 
@@ -5754,6 +6926,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 26.19%
 \end_layout
 
@@ -5765,6 +6938,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 32.66%
 \end_layout
 
@@ -5776,7 +6950,20 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 30.08%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+28.39%
 \end_layout
 
 \end_inset
@@ -5787,6 +6974,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 19.78%
 \end_layout
 
@@ -5807,7 +6995,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5834,8 +7022,9 @@ name "tab:experRegression"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="23" columns="7">
+<lyxtabular version="3" rows="23" columns="8">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -5848,6 +7037,8 @@ name "tab:experRegression"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 DATASET
 \end_layout
 
@@ -5857,6 +7048,8 @@ DATASET
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ADAM
 \end_layout
 
@@ -5866,6 +7059,8 @@ ADAM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BFGS
 \end_layout
 
@@ -5875,6 +7070,8 @@ BFGS
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 GENETIC
 \end_layout
 
@@ -5884,6 +7081,8 @@ GENETIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 NEAT
 \end_layout
 
@@ -5893,7 +7092,20 @@ NEAT
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 RBF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+PRUNE
 \end_layout
 
 \end_inset
@@ -5902,6 +7114,8 @@ RBF
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 NEURALDE
 \end_layout
 
@@ -5913,6 +7127,8 @@ NEURALDE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 ABALONE
 \end_layout
 
@@ -5922,6 +7138,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 4.30
 \end_layout
 
@@ -5931,6 +7149,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.69
 \end_layout
 
@@ -5940,6 +7160,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.17
 \end_layout
 
@@ -5949,6 +7171,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 9.88
 \end_layout
 
@@ -5958,7 +7182,18 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.37
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.88
 \end_layout
 
 \end_inset
@@ -5967,6 +7202,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5.04
 \end_layout
 
@@ -5978,6 +7215,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 AIRFOIL
 \end_layout
 
@@ -5987,6 +7226,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.005
 \end_layout
 
@@ -5996,6 +7237,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.003
 \end_layout
 
@@ -6005,6 +7248,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.003
 \end_layout
 
@@ -6014,6 +7259,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.067
 \end_layout
 
@@ -6023,7 +7270,18 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.002
 \end_layout
 
 \end_inset
@@ -6032,6 +7290,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.0014
 \end_layout
 
@@ -6043,6 +7303,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 AUTO
 \end_layout
 
@@ -6052,6 +7314,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 70.84
 \end_layout
 
@@ -6061,6 +7325,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 60.97
 \end_layout
 
@@ -6070,6 +7336,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12.18
 \end_layout
 
@@ -6079,6 +7347,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 56.06
 \end_layout
 
@@ -6088,7 +7358,18 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.87
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75.59
 \end_layout
 
 \end_inset
@@ -6097,6 +7378,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16.21
 \end_layout
 
@@ -6108,6 +7391,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BK
 \end_layout
 
@@ -6117,6 +7402,8 @@ BK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.0252
 \end_layout
 
@@ -6126,7 +7413,42 @@ BK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.027
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.02
 \end_layout
 
 \end_inset
@@ -6140,11 +7462,873 @@ BK
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.019
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.15
+
+\size footnotesize
+BL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.622
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2.55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+5.74
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.013
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.027
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.016
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BASEBALL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+77.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+119.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+103.60
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+100.39
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+93.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94.50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+60.56
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+CONCRETE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.078
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.066
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.0099
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.081
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.011
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0077
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.003
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+DEE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2.36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.013
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.51
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.08
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.35
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+FA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.048
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.426
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.025
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.015
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.029
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.083
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+FRIEDMAN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+22.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.263
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.249
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+19.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+7.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.69
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+HO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.035
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2.78
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.017
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+HOUSING
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+80.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+97.38
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+43.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+56.49
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+57.68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+52.25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+24.82
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LASER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.015
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.59
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.084
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.007
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.0026
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+LW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.028
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2.98
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.03
 \end_layout
 
 \end_inset
@@ -6162,656 +8346,8 @@ BK
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.019
-\end_layout
 
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-BL
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.622
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2.55
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5.74
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.05
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.013
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.016
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-BASEBALL
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-77.90
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-119.63
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-103.60
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-100.39
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-93.02
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-60.56
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-CONCRETE
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.078
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.066
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.0099
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.081
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.011
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.003
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-DEE
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.63
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2.36
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.013
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.51
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.17
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.35
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FA
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.048
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.426
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.025
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.19
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.015
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.083
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-FRIEDMAN
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-22.90
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.263
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.249
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-19.35
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7.23
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.22
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HO
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.035
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.62
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2.78
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.17
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.03
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.017
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-HOUSING
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-80.99
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-97.38
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-43.26
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-56.49
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-57.68
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-24.82
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-LASER
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.03
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.015
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.59
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.084
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.03
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.0026
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-LW
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.028
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2.98
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.90
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.17
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.03
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
+\size footnotesize
 0.021
 \end_layout
 
@@ -6823,6 +8359,8 @@ LW
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MORTGAGE
 \end_layout
 
@@ -6832,6 +8370,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 9.24
 \end_layout
 
@@ -6841,6 +8381,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.23
 \end_layout
 
@@ -6850,6 +8392,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.41
 \end_layout
 
@@ -6859,6 +8403,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 14.11
 \end_layout
 
@@ -6868,7 +8414,18 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1.45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.96
 \end_layout
 
 \end_inset
@@ -6877,6 +8434,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.54
 \end_layout
 
@@ -6888,6 +8447,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PLASTIC
 \end_layout
 
@@ -6897,6 +8458,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 11.71
 \end_layout
 
@@ -6906,6 +8469,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 20.32
 \end_layout
 
@@ -6915,6 +8480,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.791
 \end_layout
 
@@ -6924,6 +8491,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 20.77
 \end_layout
 
@@ -6933,7 +8502,18 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.33
 \end_layout
 
 \end_inset
@@ -6942,6 +8522,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3.27
 \end_layout
 
@@ -6953,6 +8535,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 PY
 \end_layout
 
@@ -6962,6 +8546,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.321
 \end_layout
 
@@ -6971,6 +8557,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.578
 \end_layout
 
@@ -6980,6 +8568,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.56
 \end_layout
 
@@ -6989,6 +8579,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.075
 \end_layout
 
@@ -6998,7 +8590,18 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.012
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.023
 \end_layout
 
 \end_inset
@@ -7007,6 +8610,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.11
 \end_layout
 
@@ -7018,6 +8623,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 QUAKE
 \end_layout
 
@@ -7027,6 +8634,8 @@ QUAKE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.07
 \end_layout
 
@@ -7036,7 +8645,42 @@ QUAKE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.298
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+0.07
 \end_layout
 
 \end_inset
@@ -7050,28 +8694,12 @@ QUAKE
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.298
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.07
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.042
 \end_layout
 
@@ -7083,6 +8711,8 @@ QUAKE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 SN
 \end_layout
 
@@ -7092,6 +8722,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.026
 \end_layout
 
@@ -7101,6 +8733,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.40
 \end_layout
 
@@ -7110,6 +8744,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.95
 \end_layout
 
@@ -7119,6 +8755,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.174
 \end_layout
 
@@ -7128,7 +8766,18 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.027
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.032
 \end_layout
 
 \end_inset
@@ -7137,6 +8786,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.027
 \end_layout
 
@@ -7148,6 +8799,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 STOCK
 \end_layout
 
@@ -7157,6 +8810,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 180.89
 \end_layout
 
@@ -7166,6 +8821,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 302.43
 \end_layout
 
@@ -7175,6 +8832,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3.88
 \end_layout
 
@@ -7184,6 +8843,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 215.82
 \end_layout
 
@@ -7193,7 +8854,18 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+39.08
 \end_layout
 
 \end_inset
@@ -7202,6 +8874,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3.40
 \end_layout
 
@@ -7213,6 +8887,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 TREASURY
 \end_layout
 
@@ -7222,6 +8898,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 11.16
 \end_layout
 
@@ -7231,6 +8909,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 9.91
 \end_layout
 
@@ -7240,6 +8920,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.93
 \end_layout
 
@@ -7249,6 +8931,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 15.52
 \end_layout
 
@@ -7258,7 +8942,18 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2.02
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13.76
 \end_layout
 
 \end_inset
@@ -7267,6 +8962,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1.021
 \end_layout
 
@@ -7280,6 +8977,7 @@ TREASURY
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 AVERAGE
 \end_layout
 
@@ -7291,6 +8989,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 22.47
 \end_layout
 
@@ -7302,6 +9001,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 30.31
 \end_layout
 
@@ -7313,6 +9013,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 9.29
 \end_layout
 
@@ -7324,6 +9025,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 24.35
 \end_layout
 
@@ -7335,7 +9037,17 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 9.91
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -7346,6 +9058,7 @@ AVERAGE
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 5.56
 \end_layout
 
@@ -21853,7 +23566,7 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -22680,6 +24393,152 @@ D.
  Networks," 2007 IEEE 15th Signal Processing and Communications Applications,
  Eskisehir, Turkey, 2007, pp.
  1-4, doi: 10.1109/SIU.2007.4298679.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_init1"
+literal "false"
+
+\end_inset
+
+T.M.
+ Varnava, A.J.Meade, An initialization method for feedforward artificial neural
+ networks using polynomial bases, Advances in Adaptive Data Analysis 
+\series bold
+3
+\series default
+, pp.
+ 385-400, 2011.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_init2"
+literal "false"
+
+\end_inset
+
+I.
+ Ivanova, M.
+ Kubat, Initialization of neural networks by means of decision trees, Knowledge-
+Based Systems 
+\series bold
+8
+\series default
+, pp.
+ 333-344, 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_init3"
+literal "false"
+
+\end_inset
+
+S.S.
+ Sodhi, P.
+ Chandra, Interval based Weight Initialization Method for Sigmoidal Feedforward
+ Artificial Neural Networks, AASRI Procedia 
+\series bold
+6
+\series default
+, pp.
+ 19-25, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_init4"
+literal "false"
+
+\end_inset
+
+K.
+ Chumachenko, A.
+ Iosifidis, M.
+ Gabbouj, Feedforward neural networks initialization based on discriminant
+ learning, Neural Networks 
+\series bold
+146
+\series default
+, pp.
+ 220-229, 2022.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_arch1"
+literal "false"
+
+\end_inset
+
+J.
+ Arifovic, R.
+ Gençay, Using genetic algorithms to select architecture of a feedforward
+ artificial neural network, Physica A: Statistical Mechanics and its Application
+s 
+\series bold
+289
+\series default
+, pp.
+ 574-594, 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_arch2"
+literal "false"
+
+\end_inset
+
+P.G.
+ Benardos, G.C.
+ Vosniakos, Optimizing feedforward artificial neural network architecture,
+ Engineering Applications of Artificial Intelligence 
+\series bold
+20
+\series default
+, pp.
+ 365-382, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_arch3"
+literal "false"
+
+\end_inset
+
+B.A.
+ Garro, R.A.
+ Vázquez, Designing Artificial Neural Networks Using Particle Swarm Optimization
+ Algorithms, Computational Intelligence and Neuroscience, 369298, 2015.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn_arch4"
+literal "false"
+
+\end_inset
+
+B.
+ Baker, O.
+ Gupta, N.
+ Naik, R.
+ Raskar, Designing neural network architectures using reinforcement learning.
+ arXiv preprint arXiv:1611.02167, 2016.
 \end_layout
 
 \begin_layout Bibliography
@@ -24081,6 +25940,42 @@ G.A.
 \series default
 , pp.
  52-74, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "prune"
+literal "false"
+
+\end_inset
+
+Zhu, V., Lu, Y., & Li, Q.
+ (2006).
+ MW-OBS: An improved pruning method for topology design of neural networks.
+ Tsinghua Science and Technology, 11(4), 307-312.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "fcn"
+literal "true"
+
+\end_inset
+
+Grzegorz Klima, Fast Compressed Neural Networks, available from 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://fcnn.sourceforge.net/
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Bibliography
