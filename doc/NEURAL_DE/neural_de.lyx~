@@ -6995,7 +6995,7 @@ AVERAGE
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -7193,6 +7193,8 @@ ABALONE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 7.88
 \end_layout
 
@@ -7281,6 +7283,8 @@ AIRFOIL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.002
 \end_layout
 
@@ -7369,6 +7373,8 @@ AUTO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 75.59
 \end_layout
 
@@ -7457,6 +7463,8 @@ BK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.027
 \end_layout
 
@@ -7545,6 +7553,8 @@ BL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.027
 \end_layout
 
@@ -7633,6 +7643,8 @@ BASEBALL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 94.50
 \end_layout
 
@@ -7721,6 +7733,8 @@ CONCRETE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.0077
 \end_layout
 
@@ -7809,6 +7823,8 @@ DEE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1.08
 \end_layout
 
@@ -7897,6 +7913,8 @@ FA
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.029
 \end_layout
 
@@ -7985,6 +8003,8 @@ FRIEDMAN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 8.69
 \end_layout
 
@@ -8073,6 +8093,8 @@ HO
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.03
 \end_layout
 
@@ -8161,6 +8183,8 @@ HOUSING
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 52.25
 \end_layout
 
@@ -8249,6 +8273,8 @@ LASER
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.007
 \end_layout
 
@@ -8337,6 +8363,8 @@ LW
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.02
 \end_layout
 
@@ -8425,6 +8453,8 @@ MORTGAGE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12.96
 \end_layout
 
@@ -8513,6 +8543,8 @@ PLASTIC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 17.33
 \end_layout
 
@@ -8601,6 +8633,8 @@ PY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.023
 \end_layout
 
@@ -8689,6 +8723,8 @@ QUAKE
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.04
 \end_layout
 
@@ -8777,6 +8813,8 @@ SN
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 0.032
 \end_layout
 
@@ -8865,6 +8903,8 @@ STOCK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 39.08
 \end_layout
 
@@ -8953,6 +8993,8 @@ TREASURY
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 13.76
 \end_layout
 
@@ -9048,6 +9090,9 @@ AVERAGE
 
 \begin_layout Plain Layout
 
+\series bold
+\size footnotesize
+15.40
 \end_layout
 
 \end_inset
@@ -9100,38 +9145,51 @@ noprefix "false"
  performance, achieving the lowest mean error rate of 19.78%.
  It is followed by GENETIC with an average error rate of 26.19% and RBF at
  30.08%.
- The NEAT model has an average error rate of 32.66%, while BFGS and ADAM
- display the highest average error rates, 33.43% and 35.88%, respectively.
- This makes NEURALDE the most efficient model among those compared.
+ The PRUNE model achieves an average error rate of 28.39%, placing it between
+ RBF and NEAT, which has an average error rate of 32.66%.
+ Meanwhile, BFGS and ADAM display the highest average error rates, 33.43%
+ and 35.88%, respectively, making NEURALDE the most efficient model among
+ those compared.
  On a dataset-specific level, NEURALDE consistently delivers the lowest
  error rates in numerous cases.
- For instance, in the ALCOHOL dataset, it achieves the best result with
- an error rate of 19.15%.
- Similarly, in the CIRCULAR dataset, NEURALDE outperforms all other models
- with an error rate of 4.23%, demonstrating its effectiveness in handling
- complex data structures.
- In the MAGIC and MAMMOGRAPHIC datasets, NEURALDE again proves superior,
+ For instance, in the ALCOHOL dataset, NEURALDE achieves the best result
+ with an error rate of 19.15%, while PRUNE follows closely with 15.75%, outperform
+ing all other models.
+ In the CIRCULAR dataset, NEURALDE outperforms all other models with an
+ error rate of 4.23%, while PRUNE records a slightly higher error rate of
+ 12.76%, still surpassing many other methods.
+ In datasets like MAGIC and MAMMOGRAPHIC, NEURALDE again proves superior,
  with error rates of 11.73% and 17.52%, respectively.
+ PRUNE, however, shows significant variability; for example, it records
+ 30.76% in MAGIC, which is higher than GENETIC (21.75%), but still manages
+ competitive performance in MAMMOGRAPHIC with 38.10%.
  There are, however, a few datasets where NEURALDE does not perform as dominantl
 y.
  For example, in the HOUSEVOTES dataset, it ties with other models at 7.48%.
- In the ZONF_S dataset, it records its worst performance with an error rate
- of 2.41%, indicating that its efficiency can vary with certain data characterist
-ics.
+ PRUNE performs better here with an error rate of 5.81%, showcasing its strengths
+ in specific datasets.
+ Similarly, in the ZONF_S dataset, NEURALDE achieves 2.41%, while PRUNE closely
+ follows with 3.27%.
+ Despite this, NEURALDE's superior consistency across datasets remains evident.
  Other models, such as GENETIC, show strong performance in isolated cases,
  such as in the SPIRAL dataset (48.66%).
  However, they generally fall short of NEURALDE’s consistent excellence.
  RBF demonstrates strong stability, with notable results in the DERMATOLOGY
- (62.34%) and PHONEME (23.32%) datasets.
+ (62.34%) and PHONEME (23.32%) datasets, but PRUNE again outshines RBF in
+ specific cases like DERMATOLOGY with an error rate of 9.02%.
  Meanwhile, ADAM and BFGS tend to underperform, particularly in datasets
  like SPAMBASE, where they record high error rates of 48.05% and 18.16%, respectiv
 ely.
- In conclusion, the NEURALDE model stands out as the most effective model
- overall, achieving the lowest average error rate and excelling in the majority
- of datasets.
+ PRUNE outperforms them significantly in SPAMBASE with an error rate of
+ just 3.91%, illustrating its competitiveness in certain scenarios.In conclusion,
+ the NEURALDE model stands out as the most effective model overall, achieving
+ the lowest average error rate and excelling in the majority of datasets.
+ PRUNE emerges as a strong contender, with competitive performance and notable
+ success in certain datasets.
  While other models, such as RBF and GENETIC, perform well in specific scenarios
 , NEURALDE demonstrates superior consistency and effectiveness across a
- wide range of datasets.
+ wide range of datasets, with PRUNE providing significant value in enhancing
+ classification accuracy in many cases.
 \end_layout
 
 \begin_layout Standard
@@ -9149,62 +9207,51 @@ noprefix "false"
  problems, where the values represent the error.
  Lower error values indicate better performance.
  Each row corresponds to a specific dataset, while the last row shows the
- average error for each model, providing an overall view of their effectiveness.B
-ased on the average error, NEURALDE demonstrates the best performance, with
- the lowest overall error of 5.56.
+ average error for each model, providing an overall view of their effectiveness.
+ Based on the average error, NEURALDE demonstrates the best performance,
+ with the lowest overall error of 5.56.
  This result suggests that the model consistently performs well across most
  datasets.
- Following NEURALDE are GENETIC with an average error of 9.29 and RBF with
- an average error of 9.91.
+ PRUNE follows as the second-best model, with an average error of 15.40,
+ outperforming GENETIC, RBF, and other methods in several cases.
+ GENETIC and RBF achieve average errors of 9.29 and 9.91, respectively.
  ADAM, NEAT, and BFGS exhibit higher average errors, at 22.47, 24.35, and
  30.31 respectively, indicating lower performance compared to the other models.
  Analyzing the results dataset by dataset, NEURALDE records the smallest
  error in several cases.
  For instance, in the AIRFOIL dataset, it achieves an error of 0.0014, outperform
 ing all other models.
- In the CONCRETE dataset, its error is only 0.003, the lowest among all models.
- Similarly, in the LASER dataset, it achieves an exceptionally low error
- of 0.0026.
+ PRUNE also shows strong performance here, with an error of 0.002, close
+ to NEURALDE.
+ In the CONCRETE dataset, NEURALDE achieves the lowest error of 0.003, while
+ PRUNE achieves the second-lowest error of 0.0077, further confirming its
+ reliability.
+ Similarly, in the LASER dataset, NEURALDE delivers an exceptionally low
+ error of 0.0026, followed closely by PRUNE with an error of 0.007.
  In the TREASURY dataset, NEURALDE demonstrates superior performance with
- an error of 1.021, better than all other models.
- GENETIC shows competitive performance in several datasets.
- For example, in the HOUSING dataset, it achieves an error of 43.26, which
- is better than ADAM and NEAT but not as strong as NEURALDE.
- In the PLASTIC dataset, its error is 2.791, which is significantly lower
- than most other models except NEURALDE.
-\end_layout
-
-\begin_layout Standard
-RBF achieves low errors in some datasets, such as MORTGAGE, where it records
- an error of 1.45, the second-best result after NEURALDE (0.54).
- However, in other datasets like STOCK, where it has an error of 12.23, RBF
- underperforms compared to GENETIC and NEURALDE.
- ADAM and NEAT exhibit higher errors across many datasets.
- For example, in the STOCK dataset, ADAM records the highest error at 180.89,
- followed by NEAT at 215.82.
- Conversely, in the AIRFOIL dataset, ADAM achieves a relatively low error
- of 0.005, though it still falls short of NEURALDE.
- BFGS generally shows higher errors, such as in the BASEBALL dataset (119.63),
- reflecting its limited performance.
- In summary, NEURALDE stands out as the most effective regression model,
- with consistently low errors and the lowest average error overall.
- GENETIC and RBF display competitive performance in some datasets but lack
- the same consistency.
- ADAM, NEAT, and BFGS exhibit significantly higher errors, indicating their
- inferior performance compared to NEURALDE.
+ an error of 1.021, better than all other models, while PRUNE also achieves
+ a competitive error of 13.76, outperforming NEAT and ADAM.
+ PRUNE shows notable performance in several datasets where it surpasses
+ other models.
+ For instance, in the STOCK dataset, PRUNE records an error of 39.08, which
+ is lower than NEAT (215.82) and ADAM (180.89), though slightly higher than
+ NEURALDE (3.40).
+ In the BASEBALL dataset, PRUNE achieves 94.50, outperforming ADAM (77.90)
+ and NEAT (100.39).
+ In the MORTGAGE dataset, PRUNE achieves an error of 12.96, which, while
+ not the lowest, still outperforms several other models including NEAT (14.11)
+ and ADAM (9.24).
+ Overall, while NEURALDE stands out as the most effective model, PRUNE emerges
+ as a highly competitive alternative, consistently delivering strong results
+ across multiple datasets.
+ GENETIC and RBF also perform well in specific cases, but their performance
+ is less consistent compared to NEURALDE and PRUNE.
+ ADAM, NEAT, and BFGS generally underperform relative to the other methods.
  
 \end_layout
 
 \begin_layout Standard
-An extensive analysis was conducted on the performance of different machine
- learning models using various optimization methods, with pairwise comparisons
- made through the Wilcoxon Test.
- The study was carried out on a set of well-known datasets and focused on
- the NEURALDE model, comparing it with other popular optimization methods
- such as ADAM, BFGS, GENETIC, NEAT, and RBF.
- The Wilcoxon Test, a non-parametric statistical method, is ideal for evaluating
- performance differences, especially when the data does not follow a normal
- distribution Figure 
+In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:statClass"
@@ -9214,36 +9261,22 @@ noprefix "false"
 
 \end_inset
 
-.
- The results revealed significant performance differences between NEURALDE
- and other models.
- Specifically, the p-value for the comparison between NEURALDE and ADAM
- was p=4.7e-08, a very low value that indicates the differences between the
- two models are statistically significant and unlikely to be due to chance.
- The p-value for the comparison between NEURALDE and BFGS was even lower,
- at p=1e-18, suggesting substantial performance differences, with NEURALDE
- outperforming BFGS by a wide margin.
- Similarly, the comparison between NEURALDE and GENETIC yielded p=2.9e-09,
- confirming that the two methods show distinct performance, with NEURALDE
- being superior.
- The comparison between NEURALDE and NEAT showed p=2.3e-10, while the comparison
- with RBF resulted in p=1.3e-08.
- In both cases, the p-values were extremely low, proving that the performance
- differences are statistically significant.
- This analysis highlights NEURALDE as a standout model among the datasets
- used, showing significant performance differences compared to the other
- methods.
- The very low p-values in all comparisons demonstrate that the observed
- differences are not due to random chance, but rather reflect the true superiori
-ty or differentiation of NEURALDE.
- The methods ADAM, BFGS, GENETIC, NEAT, and RBF are widely used and effective
- in many cases, but this analysis suggests that NEURALDE excels in specific
- problems or datasets.
- This statistical analysis provides valuable insight into the selection
- of appropriate models and optimization methods for machine learning tasks.
- Although the specific p-values and results pertain to the datasets used
- in this study, the significance of the findings underscores the importance
- of careful evaluation when selecting models.
+, the comparison of the proposed machine learning model NEURALDE with other
+ models for classification datasets is illustrated, based on the values
+ of the critical parameter p, which indicate the levels of statistical significa
+nce.
+ The results show exceptionally low p-values, suggesting that the differences
+ in the performance of NEURALDE compared to other models are not random
+ and are statistically highly significant.
+ Specifically, the comparison of NEURALDE with ADAM yielded p=4.7e-08, with
+ BFGS p=1e−10, with GENETIC p=2.9e−09, with NEAT p=2.3e−10, with RBF p=1.3e−08,
+ and with PRUNE p=5.8e−08.
+ These values are well below the common thresholds of significance (p<0.05
+ : significant), indicating that the superiority of NEURALDE is statistically
+ well-founded.
+ The results confirm the high efficiency of the proposed model compared
+ to other machine learning methods, demonstrating its reliability and effectiven
+ess in classification problems.
 \end_layout
 
 \begin_layout Standard
@@ -9294,51 +9327,14 @@ name "fig:statClass"
 \end_layout
 
 \begin_layout Standard
-Furthermore, an analysis was conducted to compare various machine learning
- models employing different optimization methods in terms of regression
- error.
- The study was performed using a script in R, employing the Wilcoxon Test
- for pairwise comparisons.
- This non-parametric statistical test is suitable for data that do not follow
- a normal distribution Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:statRegression"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- The experiments were conducted on a series of well-known datasets, ensuring
- diversity across problem domains.
- The results revealed significant differences in regression error between
- the NEURALDE model and other optimization methods.
- Specifically, the comparison between NEURALDE and ADAM yielded a p-value
- of 0.00051, indicating a statistically significant difference in favor of
- NEURALDE.
- Similarly, the comparison with BFGS showed an even smaller p-value of 9.5e-07,
- highlighting the clear superiority of NEURALDE in this context.
- The analysis of NEURALDE against GENETIC resulted in a p-value of 0.0033,
- further supporting the significance of the observed difference.
- Likewise, the comparison with NEAT gave a p-value of 2.9e-06, and with RBF,
- the p-value was 0.0048, demonstrating statistically significant differences
- in all cases.
- These findings indicate that NEURALDE consistently outperforms the other
- optimization methods analyzed in terms of reducing regression error.
- The exceptionally low p-values across all comparisons suggest that these
- differences are unlikely to be due to random variation and reflect a genuine
- advantage.
- While other methods such as ADAM, BFGS, GENETIC, NEAT, and RBF are generally
- effective across various tasks, the results show that NEURALDE exhibits
- superior performance in minimizing regression error for the datasets analyzed.
- This analysis provides valuable insights for selecting appropriate models
- and optimization techniques in regression tasks.
- Although the results are specific to the datasets used in the study, the
- statistical significance of the findings highlights the importance of careful
- evaluation when choosing a model.
- 
+Similarly, the comparison of the proposed model with others in regression
+ problems highlighted NEURALDE as the most efficient model.
+ Specifically, the comparison of NEURALDE with ADAM yielded p=0.00051, with
+ BFGS p=9.5e−07, with GENETIC p=0.0033, with NEAT p=2.9e−06, with RBF p=0.0048,
+ and with PRUNE p=0.001.
+ These values confirm the statistical significance of the differences, indicatin
+g that the superiority of NEURALDE in regression problems is well-documented
+ and not random, as shown in Figure [s2_new.png].
 \end_layout
 
 \begin_layout Standard

@@ -3,6 +3,7 @@
 \documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi}
 \usepackage[utf8]{inputenc}
 \usepackage{float}
+\usepackage{textcomp}
 \usepackage{url}
 \usepackage{graphicx}
 
@@ -211,6 +212,19 @@ algorithm to train artificial neural networks \citep{weight_abc}.
 Recently, Zhao et al proposed a new Cascaded Forward Algorithm to
 train artificial neural networks \citep{nn_cascade}. 
 
+Also, many researchers have published papers regarding efficient techniques
+for the initialization of the parameters of neural networks. Among
+them one can find initialization with polynomial bases \citep{nn_init1},
+incorporation of decision trees \citep{nn_init2}, application of
+interval arithmetic \citep{nn_init3}, discriminant learning \citep{nn_init4}
+etc. Furthermore, the identification of the optimal architecture of
+artificial neural networks can reduce significantly the training error
+and in this direction many researchers have proposed a variety of
+methods used to tackle this problem\textbf{, }such as the usage of
+genetic algorithms \citep{nn_arch1,nn_arch2}, incorporation of the
+PSO method \citep{nn_arch3}, application of reinforcement learning
+\citep{nn_arch4} etc. 
+
 However, in many cases, although the above techniques can significantly
 reduce the error of equation \ref{eq:eq1}, they lead the artificial
 neural network to overfitting, that is, the network exhibits significantly
@@ -232,8 +246,10 @@ clustering techniques \citep{de_symmetry7} etc. The method also has
 been used in machine learning applications, such as\textbf{ }as classification
 methods \citep{key-16,de_problem2}, feature selection techniques
 \citep{de_problem3,de_problem4}, deep learning \citep{de_deep1,de_deep2},
-etc. In the current work a series of modifications are incorporated
-in the DE method in order to efficient train artificial neural networks.
+etc.
+
+In the current work a series of modifications are incorporated in
+the DE method in order to efficient train artificial neural networks.
 Among these modifications one finds the periodic and controlled application
 of a local optimization method to randomly selected neural networks
 from the population of the DE method. The application of the local
@@ -243,7 +259,27 @@ possible, any overfitting that could occur. Furthermore, in the modifications
 there is a termination rule that, on the one hand, is based on stochastic
 observations regarding the evolution of the population of the DE method
 and, on the other hand, uses the special characteristics of the error
-function of the artificial neural network. 
+function of the artificial neural network. The DE method was chosen
+among other evolutionary techniques for the simplicity of its implementation,
+for the small number of parameters that the user must specify compared
+to other evolutionary techniques, as well as for the large number
+of applications in which it has been applied. 
+
+The proposed method could be also applied on deep neural networks
+used in the recent literature \citep{nn_deep1,nn_deep2}. However,
+since it is an evolutionary technique that requires the use of many
+candidate solutions that must evolve over time, this method will significantly
+increase the execution time in such models.
+
+The key elements introduced by the new method are the use of a modified
+evolutionary technique that has been shown to be useful for finding
+the global minimum of functions. This method effectively explores
+the parameter space of the artificial neural network and periodically
+applies local optimization to randomly selected candidate solutions,
+without significantly departing from their identified values. In this
+way, it seeks to prevent the artificial neural network from being
+driven into a state of overfitting and losing any generalization capabilities
+it possesses.
 
 The rest of this article is organized as follows: in section \ref{sec:The-proposed-method}
 the proposed algorithm is fully outlined, in section \ref{sec:Experiments}
@@ -267,8 +303,24 @@ that was initially suggested in \citep{nnc}. The constant $H$ denotes
 the number of processing units for the neural network and the constant
 $d$ stands for the number of elements in the input pattern $\overrightarrow{x}$.
 Hence, the number of elements in the parameter vector $\overrightarrow{w}$
-are calculated as $n=\left(d+2\right)H$. The main steps of the proposed
-method are as follows:
+are calculated as $n=\left(d+2\right)H$. 
+
+The proposed technique starts with a series of randomly selected parameter
+vectors for the artificial neural network. In the terminology of the
+differential evolution technique, these vectors are called agents.
+These agents evolve iteratively and in each iteration a small number
+of them are randomly selected for the application of a local optimization
+method. The application of the local optimization method is done in
+such a way that its result is in a range of values that is not far
+from the value that has already been identified by the evolutionary
+technique. In this way, an attempt is made to avoid the phenomenon
+of overfitting since the parameter values cannot deviate significantly
+from the values that have already been identified by the evolutionary
+technique. Finally, the evolutionary technique is terminated by applying
+a termination rule based on the difference from iteration to iteration
+in the sum of the fitness values of agents. If this sum no longer
+changes, then it is very likely that the method should be terminated.
+The main steps of the proposed method are as follows:
 \begin{enumerate}
 \item \textbf{Initialization Step}.
 \begin{enumerate}
@@ -378,6 +430,8 @@ series of experiments were performed to determine the stability of
 the method when critical parameters take different values. In order
 to perform the experiments a series of classification and regression
 datasets from the relevant literature was obtained. These datasets
+cover a wide range of real - world applications, such as medicine,
+physics, earth quakes, economy, signal processing etc. These datasets
 can be found in the following websites:
 \begin{enumerate}
 \item The UCI website, \url{https://archive.ics.uci.edu/}(accessed on 9
@@ -520,7 +574,12 @@ $H$ & Number of processing nodes for neural network & 10\tabularnewline
 \hline 
 \end{tabular}
 \end{table}
-\textbf{ }
+\textbf{ }The specific values for the parameters were chosen so that
+there is a compromise between the speed of the proposed method and
+its efficiency. However, a series of experiments are presented below
+in which various experimental parameters were modified, in order to
+determine the stability of the proposed technique to possible changes
+in these parameters. 
 
 The table \ref{tab:experClass} depicts the experimental results for
 the classification datasets and Table \ref{tab:experRegression} shows
@@ -553,160 +612,168 @@ network. This method was implemented in \url{https://github.com/BiagioFesta/Evol
 on 9 January 2025). 
 \item The column RBF represents the usage of a Radial Basis Function (RBF)
 network \citep{rbf1,rbf2} with $H=10$ processing nodes.
+\item The column PRUNE stands for the the application of OBS pruning method
+\citep{prune}, as implemented in the library Fast Compressed Neural
+Networks \citep{fcn}.
 \item The row AVERAGE stands for the average classification or regression
 error for all datasets in the corresponding table.
 \end{enumerate}
+The used machine learning methods cover a wide range of methods and
+they have been with success in many practical problems of the related
+literature.
 \begin{table}[H]
 \caption{Experimental results for the classification datasets using the series
-of optimization methods. The numbers in cells represent average classification
-error measured on the corresponding test set.\label{tab:experClass}}
+of optimization methods. The numbers presented in the cells represent
+the average classification error as measured for the corresponding
+test set using the ten - fold cross validation method.\label{tab:experClass}}
 
-\centering{}%
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\centering{}{\footnotesize{}}%
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
-DATASET & ADAM & BFGS & GENETIC & NEAT & RBF & NEURALDE\tabularnewline
+{\footnotesize{}DATASET} & {\footnotesize{}ADAM} & {\footnotesize{}BFGS} & {\footnotesize{}GENETIC} & {\footnotesize{}NEAT} & {\footnotesize{}RBF} & {\footnotesize{}PRUNE} & {\footnotesize{}NEURALDE}\tabularnewline
 \hline 
 \hline 
-ALCOHOL & 57.78\% & 41.50\% & 39.57\% & 66.80\% & 49.32\% & 19.15\%\tabularnewline
+{\footnotesize{}ALCOHOL} & {\footnotesize{}57.78\%} & {\footnotesize{}41.50\%} & {\footnotesize{}39.57\%} & {\footnotesize{}66.80\%} & {\footnotesize{}49.32\%} & {\footnotesize{}15.75\%} & {\footnotesize{}19.15\%}\tabularnewline
 \hline 
-AUSTRALIAN & 35.65\% & 38.13\% & 32.21\% & 31.98\% & 34.89\% & 15.31\%\tabularnewline
+{\footnotesize{}AUSTRALIAN} & {\footnotesize{}35.65\%} & {\footnotesize{}38.13\%} & {\footnotesize{}32.21\%} & {\footnotesize{}31.98\%} & {\footnotesize{}34.89\%} & {\footnotesize{}43.66\%} & {\footnotesize{}15.31\%}\tabularnewline
 \hline 
-BALANCE & 12.27\% & 8.64\% & 8.97\% & 23.14\% & 33.53\% & 6.92\%\tabularnewline
+{\footnotesize{}BALANCE} & {\footnotesize{}12.27\%} & {\footnotesize{}8.64\%} & {\footnotesize{}8.97\%} & {\footnotesize{}23.14\%} & {\footnotesize{}33.53\%} & {\footnotesize{}9.00\%} & {\footnotesize{}6.92\%}\tabularnewline
 \hline 
-BANDS & 36.92\% & 36.67\% & 34.92\% & 34.30\% & 37.17\% & 35.00\%\tabularnewline
+{\footnotesize{}BANDS} & {\footnotesize{}36.92\%} & {\footnotesize{}36.67\%} & {\footnotesize{}34.92\%} & {\footnotesize{}34.30\%} & {\footnotesize{}37.17\%} & {\footnotesize{}37.68\%} & {\footnotesize{}35.00\%}\tabularnewline
 \hline 
-CLEVELAND & 67.55\% & 77.55\% & 51.60\% & 53.44\% & 67.10\% & 45.07\%\tabularnewline
+{\footnotesize{}CLEVELAND} & {\footnotesize{}67.55\%} & {\footnotesize{}77.55\%} & {\footnotesize{}51.60\%} & {\footnotesize{}53.44\%} & {\footnotesize{}67.10\%} & {\footnotesize{}51.48\%} & {\footnotesize{}45.07\%}\tabularnewline
 \hline 
-CIRCULAR & 19.95\% & 6.08\% & 5.99\% & 35.18\% & 5.98\% & 4.23\%\tabularnewline
+{\footnotesize{}CIRCULAR} & {\footnotesize{}19.95\%} & {\footnotesize{}6.08\%} & {\footnotesize{}5.99\%} & {\footnotesize{}35.18\%} & {\footnotesize{}5.98\%} & {\footnotesize{}12.76\%} & {\footnotesize{}4.23\%}\tabularnewline
 \hline 
-DERMATOLOGY & 26.14\% & 52.92\% & 30.58\% & 32.43\% & 62.34\% & 10.38\%\tabularnewline
+{\footnotesize{}DERMATOLOGY} & {\footnotesize{}26.14\%} & {\footnotesize{}52.92\%} & {\footnotesize{}30.58\%} & {\footnotesize{}32.43\%} & {\footnotesize{}62.34\%} & {\footnotesize{}9.02\%} & {\footnotesize{}10.38\%}\tabularnewline
 \hline 
-ECOLI & 64.43\% & 69.52\% & 54.67\% & 43.44\% & 59.48\% & 45.22\%\tabularnewline
+{\footnotesize{}ECOLI} & {\footnotesize{}64.43\%} & {\footnotesize{}69.52\%} & {\footnotesize{}54.67\%} & {\footnotesize{}43.44\%} & {\footnotesize{}59.48\%} & {\footnotesize{}60.32\%} & {\footnotesize{}45.22\%}\tabularnewline
 \hline 
-HABERMAN & 29.00\% & 29.34\% & 28.66\% & 24.04\% & 25.10\% & 27.55\%\tabularnewline
+{\footnotesize{}HABERMAN} & {\footnotesize{}29.00\%} & {\footnotesize{}29.34\%} & {\footnotesize{}28.66\%} & {\footnotesize{}24.04\%} & {\footnotesize{}25.10\%} & {\footnotesize{}29.38\%} & {\footnotesize{}27.55\%}\tabularnewline
 \hline 
-HAYES-ROTH & 59.70\% & 37.33\% & 56.18\% & 50.15\% & 64.36\% & 35.59\%\tabularnewline
+{\footnotesize{}HAYES-ROTH} & {\footnotesize{}59.70\%} & {\footnotesize{}37.33\%} & {\footnotesize{}56.18\%} & {\footnotesize{}50.15\%} & {\footnotesize{}64.36\%} & {\footnotesize{}45.44\%} & {\footnotesize{}35.59\%}\tabularnewline
 \hline 
-HEART & 38.53\% & 39.44\% & 28.34\% & 39.27\% & 31.20\% & 17.60\%\tabularnewline
+{\footnotesize{}HEART} & {\footnotesize{}38.53\%} & {\footnotesize{}39.44\%} & {\footnotesize{}28.34\%} & {\footnotesize{}39.27\%} & {\footnotesize{}31.20\%} & {\footnotesize{}27.21\%} & {\footnotesize{}17.60\%}\tabularnewline
 \hline 
-HEARTATTACK & 45.55\% & 46.67\% & 29.03\% & 32.34\% & 29.00\% & 19.70\%\tabularnewline
+{\footnotesize{}HEARTATTACK} & {\footnotesize{}45.55\%} & {\footnotesize{}46.67\%} & {\footnotesize{}29.03\%} & {\footnotesize{}32.34\%} & {\footnotesize{}29.00\%} & {\footnotesize{}29.26\%} & {\footnotesize{}19.70\%}\tabularnewline
 \hline 
-HEPATITIS & 68.13\% & 72.47\% & 62.12\% & 67.04\% & 64.63\% & 57.46\%\tabularnewline
+{\footnotesize{}HEPATITIS} & {\footnotesize{}68.13\%} & {\footnotesize{}72.47\%} & {\footnotesize{}62.12\%} & {\footnotesize{}67.04\%} & {\footnotesize{}64.63\%} & {\footnotesize{}63.40\%} & {\footnotesize{}57.46\%}\tabularnewline
 \hline 
-HOUSEVOTES & 7.48\% & 7.13\% & 6.62\% & 10.89\% & 6.13\% & 7.48\%\tabularnewline
+{\footnotesize{}HOUSEVOTES} & {\footnotesize{}7.48\%} & {\footnotesize{}7.13\%} & {\footnotesize{}6.62\%} & {\footnotesize{}10.89\%} & {\footnotesize{}6.13\%} & {\footnotesize{}5.81\%} & {\footnotesize{}7.48\%}\tabularnewline
 \hline 
-IONOSPHERE & 16.64\% & 15.29\% & 15.14\% & 19.67\% & 16.22\% & 16.17\%\tabularnewline
+{\footnotesize{}IONOSPHERE} & {\footnotesize{}16.64\%} & {\footnotesize{}15.29\%} & {\footnotesize{}15.14\%} & {\footnotesize{}19.67\%} & {\footnotesize{}16.22\%} & {\footnotesize{}11.32\%} & {\footnotesize{}16.17\%}\tabularnewline
 \hline 
-LIVERDISORDER & 41.53\% & 42.59\% & 31.11\% & 30.67\% & 30.84\% & 31.72\%\tabularnewline
+{\footnotesize{}LIVERDISORDER} & {\footnotesize{}41.53\%} & {\footnotesize{}42.59\%} & {\footnotesize{}31.11\%} & {\footnotesize{}30.67\%} & {\footnotesize{}30.84\%} & {\footnotesize{}49.72\%} & {\footnotesize{}31.72\%}\tabularnewline
 \hline 
-LYMOGRAPHY & 39.79\% & 35.43\% & 28.42\% & 33.70\% & 25.50\% & 28.86\%\tabularnewline
+{\footnotesize{}LYMOGRAPHY} & {\footnotesize{}39.79\%} & {\footnotesize{}35.43\%} & {\footnotesize{}28.42\%} & {\footnotesize{}33.70\%} & {\footnotesize{}25.50\%} & {\footnotesize{}22.02\%} & {\footnotesize{}28.86\%}\tabularnewline
 \hline 
-MAGIC & 40.55\% & 17.30\% & 21.75\% & 24.85\% & 21.28\% & 11.73\%\tabularnewline
+{\footnotesize{}MAGIC} & {\footnotesize{}40.55\%} & {\footnotesize{}17.30\%} & {\footnotesize{}21.75\%} & {\footnotesize{}24.85\%} & {\footnotesize{}21.28\%} & {\footnotesize{}30.76\%} & {\footnotesize{}11.73\%}\tabularnewline
 \hline 
-MAMMOGRAPHIC & 46.25\% & 17.24\% & 19.88\% & 22.85\% & 21.38\% & 17.52\%\tabularnewline
+{\footnotesize{}MAMMOGRAPHIC} & {\footnotesize{}46.25\%} & {\footnotesize{}17.24\%} & {\footnotesize{}19.88\%} & {\footnotesize{}22.85\%} & {\footnotesize{}21.38\%} & {\footnotesize{}38.10\%} & {\footnotesize{}17.52\%}\tabularnewline
 \hline 
-PARKINSONS & 24.06\% & 27.58\% & 18.05\% & 18.56\% & 17.41\% & 14.32\%\tabularnewline
+{\footnotesize{}PARKINSONS} & {\footnotesize{}24.06\%} & {\footnotesize{}27.58\%} & {\footnotesize{}18.05\%} & {\footnotesize{}18.56\%} & {\footnotesize{}17.41\%} & {\footnotesize{}22.12\%} & {\footnotesize{}14.32\%}\tabularnewline
 \hline 
-PAGE BLOCKS & 34.27\% & 8.49\% & 6.84\% & 10.22\% & 10.09\% & 6.04\%\tabularnewline
+{\footnotesize{}PAGE BLOCKS} & {\footnotesize{}34.27\%} & {\footnotesize{}8.49\%} & {\footnotesize{}6.84\%} & {\footnotesize{}10.22\%} & {\footnotesize{}10.09\%} & {\footnotesize{}12.47\%} & {\footnotesize{}6.04\%}\tabularnewline
 \hline 
-PHONEME & 29.43\% & 15.58\% & 15.55\% & 22.34\% & 23.32\% & 15.50\%\tabularnewline
+{\footnotesize{}PHONEME} & {\footnotesize{}29.43\%} & {\footnotesize{}15.58\%} & {\footnotesize{}15.55\%} & {\footnotesize{}22.34\%} & {\footnotesize{}23.32\%} & {\footnotesize{}29.35\%} & {\footnotesize{}15.50\%}\tabularnewline
 \hline 
-PIMA & 34.85\% & 35.59\% & 32.19\% & 34.51\% & 25.78\% & 24.85\%\tabularnewline
+{\footnotesize{}PIMA} & {\footnotesize{}34.85\%} & {\footnotesize{}35.59\%} & {\footnotesize{}32.19\%} & {\footnotesize{}34.51\%} & {\footnotesize{}25.78\%} & {\footnotesize{}35.08\%} & {\footnotesize{}24.85\%}\tabularnewline
 \hline 
-POPFAILURES & 5.18\% & 5.24\% & 5.94\% & 7.05\% & 7.04\% & 6.09\%\tabularnewline
+{\footnotesize{}POPFAILURES} & {\footnotesize{}5.18\%} & {\footnotesize{}5.24\%} & {\footnotesize{}5.94\%} & {\footnotesize{}7.05\%} & {\footnotesize{}7.04\%} & {\footnotesize{}4.79\%} & {\footnotesize{}6.09\%}\tabularnewline
 \hline 
-REGIONS2 & 29.85\% & 36.28\% & 29.39\% & 33.23\% & 38.29\% & 28.77\%\tabularnewline
+{\footnotesize{}REGIONS2} & {\footnotesize{}29.85\%} & {\footnotesize{}36.28\%} & {\footnotesize{}29.39\%} & {\footnotesize{}33.23\%} & {\footnotesize{}38.29\%} & {\footnotesize{}34.26\%} & {\footnotesize{}28.77\%}\tabularnewline
 \hline 
-RING & 28.80\% & 29.44\% & 28.80\% & 30.85\% & 21.67\% & 22.90\%\tabularnewline
+{\footnotesize{}RING} & {\footnotesize{}28.80\%} & {\footnotesize{}29.44\%} & {\footnotesize{}28.80\%} & {\footnotesize{}30.85\%} & {\footnotesize{}21.67\%} & {\footnotesize{}51.65\%} & {\footnotesize{}22.90\%}\tabularnewline
 \hline 
-SAHEART & 34.04\% & 37.48\% & 34.86\% & 34.51\% & 32.19\% & 29.63\%\tabularnewline
+{\footnotesize{}SAHEART} & {\footnotesize{}34.04\%} & {\footnotesize{}37.48\%} & {\footnotesize{}34.86\%} & {\footnotesize{}34.51\%} & {\footnotesize{}32.19\%} & {\footnotesize{}37.70\%} & {\footnotesize{}29.63\%}\tabularnewline
 \hline 
-SEGMENT & 49.75\% & 68.97\% & 57.72\% & 66.72\% & 59.68\% & 15.60\%\tabularnewline
+{\footnotesize{}SEGMENT} & {\footnotesize{}49.75\%} & {\footnotesize{}68.97\%} & {\footnotesize{}57.72\%} & {\footnotesize{}66.72\%} & {\footnotesize{}59.68\%} & {\footnotesize{}60.40\%} & {\footnotesize{}15.60\%}\tabularnewline
 \hline 
-SONAR & 30.33\% & 25.85\% & 22.40\% & 34.10\% & 27.90\% & 19.80\%\tabularnewline
+{\footnotesize{}SONAR} & {\footnotesize{}30.33\%} & {\footnotesize{}25.85\%} & {\footnotesize{}22.40\%} & {\footnotesize{}34.10\%} & {\footnotesize{}27.90\%} & {\footnotesize{}23.80\%} & {\footnotesize{}19.80\%}\tabularnewline
 \hline 
-SPAMBASE & 48.05\% & 18.16\% & 6.37\% & 35.77\% & 29.35\% & 4.95\%\tabularnewline
+{\footnotesize{}SPAMBASE} & {\footnotesize{}48.05\%} & {\footnotesize{}18.16\%} & {\footnotesize{}6.37\%} & {\footnotesize{}35.77\%} & {\footnotesize{}29.35\%} & {\footnotesize{}3.91\%} & {\footnotesize{}4.95\%}\tabularnewline
 \hline 
-SPIRAL & 47.67\% & 47.99\% & 48.66\% & 48.66\% & 44.87\% & 42.06\%\tabularnewline
+{\footnotesize{}SPIRAL} & {\footnotesize{}47.67\%} & {\footnotesize{}47.99\%} & {\footnotesize{}48.66\%} & {\footnotesize{}48.66\%} & {\footnotesize{}44.87\%} & {\footnotesize{}50.38\%} & {\footnotesize{}42.06\%}\tabularnewline
 \hline 
-STATHEART & 44.04\% & 39.65\% & 27.25\% & 44.36\% & 31.36\% & 18.53\%\tabularnewline
+{\footnotesize{}STATHEART} & {\footnotesize{}44.04\%} & {\footnotesize{}39.65\%} & {\footnotesize{}27.25\%} & {\footnotesize{}44.36\%} & {\footnotesize{}31.36\%} & {\footnotesize{}28.37\%} & {\footnotesize{}18.53\%}\tabularnewline
 \hline 
-STUDENT & 5.13\% & 7.14\% & 5.61\% & 10.20\% & 5.49\% & 4.86\%\tabularnewline
+{\footnotesize{}STUDENT} & {\footnotesize{}5.13\%} & {\footnotesize{}7.14\%} & {\footnotesize{}5.61\%} & {\footnotesize{}10.20\%} & {\footnotesize{}5.49\%} & {\footnotesize{}10.84\%} & {\footnotesize{}4.86\%}\tabularnewline
 \hline 
-TAE & 60.20\% & 51.58\% & 49.84\% & 60.67\% & 60.02\% & 45.62\%\tabularnewline
+{\footnotesize{}TAE} & {\footnotesize{}60.20\%} & {\footnotesize{}51.58\%} & {\footnotesize{}49.84\%} & {\footnotesize{}60.67\%} & {\footnotesize{}60.02\%} & {\footnotesize{}60.16\%} & {\footnotesize{}45.62\%}\tabularnewline
 \hline 
-TRANSFUSION & 25.68\% & 25.84\% & 24.87\% & 24.87\% & 26.41\% & 23.59\%\tabularnewline
+{\footnotesize{}TRANSFUSION} & {\footnotesize{}25.68\%} & {\footnotesize{}25.84\%} & {\footnotesize{}24.87\%} & {\footnotesize{}24.87\%} & {\footnotesize{}26.41\%} & {\footnotesize{}29.35\%} & {\footnotesize{}23.59\%}\tabularnewline
 \hline 
-WDBC & 35.35\% & 29.91\% & 8.56\% & 12.88\% & 7.27\% & 4.29\%\tabularnewline
+{\footnotesize{}WDBC} & {\footnotesize{}35.35\%} & {\footnotesize{}29.91\%} & {\footnotesize{}8.56\%} & {\footnotesize{}12.88\%} & {\footnotesize{}7.27\%} & {\footnotesize{}15.48\%} & {\footnotesize{}4.29\%}\tabularnewline
 \hline 
-WINE & 29.40\% & 59.71\% & 19.20\% & 25.43\% & 31.41\% & 10.39\%\tabularnewline
+{\footnotesize{}WINE} & {\footnotesize{}29.40\%} & {\footnotesize{}59.71\%} & {\footnotesize{}19.20\%} & {\footnotesize{}25.43\%} & {\footnotesize{}31.41\%} & {\footnotesize{}16.62\%} & {\footnotesize{}10.39\%}\tabularnewline
 \hline 
-Z\_F\_S & 47.81\% & 39.37\% & 10.73\% & 38.41\% & 13.16\% & 6.81\%\tabularnewline
+{\footnotesize{}Z\_F\_S} & {\footnotesize{}47.81\%} & {\footnotesize{}39.37\%} & {\footnotesize{}10.73\%} & {\footnotesize{}38.41\%} & {\footnotesize{}13.16\%} & {\footnotesize{}17.91\%} & {\footnotesize{}6.81\%}\tabularnewline
 \hline 
-ZO\_NF\_S & 47.43\% & 43.04\% & 21.54\% & 43.75\% & 9.02\% & 4.73\%\tabularnewline
+{\footnotesize{}ZO\_NF\_S} & {\footnotesize{}47.43\%} & {\footnotesize{}43.04\%} & {\footnotesize{}21.54\%} & {\footnotesize{}43.75\%} & {\footnotesize{}9.02\%} & {\footnotesize{}15.57\%} & {\footnotesize{}4.73\%}\tabularnewline
 \hline 
-ZONF\_S & 11.99\% & 15.62\% & 4.36\% & 5.44\% & 4.03\% & 2.41\%\tabularnewline
+{\footnotesize{}ZONF\_S} & {\footnotesize{}11.99\%} & {\footnotesize{}15.62\%} & {\footnotesize{}4.36\%} & {\footnotesize{}5.44\%} & {\footnotesize{}4.03\%} & {\footnotesize{}3.27\%} & {\footnotesize{}2.41\%}\tabularnewline
 \hline 
-ZOO & 14.13\% & 10.70\% & 9.50\% & 20.27\% & 21.93\% & 6.63\%\tabularnewline
+{\footnotesize{}ZOO} & {\footnotesize{}14.13\%} & {\footnotesize{}10.70\%} & {\footnotesize{}9.50\%} & {\footnotesize{}20.27\%} & {\footnotesize{}21.93\%} & {\footnotesize{}8.53\%} & {\footnotesize{}6.63\%}\tabularnewline
 \hline 
-\textbf{AVERAGE} & \textbf{35.88\%} & \textbf{33.43\%} & \textbf{26.19\%} & \textbf{32.66\%} & \textbf{30.08\%} & \textbf{19.78\%}\tabularnewline
+\textbf{\footnotesize{}AVERAGE} & \textbf{\footnotesize{}35.88\%} & \textbf{\footnotesize{}33.43\%} & \textbf{\footnotesize{}26.19\%} & \textbf{\footnotesize{}32.66\%} & \textbf{\footnotesize{}30.08\%} & \textbf{\footnotesize{}28.39\%} & \textbf{\footnotesize{}19.78\%}\tabularnewline
 \hline 
-\end{tabular}
+\end{tabular}{\footnotesize\par}
 \end{table}
 \begin{table}[H]
 \caption{Experimental results for the provided regression datasets using the
-series of methods. Numbers in cells represents average regression
-error calculated on the corresponding test set.\label{tab:experRegression}}
+series of methods. In each cell the average regression error for each
+dataset is depicted. This value was calculated using ten - fold cross
+validation.\label{tab:experRegression}}
 
 \centering{}%
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
-DATASET & ADAM & BFGS & GENETIC & NEAT & RBF & NEURALDE\tabularnewline
+{\footnotesize{}DATASET} & {\footnotesize{}ADAM} & {\footnotesize{}BFGS} & {\footnotesize{}GENETIC} & {\footnotesize{}NEAT} & {\footnotesize{}RBF} & {\footnotesize{}PRUNE} & {\footnotesize{}NEURALDE}\tabularnewline
 \hline 
 \hline 
-ABALONE & 4.30 & 5.69 & 7.17 & 9.88 & 7.37 & 5.04\tabularnewline
+{\footnotesize{}ABALONE} & {\footnotesize{}4.30} & {\footnotesize{}5.69} & {\footnotesize{}7.17} & {\footnotesize{}9.88} & {\footnotesize{}7.37} & {\footnotesize{}7.88} & {\footnotesize{}5.04}\tabularnewline
 \hline 
-AIRFOIL & 0.005 & 0.003 & 0.003 & 0.067 & 0.27 & 0.0014\tabularnewline
+{\footnotesize{}AIRFOIL} & {\footnotesize{}0.005} & {\footnotesize{}0.003} & {\footnotesize{}0.003} & {\footnotesize{}0.067} & {\footnotesize{}0.27} & {\footnotesize{}0.002} & {\footnotesize{}0.0014}\tabularnewline
 \hline 
-AUTO & 70.84 & 60.97 & 12.18 & 56.06 & 17.87 & 16.21\tabularnewline
+{\footnotesize{}AUTO} & {\footnotesize{}70.84} & {\footnotesize{}60.97} & {\footnotesize{}12.18} & {\footnotesize{}56.06} & {\footnotesize{}17.87} & {\footnotesize{}75.59} & {\footnotesize{}16.21}\tabularnewline
 \hline 
-BK & 0.0252 & 0.28 & 0.027 & 0.15 & 0.02 & 0.019\tabularnewline
+{\footnotesize{}BK} & {\footnotesize{}0.0252} & {\footnotesize{}0.28} & {\footnotesize{}0.027} & {\footnotesize{}0.15} & {\footnotesize{}0.02} & {\footnotesize{}0.027} & {\footnotesize{}0.019}\tabularnewline
 \hline 
-BL & 0.622 & 2.55 & 5.74 & 0.05 & 0.013 & 0.016\tabularnewline
+{\footnotesize{}BL} & {\footnotesize{}0.622} & {\footnotesize{}2.55} & {\footnotesize{}5.74} & {\footnotesize{}0.05} & {\footnotesize{}0.013} & {\footnotesize{}0.027} & {\footnotesize{}0.016}\tabularnewline
 \hline 
-BASEBALL & 77.90 & 119.63 & 103.60 & 100.39 & 93.02 & 60.56\tabularnewline
+{\footnotesize{}BASEBALL} & {\footnotesize{}77.90} & {\footnotesize{}119.63} & {\footnotesize{}103.60} & {\footnotesize{}100.39} & {\footnotesize{}93.02} & {\footnotesize{}94.50} & {\footnotesize{}60.56}\tabularnewline
 \hline 
-CONCRETE & 0.078 & 0.066 & 0.0099 & 0.081 & 0.011 & 0.003\tabularnewline
+{\footnotesize{}CONCRETE} & {\footnotesize{}0.078} & {\footnotesize{}0.066} & {\footnotesize{}0.0099} & {\footnotesize{}0.081} & {\footnotesize{}0.011} & {\footnotesize{}0.0077} & {\footnotesize{}0.003}\tabularnewline
 \hline 
-DEE & 0.63 & 2.36 & 1.013 & 1.51 & 0.17 & 0.35\tabularnewline
+{\footnotesize{}DEE} & {\footnotesize{}0.63} & {\footnotesize{}2.36} & {\footnotesize{}1.013} & {\footnotesize{}1.51} & {\footnotesize{}0.17} & {\footnotesize{}1.08} & {\footnotesize{}0.35}\tabularnewline
 \hline 
-FA & 0.048 & 0.426 & 0.025 & 0.19 & 0.015 & 0.083\tabularnewline
+{\footnotesize{}FA} & {\footnotesize{}0.048} & {\footnotesize{}0.426} & {\footnotesize{}0.025} & {\footnotesize{}0.19} & {\footnotesize{}0.015} & {\footnotesize{}0.029} & {\footnotesize{}0.083}\tabularnewline
 \hline 
-FRIEDMAN & 22.90 & 1.263 & 1.249 & 19.35 & 7.23 & 1.22\tabularnewline
+{\footnotesize{}FRIEDMAN} & {\footnotesize{}22.90} & {\footnotesize{}1.263} & {\footnotesize{}1.249} & {\footnotesize{}19.35} & {\footnotesize{}7.23} & {\footnotesize{}8.69} & {\footnotesize{}1.22}\tabularnewline
 \hline 
-HO & 0.035 & 0.62 & 2.78 & 0.17 & 0.03 & 0.017\tabularnewline
+{\footnotesize{}HO} & {\footnotesize{}0.035} & {\footnotesize{}0.62} & {\footnotesize{}2.78} & {\footnotesize{}0.17} & {\footnotesize{}0.03} & {\footnotesize{}0.03} & {\footnotesize{}0.017}\tabularnewline
 \hline 
-HOUSING & 80.99 & 97.38 & 43.26 & 56.49 & 57.68 & 24.82\tabularnewline
+{\footnotesize{}HOUSING} & {\footnotesize{}80.99} & {\footnotesize{}97.38} & {\footnotesize{}43.26} & {\footnotesize{}56.49} & {\footnotesize{}57.68} & {\footnotesize{}52.25} & {\footnotesize{}24.82}\tabularnewline
 \hline 
-LASER & 0.03 & 0.015 & 0.59 & 0.084 & 0.03 & 0.0026\tabularnewline
+{\footnotesize{}LASER} & {\footnotesize{}0.03} & {\footnotesize{}0.015} & {\footnotesize{}0.59} & {\footnotesize{}0.084} & {\footnotesize{}0.03} & {\footnotesize{}0.007} & {\footnotesize{}0.0026}\tabularnewline
 \hline 
-LW & 0.028 & 2.98 & 1.90 & 0.17 & 0.03 & 0.021\tabularnewline
+{\footnotesize{}LW} & {\footnotesize{}0.028} & {\footnotesize{}2.98} & {\footnotesize{}1.90} & {\footnotesize{}0.17} & {\footnotesize{}0.03} & {\footnotesize{}0.02} & {\footnotesize{}0.021}\tabularnewline
 \hline 
-MORTGAGE & 9.24 & 8.23 & 2.41 & 14.11 & 1.45 & 0.54\tabularnewline
+{\footnotesize{}MORTGAGE} & {\footnotesize{}9.24} & {\footnotesize{}8.23} & {\footnotesize{}2.41} & {\footnotesize{}14.11} & {\footnotesize{}1.45} & {\footnotesize{}12.96} & {\footnotesize{}0.54}\tabularnewline
 \hline 
-PLASTIC & 11.71 & 20.32 & 2.791 & 20.77 & 8.62 & 3.27\tabularnewline
+{\footnotesize{}PLASTIC} & {\footnotesize{}11.71} & {\footnotesize{}20.32} & {\footnotesize{}2.791} & {\footnotesize{}20.77} & {\footnotesize{}8.62} & {\footnotesize{}17.33} & {\footnotesize{}3.27}\tabularnewline
 \hline 
-PY & 0.321 & 0.578 & 0.56 & 0.075 & 0.012 & 0.11\tabularnewline
+{\footnotesize{}PY} & {\footnotesize{}0.321} & {\footnotesize{}0.578} & {\footnotesize{}0.56} & {\footnotesize{}0.075} & {\footnotesize{}0.012} & {\footnotesize{}0.023} & {\footnotesize{}0.11}\tabularnewline
 \hline 
-QUAKE & 0.07 & 0.42 & 0.04 & 0.298 & 0.07 & 0.042\tabularnewline
+{\footnotesize{}QUAKE} & {\footnotesize{}0.07} & {\footnotesize{}0.42} & {\footnotesize{}0.04} & {\footnotesize{}0.298} & {\footnotesize{}0.07} & {\footnotesize{}0.04} & {\footnotesize{}0.042}\tabularnewline
 \hline 
-SN & 0.026 & 0.40 & 2.95 & 0.174 & 0.027 & 0.027\tabularnewline
+{\footnotesize{}SN} & {\footnotesize{}0.026} & {\footnotesize{}0.40} & {\footnotesize{}2.95} & {\footnotesize{}0.174} & {\footnotesize{}0.027} & {\footnotesize{}0.032} & {\footnotesize{}0.027}\tabularnewline
 \hline 
-STOCK & 180.89 & 302.43 & 3.88 & 215.82 & 12.23 & 3.40\tabularnewline
+{\footnotesize{}STOCK} & {\footnotesize{}180.89} & {\footnotesize{}302.43} & {\footnotesize{}3.88} & {\footnotesize{}215.82} & {\footnotesize{}12.23} & {\footnotesize{}39.08} & {\footnotesize{}3.40}\tabularnewline
 \hline 
-TREASURY & 11.16 & 9.91 & 2.93 & 15.52 & 2.02 & 1.021\tabularnewline
+{\footnotesize{}TREASURY} & {\footnotesize{}11.16} & {\footnotesize{}9.91} & {\footnotesize{}2.93} & {\footnotesize{}15.52} & {\footnotesize{}2.02} & {\footnotesize{}13.76} & {\footnotesize{}1.021}\tabularnewline
 \hline 
-\textbf{AVERAGE} & \textbf{22.47} & \textbf{30.31} & \textbf{9.29} & \textbf{24.35} & \textbf{9.91} & \textbf{5.56}\tabularnewline
+\textbf{\footnotesize{}AVERAGE} & \textbf{\footnotesize{}22.47} & \textbf{\footnotesize{}30.31} & \textbf{\footnotesize{}9.29} & \textbf{\footnotesize{}24.35} & \textbf{\footnotesize{}9.91} & \textbf{\footnotesize{}15.40} & \textbf{\footnotesize{}5.56}\tabularnewline
 \hline 
 \end{tabular}
 \end{table}
@@ -720,108 +787,102 @@ average error rate for each model, offering an overall performance
 summary. Starting with the averages, the NEURALDE model exhibits the
 best overall performance, achieving the lowest mean error rate of
 19.78\%. It is followed by GENETIC with an average error rate of 26.19\%
-and RBF at 30.08\%. The NEAT model has an average error rate of 32.66\%,
-while BFGS and ADAM display the highest average error rates, 33.43\%
-and 35.88\%, respectively. This makes NEURALDE the most efficient
-model among those compared. On a dataset-specific level, NEURALDE
-consistently delivers the lowest error rates in numerous cases. For
-instance, in the ALCOHOL dataset, it achieves the best result with
-an error rate of 19.15\%. Similarly, in the CIRCULAR dataset, NEURALDE
-outperforms all other models with an error rate of 4.23\%, demonstrating
-its effectiveness in handling complex data structures. In the MAGIC
-and MAMMOGRAPHIC datasets, NEURALDE again proves superior, with error
-rates of 11.73\% and 17.52\%, respectively. There are, however, a
-few datasets where NEURALDE does not perform as dominantly. For example,
-in the HOUSEVOTES dataset, it ties with other models at 7.48\%. In
-the ZONF\_S dataset, it records its worst performance with an error
-rate of 2.41\%, indicating that its efficiency can vary with certain
-data characteristics. Other models, such as GENETIC, show strong performance
-in isolated cases, such as in the SPIRAL dataset (48.66\%). However,
-they generally fall short of NEURALDE’s consistent excellence. RBF
-demonstrates strong stability, with notable results in the DERMATOLOGY
-(62.34\%) and PHONEME (23.32\%) datasets. Meanwhile, ADAM and BFGS
-tend to underperform, particularly in datasets like SPAMBASE, where
-they record high error rates of 48.05\% and 18.16\%, respectively.
-In conclusion, the NEURALDE model stands out as the most effective
-model overall, achieving the lowest average error rate and excelling
-in the majority of datasets. While other models, such as RBF and GENETIC,
+and RBF at 30.08\%. The PRUNE model achieves an average error rate
+of 28.39\%, placing it between RBF and NEAT, which has an average
+error rate of 32.66\%. Meanwhile, BFGS and ADAM display the highest
+average error rates, 33.43\% and 35.88\%, respectively, making NEURALDE
+the most efficient model among those compared. On a dataset-specific
+level, NEURALDE consistently delivers the lowest error rates in numerous
+cases. For instance, in the ALCOHOL dataset, NEURALDE achieves the
+best result with an error rate of 19.15\%, while PRUNE follows closely
+with 15.75\%, outperforming all other models. In the CIRCULAR dataset,
+NEURALDE outperforms all other models with an error rate of 4.23\%,
+while PRUNE records a slightly higher error rate of 12.76\%, still
+surpassing many other methods. In datasets like MAGIC and MAMMOGRAPHIC,
+NEURALDE again proves superior, with error rates of 11.73\% and 17.52\%,
+respectively. PRUNE, however, shows significant variability; for example,
+it records 30.76\% in MAGIC, which is higher than GENETIC (21.75\%),
+but still manages competitive performance in MAMMOGRAPHIC with 38.10\%.
+There are, however, a few datasets where NEURALDE does not perform
+as dominantly. For example, in the HOUSEVOTES dataset, it ties with
+other models at 7.48\%. PRUNE performs better here with an error rate
+of 5.81\%, showcasing its strengths in specific datasets. Similarly,
+in the ZONF\_S dataset, NEURALDE achieves 2.41\%, while PRUNE closely
+follows with 3.27\%. Despite this, NEURALDE's superior consistency
+across datasets remains evident. Other models, such as GENETIC, show
+strong performance in isolated cases, such as in the SPIRAL dataset
+(48.66\%). However, they generally fall short of NEURALDE’s consistent
+excellence. RBF demonstrates strong stability, with notable results
+in the DERMATOLOGY (62.34\%) and PHONEME (23.32\%) datasets, but PRUNE
+again outshines RBF in specific cases like DERMATOLOGY with an error
+rate of 9.02\%. Meanwhile, ADAM and BFGS tend to underperform, particularly
+in datasets like SPAMBASE, where they record high error rates of 48.05\%
+and 18.16\%, respectively. PRUNE outperforms them significantly in
+SPAMBASE with an error rate of just 3.91\%, illustrating its competitiveness
+in certain scenarios.In conclusion, the NEURALDE model stands out
+as the most effective model overall, achieving the lowest average
+error rate and excelling in the majority of datasets. PRUNE emerges
+as a strong contender, with competitive performance and notable success
+in certain datasets. While other models, such as RBF and GENETIC,
 perform well in specific scenarios, NEURALDE demonstrates superior
-consistency and effectiveness across a wide range of datasets.
+consistency and effectiveness across a wide range of datasets, with
+PRUNE providing significant value in enhancing classification accuracy
+in many cases.
 
 The Table \ref{tab:experRegression} presents the performance of various
 machine learning models on regression problems, where the values represent
 the error. Lower error values indicate better performance. Each row
 corresponds to a specific dataset, while the last row shows the average
-error for each model, providing an overall view of their effectiveness.Based
-on the average error, NEURALDE demonstrates the best performance,
+error for each model, providing an overall view of their effectiveness.
+Based on the average error, NEURALDE demonstrates the best performance,
 with the lowest overall error of 5.56. This result suggests that the
-model consistently performs well across most datasets. Following NEURALDE
-are GENETIC with an average error of 9.29 and RBF with an average
-error of 9.91. ADAM, NEAT, and BFGS exhibit higher average errors,
-at 22.47, 24.35, and 30.31 respectively, indicating lower performance
-compared to the other models. Analyzing the results dataset by dataset,
-NEURALDE records the smallest error in several cases. For instance,
-in the AIRFOIL dataset, it achieves an error of 0.0014, outperforming
-all other models. In the CONCRETE dataset, its error is only 0.003,
-the lowest among all models. Similarly, in the LASER dataset, it achieves
-an exceptionally low error of 0.0026. In the TREASURY dataset, NEURALDE
-demonstrates superior performance with an error of 1.021, better than
-all other models. GENETIC shows competitive performance in several
-datasets. For example, in the HOUSING dataset, it achieves an error
-of 43.26, which is better than ADAM and NEAT but not as strong as
-NEURALDE. In the PLASTIC dataset, its error is 2.791, which is significantly
-lower than most other models except NEURALDE.
+model consistently performs well across most datasets. PRUNE follows
+as the second-best model, with an average error of 15.40, outperforming
+GENETIC, RBF, and other methods in several cases. GENETIC and RBF
+achieve average errors of 9.29 and 9.91, respectively. ADAM, NEAT,
+and BFGS exhibit higher average errors, at 22.47, 24.35, and 30.31
+respectively, indicating lower performance compared to the other models.
+Analyzing the results dataset by dataset, NEURALDE records the smallest
+error in several cases. For instance, in the AIRFOIL dataset, it achieves
+an error of 0.0014, outperforming all other models. PRUNE also shows
+strong performance here, with an error of 0.002, close to NEURALDE.
+In the CONCRETE dataset, NEURALDE achieves the lowest error of 0.003,
+while PRUNE achieves the second-lowest error of 0.0077, further confirming
+its reliability. Similarly, in the LASER dataset, NEURALDE delivers
+an exceptionally low error of 0.0026, followed closely by PRUNE with
+an error of 0.007. In the TREASURY dataset, NEURALDE demonstrates
+superior performance with an error of 1.021, better than all other
+models, while PRUNE also achieves a competitive error of 13.76, outperforming
+NEAT and ADAM. PRUNE shows notable performance in several datasets
+where it surpasses other models. For instance, in the STOCK dataset,
+PRUNE records an error of 39.08, which is lower than NEAT (215.82)
+and ADAM (180.89), though slightly higher than NEURALDE (3.40). In
+the BASEBALL dataset, PRUNE achieves 94.50, outperforming ADAM (77.90)
+and NEAT (100.39). In the MORTGAGE dataset, PRUNE achieves an error
+of 12.96, which, while not the lowest, still outperforms several other
+models including NEAT (14.11) and ADAM (9.24). Overall, while NEURALDE
+stands out as the most effective model, PRUNE emerges as a highly
+competitive alternative, consistently delivering strong results across
+multiple datasets. GENETIC and RBF also perform well in specific cases,
+but their performance is less consistent compared to NEURALDE and
+PRUNE. ADAM, NEAT, and BFGS generally underperform relative to the
+other methods. 
 
-RBF achieves low errors in some datasets, such as MORTGAGE, where
-it records an error of 1.45, the second-best result after NEURALDE
-(0.54). However, in other datasets like STOCK, where it has an error
-of 12.23, RBF underperforms compared to GENETIC and NEURALDE. ADAM
-and NEAT exhibit higher errors across many datasets. For example,
-in the STOCK dataset, ADAM records the highest error at 180.89, followed
-by NEAT at 215.82. Conversely, in the AIRFOIL dataset, ADAM achieves
-a relatively low error of 0.005, though it still falls short of NEURALDE.
-BFGS generally shows higher errors, such as in the BASEBALL dataset
-(119.63), reflecting its limited performance. In summary, NEURALDE
-stands out as the most effective regression model, with consistently
-low errors and the lowest average error overall. GENETIC and RBF display
-competitive performance in some datasets but lack the same consistency.
-ADAM, NEAT, and BFGS exhibit significantly higher errors, indicating
-their inferior performance compared to NEURALDE. 
-
-An extensive analysis was conducted on the performance of different
-machine learning models using various optimization methods, with pairwise
-comparisons made through the Wilcoxon Test. The study was carried
-out on a set of well-known datasets and focused on the NEURALDE model,
-comparing it with other popular optimization methods such as ADAM,
-BFGS, GENETIC, NEAT, and RBF. The Wilcoxon Test, a non-parametric
-statistical method, is ideal for evaluating performance differences,
-especially when the data does not follow a normal distribution Figure
-\ref{fig:statClass}. The results revealed significant performance
-differences between NEURALDE and other models. Specifically, the p-value
-for the comparison between NEURALDE and ADAM was p=4.7e-08, a very
-low value that indicates the differences between the two models are
-statistically significant and unlikely to be due to chance. The p-value
-for the comparison between NEURALDE and BFGS was even lower, at p=1e-18,
-suggesting substantial performance differences, with NEURALDE outperforming
-BFGS by a wide margin. Similarly, the comparison between NEURALDE
-and GENETIC yielded p=2.9e-09, confirming that the two methods show
-distinct performance, with NEURALDE being superior. The comparison
-between NEURALDE and NEAT showed p=2.3e-10, while the comparison with
-RBF resulted in p=1.3e-08. In both cases, the p-values were extremely
-low, proving that the performance differences are statistically significant.
-This analysis highlights NEURALDE as a standout model among the datasets
-used, showing significant performance differences compared to the
-other methods. The very low p-values in all comparisons demonstrate
-that the observed differences are not due to random chance, but rather
-reflect the true superiority or differentiation of NEURALDE. The methods
-ADAM, BFGS, GENETIC, NEAT, and RBF are widely used and effective in
-many cases, but this analysis suggests that NEURALDE excels in specific
-problems or datasets. This statistical analysis provides valuable
-insight into the selection of appropriate models and optimization
-methods for machine learning tasks. Although the specific p-values
-and results pertain to the datasets used in this study, the significance
-of the findings underscores the importance of careful evaluation when
-selecting models.
+In Figure \ref{fig:statClass}, the comparison of the proposed machine
+learning model NEURALDE with other models for classification datasets
+is illustrated, based on the values of the critical parameter p, which
+indicate the levels of statistical significance. The results show
+exceptionally low p-values, suggesting that the differences in the
+performance of NEURALDE compared to other models are not random and
+are statistically highly significant. Specifically, the comparison
+of NEURALDE with ADAM yielded p=4.7e-08, with BFGS p=1e\textminus 10,
+with GENETIC p=2.9e\textminus 09, with NEAT p=2.3e\textminus 10, with
+RBF p=1.3e\textminus 08, and with PRUNE p=5.8e\textminus 08. These
+values are well below the common thresholds of significance (p\textless 0.05
+: significant), indicating that the superiority of NEURALDE is statistically
+well-founded. The results confirm the high efficiency of the proposed
+model compared to other machine learning methods, demonstrating its
+reliability and effectiveness in classification problems.
 
 \begin{figure}[H]
 \begin{centering}
@@ -832,36 +893,14 @@ classification datasets.\label{fig:statClass}}
 
 \end{figure}
 
-Furthermore, an analysis was conducted to compare various machine
-learning models employing different optimization methods in terms
-of regression error. The study was performed using a script in R,
-employing the Wilcoxon Test for pairwise comparisons. This non-parametric
-statistical test is suitable for data that do not follow a normal
-distribution Figure \ref{fig:statRegression}. The experiments were
-conducted on a series of well-known datasets, ensuring diversity across
-problem domains. The results revealed significant differences in regression
-error between the NEURALDE model and other optimization methods. Specifically,
-the comparison between NEURALDE and ADAM yielded a p-value of 0.00051,
-indicating a statistically significant difference in favor of NEURALDE.
-Similarly, the comparison with BFGS showed an even smaller p-value
-of 9.5e-07, highlighting the clear superiority of NEURALDE in this
-context. The analysis of NEURALDE against GENETIC resulted in a p-value
-of 0.0033, further supporting the significance of the observed difference.
-Likewise, the comparison with NEAT gave a p-value of 2.9e-06, and
-with RBF, the p-value was 0.0048, demonstrating statistically significant
-differences in all cases. These findings indicate that NEURALDE consistently
-outperforms the other optimization methods analyzed in terms of reducing
-regression error. The exceptionally low p-values across all comparisons
-suggest that these differences are unlikely to be due to random variation
-and reflect a genuine advantage. While other methods such as ADAM,
-BFGS, GENETIC, NEAT, and RBF are generally effective across various
-tasks, the results show that NEURALDE exhibits superior performance
-in minimizing regression error for the datasets analyzed. This analysis
-provides valuable insights for selecting appropriate models and optimization
-techniques in regression tasks. Although the results are specific
-to the datasets used in the study, the statistical significance of
-the findings highlights the importance of careful evaluation when
-choosing a model. 
+Similarly, the comparison of the proposed model with others in regression
+problems highlighted NEURALDE as the most efficient model. Specifically,
+the comparison of NEURALDE with ADAM yielded p=0.00051, with BFGS
+p=9.5e\textminus 07, with GENETIC p=0.0033, with NEAT p=2.9e\textminus 06,
+with RBF p=0.0048, and with PRUNE p=0.001. These values confirm the
+statistical significance of the differences, indicating that the superiority
+of NEURALDE in regression problems is well-documented and not random,
+as shown in Figure \ref{fig:statRegression}.
 
 \begin{figure}[H]
 \begin{centering}
@@ -871,7 +910,43 @@ choosing a model.
 regression datasets.\label{fig:statRegression}}
 
 \end{figure}
+ Furthermore, the average classification error for the methods used
+in the experiments is presented in Figure \ref{fig:averageClass},
+where the dynamics of the new technique are clearly depicted. 
 
+\begin{figure}[H]
+\begin{centering}
+\includegraphics{classificationAVG}
+\par\end{centering}
+\caption{The average classification error for all methods used in the conducted
+experiments.\label{fig:averageClass}}
+
+\end{figure}
+Likewise, the average regression error for all used techniques is
+depicted in Figure \ref{fig:averageRegression}.
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics{regressionAVG}
+\par\end{centering}
+\caption{Average regression error for the used techniques.\label{fig:averageRegression}}
+
+\end{figure}
+Finally, the average execution time for all method involved in the
+conducted experiments regarding the classification datsetsets is graphically
+outlined in Figure \ref{fig:de_time}.
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{neuralde_time}
+\par\end{centering}
+\caption{Average execution time for the machine learning methods used in the
+experiments involving the classification datasets.\label{fig:de_time}}
+
+\end{figure}
+As it was expected, the proposed method requires significantly more
+computation time than other method due to its complexity in the calculations
+and the requirement of the periodical application of a local optimization
+method.
 
 \subsubsection{Experiments with the differential weight }
 
@@ -928,7 +1003,9 @@ more variability in their performance.
 \begin{table}[H]
 \caption{Experimental results for the classification datasets using a list
 of proposed differential weight mechanisms found in the literature.
-\label{tab:experFClass}}
+Each column denotes a different weight mechanism and numbers in cells
+stand for the average classification error as measured on the corresponding
+test set. \label{tab:experFClass}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|}
@@ -1056,7 +1133,9 @@ performance, with higher errors across numerous datasets.
 
 \begin{table}[H]
 \caption{Experimental results for the regression datasets using a variety of
-differential weigh methods.\label{tab:experFWeightRegression}}
+differential weigh methods. In every column a different weight mechanism
+is depicted and numbers in cells represent the average regression
+error as calculated on the corresponding test set.\label{tab:experFWeightRegression}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|}
@@ -1217,7 +1296,9 @@ less consistent.
 
 \begin{table}[H]
 \caption{Experimental results for the classification datasets using different
-values for the critical parameter $a$\label{tab:experAClass}}
+values for the critical parameter $a$. In each column a different
+value for the critical parameter is used and numbers in cells represent
+the average classification error.\label{tab:experAClass}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -1347,7 +1428,10 @@ exhibiting relative insensitivity to parameter changes.
 
 \begin{table}[H]
 \caption{Experimental results for the regression datasets using different values
-for the critical parameter $a$.\label{tab:experARegression}}
+for the critical parameter $a$. Each column contains experiments
+with different values for the critical parameter $a$. The numbers
+in cells represent average regression error for the corresponding
+test set.\label{tab:experARegression}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -1501,7 +1585,10 @@ lowest average error.
 
 \begin{table}[H]
 \caption{Experimental results for the classification datasets using different
-values of local search rate $p_{l}$.\label{tab:experPLClass}}
+values of local search rate $p_{l}$. In each column different value
+for the local search rate is used. Numbers in cells stand for the
+average classification error as measured on the corresponding test
+set.\label{tab:experPLClass}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|}
@@ -1626,9 +1713,10 @@ the effect of the $p_{l}$ parameter varies across datasets, with
 some benefiting more from higher or lower $p_{l}$ values. 
 
 \begin{table}[H]
-
 \caption{Experimental results for the regression datasets using different values
-of the local search rate parameter $p_{l}$.\label{tab:experPlRegression}}
+of the local search rate parameter $p_{l}$. The columns contain experiments
+with different values of the local search rate and numbers in cells
+represent average regression error for the corresponding test set.\label{tab:experPlRegression}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|c|}
@@ -1741,6 +1829,321 @@ rate $p_{l}$.\label{fig:statPLRegression}}
 \end{figure}
 
 
+\subsubsection{Experiments with the local search method}
+
+Another test was conducted, where the local optimization method of
+the proposed technique was altered. In this test the local optimization
+methods Limited Memory BFGS (LBFGS) \citep{LBFGS} and Adam \citep{Adam}
+was used and the results were compared against that obtained by the
+application of the BFGS local optimization methods. The experimental
+results for the classification datasets are depicted in Table \ref{tab:experLocalClass}
+and the experimental results for the regression datasets are shown
+in Table \ref{tab:experLocalRegression}.
+
+\begin{table}[H]
+\caption{Experimental results for the classification datasets using different
+local search methods for the classification datasets. Numbers in cells
+stand for the average classification error as measured on the corresponding
+test set.\label{tab:experLocalClass}}
+
+\centering{}%
+\begin{tabular}{|c|c|c|c|}
+\hline 
+DATASET & BFGS & LBFGS & ADAM\tabularnewline
+\hline 
+\hline 
+ALCOHOL & 19.15\% & 22.76\% & 19.36\%\tabularnewline
+\hline 
+AUSTRALIAN & 15.31\% & 21.80\% & 31.19\%\tabularnewline
+\hline 
+BALANCE & 6.92\% & 7.29\% & 8.08\%\tabularnewline
+\hline 
+BANDS & 35.00\% & 35.58\% & 35.72\%\tabularnewline
+\hline 
+CLEVELAND & 45.07\% & 43.76\% & 44.76\%\tabularnewline
+\hline 
+CIRCULAR & 4.23\% & 4.29\% & 4.52\%\tabularnewline
+\hline 
+DERMATOLOGY & 10.38\% & 9.09\% & 11.34\%\tabularnewline
+\hline 
+ECOLI & 45.22\% & 46.43\% & 51.36\%\tabularnewline
+\hline 
+HABERMAN & 27.55\% & 27.17\% & 27.63\%\tabularnewline
+\hline 
+HAYES-ROTH & 35.59\% & 37.00\% & 35.38\%\tabularnewline
+\hline 
+HEART & 17.60\% & 15.93\% & 20.59\%\tabularnewline
+\hline 
+HEARTATTACK & 19.70\% & 18.57\% & 21.80\%\tabularnewline
+\hline 
+HEPATITIS & 57.46\% & 56.50\% & 57.25\%\tabularnewline
+\hline 
+HOUSEVOTES & 7.48\% & 7.74\% & 5.39\%\tabularnewline
+\hline 
+IONOSPHERE & 16.17\% & 16.57\% & 11.77\%\tabularnewline
+\hline 
+LIVERDISORDER & 31.72\% & 32.29\% & 33.06\%\tabularnewline
+\hline 
+LYMOGRAPHY & 28.86\% & 27.93\% & 23.57\%\tabularnewline
+\hline 
+MAGIC & 11.73\% & 11.83\% & 12.72\%\tabularnewline
+\hline 
+MAMMOGRAPHIC & 17.52\% & 16.76\% & 17.13\%\tabularnewline
+\hline 
+PARKINSONS & 14.32\% & 13.58\% & 15.42\%\tabularnewline
+\hline 
+PAGE BLOCKS & 6.04\% & 5.80\% & 6.78\%\tabularnewline
+\hline 
+PHONEME & 15.50\% & 15.36\% & 16.93\%\tabularnewline
+\hline 
+PIMA & 24.85\% & 24.24\% & 30.67\%\tabularnewline
+\hline 
+POPFAILURES & 6.09\% & 6.74\% & 4.58\%\tabularnewline
+\hline 
+REGIONS2 & 28.77\% & 29.89\% & 29.58\%\tabularnewline
+\hline 
+RING & 22.90\% & 23.64\% & 25.66\%\tabularnewline
+\hline 
+SAHEART & 29.63\% & 28.70\% & 32.18\%\tabularnewline
+\hline 
+SEGMENT & 15.60\% & 19.46\% & 27.47\%\tabularnewline
+\hline 
+SONAR & 19.80\% & 19.35\% & 18.65\%\tabularnewline
+\hline 
+SPAMBASE & 4.95\% & 4.78\% & 3.91\%\tabularnewline
+\hline 
+SPIRAL & 42.06\% & 41.74\% & 42.84\%\tabularnewline
+\hline 
+STATHEART & 18.53\% & 17.59\% & 20.22\%\tabularnewline
+\hline 
+STUDENT & 4.86\% & 5.23\% & 3.82\%\tabularnewline
+\hline 
+TAE & 45.62\% & 47.20\% & 51.20\%\tabularnewline
+\hline 
+TRANSFUSION & 23.59\% & 24.32\% & 25.06\%\tabularnewline
+\hline 
+WDBC & 4.29\% & 4.18\% & 6.00\%\tabularnewline
+\hline 
+WINE & 10.39\% & 10.06\% & 14.82\%\tabularnewline
+\hline 
+Z\_F\_S & 6.81\% & 7.10\% & 11.03\%\tabularnewline
+\hline 
+ZO\_NF\_S & 4.73\% & 5.34\% & 9.72\%\tabularnewline
+\hline 
+ZONF\_S & 2.41\% & 2.74\% & 3.36\%\tabularnewline
+\hline 
+ZOO & 6.63\% & 6.20\% & 8.00\%\tabularnewline
+\hline 
+\textbf{AVERAGE} & \textbf{19.78\%} & \textbf{20.06\%} & \textbf{21.48\%}\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\caption{Experimental results for the regression datasets using different local
+search methods.\label{tab:experLocalRegression}}
+
+\centering{}%
+\begin{tabular}{|c|c|c|c|}
+\hline 
+DATASET & BFGS & LBFGS & ADAM\tabularnewline
+\hline 
+\hline 
+ABALONE & 5.04 & 4.48 & 4.38\tabularnewline
+\hline 
+AIRFOIL & 0.0014 & 0.0024 & 0.0031\tabularnewline
+\hline 
+AUTO & 16.21 & 19.60 & 20.70\tabularnewline
+\hline 
+BK & 0.019 & 0.017 & 0.018\tabularnewline
+\hline 
+BL & 0.016 & 0.010 & 0.024\tabularnewline
+\hline 
+BASEBALL & 60.56 & 49.78 & 78.73\tabularnewline
+\hline 
+CONCRETE & 0.003 & 0.003 & 0.003\tabularnewline
+\hline 
+DEE & 0.35 & 0.30 & 0.36\tabularnewline
+\hline 
+FA & 0.083 & 0.020 & 0.022\tabularnewline
+\hline 
+FRIEDMAN & 1.22 & 1.23 & 2.29\tabularnewline
+\hline 
+HO & 0.017 & 0.009 & 0.02\tabularnewline
+\hline 
+HOUSING & 24.82 & 35.57 & 47.63\tabularnewline
+\hline 
+LASER & 0.0026 & 0.0027 & 0.0025\tabularnewline
+\hline 
+LW & 0.021 & 0.012 & 0.015\tabularnewline
+\hline 
+MORTGAGE & 0.54 & 1.54 & 2.01\tabularnewline
+\hline 
+PLASTIC & 3.27 & 2.53 & 3.40\tabularnewline
+\hline 
+PY & 0.11 & 0.09 & 0.04\tabularnewline
+\hline 
+QUAKE & 0.042 & 0.044 & 0.047\tabularnewline
+\hline 
+SN & 0.027 & 0.032 & 0.024\tabularnewline
+\hline 
+STOCK & 3.40 & 8.90 & 11.27\tabularnewline
+\hline 
+TREASURY & 1.021 & 2.43 & 2.60\tabularnewline
+\hline 
+\textbf{AVERAGE} & \textbf{5.56} & \textbf{6.03} & \textbf{8.27}\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+The analysis of the Table \ref{tab:experLocalClass} regarding the
+local search methods BFGS, LBFGS, and ADAM for the NEURALDE model
+presents their performance on classification datasets, with the values
+representing error percentages. According to the results, the BFGS
+method achieves the lowest average error rate at 19.78\%, followed
+by LBFGS with 20.06\% and ADAM with 21.48\%. This highlights the relative
+superiority of BFGS in minimizing error compared to the other methods.
+When analyzing individual datasets, BFGS records the lowest error
+rates in several cases. For instance, in the HOUSEVOTES dataset, both
+BFGS and LBFGS yield similar results, while ADAM shows the lowest
+error at 5.39\%. In the SPAMBASE dataset, ADAM outperforms the others
+with an error rate of 3.91\%, compared to 4.95\% and 4.78\% for BFGS
+and LBFGS, respectively. Similarly, in the STUDENT dataset, ADAM performs
+best with the lowest error at 3.82\%. However, in datasets like SEGMENT,
+BFGS excels with a significantly lower error of 15.60\% compared to
+19.46\% for LBFGS and 27.47\% for ADAM. Notable differences are observed
+in datasets such as DERMATOLOGY, where LBFGS records the lowest error
+at 9.09\%, compared to 10.38\% for BFGS and 11.34\% for ADAM. In the
+MAGIC dataset, BFGS and LBFGS deliver comparable performance, with
+error rates of 11.73\% and 11.83\%, respectively, while ADAM presents
+a higher error of 12.72\%. Similarly, in the CIRCULAR dataset, BFGS
+achieves the lowest error at 4.23\%, closely followed by LBFGS at
+4.29\%, and ADAM at 4.52\%. Overall, BFGS demonstrates superior performance
+in most cases, maintaining the lowest variation in error rates and
+achieving the smallest average error. However, LBFGS delivers competitive
+results with slightly higher average error and outperforms in specific
+datasets like DERMATOLOGY. While ADAM records lower error rates in
+isolated datasets such as SPAMBASE and STUDENT, it exhibits a higher
+overall error, indicating greater variability in its performance.
+In conclusion, the BFGS method emerges as the most efficient overall,
+while LBFGS offers consistently competitive performance. ADAM shows
+advantages in certain datasets but has a higher overall average error
+rate.
+
+The evaluation presented in Table \ref{tab:experLocalRegression}
+highlights the performance of the local search methods BFGS, LBFGS,
+and ADAM applied to regression datasets within the NEURALDE model.
+The reported values correspond to absolute errors. Among the three
+methods, BFGS achieves the lowest mean error of 5.56, demonstrating
+a clear advantage over LBFGS and ADAM, which have mean errors of 6.03
+and 8.27, respectively. Examining individual datasets, BFGS achieves
+superior results in several instances. For example, in the AIRFOIL
+dataset, it records the smallest error at 0.0014, while LBFGS and
+ADAM show slightly higher errors of 0.0024 and 0.0031, respectively.
+On the other hand, LBFGS outperforms in the BASEBALL dataset, achieving
+the lowest error at 49.78, compared to 60.56 for BFGS and 78.73 for
+ADAM. Similarly, LBFGS demonstrates the best performance in the BL
+dataset with an error of 0.01, outperforming BFGS and ADAM, which
+exhibit errors of 0.016 and 0.024, respectively. In the PLASTIC dataset,
+LBFGS again achieves the smallest error at 2.53, followed by BFGS
+with 3.27 and ADAM with 3.4. Conversely, in the MORTGAGE dataset,
+BFGS performs best, with an error of 0.54, while LBFGS and ADAM display
+larger errors of 1.54 and 2.01. In the STOCK dataset, BFGS also demonstrates
+superior performance, recording the lowest error at 3.4, whereas LBFGS
+and ADAM show significantly higher errors of 8.9 and 11.27, respectively.
+Certain datasets exhibit negligible differences in performance among
+the methods. For instance, in the CONCRETE dataset, all three methods
+produce identical errors of 0.003. Similarly, in the LASER dataset,
+the errors are nearly identical, with ADAM achieving 0.0025, BFGS
+0.0026, and LBFGS 0.0027. Overall, BFGS emerges as the most effective
+method, delivering the lowest average error and consistently strong
+results across numerous datasets. LBFGS, while slightly less efficient
+on average, demonstrates competitive performance in specific datasets
+such as BASEBALL, BL, and PLASTIC. ADAM, though occasionally effective,
+as observed in datasets like LASER, shows greater variability and
+a higher mean error, limiting its overall reliability. In conclusion,
+BFGS stands out as the most robust and dependable method, with LBFGS
+showing significant potential in select contexts.
+
+In Figure \ref{fig:statLocalClass}, the critical parameter p, which
+indicates the level of statistical significance, showed no statistically
+significant difference between the BFGS and LBFGS methods, with p=0.78.
+This high value does not meet the common significance threshold (p\textless 0.05).
+In contrast, the comparison between BFGS and ADAM revealed a statistically
+significant difference, with p=0.0017, indicating clear differentiation
+between the two methods. Similarly, the comparison between LBFGS and
+ADAM recorded p=0.0031, also below the significance level, proving
+that the two methods exhibit statistically significant differences
+in classification error performance. 
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{ls1}
+\par\end{centering}
+\caption{Statistical comparison of the experimental results using the proposed
+methods and a variety of local optimization techniques for the classification
+datasets.\label{fig:statLocalClass}}
+
+\end{figure}
+
+In Figure \ref{fig:statLocalRegression}, the results showed that
+the BFGS and LBFGS methods have no statistically significant difference,
+with p=1.0, suggesting that the two methods perform essentially the
+same regarding regression error. However, the comparison between BFGS
+and ADAM resulted in p=0.037, which is below the 0.05 threshold, highlighting
+a statistically significant difference favoring BFGS. Lastly, the
+comparison between LBFGS and ADAM recorded p=0.0054, confirming a
+statistically significant differentiation between these two methods
+as well. In summary, the results of the Wilcoxon Test demonstrate
+that BFGS and LBFGS have comparable performances in regression error,
+while they do not exhibit statistically significant differences in
+classification error. On the other hand, the differences between ADAM
+and the other two methods (BFGS and LBFGS) are statistically significant
+in both cases, indicating that ADAM shows distinct performance characteristics
+in both classification and regression error.
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{ls2}
+\par\end{centering}
+\caption{Statistical comparison of the experimental results using a variety
+of local optimization methods applied on the regression datasets.\label{fig:statLocalRegression}}
+
+\end{figure}
+
+
+\subsection{Summary of experimental results}
+
+In conclusion, the analysis conducted on the tables and figures of
+the study reveals significant findings regarding the performance of
+different machine learning models and parameters. Below is a summary
+of the key points of the statistical analysis. The analysis primarily
+focuses on the NEURALDE model and its performance compared to other
+optimization models (ADAM, BFGS, GENETIC, NEAT, RBF). Non-parametric
+statistical tests, such as the Wilcoxon Test, were utilized, which
+are suitable for data that do not follow a normal distribution. The
+statistically significant differences observed ($p<0.05$) highlight
+the consistent superiority of NEURALDE in most cases. Specifically,
+the model achieved the lowest average error rate in both classifications
+(19.78\%) and regression problems (average error of 5.56), consistently
+outperforming its competitors. Similarly, in the tables comparing
+different weight computation methods (MIGRANT, ADAPTIVE, RANDOM),
+MIGRANT demonstrated the best performance in classifications with
+an average error of 19.34\%, while RANDOM excelled in regressions
+with an average error of 5.56. The deviations among these methods
+warrant further investigation regarding error variability across datasets.
+In parameter analysis, the $a$ value (range of optimal values) and
+$p_{l}$ (periodic local optimization parameter) appear to influence
+performance differently depending on the context. For example, the
+$a$ parameter with a value of 2 achieved the lowest average error
+in classifications, while for regressions, a value of 1.5 was most
+effective. Similarly, for $p_{l}$ the value of 0.02 consistently
+showed better performance in classifications, whereas 0.01 proved
+more effective for regressions. In summary, the results underline
+the importance of selecting the appropriate model and parameters based
+on the characteristics of the data. NEURALDE stands out as the most
+robust and efficient model, significantly outperforming its competitors.
+The specific parameters and methods affect overall performance and
+should be carefully evaluated to optimize the system.
+
 \section{Conclusions\label{sec:Conclusions} }
 
 The study focuses on the development and evaluation of the NEURALDE
@@ -1782,6 +2185,15 @@ of the method to make it more accessible for large-scale problems.
 Overall, NEURALDE provides a robust foundation for further improvements
 and extensions, aiming to establish it as a key optimization method
 in machine learning.
+
+However, the proposed technique exhibits significantly increased execution
+time compared to the original training algorithm due to the periodic
+use of the differential evolution technique.\textbf{ }These problems
+can be circumvented by using parallel processing techniques such as
+the MPI interface \citep{openmpi} and the OpenMP programming library
+\citep{openmp}. Also, parallel approaches of the Differential Evolution
+\citep{pde1,pde2} ttechnique could also be incorporated to significantly
+reduce the required computing time.
 
 \vspace{6pt}
 
@@ -1932,6 +2344,39 @@ Bee Colony (ABC) Algorithm on Training Artificial Neural Networks,\textquotedbl{
 2007 IEEE 15th Signal Processing and Communications Applications,
 Eskisehir, Turkey, 2007, pp. 1-4, doi: 10.1109/SIU.2007.4298679.
 
+\bibitem{nn_init1}T.M. Varnava, A.J.Meade, An initialization method
+for feedforward artificial neural networks using polynomial bases,
+Advances in Adaptive Data Analysis \textbf{3}, pp. 385-400, 2011.
+
+\bibitem{nn_init2}I. Ivanova, M. Kubat, Initialization of neural
+networks by means of decision trees, Knowledge-Based Systems \textbf{8},
+pp. 333-344, 1995.
+
+\bibitem{nn_init3}S.S. Sodhi, P. Chandra, Interval based Weight Initialization
+Method for Sigmoidal Feedforward Artificial Neural Networks, AASRI
+Procedia \textbf{6}, pp. 19-25, 2014.
+
+\bibitem{nn_init4}K. Chumachenko, A. Iosifidis, M. Gabbouj, Feedforward
+neural networks initialization based on discriminant learning, Neural
+Networks \textbf{146}, pp. 220-229, 2022.
+
+\bibitem{nn_arch1}J. Arifovic, R. Gençay, Using genetic algorithms
+to select architecture of a feedforward artificial neural network,
+Physica A: Statistical Mechanics and its Applications \textbf{289},
+pp. 574-594, 2001.
+
+\bibitem{nn_arch2}P.G. Benardos, G.C. Vosniakos, Optimizing feedforward
+artificial neural network architecture, Engineering Applications of
+Artificial Intelligence \textbf{20}, pp. 365-382, 2007.
+
+\bibitem{nn_arch3}B.A. Garro, R.A. Vázquez, Designing Artificial
+Neural Networks Using Particle Swarm Optimization Algorithms, Computational
+Intelligence and Neuroscience, 369298, 2015. 
+
+\bibitem{nn_arch4}B. Baker, O. Gupta, N. Naik, R. Raskar, Designing
+neural network architectures using reinforcement learning. arXiv preprint
+arXiv:1611.02167, 2016.
+
 \bibitem{nnsharing1}S.J. Nowlan and G.E. Hinton, Simplifying neural
 networks by soft weight sharing, Neural Computation 4, pp. 473-493,
 1992.
@@ -2027,6 +2472,15 @@ Measurement, 69(10), 7319-7327.
 \bibitem{de_deep2}Wu, T., Li, X., Zhou, D., Li, N., \& Shi, J. (2021).
 Differential evolution based layer-wise weight pruning for compressing
 deep neural networks. Sensors, 21(3), 880.
+
+\bibitem{nn_deep1}Sze, V., Chen, Y. H., Yang, T. J., \& Emer, J.
+S. (2017). Efficient processing of deep neural networks: A tutorial
+and survey. Proceedings of the IEEE, 105(12), 2295-2329.
+
+\bibitem{nn_deep2}Samek, W., Montavon, G., Lapuschkin, S., Anders,
+C. J., \& Müller, K. R. (2021). Explaining deep neural networks and
+beyond: A review of methods and applications. Proceedings of the IEEE,
+109(3), 247-278.
 
 \bibitem{nnc}I.G. Tsoulos, D. Gavrilis, E. Glavas, Neural network
 construction and training using grammatical evolution, Neurocomputing
@@ -2250,6 +2704,13 @@ pp. 246-257, 1991.
 basis function neural networks: A review. Comput. Rev. J \textbf{1},
 pp. 52-74, 2018.
 
+\bibitem{prune}Zhu, V., Lu, Y., \& Li, Q. (2006). MW-OBS: An improved
+pruning method for topology design of neural networks. Tsinghua Science
+and Technology, 11(4), 307-312.
+
+\bibitem{fcn}Grzegorz Klima, Fast Compressed Neural Networks, available
+from \url{http://fcnn.sourceforge.net/}.
+
 \bibitem{de_migrant}J. Cheng, G. Zhang, F. Neri, Enhancing distributed
 differential evolution with multicultural migration for global numerical
 optimization. Information Sciences \textbf{247}, pp. 72-93, 2013.
@@ -2257,6 +2718,32 @@ optimization. Information Sciences \textbf{247}, pp. 72-93, 2013.
 \bibitem{de_dynamic}Wu, K., Liu, Z., Ma, N., \& Wang, D. (2022).
 A Dynamic Adaptive Weighted Differential Evolutionary Algorithm. Computational
 Intelligence and Neuroscience, 2022(1), 1318044.
+
+\bibitem{LBFGS}D.C. Liu, J. Nocedal, On the Limited Memory Method
+for Large Scale Optimization, Mathematical Programming B. \textbf{45},
+pp. 503--528, 1989.
+
+\bibitem{openmpi}Gabriel, E., Fagg, G. E., Bosilca, G., Angskun,
+T., Dongarra, J. J., Squyres, J. M., ... \& Woodall, T. S. (2004).
+Open MPI: Goals, concept, and design of a next generation MPI implementation.
+In Recent Advances in Parallel Virtual Machine and Message Passing
+Interface: 11th European PVM/MPI Users’ Group Meeting Budapest, Hungary,
+September 19-22, 2004. Proceedings 11 (pp. 97-104). Springer Berlin
+Heidelberg.
+
+\bibitem{openmp}Ayguadé, E., Copty, N., Duran, A., Hoeflinger, J.,
+Lin, Y., Massaioli, F., ... \& Zhang, G. (2008). The design of OpenMP
+tasks. IEEE Transactions on Parallel and Distributed systems, 20(3),
+404-418.
+
+\bibitem{pde1}Tasoulis, D. K., Pavlidis, N. G., Plagianakos, V. P.,
+\& Vrahatis, M. N. (2004, June). Parallel differential evolution.
+In Proceedings of the 2004 congress on evolutionary computation (IEEE
+Cat. No. 04TH8753) (Vol. 2, pp. 2023-2029). IEEE.
+
+\bibitem{pde2}Weber, M., Neri, F., \& Tirronen, V. (2011). Shuffle
+or update parallel differential evolution for large-scale optimization.
+Soft Computing, 15(11), 2089-2107.
 
 \end{thebibliography}
 
