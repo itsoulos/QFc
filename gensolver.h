@@ -41,6 +41,8 @@ class GenSolver
 		void	reset();
 		void	setBest(double *x,double y);
         void    enableWeightDecay();
+        void    localSearch(int pos);
+        int     selectWithTournament(int tournamentSize);
 		~GenSolver();
 		
 };

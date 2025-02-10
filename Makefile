@@ -588,7 +588,9 @@ demethod.o: demethod.cpp demethod.h \
 		model.h \
 		mapper.h \
 		fparser.hh \
-		kmeans.h
+		kmeans.h \
+		lbfgs.h \
+		f2c.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o demethod.o demethod.cpp
 
 doubleinterval.o: doubleinterval.cpp doubleinterval.h

@@ -202,6 +202,8 @@ void	GenSolver::calcFitnessArray()
 	double minf=-1e+10;
 	for(int i=0;i<genome_count;i++)
 	{
+        if(rand()*1.0/RAND_MAX<=0.01)
+            localSearch(i);
 		for(int j=0;j<genome_size;j++)
 			g[j]=genome[i][j];	
 		double f=fitness(g);
@@ -229,6 +231,61 @@ int	GenSolver::getCount() const
 int	GenSolver::getSize() const
 {
 	return genome_size;
+}
+
+int     GenSolver::selectWithTournament(int tournamentSize)
+{
+    int min_index=-1;
+    double min_value=1e+100;
+    for(int i=0;i<tournamentSize;i++)
+    {
+        int r = rand() % genome_count;
+        if(min_index==-1 || fitness_array[r]<min_value)
+        {
+            min_index=r;
+            min_value = fitness_array[r];
+        }
+    }
+    return min_index;
+}
+
+void    GenSolver::localSearch(int pos)
+{
+    vector<double> g;
+    g.resize(genome_size);
+
+        int randomA,randomB,randomC;
+        int tournamentSize=8;
+        do
+        {
+            randomA =  selectWithTournament(tournamentSize);
+            randomB =  selectWithTournament(tournamentSize);
+            randomC = selectWithTournament(tournamentSize);
+        }while(randomA == randomB || randomB == randomC ||
+               randomC == randomA);
+        double CR= 0.9;
+        double F = 0.8;
+        int n = genome_size;
+        int randomIndex = rand() % n;
+    for(int i=0;i<n;i++)
+    {
+        if(i==randomIndex || rand()*1.0/RAND_MAX <=CR)
+        {
+            double old_value = genome[pos][i];
+            F = -0.5 + 2.0 * rand()*1.0/RAND_MAX;
+            genome[pos][i]=genome[randomA][i]+fabs(F*(genome[randomB][i]-genome[randomC][i]));
+
+
+            for(int j=0;j<n;j++) g[j]=genome[pos][j];
+            double trial_fitness=fitness(g);
+            if(fabs(trial_fitness)<fabs(fitness_array[pos]))
+            {
+          //   printf("NEW DE VALUE[%d] = %lf=>%lf\n",pos,fitness_array[pos],trial_fitness);
+                fitness_array[pos]=trial_fitness;
+            }
+            else	genome[pos][i]=old_value;
+        }
+    }
 }
 
 void	GenSolver::nextGeneration()
@@ -365,9 +422,9 @@ void	GenSolve(Problem *p,Matrix &x,double &y,double mx,int flag)
 			stopat=variance/2.0;
 			oldBest=pop.getBestFitness();
 		}
-//		if(i%50==0) printf("iter=%4d best=%20.8lf viol=%6.2lf\n",
-//			i,pop.getBestFitness(),
-//			1.0*nn->countViolate(20.0));
+        if(i%10==0) printf("iter=%4d best=%20.8lf viol=%6.2lf\n",
+            i,pop.getBestFitness(),
+            1.0*nn->countViolate(20.0));
 	}
 //	pop.local();
 	g=pop.getBestGenome();
