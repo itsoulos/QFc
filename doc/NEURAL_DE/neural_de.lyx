@@ -826,6 +826,19 @@ The key elements introduced by the new method are the use of a modified
 \end_layout
 
 \begin_layout Standard
+However, the proposed technique presents significantly increased training
+ times for the parameters of artificial neural networks compared to other
+ techniques that have been used in the past, since it requires the periodic
+ application of a local optimization method to randomly selected elements
+ of the differential evolutionary method.
+ This phenomenon is particularly evident in large data sets or sets with
+ many inputs.
+ This additional time can be significantly reduced by using parallel processing
+ techniques.
+ 
+\end_layout
+
+\begin_layout Standard
 The rest of this article is organized as follows: in section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -921,6 +934,22 @@ literal "false"
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Standard
+In this paper, the use of artificial neural networks with an input layer,
+ a processing layer (hidden layer) and an output layer is proposed.
+ These neural networks can approximate the outputs of any dataset according
+ to the Hornik's theorem 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Hornik"
+literal "false"
+
+\end_inset
+
+ with a sufficient number of computing units in the processing layer.
  
 \end_layout
 
@@ -1615,12 +1644,12 @@ noprefix "false"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename neural_de.png
+	filename neural_de.eps
 	scale 50
 
 \end_inset
@@ -24972,6 +25001,20 @@ I.G.
 \series default
 , pp.
  269-277, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Hornik"
+literal "false"
+
+\end_inset
+
+Hornik, K., Stinchcombe, M., & White, H.
+ (1989).
+ Multilayer feedforward networks are universal approximators.
+ Neural networks, 2(5), 359-366.
 \end_layout
 
 \begin_layout Bibliography

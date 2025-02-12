@@ -826,6 +826,19 @@ The key elements introduced by the new method are the use of a modified
 \end_layout
 
 \begin_layout Standard
+However, the proposed technique presents significantly increased training
+ times for the parameters of artificial neural networks compared to other
+ techniques that have been used in the past, since it requires the periodic
+ application of a local optimization method to randomly selected elements
+ of the differential evolutionary method.
+ This phenomenon is particularly evident in large data sets or sets with
+ many inputs.
+ This additional time can be significantly reduced by using parallel processing
+ techniques.
+ 
+\end_layout
+
+\begin_layout Standard
 The rest of this article is organized as follows: in section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -921,6 +934,22 @@ literal "false"
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Standard
+In this paper, the use of artificial neural networks with an input layer,
+ a processing layer (hidden layer) and an output layer is proposed.
+ These neural networks can approximate the outputs of any dataset according
+ to the Hornik's theorem 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Hornik"
+literal "false"
+
+\end_inset
+
+ with a sufficient number of computing units in the processing layer.
  
 \end_layout
 
@@ -9334,7 +9363,17 @@ Similarly, the comparison of the proposed model with others in regression
  and with PRUNE p=0.001.
  These values confirm the statistical significance of the differences, indicatin
 g that the superiority of NEURALDE in regression problems is well-documented
- and not random, as shown in Figure [s2_new.png].
+ and not random, as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:statRegression"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -24962,6 +25001,20 @@ I.G.
 \series default
 , pp.
  269-277, 2008.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Hornik"
+literal "false"
+
+\end_inset
+
+Hornik, K., Stinchcombe, M., & White, H.
+ (1989).
+ Multilayer feedforward networks are universal approximators.
+ Neural networks, 2(5), 359-366.
 \end_layout
 
 \begin_layout Bibliography

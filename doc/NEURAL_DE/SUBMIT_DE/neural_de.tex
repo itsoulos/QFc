@@ -281,6 +281,15 @@ way, it seeks to prevent the artificial neural network from being
 driven into a state of overfitting and losing any generalization capabilities
 it possesses.
 
+However, the proposed technique presents significantly increased training
+times for the parameters of artificial neural networks compared to
+other techniques that have been used in the past, since it requires
+the periodic application of a local optimization method to randomly
+selected elements of the differential evolutionary method. This phenomenon
+is particularly evident in large data sets or sets with many inputs.
+This additional time can be significantly reduced by using parallel
+processing techniques. 
+
 The rest of this article is organized as follows: in section \ref{sec:The-proposed-method}
 the proposed algorithm is fully outlined, in section \ref{sec:Experiments}
 the datasets used in the experiments are listed accompanied by a series
@@ -304,6 +313,12 @@ the number of processing units for the neural network and the constant
 $d$ stands for the number of elements in the input pattern $\overrightarrow{x}$.
 Hence, the number of elements in the parameter vector $\overrightarrow{w}$
 are calculated as $n=\left(d+2\right)H$. 
+
+In this paper, the use of artificial neural networks with an input
+layer, a processing layer (hidden layer) and an output layer is proposed.
+These neural networks can approximate the outputs of any dataset according
+to the Hornik's theorem \citep{Hornik} with a sufficient number of
+computing units in the processing layer. 
 
 The proposed technique starts with a series of randomly selected parameter
 vectors for the artificial neural network. In the terminology of the
@@ -2485,6 +2500,10 @@ beyond: A review of methods and applications. Proceedings of the IEEE,
 \bibitem{nnc}I.G. Tsoulos, D. Gavrilis, E. Glavas, Neural network
 construction and training using grammatical evolution, Neurocomputing
 \textbf{72}, pp. 269-277, 2008.
+
+\bibitem{Hornik}Hornik, K., Stinchcombe, M., \& White, H. (1989).
+Multilayer feedforward networks are universal approximators. Neural
+networks, 2(5), 359-366.
 
 \bibitem[Author1(year)]{de_char} V. Charilogis, I.G. Tsoulos, A.
 Tzallas, E. Karvounis, Modifications for the Differential Evolution
