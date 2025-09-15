@@ -34,6 +34,16 @@ void fcMap(double *inx,double *outx){
 	double x32=inx[31];
 	double x33=inx[32];
 	double x34=inx[33];
-	outx[0]=(x5+((-01.18)*x14));
-	outx[1]=((-0.70)/9.8)*x4+01.9*x31+x15+(706.48/(-87.850))*x20;
+	double x35=inx[34];
+	double x36=inx[35];
+	double x37=inx[36];
+	double x38=inx[37];
+	double x39=inx[38];
+	double x40=inx[39];
+	double x41=inx[40];
+	double x42=inx[41];
+	double x43=inx[42];
+	double x44=inx[43];
+	outx[0]=(x36/((-999.9)*x35+cos((1.4*x3-(770.11/(-699.37))*x36))));
+	outx[1]=log(x36+(9.930/30.0)*x21+x14+((-310.003)/(-56.1))*x18+((-569.669)/300.30)*x40+(9.98/(-0.003))*x4+sqrt(x19));
 }
