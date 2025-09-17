@@ -254,12 +254,17 @@ Aimilios Psathas
 \end_inset
 
 ,
- Alexandros Tzallas
+ Nikolaos Giannakeas
 \begin_inset Formula $^{3}$
 \end_inset
 
- and Vasileios Charilogis
+,
+ Alexandros Tzallas
 \begin_inset Formula $^{4}$
+\end_inset
+
+ and Vasileios Charilogis
+\begin_inset Formula $^{5}$
 \end_inset
 
 
@@ -335,12 +340,23 @@ Department of Informatics and Telecommunications,
 Department of Informatics and Telecommunications,
  University of Ioannina,
  Greece;
- tzallas@uoi.gr
+ giannakeas@uoi.gr
 \begin_inset Newline newline
 \end_inset
 
 
 \begin_inset Formula $^{4}\quad$
+\end_inset
+
+Department of Informatics and Telecommunications,
+ University of Ioannina,
+ Greece;
+ tzallas@uoi.gr
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $^{5}\quad$
 \end_inset
 
 Department of Informatics and Telecommunications,
@@ -385,26 +401,10 @@ allowing for a clear comparison of treatment effects.
 \end_layout
 
 \begin_layout Keywords
-keyword 1;
- keyword 2;
- keyword 3 (List three to ten pertinent keywords specific to the article;
- yet reasonably common within the subject discipline.)
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-clearpage
-\end_layout
-
-\end_inset
-
-
+Machine learning;
+ Evolutionary algorithms;
+ Genetic Programming;
+ Grammatical Evolution
 \end_layout
 
 \begin_layout Section
@@ -415,8 +415,2351 @@ Introduction
 Materials and Methods
 \end_layout
 
+\begin_layout Subsection
+Preliminaries 
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Preliminaries"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The chromosomes in Grammatical evolution stand for production rules of the given BNF grammar.
+ Any BNF grammar can be described as a tuple 
+\series bold
+
+\begin_inset Formula $G=\left(N,T,S,P\right)$
+\end_inset
+
+
+\series default
+,
+ where
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $N$
+\end_inset
+
+ 
+\series default
+is a set that contains the non-terminal symbols of the grammar.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $T$
+\end_inset
+
+ 
+\series default
+is the set of terminal symbols.
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ represents that start symbol of the grammar.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $P$
+\end_inset
+
+ 
+\series default
+is the production rules of the grammar.
+ Usually these rules are in the form 
+\series bold
+
+\begin_inset Formula $A\rightarrow a$
+\end_inset
+
+ 
+\series default
+or
+\series bold
+ 
+\begin_inset Formula $A\rightarrow aB,\ A,B\in N,\ a\in T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The original BNF grammar is extended by enumerating the production rules.
+ For each non-terminal symbol the production rules are given a sequence number starting from 0,
+ which will help the Grammar Evolution process in choosing the next production rule.
+ As an example,
+ consider the extended BNF grammar shown in
+\series bold
+ 
+\series default
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+
+\series bold
+ 
+\series default
+The non - terminal symbols are enclosed in the <> symbols.
+ The sequence numbers of the production rules are inside the parentheses of the extended grammar.
+
+\series bold
+ 
+\series default
+The constant N denotes the dimension of the input data.
+
+\series bold
+ 
+\series default
+The Grammatical Evolution production procedure initiates from the start symbol of the grammar and through a series of steps creates a program,
+ by replacing non - terminal symbols with the right hand of the selected production rule.
+ Every rule is selected using the following two steps:
+\end_layout
+
+\begin_layout Itemize
+Read the next element V from the chromosome.
+\end_layout
+
+\begin_layout Itemize
+The next rule is selected through the equation Rule = V mod NR,
+ where NR is the number of production rules for the current non – terminal symbol.
+ 
+\end_layout
+
+\begin_layout Standard
+As an example of production consider the chromosome:
+\begin_inset Formula 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+
+\end_inset
+
+ with 
+\begin_inset Formula $N=3$
+\end_inset
+
+.
+ The constant 
+\begin_inset Formula $N$
+\end_inset
+
+ denotes the number of original features in the used dataset.
+ The expression 
+\begin_inset Formula $f(x)=x_{2}+\cos\left(x_{3}\right)$
+\end_inset
+
+ is produced through the steps shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:table_with_steps"
+nolink "false"
+
+\end_inset
+
+.
+ This transformation of the initial 3 features of a hypothetical problem into just 1 artificial feature also shows the dynamics of the feature construction method,
+ since with its use there can be a dramatic reduction in the dimension of the objective problem while preserving all the necessary information.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+An example of a BNF grammar.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:BNF-grammar-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+S::=<expr>   (0) 
+\end_layout
+
+\begin_layout LyX-Code
+<expr> ::=  (<expr> <op> <expr>)  (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | <func> ( <expr> )    (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           |<terminal>            (2) 
+\end_layout
+
+\begin_layout LyX-Code
+<op> ::=     +      (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | -      (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           | *      (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           | /      (3)
+\end_layout
+
+\begin_layout LyX-Code
+<func> ::=   sin  (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | cos  (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           |exp   (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           |log   (3)
+\end_layout
+
+\begin_layout LyX-Code
+<terminal>::=<xlist>                (0)                      
+\end_layout
+
+\begin_layout LyX-Code
+           |<digitlist>.<digitlist> (1)
+\end_layout
+
+\begin_layout LyX-Code
+<xlist>::=x1    (0)              
+\end_layout
+
+\begin_layout LyX-Code
+           | x2 (1)              
+\end_layout
+
+\begin_layout LyX-Code
+           ………             
+\end_layout
+
+\begin_layout LyX-Code
+           | xN (N)
+\end_layout
+
+\begin_layout LyX-Code
+<digitlist>::=<digit>                  (0)                 
+\end_layout
+
+\begin_layout LyX-Code
+           | <digit><digit>            (1)
+\end_layout
+
+\begin_layout LyX-Code
+           | <digit><digit><digit>     (2)
+\end_layout
+
+\begin_layout LyX-Code
+<digit>  ::= 0 (0)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 1 (1)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 2 (2)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 3 (3)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 4 (4)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 5 (5)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 6 (6)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 7 (7)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 8 (8)             
+\end_layout
+
+\begin_layout LyX-Code
+           | 9 (9)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement document
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The steps performed to produce a program from the used grammar.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:table_with_steps"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+String
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chromosome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Operation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<expr>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9,8,6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9\mod 3=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<expr><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8\mod 3=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<terminal><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6,4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $6\mod 2=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(<xlist><op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4\mod 3=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2<op><expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16,10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16\mod 4=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+<expr>)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10,17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10\mod 3=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+<func>(<expr>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17,23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $17\mod 4=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<expr>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23,8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $23\mod 2=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<terminal>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8,14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $8\mod 2=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(<xlist>))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $14\mod 3=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(x2+cos(x3))
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The feature construction method
+\end_layout
+
+\begin_layout Standard
+The feature construction technique constructs artificial features from the original ones using the Grammatical Evolution procedure and the main steps are graphically illustrated in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:fcSchema"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../../IntervalGenetic/doc/IFC_PAPER/fc_schema.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schematic representation of the original feature construction technique that utilizes Grammatical Evolution.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fcSchema"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+This process creates artificial features which are evaluated using a classifier such as an artificial neural network 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nn1,nn2"
+literal "false"
+
+\end_inset
+
+ or a Radial Basis Function (RBF) network 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbf1,rbf2"
+literal "false"
+
+\end_inset
+
+.
+ The main steps of the process are:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Initialization
+\series default
+ step.
+ 
+\series bold
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Read 
+\series default
+the train data of the objective problem.
+ The train data have 
+\begin_inset Formula $M$
+\end_inset
+
+ pairs
+\series bold
+ 
+\begin_inset Formula $\left(x_{i},t_{i}\right),\ i=1..M$
+\end_inset
+
+
+\series default
+ where 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ is the expected output for pattern 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ the parameters of the method:
+
+\series bold
+ 
+\begin_inset Formula $N_{G}$
+\end_inset
+
+
+\series default
+ as the number of allowed generations,
+ 
+\series bold
+
+\begin_inset Formula $N_{C}$
+\end_inset
+
+
+\series default
+ as the total number of chromosomes,
+
+\series bold
+ 
+\begin_inset Formula $p_{s}$
+\end_inset
+
+
+\series default
+ as the selection rate and 
+\series bold
+
+\begin_inset Formula $p_{m}$
+\end_inset
+
+
+\series default
+ as the mutation rate.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Define
+\series default
+ as 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ the number of features that will be constructed.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Initialize
+\series default
+ the chromosomes of the population as random integers.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ iter=1
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Genetic step
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+For 
+\begin_inset Formula $i=1,\ldots,N_{G}$
+\end_inset
+
+ do
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ using the Grammatical Evolution procedure of mapping,
+ a set of 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ artificial features for the corresponding chromosome 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Perform
+\series default
+ a transformation of the original features using the previously produced features.
+ Denote the new train set as 
+\begin_inset Formula $\left(x_{g_{i},j},t_{j}\right),\ j=1,..M$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apply 
+\series default
+a machine learning model 
+\begin_inset Formula $C$
+\end_inset
+
+ (such as an artificial neural network) on the new data and train the model 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ The output value of this model is defined as 
+\begin_inset Formula $C(x)$
+\end_inset
+
+.
+ The fitness 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ is calculated as:
+\begin_inset Formula 
+\begin{equation}
+f_{i}=\sum_{j=1}^{M}\left(C\left(x_{g_{i},j}\right)-t_{j}\right)^{2}
+\end{equation}
+
+\end_inset
+
+This equation defined the training error of model 
+\begin_inset Formula $C$
+\end_inset
+
+ for the modified train set 
+\begin_inset Formula $\left(x_{g_{i},j},t_{j}\right),\ j=1,..M$
+\end_inset
+
+.
+ This fitness function can be thought of as a performance measure of using the artificial features produced by Grammatical Evolution.
+ The most promising features will have a lower price than the worst features.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Perform
+\series default
+ the selection procedure,
+ where initially the chromosomes are sorted according to their fitness.
+ The best
+\series bold
+ 
+\begin_inset Formula $\left(1-p_{s}\right)\times N_{C}$
+\end_inset
+
+
+\series default
+ chromosomes are copied to the next generation of the population.
+
+\series bold
+ 
+\series default
+The remaining chromosomes will be replaced by offsprings created during the crossover procedure.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Perform
+\series default
+ the crossover procedure.
+ This process will create 
+\begin_inset Formula $p_{s}\times N_{c}$
+\end_inset
+
+ offsprings.
+ Initially two distinct chromosomes are selected for every pair of constructed offsprings.
+ The selection is performed using the tournament selection.
+
+\series bold
+ 
+\series default
+The procedure of tournament selection has the following steps:
+ A set of 
+\begin_inset Formula $T_{s}>1$
+\end_inset
+
+ randomly selected chromosomes is created and the chromosome with the lowest fitness value in this set is selected as parent.
+ For each pair of 
+\begin_inset Formula $(z,w)$
+\end_inset
+
+ parents,
+ two offsprings 
+\begin_inset Formula $\tilde{z}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{w}$
+\end_inset
+
+ are produced utilizing the so - called one point crossover,
+ which is graphically shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:One-point-crossover"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+ This crossover method was used also in the original paper of the Grammatical Evolution technique
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ge1"
+literal "false"
+
+\end_inset
+
+.
+ As an example consider the chromosome 
+\begin_inset Formula 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+
+\end_inset
+
+show in the previous subsection and the chromosome
+\begin_inset Formula 
+\[
+y=[10,9,2,5,4,3,7,8,10,12]
+\]
+
+\end_inset
+
+The chromosome 
+\begin_inset Formula $x$
+\end_inset
+
+ produces the expression 
+\begin_inset Formula $f_{1}(x)=x_{2}+\cos\left(x_{3}\right)$
+\end_inset
+
+ and the chromosome 
+\begin_inset Formula $y$
+\end_inset
+
+ produces the expression 
+\begin_inset Formula $f_{2}(x)=\sin\left(x_{1}\right)$
+\end_inset
+
+ using the grammar of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ and 
+\begin_inset Formula $N=3$
+\end_inset
+
+.
+ If the position 3 is selected as the cutting point for the one point crossover procedure,
+ then the offspring 
+\begin_inset Formula 
+\[
+z=\left[10,9,2,4,16,10,17,23,8,14\right]
+\]
+
+\end_inset
+
+and the valid expression 
+\begin_inset Formula $f_{3}\left(x\right)=\cos\left(x_{2}\right)$
+\end_inset
+
+ will be produded using the grammer of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BNF-grammar-of"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Perform
+\series default
+ the mutation procedure.
+ For each element of every chromosome,
+ a random number 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+ is selected.
+ The corresponding element is altered if 
+\begin_inset Formula $r\le p_{m}$
+\end_inset
+
+.
+ In most cases of Genetic Algorithms,
+ the mutation rate takes small values,
+ e.g.
+ 1-5%,
+ in order for random changes to occur in the chromosomes,
+ on the one hand,
+ leading the optimization to search for the total minimum,
+ but on the other hand,
+ not to lose good values that have been discovered in some generation of the algorithm.
+ As an example of the mutation procedure consider the chromosome 
+\begin_inset Formula 
+\[
+x=\left[9,8,6,4,16,10,17,23,8,14\right]
+\]
+
+\end_inset
+
+used in the previous subsection that constructs the artificial feature 
+\begin_inset Formula $f(x)=x_{2}+\cos\left(x_{3}\right)$
+\end_inset
+
+ .
+ If the mutation procedure alters the value 17 to 16 the new chromosome will be the following:
+\begin_inset Formula 
+\[
+x'=\left[9,8,6,4,16,10,16,23,8,14\right]
+\]
+
+\end_inset
+
+and subsequently the new feature will be 
+\begin_inset Formula $f(x)=x_{2}+\sin\left(x_{3}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+EndFor
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ iter=iter+1
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+If
+\series default
+ 
+\begin_inset Formula $\mbox{iter}\le N_{G}$
+\end_inset
+
+ goto 
+\series bold
+Genetic
+\series default
+ Step,
+ else the process is terminated and the best chromosome 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ is obtained.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apply 
+\series default
+the 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ features that correspond to 
+\begin_inset Formula $g^{*}$
+\end_inset
+
+ to the test set.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apply
+\series default
+ a machine learning model to the new test set and report the corresponding test error.
+\series bold
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename cross2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+One point crossover method,
+ used in the Grammatical Evolution procedure.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:One-point-crossover"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Results
+\end_layout
+
+\begin_layout Standard
+The code used in the experiments was code in the C++ programming language and for the optimization methods the freely available Optimus programming tool was incorporated 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "optimus"
+literal "false"
+
+\end_inset
+
+.
+ The experiments were conducted on machine with 128GB of ram,
+ running the Debian Linux operating system.
+ Each experiment was executed 30 times and the average classification error was measured and depicted in the related tables and graphs.
+ Also,
+ the 10 - fold cross validation technique was incorporated for the validation of the experimental results.
+ The values for the parameters of the proposed method are depicted in Table  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:settings"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+
+\series bold
+ 
+\series default
+
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The values for the parameters for the current work.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:settings"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PARAMETER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MEANING
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VALUE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N_{g}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of maximum allowed generations.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N_{c}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of chromosomes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{s}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Selection rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p_{m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mutation rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of processing nodes for neural network
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Standard
+In the experimental tables the following notation is used:
+\end_layout
+
+\begin_layout Enumerate
+The column DATASET represents the used dataset.
+\end_layout
+
+\begin_layout Enumerate
+The column RBF stands for the application of an RBF neural network 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rbf1,rbf2"
+literal "false"
+
+\end_inset
+
+ with 10 processing nodes on the corresponding dataset.
+\end_layout
+
+\begin_layout Enumerate
+The column BFGS represents the incorporation of the BFGS optimization method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "powell"
+literal "false"
+
+\end_inset
+
+ to train a neural network with 10 processing nodes.
+\end_layout
+
+\begin_layout Enumerate
+The column GEN represents the application of a genetic algorithm 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "geneticnn"
+literal "false"
+
+\end_inset
+
+ on the training process of a neural network with 10 processing nodes.
+\end_layout
+
+\begin_layout Enumerate
+The column PCA stands for the application of the PCA method 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnpca1,nnpca2,nnpca3"
+literal "false"
+
+\end_inset
+
+ to construct two artificial features from the original ones.
+ Afterwards,
+ a neural network with 10 processing nodes trained using the BFGS method is applied on the new datasets.
+\end_layout
+
+\begin_layout Enumerate
+The column NNC stands for the application of a neural network constructed with Grammatical Evolution 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nnc"
+literal "false"
+
+\end_inset
+
+ on the corresponding dataset.
+\end_layout
+
+\begin_layout Enumerate
+The column GENCLASS represents the usage of a method that constructs classification rules using Grammatical Evolution 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "genclass"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The column FC2 is used to represent the application of a genetic algorithm to train a neural network on the dataset produced by the construction of two artificial features using the feature construction method.
+\end_layout
+
+\begin_layout Enumerate
+The column FC3 is used to represent the application of a genetic algorithm to train a neural network on the dataset produced by the construction of three artificial features using the feature construction method.
+\end_layout
+
+\begin_layout Enumerate
+The column FC4 is used to represent the application of a genetic algorithm to train a neural network on the dataset produced by the construction of four artificial features using the feature construction method.
+\end_layout
+
+\begin_layout Enumerate
+The row AVERAGE represents the average classification error for all datasets and the corresponding method.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experimental results for various exercises.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:exper"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="10">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+DATASET
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+RBF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+BFGS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+GEN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+PCA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+NNC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+GENCLASS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+FC2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+FC3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+FC4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+EXERCISE 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+38.65%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+49.95%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+47.61%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+47.35%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+42.07%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.98%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+20.16%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+16.08%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+14.84%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+EXERCISE 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+44.90%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+46.08%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+46.39%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+38.07%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+34.02%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+29.48%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+26.51%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+24.02%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+EXERCISE 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+43.58%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+53.23%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+42.91%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+43.02%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+32.23%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+26.49%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+21.43%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+22.23%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+AVERAGE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -431,247 +2774,27 @@ Conclusions
 \end_layout
 
 \begin_layout Author Contributions
-For research articles with several authors,
- a short paragraph specifying their individual contributions must be provided.
- The following statements should be used 
-\begin_inset Quotes eld
-\end_inset
-
-Conceptualization,
- X.X.
- and Y.Y.;
- methodology,
- X.X.;
- software,
- X.X.;
- validation,
- X.X.,
- Y.Y.
- and Z.Z.;
- formal analysis,
- X.X.;
- investigation,
- X.X.;
- resources,
- X.X.;
- data curation,
- X.X.;
- writing—
-original draft preparation,
- X.X.;
- writing—
-review and editing,
- X.X.;
- visualization,
- X.X.;
- supervision,
- X.X.;
- project administration,
- X.X.;
- funding acquisition,
- Y.Y.
- All authors have read and agreed to the published version of the manuscript.
-\begin_inset Quotes erd
-\end_inset
-
-,
- please turn to the 
-\begin_inset CommandInset href
-LatexCommand href
-name "CRediT taxonomy"
-target "http://img.mdpi.org/data/contributor-role-instruction.pdf"
-literal "false"
-
-\end_inset
-
-for the term explanation.
- Authorship must be limited to those who have contributed substantially to the work
-\begin_inset space ~
-\end_inset
-
-reported.
+Fo
 \end_layout
 
 \begin_layout Funding
-Please add:
- 
-\begin_inset Quotes eld
-\end_inset
-
-This research received no external funding
-\begin_inset Quotes erd
-\end_inset
-
- or 
-\begin_inset Quotes eld
-\end_inset
-
-This research was funded by NAME OF FUNDER grant number XXX.
-\begin_inset Quotes erd
-\end_inset
-
- and and 
-\begin_inset Quotes eld
-\end_inset
-
-The APC was funded by XXX
-\begin_inset Quotes erd
-\end_inset
-
-.
- Check carefully that the details given are accurate and use the standard spelling of funding agency names at 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://search.crossref.org/funding
-\end_layout
-
-\end_inset
-
-,
- any errors may affect your future funding.
+This research has been financed by the European Union :
+ Next Generation EU through the Program Greece 2.0 National Recovery and Resilience Plan ,
+ under the call RESEARCH – CREATE – INNOVATE,
+ project name “iCREW:
+ Intelligent small craft simulator for advanced crew training using Virtual Reality techniques" (project code:TAEDK-06195).
 \end_layout
 
 \begin_layout Institutional Review
-In this section,
- you should add the Institutional Review Board Statement and approval number,
- if relevant to your study.
- You might choose to exclude this statement if the study did not require ethical approval.
- Please note that the Editorial Office might ask you for further information.
- Please add “The study was conducted in accordance with the Declaration of Helsinki,
- and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans.
- OR “The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals.
- OR “Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR “Not applicable” for studies not involving humans or animals.
+Not applicable.
 \end_layout
 
 \begin_layout Informed Consent
-Any research article describing a study involving humans should contain this statement.
- Please add 
-\begin_inset Quotes eld
-\end_inset
-
-Informed consent was obtained from all subjects involved in the study.
-\begin_inset Quotes erd
-\end_inset
-
- OR 
-\begin_inset Quotes eld
-\end_inset
-
-Patient consent was waived due to REASON (please provide a detailed justification).
-\begin_inset Quotes erd
-\end_inset
-
- OR 
-\begin_inset Quotes eld
-\end_inset
-
-Not applicable
-\begin_inset Quotes erd
-\end_inset
-
- for studies not involving humans.
- You might also choose to exclude this statement if the study did not involve humans.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-As LyX does not allow multiple paragraphs in command type environments,
- the following ERT is used to introduce a blank line in the LaTeX output.
-\end_layout
-
-\end_inset
-
-Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves).
- Please state 
-\begin_inset Quotes eld
-\end_inset
-
-Written informed consent has been obtained from the patient(s) to publish this paper
-\begin_inset Quotes erd
-\end_inset
-
- if applicable.
-\end_layout
-
-\begin_layout Data Availability
-We encourage all authors of articles published in MDPI journals to share their research data.
- In this section,
- please provide details regarding where data supporting reported results can be found,
- including links to publicly archived datasets analyzed or generated during the study.
- Where no new data were created,
- or where data is unavailable due to privacy or ethical re-strictions,
- a statement is still required.
- Suggested Data Availability Statements are available in section “MDPI Research Data Policies” at 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-https://www.mdpi.com/ethics
-\end_layout
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Acknowledgments
-In this section you can acknowledge any support given which is not covered by the author contribution or funding sections.
- This may include administrative and technical support,
- or donations in kind (e.g.,
- materials used for experiments).
- Where GenAI has been used for purposes such as generating text,
- data,
- or graphics,
- or for study design,
- data collection,
- analysis,
- or interpretation of data,
- please add “During the preparation of this manuscript/study,
- the author(s) used [tool name,
- version information] for the purposes of [description of use].
- The authors have reviewed and edited the output and take full responsibility for the content of this publication.”
+Not applicable.
 \end_layout
 
 \begin_layout Conflicts of Interest
-Declare conflicts of interest or state 
-\begin_inset Quotes eld
-\end_inset
-
 The authors declare no conflicts of interest.
-\begin_inset Quotes erd
-\end_inset
-
- Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results.
- Any role of the funders in the design of the study;
- in the collection,
- analyses or interpretation of data;
- in the writing of the manuscript;
- or in the decision to publish the results must be declared in this section.
- If there is no role,
- please state 
-\begin_inset Quotes eld
-\end_inset
-
-The funders had no role in the design of the study;
- in the collection,
- analyses,
- or interpretation of data;
- in the writing of the manuscript;
- or in the decision to publish the
-\begin_inset space ~
-\end_inset
-
-results
-\begin_inset Quotes erd
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Begin Whole Page
@@ -728,189 +2851,307 @@ References
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author1(year)"
-key "ref-journal"
-literal "false"
+key "ge1"
+literal "true"
 
 \end_inset
 
- Author
-\begin_inset space ~
-\end_inset
-
-1,
- T.
- The title of the cited article.
- 
-\emph on
-Journal Abbreviation
-\emph default
+M.
+ O’Neill,
+ C.
+ Ryan,
+ Grammatical evolution,
+ IEEE Trans.
+ Evol.
+ Comput.
  
 \series bold
-2008
+5,
+\series default
+pp.
+ 349–358,
+ 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn1"
+literal "true"
+
+\end_inset
+
+C.
+ Bishop,
+ Neural Networks for Pattern Recognition,
+ Oxford University Press,
+ 1995.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "nn2"
+literal "true"
+
+\end_inset
+
+G.
+ Cybenko,
+ Approximation by superpositions of a sigmoidal function,
+ Mathematics of Control Signals and Systems 
+\series bold
+2
 \series default
 ,
- 
-\emph on
+ pp.
+ 303-314,
+ 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2025)"
+key "optimus"
+literal "false"
+
+\end_inset
+
+I.G.
+ Tsoulos,
+ V.
+ Charilogis,
+ G.
+ Kyrou,
+ V.N.
+ Stavrou,
+ A.
+ Tzallas,
+ Journal of Open Source Software 
+\series bold
 10
-\emph default
+\series default
 ,
- 142–149.
+ 7584,
+ 2025.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author2(year)"
-key "ref-book1"
+label "(1991)"
+key "rbf1"
 literal "false"
 
 \end_inset
 
- Author
-\begin_inset space ~
+J.
+ Park and I.
+ W.
+ Sandberg,
+ Universal Approximation Using Radial-Basis-Function Networks,
+ Neural Computation 
+\series bold
+3
+\series default
+,
+ pp.
+ 246-257,
+ 1991.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf2"
+literal "false"
+
 \end_inset
 
-2,
- L.
- The title of the cited contribution.
- In 
-\emph on
-The Book Title
-\emph default
-;
- Editor1,
- F.,
- Editor2,
+G.A.
+ Montazer,
+ D.
+ Giveki,
+ M.
+ Karami,
+ H.
+ Rastegar,
+ Radial basis function neural networks:
+ A review.
+ Comput.
+ Rev.
+ J 
+\series bold
+1
+\series default
+,
+ pp.
+ 52-74,
+ 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(1989)"
+key "powell"
+literal "false"
+
+\end_inset
+
+M.J.D Powell,
+ A Tolerant Algorithm for Linearly Constrained Optimization Calculations,
+ Mathematical Programming 
+\series bold
+45
+\series default
+,
+ pp.
+ 547-566,
+ 1989.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(1989)"
+key "geneticnn"
+literal "false"
+
+\end_inset
+
+Reynolds,
+ J.,
+ Rezgui,
+ Y.,
+ Kwan,
  A.,
- Eds.;
- Publishing House:
- City,
- Country,
- 2007;
- pp.
- 32–58.
+ & Piriou,
+ S.
+ (2018).
+ A zone-level,
+ building energy optimisation combining an artificial neural network,
+ a genetic algorithm,
+ and model predictive control.
+ Energy,
+ 151,
+ 729-739.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author3(year)"
-key "ref-book2"
+key "nnpca1"
 literal "false"
 
 \end_inset
 
- Author 1,
- A.;
- Author 2,
- B.
- 
-\shape italic
-Book Title
-\shape default
+Burcu Erkmen,
+ Tülay Yıldırım,
+ Improving classification performance of sonar targets by applying general regression neural network with PCA,
+ Expert Systems with Applications 
+\series bold
+35
+\series default
 ,
- 3rd ed.;
- Publisher:
- Publisher Location,
- Country,
- 2008;
  pp.
- 154–196.
+ 472-475,
+ 2008.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author4(year)"
-key "ref-unpublish"
+key "nnpca2"
 literal "false"
 
 \end_inset
 
- Author 1,
- A.B.;
- Author 2,
- C.
- Title of Unpublished Work.
- 
-\shape italic
-Abbreviated Journal Name
-\shape default
- year,
- 
-\shape italic
-phrase indicating stage of publication (submitted;
- accepted;
- in press)
-\shape default
-.
+Jing Zhou,
+ Aihuang Guo,
+ Branko Celler,
+ Steven Su,
+ Fault detection and identification spanning multiple processes by integrating PCA with neural network,
+ Applied Soft Computing 
+\series bold
+14
+\series default
+,
+ pp.
+ 4-11,
+ 2014.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author5(year)"
-key "ref-url"
+key "nnpca3"
 literal "false"
 
 \end_inset
 
- Title of Site.
- Available online:
- URL (accessed on Day Month Year).
- 
+Ravi Kumar G.,
+ Nagamani K.,
+ Anjan Babu G.,
+ A Framework of Dimensionality Reduction Utilizing PCA for Neural Network Prediction.
+ In:
+ Borah S.,
+ Emilia Balas V.,
+ Polkowski Z.
+ (eds) Advances in Data Science and Management.
+ Lecture Notes on Data Engineering and Communications Technologies,
+ vol 37.
+ Springer,
+ Singapore.
+ 2020.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author6(year)"
-key "ref-proceeding"
+key "nnc"
 literal "false"
 
 \end_inset
 
- Author 1,
- A.B.;
- Author 2,
- C.D.;
- Author 3,
- E.F.
- Title of presentation.
- In Proceedings of the Name of the Conference,
- Location of Conference,
- Country,
- Date of Conference (Day Month Year);
- Abstract Number (optional),
- Pagination (optional).
+I.G.
+ Tsoulos,
+ D.
+ Gavrilis,
+ E.
+ Glavas,
+ Neural network construction and training using grammatical evolution,
+ Neurocomputing 
+\series bold
+72
+\series default
+,
+ pp.
+ 269-277,
+ 2008.
 \end_layout
 
 \begin_layout Bibliography
-\labelwidthstring 999
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Author7(year)"
-key "ref-thesis"
+label "(1989)"
+key "genclass"
 literal "false"
 
 \end_inset
 
- Author 1,
- A.B.
- Title of Thesis.
- Level of Thesis,
- Degree-Granting University,
- Location of University,
- Date of Completion.
+Nikolaos Anastasopoulos and Ioannis G.
+ Tsoulos and Alexandros Tzallas,
+ GenClass:
+ A parallel tool for data classification based on Grammatical Evolution,
+ SoftwareX,
+ 16,
+ 100830,
+ 2021.
 \end_layout
 
 \begin_layout Standard
