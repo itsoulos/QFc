@@ -65,8 +65,8 @@ double 	OsamaRbf::train1()
     double mse = 0;
         double accuracy=0;
 
-        const int num_iterations=10;
-        const double learning_rate=0.005;
+        const int num_iterations=1000;
+        const double learning_rate=0.001;
         // Train the second layer weights
             mse=0.0;
 

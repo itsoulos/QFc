@@ -1546,20 +1546,11 @@ nolink "false"
 \end_inset
 
  is selected.
- The underlying element is altered randomly when  
+ The underlying element is altered randomly when 
 \begin_inset Formula $r\le p_{m}$
 \end_inset
 
 .
- In most cases of Genetic Algorithms,
- the mutation rate takes small values,
- e.g.
- 1-5%,
- in order for random changes to occur in the chromosomes,
- on the one hand,
- leading the optimization to search for the total minimum,
- but on the other hand,
- not to lose good values that have been discovered in some generation of the algorithm.
  
 \end_layout
 
