@@ -490,9 +490,6 @@ In the experimental tables the following notation is used:
 \item The column DATASET represents the used dataset.
 \item The column RBF stands for the application of an RBF neural network
 \citep{rbf1,rbf2} with 10 processing nodes on the corresponding dataset.
-\item The column BFGS represents the incorporation of the BFGS optimization
-method \citep{powell} to train a neural network with 10 processing
-nodes.
 \item The column GEN represents the application of a genetic algorithm \citep{geneticnn}
 on the training process of a neural network with 10 processing nodes.
 \item The column PCA stands for the application of the PCA method \citep{nnpca1,nnpca2,nnpca3}
@@ -516,22 +513,59 @@ of four artificial features using the feature construction method.
 datasets and the corresponding method.
 \end{enumerate}
 \begin{table}[H]
-
 \caption{Experimental results for various exercises.\label{tab:exper}}
 
 \raggedright{}{\footnotesize{}%
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline 
-{\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize BFGS} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
+{\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
 \hline 
 \hline 
-{\footnotesize EXERCISE 1} & {\footnotesize 38.65\%} & {\footnotesize 49.95\%} & {\footnotesize 47.61\%} & {\footnotesize 47.35\%} & {\footnotesize 42.07\%} & {\footnotesize 29.98\%} & {\footnotesize 20.16\%} & {\footnotesize 16.08\%} & {\footnotesize 14.84\%}\tabularnewline
+{\footnotesize EXERCISE\_0} & {\footnotesize 40.86\%} & {\footnotesize 39.63\%} & {\footnotesize 44.70\%} & {\footnotesize 32.57\%} & {\footnotesize 25.52\%} & {\footnotesize 11.39\%} & {\footnotesize 11.06\%} & {\footnotesize 10.35\%}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 2} & {\footnotesize 44.90\%} & {\footnotesize 46.08\%} & {\footnotesize 46.39\%} &  & {\footnotesize 38.07\%} & {\footnotesize 34.02\%} & {\footnotesize 29.48\%} & {\footnotesize 26.51\%} & {\footnotesize 24.02\%}\tabularnewline
+{\footnotesize EXERCISE 1} & {\footnotesize 38.65\%} & {\footnotesize 47.61\%} & {\footnotesize 47.35\%} & {\footnotesize 42.07\%} & {\footnotesize 29.98\%} & {\footnotesize 20.16\%} & {\footnotesize 16.08\%} & {\footnotesize 14.84\%}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 3} & {\footnotesize 43.58\%} & {\footnotesize 53.23\%} & {\footnotesize 42.91\%} &  & {\footnotesize 43.02\%} & {\footnotesize 32.23\%} & {\footnotesize 26.49\%} & {\footnotesize 21.43\%} & {\footnotesize 22.23\%}\tabularnewline
+{\footnotesize EXERCISE 2} & {\footnotesize 37.57\%} & {\footnotesize 35.33\%} & {\footnotesize 40.46\%} & {\footnotesize 35.01\%} & {\footnotesize 31.34\%} & {\footnotesize 22.50\%} & {\footnotesize 19.78\%} & {\footnotesize 22.10\%}\tabularnewline
 \hline 
-{\footnotesize AVERAGE} &  &  &  &  &  &  &  &  & \tabularnewline
+{\footnotesize EXERCISE 3} & {\footnotesize 41.64\%} & {\footnotesize 39.17\%} & {\footnotesize 43.46\%} & {\footnotesize 35.88\%} & {\footnotesize 29.00\%} & {\footnotesize 19.79\%} & {\footnotesize 17.39\%} & {\footnotesize 19.91\%}\tabularnewline
+\hline 
+\end{tabular}}{\footnotesize\par}
+\end{table}
+\begin{table}[H]
+\caption{Precision values.\label{tab:Precision-values.}}
+
+\raggedright{}{\footnotesize{}%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+{\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
+\hline 
+\hline 
+{\footnotesize EXERCISE\_0} & {\footnotesize 58.93\%} & {\footnotesize 60.30\%} & {\footnotesize 55.89\%} & {\footnotesize 67.34\%} & {\footnotesize 76.09\%} & {\footnotesize 88.51\%} & {\footnotesize 88.87\%} & {\footnotesize 89.82\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 1} & {\footnotesize 61.99\%} & {\footnotesize 49.57\%} & {\footnotesize 58.12\%} & {\footnotesize 59.48\%} & {\footnotesize 71.27\%} & {\footnotesize 79.45\%} & {\footnotesize 83.66\%} & {\footnotesize 85.10\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 2} & {\footnotesize 61.61\%} & {\footnotesize 72.58\%} & {\footnotesize 58.21\%} & {\footnotesize 64.62\%} & {\footnotesize 69.02\%} & {\footnotesize 77.78\%} & {\footnotesize 80.27\%} & {\footnotesize 78.01\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 3} & {\footnotesize 58.33\%} & {\footnotesize 60.80\%} & {\footnotesize 56.63\%} & {\footnotesize 64.22\%} & {\footnotesize 71.52\%} & {\footnotesize 80.29\%} & {\footnotesize 82.88\%} & {\footnotesize 80.30\%}\tabularnewline
+\hline 
+\end{tabular}}{\footnotesize\par}
+\end{table}
+\begin{table}[H]
+\caption{Recall values.\label{tab:Recall-values.}}
+
+\raggedright{}{\footnotesize{}%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline 
+{\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
+\hline 
+\hline 
+{\footnotesize EXERCISE\_0} & {\footnotesize 58.84\%} & {\footnotesize 60.27\%} & {\footnotesize 55.85\%} & {\footnotesize 68.92\%} & {\footnotesize 74.99\%} & {\footnotesize 88.25\%} & {\footnotesize 88.49\%} & {\footnotesize 89.27\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 1} & {\footnotesize 61.90\%} & {\footnotesize 76.55\%} & {\footnotesize 60.45\%} & {\footnotesize 62.56\%} & {\footnotesize 71.11\%} & {\footnotesize 79.74\%} & {\footnotesize 83.92\%} & {\footnotesize 85.42\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 2} & {\footnotesize 62.55\%} & {\footnotesize 64.58\%} & {\footnotesize 58.94\%} & {\footnotesize 65.32\%} & {\footnotesize 67.42\%} & {\footnotesize 77.06\%} & {\footnotesize 80.14\%} & {\footnotesize 78.04\%}\tabularnewline
+\hline 
+{\footnotesize EXERCISE 3} & {\footnotesize 58.30\%} & {\footnotesize 60.76\%} & {\footnotesize 56.67\%} & {\footnotesize 65.19\%} & {\footnotesize 71.27\%} & {\footnotesize 80.12\%} & {\footnotesize 82.65\%} & {\footnotesize 80.21\%}\tabularnewline
 \hline 
 \end{tabular}}{\footnotesize\par}
 \end{table}
@@ -613,10 +647,6 @@ pp. 246-257, 1991.
 \bibitem{rbf2}G.A. Montazer, D. Giveki, M. Karami, H. Rastegar, Radial
 basis function neural networks: A review. Comput. Rev. J \textbf{1},
 pp. 52-74, 2018.
-
-\bibitem[(1989)]{powell}M.J.D Powell, A Tolerant Algorithm for Linearly
-Constrained Optimization Calculations, Mathematical Programming \textbf{45},
-pp. 547-566, 1989. 
 
 \bibitem[(1989)]{geneticnn}Reynolds, J., Rezgui, Y., Kwan, A., \&
 Piriou, S. (2018). A zone-level, building energy optimisation combining
