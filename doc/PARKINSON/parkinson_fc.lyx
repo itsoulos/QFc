@@ -411,8 +411,230 @@ Machine learning;
 Introduction
 \end_layout
 
+\begin_layout Standard
+Global health systems face a significant and growing challenge in the form of neurodegenerative diseases.
+ These conditions cause severe motor and cognitive impairment and are characterized by a progressive disruption of the structure and function of neurons.
+ As the world's population ages,
+ neurodegenerative diseases like Parkinson's and Alzheimer's disease are becoming more common.
+ These conditions have a significant negative impact on patients' quality of life and are becoming more and more expensive.
+ Innovative methods of early detection,
+ assessment,
+ and treatment are required for these difficult disorders.
+ 
+\end_layout
+
+\begin_layout Standard
+A common neurodegenerative disease that primarily affects the motor system is Parkinson's disease (PD).
+ Tremor,
+ bradykinesia (slow movement),
+ rigidity,
+ and postural instability are classic clinical presentations.
+ Non-motor symptoms like mood disorders,
+ sleep disorders,
+ and cognitive impairment are frequently present as well.
+ Since there are no particular biological tests that can result in an early diagnosis,
+ PD diagnosis primarily depends on clinical evaluation,
+ despite the fact that the condition's symptom profile is complex.
+ As a result,
+ slow symptom progression leads to misdiagnosis or delay,
+ which leads to ineffective treatment,
+ poor patient outcomes,
+ and a lower quality of life 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "jan_parkinsons"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The early detection and monitoring of Parkinson's disease (PD) could be greatly aided by recent technological advancements,
+ particularly in the fields of machine learning (ML) and the internet of things (IoT).
+ IoT sensors such as smartwatches,
+ wearable health monitors,
+ and others allow continuous and non-intrusive monitoring of motor activities,
+ tremor frequencies,
+ and gait abnormalities in real-time.
+ These tools enable an evaluation of a patient's health while they are engaging in their regular activities and continue to gather large amounts of data outside of the typical clinical settings.
+ One can more accurately identify early indicators of Parkinson's disease and enable early interventions by using machine learning techniques on this data 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "javaid_ml,li_review"
+literal "false"
+
+\end_inset
+
+.
+ For example,
+ ML algorithms can analyze speech patterns,
+ motor skills,
+ and other non-motor symptoms and differentiate subtle patterns that could foretell the full-blown expression of the disease.
+\end_layout
+
+\begin_layout Standard
+The pursuit of accurate,
+ quantitative,
+ and real-time measurement of Parkinson's disease (PD) motor symptoms has been the prime interest of computational neurology.
+ It is rich in the current state-of-the-art research that utilizes diverse sensor modalities and machine learning (ML) methodologies.
+ Pioneering work has validated the potential of smartphone sensor-derived composite scores,
+ like the mobile Parkinson Disease Score (mPDS),
+ that highly correlate to the conventional standards,
+ such as the MDS-UPDRS,
+ and that are capable of tracking intraday symptom variation as well as response to therapy 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhan_therapy"
+literal "false"
+
+\end_inset
+
+.
+ In the same line,
+ smartphone-enabled active tests as well as passive monitoring during clinical trial protocols have been shown to be realistic,
+ reliable,
+ and highly sensible,
+ usually uncovering abnormalities even among those patients rated as normal on specific items of the UPDRS during the clinic evaluation 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Lipsmeier"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+In addition to smartphones,
+ specific PD symptoms have been targeted with special-purpose sensors.
+ Quantification of bradykinesia,
+ the PD hallmark,
+ has been achieved successfully with gyrosensors during tapping tests,
+ demonstrating strong correlations with clinical ratings 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kim2010"
+literal "false"
+
+\end_inset
+
+.
+ Tremor measurement has been automated with body-worn accelerometers combined with Hidden Markov Models,
+ classifying tremor type and severity reliably (Rigas et al.).
+ Moreover,
+ inertial sensors have been used to detect and classify complex gait disorders such as Freezing of Gait (FOG) reliably (Djuric-Jovicic et al.,
+ 2014).
+ Even speech has been targeted in the remote monitoring paradigm,
+ where off-the-shelf speech tests analyzed with signal analysis combined with regression models are capable of tracking PD progression with clinically helpful accuracy (Tsanas et al.,
+ 2010).
+ Notably,
+ incorporation of the resulting objective measures into standard care has been shown to improve significantly the resulting clinical outcomes,
+ including the UPDRS as well as quality-of-life scores (Farzanehfar et al.,
+ 2018).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Latest advances still investigate the integration of sensor data and advanced ML.
+ Research has looked into the integration of speech signals along with ensemble classifiers such as AdaBoost (Bukhari and Ogudo,
+ 2024) as well as the processing of gait as well as tremor data obtained from off-the-shelf wearable devices.
+ Still missing,
+ though,
+ is an integrative,
+ high-fidelity method for tracking the subtle kinematics of hand movement—
+a key domain for the measurement of bradykinesia as well as tremor—
+beyond controlled smartphone tasks.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+This work contributes to this vibrant body of research through the proposal of a unifying methodology grounded in a bespoke SmartGlove system that would allow in-depth analysis of hand movement.
+ Our contribution is tripartite:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+• Innovation and pilot use of the SmartGlove,
+ a sensor- rich tool to capture high-accuracy,
+ multi-parameter kinematic output of the hand.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+• Construction of a holistic,
+ multiple-component feature selection framework that goes beyond single technologies by integrating statistical significance (t-tests),
+ ensemble learning (Random Forest),
+ and analysis of variance (PCA) to pick the most discriminating,
+ non-redundant biomarkers.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+• The recognition of essential attributes—
+especially non-linear dynamics and spectral traits—
+that are notably proficient in differentiating motor states in Parkinson's Disease patients both prior to and following medication,
+ offers an enhanced array of digital biomarkers for prospective diagnostic and monitoring applications.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+By emphasizing the rich data space of hand kinematics and adopting a rigorous,
+ multi-faceted analytical framework,
+ this research hopes to improve the accuracy and completeness of objective PD evaluation.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Briefly stated,
+ the key innovation of this work lies in the combination of a specially crafted data-capture device with an upper-level analytical framework.
+ Contrast this with previous work,
+ which has employed repurposed consumer devices or targeted a very limited set of symptoms,
+ and our specially developed SmartGlove presents a previously unmatched,
+ high-fidelity view of hand motion's rich kinematics.
+ Coupled with our multi-modal feature choice methodology,
+ this system doesn't merely replicate clinical scores but uncovers a novel class of physiologically enlightening biomarkers—
+specifically in the non-linear dynamic range—
+that are hidden under conventional analysis.
+ This end-to-end machine learning model is a significant advancement toward precise,
+ data-based neurology from correlation against clinical scales to the detection of underlying digital biomarkers for Parkinson's disease.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The remainder of this paper follows this organization:
+ Section 2 outlines the materials and methods utilized with a detailed description of the system architecture of the SmartGlove system,
+ the process of data acquisition related to individual exercises of the hands,
+ and the overall feature extraction process.
+ Section 3 details the multi-faceted feature choice strategy and the composite scoring system used to determine the best biomarkers.
+ Section 4 presents the results of the analytical work with a particular interest in the crucial features and the effectiveness of the choice of methods.
+ Finally,
+ Section 5 discusses implications of the research results,
+ points out limitations of the study,
+ and suggests directions of future research.
+\end_layout
+
 \begin_layout Section
 Materials and Methods
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Materials-and-Methods"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1679,6 +1901,13 @@ name "fig:One-point-crossover"
 
 \begin_layout Section
 Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3712,6 +3941,13 @@ EXERCISE 3
 
 \begin_layout Section
 Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3796,6 +4032,205 @@ Keep empty!
 
 \begin_layout References Title
 References
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "jan_parkinsons"
+literal "false"
+
+\end_inset
+
+Jankovic,
+ J.,
+ 2008.
+ Parkinson’s disease:
+ clinical features and diagnosis.
+ J Neurol Neurosurg Psychiatry 79,
+ 368. https://doi.org/10.1136/jnnp.2007.131045
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "javaid_ml"
+literal "false"
+
+\end_inset
+
+Javaid,
+ M.,
+ Haleem,
+ A.,
+ Pratap Singh,
+ R.,
+ Suman,
+ R.,
+ Rab,
+ S.,
+ 2022.
+ Significance of machine learning in healthcare:
+ Features,
+ pillars and applications.
+ International Journal of Intelligent Networks 3,
+ 58–73. https://doi.org/10.1016/j.ijin.2022.05.002
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "li_review"
+literal "false"
+
+\end_inset
+
+C.,
+ Wang,
+ J.,
+ Wang,
+ S.,
+ Zhang,
+ Y.,
+ 2024.
+ A review of IoT applications in healthcare.
+ Neurocomputing 565,
+ 127017. https://doi.org/10.1016/j.neucom.2023.127017
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "zhan_therapy"
+literal "false"
+
+\end_inset
+
+Zhan,
+ A.,
+ Mohan,
+ S.,
+ Tarolli,
+ C.,
+ Schneider,
+ R.B.,
+ Adams,
+ J.L.,
+ Sharma,
+ S.,
+ Elson,
+ M.J.,
+ Spear,
+ K.L.,
+ Glidden,
+ A.M.,
+ Little,
+ M.A.,
+ Terzis,
+ A.,
+ Dorsey,
+ E.R.,
+ Saria,
+ S.,
+ 2018.
+ Using Smartphones and Machine Learning to Quantify Parkinson Disease Severity:
+ The Mobile Parkinson Disease Score.
+ JAMA Neurology 75,
+ 876–880. https://doi.org/10.1001/jamaneurol.2018.0809
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "Lipsmeier"
+literal "false"
+
+\end_inset
+
+Lipsmeier,
+ F.,
+ Taylor,
+ K.I.,
+ Kilchenmann,
+ T.,
+ Wolf,
+ D.,
+ Scotland,
+ A.,
+ Schjodt-Eriksen,
+ J.,
+ Cheng,
+ W.Y.,
+ Fernandez-Garcia,
+ I.,
+ Siebourg-Polster,
+ J.,
+ Jin,
+ L.,
+ Soto,
+ J.,
+ Verselis,
+ L.,
+ Boess,
+ F.,
+ Koller,
+ M.,
+ Grundman,
+ M.,
+ Monsch,
+ A.U.,
+ Postuma,
+ R.B.,
+ Ghosh,
+ A.,
+ Kremer,
+ T.,
+ Czech,
+ C.,
+ Gossens,
+ C.,
+ Lindemann,
+ M.,
+ 2018.
+ Evaluation of smartphone-based testing to generate exploratory outcome measures in a phase 1 Parkinson's disease clinical trial.
+ Movement Disorders 33,
+ 1287–1297. https://doi.org/10.1002/mds.27376
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2008)"
+key "kim2010"
+literal "false"
+
+\end_inset
+
+Kim,
+ J.W.,
+ Lee,
+ J.H.,
+ Kwon,
+ Y.,
+ Kim,
+ C.S.,
+ Eom,
+ G.M.,
+ Koh,
+ S.B.,
+ Kwon,
+ D.Y.,
+ Park,
+ K.W.,
+ 2011.
+ Quantification of bradykinesia during clinical finger taps using a gyrosensor in patients with Parkinson's disease.
+ Medical & Biological Engineering & Computing 49,
+ 365–371. https://doi.org/10.1007/s11517-010-0697-8
 \end_layout
 
 \begin_layout Bibliography
