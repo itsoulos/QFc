@@ -508,8 +508,6 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 In addition to smartphones,
  specific PD symptoms have been targeted with special-purpose sensors.
  Quantification of bradykinesia,
@@ -525,79 +523,101 @@ literal "false"
 
 .
  Tremor measurement has been automated with body-worn accelerometers combined with Hidden Markov Models,
- classifying tremor type and severity reliably (Rigas et al.).
+ classifying tremor type and severity reliably 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "rigas_tremor"
+literal "false"
+
+\end_inset
+
+.
  Moreover,
- inertial sensors have been used to detect and classify complex gait disorders such as Freezing of Gait (FOG) reliably (Djuric-Jovicic et al.,
- 2014).
+ inertial sensors have been used to detect and classify complex gait disorders such as Freezing of Gait (FOG) reliably 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Djuric_Jovicic"
+literal "false"
+
+\end_inset
+
+.
  Even speech has been targeted in the remote monitoring paradigm,
- where off-the-shelf speech tests analyzed with signal analysis combined with regression models are capable of tracking PD progression with clinically helpful accuracy (Tsanas et al.,
- 2010).
+ where off-the-shelf speech tests analyzed with signal analysis combined with regression models are capable of tracking PD progression with clinically helpful accuracy 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "tsanas_parkinson"
+literal "false"
+
+\end_inset
+
+.
  Notably,
  incorporation of the resulting objective measures into standard care has been shown to improve significantly the resulting clinical outcomes,
- including the UPDRS as well as quality-of-life scores (Farzanehfar et al.,
- 2018).
-\end_layout
+ including the UPDRS as well as quality-of-life scores 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Farzanehfar"
+literal "false"
 
-\begin_layout Standard
+\end_inset
 
-\series bold
-Latest advances still investigate the integration of sensor data and advanced ML.
- Research has looked into the integration of speech signals along with ensemble classifiers such as AdaBoost (Bukhari and Ogudo,
- 2024) as well as the processing of gait as well as tremor data obtained from off-the-shelf wearable devices.
+.
+ Latest advances still investigate the integration of sensor data and advanced ML.
+ Research has looked into the integration of speech signals along with ensemble classifiers such as AdaBoost 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Bukhari"
+literal "false"
+
+\end_inset
+
+ as well as the processing of gait as well as tremor data obtained from off-the-shelf wearable devices.
  Still missing,
  though,
  is an integrative,
- high-fidelity method for tracking the subtle kinematics of hand movement—
-a key domain for the measurement of bradykinesia as well as tremor—
+ high-fidelity method for tracking the subtle kinematics of hand movement,
+ a key domain for the measurement of bradykinesia as well as tremor—
 beyond controlled smartphone tasks.
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 This work contributes to this vibrant body of research through the proposal of a unifying methodology grounded in a bespoke SmartGlove system that would allow in-depth analysis of hand movement.
  Our contribution is tripartite:
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-• Innovation and pilot use of the SmartGlove,
+\begin_layout Itemize
+Innovation and pilot use of the SmartGlove,
  a sensor- rich tool to capture high-accuracy,
  multi-parameter kinematic output of the hand.
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-• Construction of a holistic,
+\begin_layout Itemize
+Construction of a holistic,
  multiple-component feature selection framework that goes beyond single technologies by integrating statistical significance (t-tests),
  ensemble learning (Random Forest),
  and analysis of variance (PCA) to pick the most discriminating,
  non-redundant biomarkers.
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-• The recognition of essential attributes—
+\begin_layout Itemize
+The recognition of essential attributes—
 especially non-linear dynamics and spectral traits—
 that are notably proficient in differentiating motor states in Parkinson's Disease patients both prior to and following medication,
  offers an enhanced array of digital biomarkers for prospective diagnostic and monitoring applications.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 
 \series bold
-By emphasizing the rich data space of hand kinematics and adopting a rigorous,
- multi-faceted analytical framework,
- this research hopes to improve the accuracy and completeness of objective PD evaluation.
+(EDO PREPEI NA MPEI GRAMMATICAL EVOLUTION)
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Briefly stated,
+By emphasizing the rich data space of hand kinematics and adopting a rigorous,
+ multi-faceted analytical framework,
+ this research hopes to improve the accuracy and completeness of objective PD evaluation.
+ Briefly stated,
  the key innovation of this work lies in the combination of a specially crafted data-capture device with an upper-level analytical framework.
  Contrast this with previous work,
  which has employed repurposed consumer devices or targeted a very limited set of symptoms,
@@ -612,16 +632,46 @@ that are hidden under conventional analysis.
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 The remainder of this paper follows this organization:
- Section 2 outlines the materials and methods utilized with a detailed description of the system architecture of the SmartGlove system,
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Materials-and-Methods"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ outlines the materials and methods utilized with a detailed description of the system architecture of the SmartGlove system,
  the process of data acquisition related to individual exercises of the hands,
  and the overall feature extraction process.
- Section 3 details the multi-faceted feature choice strategy and the composite scoring system used to determine the best biomarkers.
- Section 4 presents the results of the analytical work with a particular interest in the crucial features and the effectiveness of the choice of methods.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Results"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ details the multi-faceted feature choice strategy and the composite scoring system used to determine the best biomarkers.
  Finally,
- Section 5 discusses implications of the research results,
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ discusses implications of the research results,
  points out limitations of the study,
  and suggests directions of future research.
 \end_layout
@@ -639,9 +689,6 @@ name "sec:Materials-and-Methods"
 
 \begin_layout Subsection
 Preliminaries 
-\end_layout
-
-\begin_layout Subsection
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Preliminaries"
@@ -1401,6 +1448,13 @@ Operation
 
 \begin_layout Subsection
 The feature construction method
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:The-feature-construction"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1888,6 +1942,674 @@ name "fig:One-point-crossover"
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+SmartGlove System and Sources of Data
+\end_layout
+
+\begin_layout Standard
+The system of interest here as a primary data source is the SmartGlove system,
+ a specially developed wearable system that has been created with the intent of telemonitoring motor symptoms of PD patients.
+ It has been created with the support of the Operational Program of the Epirus Region 2014-2020 and ESPA 2014-2020 with a view of increasing innovative health and biotechnology solutions.
+\end_layout
+
+\begin_layout Standard
+The system of SmartGlove has three primary subsystems:
+\end_layout
+
+\begin_layout Standard
+1.
+ Textile Glove:
+ Made of durable,
+ biocompatible materials,
+ the glove has conductive areas on the palm and fingers that aid movement recognition.
+ It is sweat-resistant and can be washed.
+ It is also expected to last longer than 10 years.
+\end_layout
+
+\begin_layout Standard
+2.
+ System on Chip (SoC):
+ The central processing unit encompasses a low-energy microcontroller that incorporates a Bluetooth 5.0 module,
+ facilitating wireless data communication while utilizing minimal energy resources (with a typical operational range of 10-100 meters,
+ contingent upon the surrounding environment).
+\end_layout
+
+\begin_layout Standard
+3.Sensors:
+ The glove contains a multi-modal sensor suite:
+\end_layout
+
+\begin_layout Standard
+• Flex sensors to measure finger bending.
+\end_layout
+
+\begin_layout Standard
+• Contact sensors to detect finger-to-palm interaction.
+\end_layout
+
+\begin_layout Standard
+• A 9-axis Inertial Measurement Unit (IMU),
+ composed of a 3-axis accelerometer,
+ 3-axis gyroscope,
+ and 3-axis magnetometer,
+ to identify hands' orientation and movement.
+ IMU has outputs of up to a sampling rate of 100 Hz and a resolution of 16 bits.
+\end_layout
+
+\begin_layout Standard
+The system is supplemented with a power management circuitry developed for lithium-polymer batteries,
+ as well as with flash memory used for transient storage of data.
+ The SmartGlove complies with the IEC 60601-1 medical electrical apparatus safety standard,
+ thus ensuring reliability for medical applications.
+\end_layout
+
+\begin_layout Standard
+The SmartGlove sends data via Bluetooth to the mobPark mobile app supporting Android 6.0+ as well as iOS 11+.
+ The app acts as an intermediary providing the possibility of managing the profile of the users,
+ providing screen-level cues of exercises,
+ as well as capturing sensor data at a sampling rate of 100 Hz.
+ Then the captured data gets securely sent via an encrypted HTTPS connection to a centralized cloud platform like AWS or Azure for storage,
+ processing,
+ and analyzing purposes with a consideration of the General Data Protection Regulation (GDPR).
+\end_layout
+
+\begin_layout Subsection
+Data Collection Exercises
+\end_layout
+
+\begin_layout Standard
+Data recording was at a sampling rate of 100 Hz,
+ selected to efficiently capture tremor frequencies from 4 to 6 Hz and also captures bradykinesia.
+ Measurements were obtained before and after medication administration (i.e.,
+ Levodopa) as a means of investigating therapeutic action.
+ Four carefully designed motor tasks were incorporated into the experiment as described next:
+\end_layout
+
+\begin_layout Standard
+• Exercise 1 (Postural Stability):
+ Patient sits with their hands resting on their legs with palms facing upwards and counts from 1 to 10.
+ It checks postural stability and resting tremor.
+\end_layout
+
+\begin_layout Standard
+• Exercise 2 (Coordination):
+ The patient stands with their hands at shoulder height and counts to ten while attempting to touch their index fingers together.
+ It is intended to assess tremor and coordination when standing for a long time.
+\end_layout
+
+\begin_layout Standard
+• Exercise 3 (Finger Tapping Speed):
+ With their palm flat,
+ the participant taps their index finger back and forth against their thumb,
+ then quickly returns to the starting position ten times.
+ It is a traditional metric used to evaluate bradykinesia and motor speed.
+\end_layout
+
+\begin_layout Standard
+• Exercise 4 (Hand Speed of Closing and Opening):
+ For ten repetitions,
+ the patient continuously makes a fist with an open palm and returns to an open position as quickly as they can.
+ It checks for bradykinesia and hand rigidity.
+\end_layout
+
+\begin_layout Subsection
+Feature extraction
+\end_layout
+
+\begin_layout Standard
+Numerous features were taken from the raw sensor data (accelerometer,
+ gyroscope,
+ magnetometer) for each exercise in order to quantitatively describe the motor symptoms of Parkinson's disease.
+ These features were computed using 50% overlap (50 samples,
+ 0.5 seconds) and sliding windows of 100 samples (1 second).
+ These features extracted are as follows:
+\end_layout
+
+\begin_layout Standard
+• Statistical Properties:
+ These characteristics provide a succinct explanation of the signal's variation and distribution.
+ The following properties were calculated:
+ Skewness,
+ Kurtosis,
+ Quartile Deviation,
+ Mean,
+ Standard Deviation,
+ Variance,
+ Minimum,
+ Maximum,
+ Range,
+ Median,
+ and Interquartile Range (IQR).
+\end_layout
+
+\begin_layout Standard
+• Energy Characteristics:
+ These metrics assess the signal's intensity and degree of activity.
+ Signal Magnitude Area (SMA),
+ Root Mean Square (RMS),
+ Total Energy,
+ and Logarithmic Energy are among the features that were extracted.
+ • Spectral features are taken into consideration by frequency-domain features.
+\end_layout
+
+\begin_layout Standard
+• Frequency-Domain Features:
+ These are essential for detecting tremors and take into account the signal's spectral characteristics.
+ Included are the following features:
+ Dominant Frequency,
+ Spectral Flatness,
+ Spectral Flux,
+ Spectral Variability,
+ Spectral Entropy,
+ Spectral Centroid,
+ Spectral Spread,
+ and Spectral Roll-on(85%).
+\end_layout
+
+\begin_layout Standard
+• Dynamic and Nonlinear Features:
+ These characteristics specify the signal's temporal fluctuations,
+ complexity,
+ and predictability.
+ The following characteristics are taken into consideration:
+ Mean Absolute Deviation (MAD),
+ Root Mean Square of Successive Differences (RMSSD),
+ Higuchi Fractal Dimension,
+ Lyapunov Exponent,
+ and Sample Entropy.
+\end_layout
+
+\begin_layout Standard
+Since each feature includes specific aspects of motor impairment typical of the disease,
+ such as tremor regularity,
+ movement amplitude,
+ and signal complexity,
+ the selection of features was driven by a large body of literature on PD analysis.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Table of Characteristics for Movement Analysis in Parkinson's Disease.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Table-of-Characteristics"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Characteristics
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Purpose
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Clinical Significance
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Central Tendency
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Mean,
+ Median
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Median Measures the central value 
+\begin_inset Newline newline
+\end_inset
+
+of the signal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Detection of bradykinesia 
+\begin_inset Newline newline
+\end_inset
+
+(slowed movements)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Dispersion 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Standard deviation,
+ 
+\begin_inset Newline newline
+\end_inset
+
+Variance,
+ IQR,
+ QD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Quantifies the spread of data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Identifies motion variability 
+\begin_inset Newline newline
+\end_inset
+
+(e.g.
+ gravity,
+ tremor)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Range
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Minimum/Maximum value,
+ Range
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Records extreme values
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Assessment of range of motion reduction
+\begin_inset Newline newline
+\end_inset
+
+ in patients with Parkinson's disease
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribution Shape
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Skewness,
+ Kurtosis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Describes asymmetry/peakedness
+\begin_inset Newline newline
+\end_inset
+
+ of distribution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
@@ -4231,6 +4953,131 @@ Kim,
  Quantification of bradykinesia during clinical finger taps using a gyrosensor in patients with Parkinson's disease.
  Medical & Biological Engineering & Computing 49,
  365–371. https://doi.org/10.1007/s11517-010-0697-8
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2012)"
+key "rigas_tremor"
+literal "false"
+
+\end_inset
+
+Rigas,
+ G.,
+ Gatsios,
+ D.,
+ Fotiadis,
+ D.I.,
+ Tsakanikas,
+ V.,
+ Tsilikis,
+ I.,
+ Konitsiotis,
+ S.,
+ 2012.
+ Assessment of Tremor Activity in the Parkinson’s Disease Using a Set of Wearable Sensors.
+ IEEE Transactions on Information Technology in Biomedicine 16,
+ 478–487. https://doi.org/10.1109/TITB.2011.2182616
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2014)"
+key "Djuric_Jovicic"
+literal "false"
+
+\end_inset
+
+Djuric-Jovicic,
+ M.,
+ Jovicic,
+ N.S.,
+ Radovanovic,
+ S.M.,
+ Stankovic,
+ I.D.,
+ Popovic,
+ M.B.,
+ Kostic,
+ V.S.,
+ 2014.
+ Automatic Identification and Classification of Freezing of Gait Episodes in Parkinson's Disease Patients.
+ IEEE Transactions on Neural Systems and Rehabilitation Engineering 22,
+ 685–694. https://doi.org/10.1109/TNSRE.2013.2287241
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2014)"
+key "tsanas_parkinson"
+literal "false"
+
+\end_inset
+
+Tsanas,
+ A.,
+ Little,
+ M.A.,
+ McSharry,
+ P.E.,
+ Ramig,
+ L.O.,
+ 2010.
+ Accurate telemonitoring of Parkinson's disease progression by noninvasive speech tests.
+ IEEE Transactions on Biomedical Engineering 57,
+ 884–893. https://doi.org/10.1109/TBME.2009.2036000
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2014)"
+key "Farzanehfar"
+literal "false"
+
+\end_inset
+
+Farzanehfar,
+ P.,
+ Woodrow,
+ H.,
+ Braybrook,
+ M.,
+ McGregor,
+ S.,
+ Evans,
+ A.,
+ Nicklason,
+ F.,
+ Horne,
+ M.,
+ 2018.
+ Objective measurement in routine care of people with Parkinson's disease improves outcomes.
+ NPJ Parkinson's Disease 4,
+ 10. https://doi.org/10.1038/s41531-018-0046-4
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2014)"
+key "Bukhari"
+literal "false"
+
+\end_inset
+
+Bukhari,
+ S.N.H.,
+ Ogudo,
+ K.A.,
+ 2024.
+ Ensemble Machine Learning Approach for Parkinson’s Disease Detection Using Speech Signals.
+ Mathematics 12,
+ 1575. https://doi.org/10.3390/math12101575
 \end_layout
 
 \begin_layout Bibliography
