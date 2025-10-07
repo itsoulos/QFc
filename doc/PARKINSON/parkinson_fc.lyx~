@@ -375,6 +375,8 @@ Correspondence:
 \end_layout
 
 \begin_layout Abstract
+
+\series bold
 This study introduces a set of features designed to capture the motor symptoms of Parkinson’s Disease (PD) through detailed motion analysis,
  with a specific focus on how these symptoms change before and after medication.
  The features reflect key aspects of patient movement,
@@ -6059,6 +6061,21 @@ nolink "false"
  even relatively simple decision rules can achieve consistently low error.
  In practice,
  orchestrating Feature Construction with linear or RBF-based decision layersor adopting a hybrid design where feature construction is followed by mild dimensionality reduction preserves the information advantage while further controlling noise.
+ The average results for this table are also outlined graphically in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-average-classification"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 placement H
 alignment document
@@ -6616,6 +6633,61 @@ EXERCISE 3
 \end_inset
 
 
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename parkinson_bars.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The average classification error for all methods participated in the experiments.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-average-classification"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Also the precision values for all exercises and machine learning methods are outlined in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Precision-values."
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+ Similarly,
+ the recall values are depicted in Table .
 \end_layout
 
 \begin_layout Standard
