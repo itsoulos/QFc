@@ -275,6 +275,7 @@ Psathas,
  A.,
  Tsoulos,
  I.G.,
+ Giannakeas N,
  Tzallas,
  A.
  
@@ -288,6 +289,7 @@ Psathas,
 Aimilios Psathas,
  Ioannis G.
  Tsoulos,
+ Nikolaos Giannakeas,
  Alexandros Tzallas and Vasileios Charilogis.
  
 \end_layout
@@ -297,6 +299,8 @@ Psathas,
  A.;
  Tsoulos,
  I.G.;
+ Giannakeas,
+ N.;
  Tzallas,
  A.;
  Charilogis,
@@ -611,7 +615,15 @@ that are notably proficient in differentiating motor states in Parkinson's Disea
 
 \series bold
 In this work,
- extensive use was made of the Grammatical Evolution technique to create artificial features from existing ones in order to significantly reduce the number of required inputs and to detect hidden correlations in the initial features of the patterns.
+ extensive use was made of the Grammatical Evolution 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ge1"
+literal "false"
+
+\end_inset
+
+ technique to create artificial features from existing ones in order to significantly reduce the number of required inputs and to detect hidden correlations in the initial features of the patterns.
 \end_layout
 
 \begin_layout Standard
@@ -6102,7 +6114,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Precision values.
+Precision values for all methods participated in the experiments.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Precision-values."
@@ -6252,7 +6264,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-58.93%
+0.589
 \end_layout
 
 \end_inset
@@ -6263,7 +6275,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-60.30%
+0.603
 \end_layout
 
 \end_inset
@@ -6274,7 +6286,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-55.89%
+0.559
 \end_layout
 
 \end_inset
@@ -6285,7 +6297,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-67.34%
+0.673
 \end_layout
 
 \end_inset
@@ -6296,7 +6308,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-76.09%
+0.761
 \end_layout
 
 \end_inset
@@ -6307,7 +6319,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.51%
+0.885
 \end_layout
 
 \end_inset
@@ -6318,7 +6330,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.87%
+0.889
 \end_layout
 
 \end_inset
@@ -6329,7 +6341,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-89.82%
+0.898
 \end_layout
 
 \end_inset
@@ -6353,7 +6365,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-61.99%
+0.62
 \end_layout
 
 \end_inset
@@ -6364,7 +6376,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-49.57%
+0.496
 \end_layout
 
 \end_inset
@@ -6375,7 +6387,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-58.12%
+0.581
 \end_layout
 
 \end_inset
@@ -6386,7 +6398,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-59.48%
+0.595
 \end_layout
 
 \end_inset
@@ -6397,7 +6409,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-71.27%
+0.713
 \end_layout
 
 \end_inset
@@ -6408,7 +6420,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-79.45%
+0.795
 \end_layout
 
 \end_inset
@@ -6419,7 +6431,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-83.66%
+0.837
 \end_layout
 
 \end_inset
@@ -6430,7 +6442,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-85.10%
+0.851
 \end_layout
 
 \end_inset
@@ -6454,7 +6466,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-61.61%
+0.616
 \end_layout
 
 \end_inset
@@ -6465,7 +6477,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-72.58%
+0.726
 \end_layout
 
 \end_inset
@@ -6476,7 +6488,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-58.21%
+0.582
 \end_layout
 
 \end_inset
@@ -6487,7 +6499,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-64.62%
+0.646
 \end_layout
 
 \end_inset
@@ -6498,7 +6510,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-69.02%
+0.69
 \end_layout
 
 \end_inset
@@ -6509,7 +6521,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-77.78%
+0.778
 \end_layout
 
 \end_inset
@@ -6520,7 +6532,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-80.27%
+0.803
 \end_layout
 
 \end_inset
@@ -6531,7 +6543,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-78.01%
+0.78
 \end_layout
 
 \end_inset
@@ -6555,7 +6567,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-58.33%
+0.583
 \end_layout
 
 \end_inset
@@ -6566,7 +6578,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-60.80%
+0.608
 \end_layout
 
 \end_inset
@@ -6577,7 +6589,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-56.63%
+0.566
 \end_layout
 
 \end_inset
@@ -6588,7 +6600,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-64.22%
+0.642
 \end_layout
 
 \end_inset
@@ -6599,7 +6611,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-71.52%
+0.715
 \end_layout
 
 \end_inset
@@ -6610,7 +6622,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.29%
+0.803
 \end_layout
 
 \end_inset
@@ -6621,7 +6633,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-82.88%
+0.829
 \end_layout
 
 \end_inset
@@ -6632,7 +6644,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.30%
+0.803
 \end_layout
 
 \end_inset
@@ -6659,7 +6671,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Recall values.
+Recall values for all methods used in the conducted experiments.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Recall-values."

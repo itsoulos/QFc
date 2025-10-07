@@ -275,6 +275,7 @@ Psathas,
  A.,
  Tsoulos,
  I.G.,
+ Giannakeas N,
  Tzallas,
  A.
  
@@ -288,6 +289,7 @@ Psathas,
 Aimilios Psathas,
  Ioannis G.
  Tsoulos,
+ Nikolaos Giannakeas,
  Alexandros Tzallas and Vasileios Charilogis.
  
 \end_layout
@@ -297,6 +299,8 @@ Psathas,
  A.;
  Tsoulos,
  I.G.;
+ Giannakeas,
+ N.;
  Tzallas,
  A.;
  Charilogis,
@@ -6110,7 +6114,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Precision values.
+Precision values for all methods participated in the experiments.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Precision-values."
@@ -6260,7 +6264,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-58.93%
+0.589
 \end_layout
 
 \end_inset
@@ -6271,7 +6275,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-60.30%
+0.603
 \end_layout
 
 \end_inset
@@ -6282,7 +6286,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-55.89%
+0.559
 \end_layout
 
 \end_inset
@@ -6293,7 +6297,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-67.34%
+0.673
 \end_layout
 
 \end_inset
@@ -6304,7 +6308,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-76.09%
+0.761
 \end_layout
 
 \end_inset
@@ -6315,7 +6319,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.51%
+0.885
 \end_layout
 
 \end_inset
@@ -6326,7 +6330,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.87%
+0.889
 \end_layout
 
 \end_inset
@@ -6337,7 +6341,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-89.82%
+0.898
 \end_layout
 
 \end_inset
@@ -6361,7 +6365,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-61.99%
+0.62
 \end_layout
 
 \end_inset
@@ -6372,7 +6376,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-49.57%
+0.496
 \end_layout
 
 \end_inset
@@ -6383,7 +6387,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-58.12%
+0.581
 \end_layout
 
 \end_inset
@@ -6394,7 +6398,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-59.48%
+0.595
 \end_layout
 
 \end_inset
@@ -6405,7 +6409,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-71.27%
+0.713
 \end_layout
 
 \end_inset
@@ -6416,7 +6420,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-79.45%
+0.795
 \end_layout
 
 \end_inset
@@ -6427,7 +6431,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-83.66%
+0.837
 \end_layout
 
 \end_inset
@@ -6438,7 +6442,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-85.10%
+0.851
 \end_layout
 
 \end_inset
@@ -6462,7 +6466,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-61.61%
+0.616
 \end_layout
 
 \end_inset
@@ -6473,7 +6477,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-72.58%
+0.726
 \end_layout
 
 \end_inset
@@ -6484,7 +6488,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-58.21%
+0.582
 \end_layout
 
 \end_inset
@@ -6495,7 +6499,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-64.62%
+0.646
 \end_layout
 
 \end_inset
@@ -6506,7 +6510,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-69.02%
+0.69
 \end_layout
 
 \end_inset
@@ -6517,7 +6521,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-77.78%
+0.778
 \end_layout
 
 \end_inset
@@ -6528,7 +6532,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-80.27%
+0.803
 \end_layout
 
 \end_inset
@@ -6539,7 +6543,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-78.01%
+0.78
 \end_layout
 
 \end_inset
@@ -6563,7 +6567,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-58.33%
+0.583
 \end_layout
 
 \end_inset
@@ -6574,7 +6578,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-60.80%
+0.608
 \end_layout
 
 \end_inset
@@ -6585,7 +6589,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-56.63%
+0.566
 \end_layout
 
 \end_inset
@@ -6596,7 +6600,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-64.22%
+0.642
 \end_layout
 
 \end_inset
@@ -6607,7 +6611,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-71.52%
+0.715
 \end_layout
 
 \end_inset
@@ -6618,7 +6622,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.29%
+0.803
 \end_layout
 
 \end_inset
@@ -6629,7 +6633,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-82.88%
+0.829
 \end_layout
 
 \end_inset
@@ -6640,7 +6644,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.30%
+0.803
 \end_layout
 
 \end_inset
@@ -6667,7 +6671,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Recall values.
+Recall values for all methods used in the conducted experiments.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Recall-values."
@@ -6817,7 +6821,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-58.84%
+0.588
 \end_layout
 
 \end_inset
@@ -6828,7 +6832,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-60.27%
+0.603
 \end_layout
 
 \end_inset
@@ -6839,7 +6843,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-55.85%
+0.559
 \end_layout
 
 \end_inset
@@ -6850,7 +6854,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-68.92%
+0.689
 \end_layout
 
 \end_inset
@@ -6861,7 +6865,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-74.99%
+0.75
 \end_layout
 
 \end_inset
@@ -6872,7 +6876,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.25%
+0.883
 \end_layout
 
 \end_inset
@@ -6883,7 +6887,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-88.49%
+0.885
 \end_layout
 
 \end_inset
@@ -6894,7 +6898,7 @@ EXERCISE_0
 \begin_layout Plain Layout
 
 \size footnotesize
-89.27%
+0.893
 \end_layout
 
 \end_inset
@@ -6918,7 +6922,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-61.90%
+0.619
 \end_layout
 
 \end_inset
@@ -6929,7 +6933,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-76.55%
+0.766
 \end_layout
 
 \end_inset
@@ -6940,7 +6944,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-60.45%
+0.605
 \end_layout
 
 \end_inset
@@ -6951,7 +6955,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-62.56%
+0.626
 \end_layout
 
 \end_inset
@@ -6962,7 +6966,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-71.11%
+0.711
 \end_layout
 
 \end_inset
@@ -6973,7 +6977,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-79.74%
+0.797
 \end_layout
 
 \end_inset
@@ -6984,7 +6988,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-83.92%
+0.839
 \end_layout
 
 \end_inset
@@ -6995,7 +6999,7 @@ EXERCISE 1
 \begin_layout Plain Layout
 
 \size footnotesize
-85.42%
+0.854
 \end_layout
 
 \end_inset
@@ -7019,7 +7023,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-62.55%
+0.626
 \end_layout
 
 \end_inset
@@ -7030,7 +7034,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-64.58%
+0.646
 \end_layout
 
 \end_inset
@@ -7041,7 +7045,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-58.94%
+0.589
 \end_layout
 
 \end_inset
@@ -7052,7 +7056,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-65.32%
+0.653
 \end_layout
 
 \end_inset
@@ -7063,7 +7067,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-67.42%
+0.674
 \end_layout
 
 \end_inset
@@ -7074,7 +7078,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-77.06%
+0.771
 \end_layout
 
 \end_inset
@@ -7085,7 +7089,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-80.14%
+0.801
 \end_layout
 
 \end_inset
@@ -7096,7 +7100,7 @@ EXERCISE 2
 \begin_layout Plain Layout
 
 \size footnotesize
-78.04%
+0.78
 \end_layout
 
 \end_inset
@@ -7120,7 +7124,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-58.30%
+0.583
 \end_layout
 
 \end_inset
@@ -7131,7 +7135,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-60.76%
+0.608
 \end_layout
 
 \end_inset
@@ -7142,7 +7146,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-56.67%
+0.567
 \end_layout
 
 \end_inset
@@ -7153,7 +7157,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-65.19%
+0.652
 \end_layout
 
 \end_inset
@@ -7164,7 +7168,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-71.27%
+0.713
 \end_layout
 
 \end_inset
@@ -7175,7 +7179,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.12%
+0.801
 \end_layout
 
 \end_inset
@@ -7186,7 +7190,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-82.65%
+0.827
 \end_layout
 
 \end_inset
@@ -7197,7 +7201,7 @@ EXERCISE 3
 \begin_layout Plain Layout
 
 \size footnotesize
-80.21%
+0.802
 \end_layout
 
 \end_inset
