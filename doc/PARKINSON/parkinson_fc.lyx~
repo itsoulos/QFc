@@ -5649,6 +5649,64 @@ name "fig:One-point-crossover"
 
 \end_inset
 
+A flowchart of the previous algorithm is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flowchart-of-the"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename flow.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flowchart of the used genetic algorithm.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flowchart-of-the"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -6687,7 +6745,18 @@ nolink "false"
 
 .
  Similarly,
- the recall values are depicted in Table .
+ the recall values are depicted in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Recall-values."
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

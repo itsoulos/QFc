@@ -3,6 +3,7 @@
 \documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi}
 \usepackage[utf8]{inputenc}
 \usepackage{float}
+\usepackage{varwidth}
 \usepackage{amsmath}
 \usepackage{graphicx}
 
@@ -19,13 +20,14 @@ motor symptoms of Parkinson’s Disease}
 \Author{Aimilios Psathas$^{1}$, Ioannis G. Tsoulos$^{2,*}$, Nikolaos Giannakeas$^{3}$,
 Alexandros Tzallas$^{4}$ and Vasileios Charilogis$^{5}$}
 
-\AuthorNames{Psathas, A., Tsoulos, I.G., Tzallas, A. \textbackslash\& Charilogis,
+\AuthorNames{Psathas, A., Tsoulos, I.G., Giannakeas N, Tzallas, A. \textbackslash\&
+Charilogis, V. }
+
+\AuthorNames{Aimilios Psathas, Ioannis G. Tsoulos, Nikolaos Giannakeas, Alexandros
+Tzallas and Vasileios Charilogis. }
+
+\AuthorCitation{Psathas, A.; Tsoulos, I.G.; Giannakeas, N.; Tzallas, A.; Charilogis,
 V. }
-
-\AuthorNames{Aimilios Psathas, Ioannis G. Tsoulos, Alexandros Tzallas and Vasileios
-Charilogis. }
-
-\AuthorCitation{Psathas, A.; Tsoulos, I.G.; Tzallas, A.; Charilogis, V. }
 
 
 \address{$^{1}$\quad{}Department of Informatics and Telecommunications,
@@ -43,18 +45,18 @@ of Ioannina, Greece; v.charilog@uoi.gr}
 \corres{Correspondence: itsoulos@uoi.gr}
 
 
-\abstract{This study introduces a set of features designed to capture the motor
-symptoms of Parkinson’s Disease (PD) through detailed motion analysis,
-with a specific focus on how these symptoms change before and after
-medication. The features reflect key aspects of patient movement,
-such as tremor intensity, slowness, rigidity, instability, and irregularity
-in motion patterns. By quantifying how consistently and smoothly a
-patient performs specific tasks, the features provide insight into
-motor control quality and neurological function. Crucially, they are
-labeled according to the patient's state---before and after receiving
-medication---allowing for a clear comparison of treatment effects.
-This enables not only objective tracking of symptom severity, but
-also evaluation of medication responsiveness. These features address
+\abstract{\textbf{This study introduces a set of features designed to capture
+the motor symptoms of Parkinson’s Disease (PD) through detailed motion
+analysis, with a specific focus on how these symptoms change before
+and after medication. The features reflect key aspects of patient
+movement, such as tremor intensity, slowness, rigidity, instability,
+and irregularity in motion patterns. By quantifying how consistently
+and smoothly a patient performs specific tasks, the features provide
+insight into motor control quality and neurological function. Crucially,
+they are labeled according to the patient's state---before and after
+receiving medication---allowing for a clear comparison of treatment
+effects. This enables not only objective tracking of symptom severity,
+but also evaluation of medication responsiveness. These features address
 a fundamental clinical need: moving beyond subjective observation
 toward continuous, data-driven monitoring of disease progression and
 therapeutic effectiveness in Parkinson’s Disease. In the current work
@@ -67,7 +69,7 @@ error when 2 to 5 constructed features are used, achieving the lowest
 error rate (14.33\%) with four generated features (FC4GEN), compared
 to 38.65\% for the best baseline model (RBF). These findings highlight
 the effectiveness of evolutionary feature construction in enhancing
-classification accuracy.}
+classification accuracy.}}
 
 
 \keyword{Machine learning; Evolutionary algorithms; Genetic Programming; Grammatical
@@ -76,6 +78,10 @@ Evolution}
 \DeclareTextSymbolDefault{\textquotedbl}{T1}
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
+%% Variable width box for table cells
+\newenvironment{cellvarwidth}[1][t]
+    {\begin{varwidth}[#1]{\linewidth}}
+    {\@finalstrut\@arstrutbox\end{varwidth}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \newenvironment{lyxcode}
@@ -220,11 +226,609 @@ Evolution}
 
 \section{Introduction}
 
-\section{Materials and Methods}
+Global health systems face a significant and growing challenge in
+the form of neurodegenerative diseases. These conditions cause severe
+motor and cognitive impairment and are characterized by a progressive
+disruption of the structure and function of neurons. As the world's
+population ages, neurodegenerative diseases like Parkinson's and Alzheimer's
+disease are becoming more common. These conditions have a significant
+negative impact on patients' quality of life and are becoming more
+and more expensive. Innovative methods of early detection, assessment,
+and treatment are required for these difficult disorders. 
 
-\subsection{Preliminaries }
+A common neurodegenerative disease that primarily affects the motor
+system is Parkinson's disease (PD). Tremor, bradykinesia (slow movement),
+rigidity, and postural instability are classic clinical presentations.
+Non-motor symptoms like mood disorders, sleep disorders, and cognitive
+impairment are frequently present as well. Since there are no particular
+biological tests that can result in an early diagnosis, PD diagnosis
+primarily depends on clinical evaluation, despite the fact that the
+condition's symptom profile is complex. As a result, slow symptom
+progression leads to misdiagnosis or delay, which leads to ineffective
+treatment, poor patient outcomes, and a lower quality of life \citep{jan_parkinsons}.
 
-\subsection{\label{subsec:Preliminaries}}
+The early detection and monitoring of Parkinson's disease (PD) could
+be greatly aided by recent technological advancements, particularly
+in the fields of machine learning (ML) and the internet of things
+(IoT). IoT sensors such as smartwatches, wearable health monitors,
+and others allow continuous and non-intrusive monitoring of motor
+activities, tremor frequencies, and gait abnormalities in real-time.
+These tools enable an evaluation of a patient's health while they
+are engaging in their regular activities and continue to gather large
+amounts of data outside of the typical clinical settings. One can
+more accurately identify early indicators of Parkinson's disease and
+enable early interventions by using machine learning techniques on
+this data \citep{javaid_ml,li_review}. For example, ML algorithms
+can analyze speech patterns, motor skills, and other non-motor symptoms
+and differentiate subtle patterns that could foretell the full-blown
+expression of the disease.
+
+The pursuit of accurate, quantitative, and real-time measurement of
+Parkinson's disease (PD) motor symptoms has been the prime interest
+of computational neurology. It is rich in the current state-of-the-art
+research that utilizes diverse sensor modalities and machine learning
+(ML) methodologies. Pioneering work has validated the potential of
+smartphone sensor-derived composite scores, like the mobile Parkinson
+Disease Score (mPDS), that highly correlate to the conventional standards,
+such as the MDS-UPDRS, and that are capable of tracking intraday symptom
+variation as well as response to therapy \citep{zhan_therapy}. In
+the same line, smartphone-enabled active tests as well as passive
+monitoring during clinical trial protocols have been shown to be realistic,
+reliable, and highly sensible, usually uncovering abnormalities even
+among those patients rated as normal on specific items of the UPDRS
+during the clinic evaluation \citep{Lipsmeier}.
+
+In addition to smartphones, specific PD symptoms have been targeted
+with special-purpose sensors. Quantification of bradykinesia, the
+PD hallmark, has been achieved successfully with gyrosensors during
+tapping tests, demonstrating strong correlations with clinical ratings
+\citep{kim2010}. Tremor measurement has been automated with body-worn
+accelerometers combined with Hidden Markov Models, classifying tremor
+type and severity reliably \citep{rigas_tremor}. Moreover, inertial
+sensors have been used to detect and classify complex gait disorders
+such as Freezing of Gait (FOG) reliably \citep{Djuric_Jovicic}. Even
+speech has been targeted in the remote monitoring paradigm, where
+off-the-shelf speech tests analyzed with signal analysis combined
+with regression models are capable of tracking PD progression with
+clinically helpful accuracy \citep{tsanas_parkinson}. Notably, incorporation
+of the resulting objective measures into standard care has been shown
+to improve significantly the resulting clinical outcomes, including
+the UPDRS as well as quality-of-life scores \citep{Farzanehfar}.
+Latest advances still investigate the integration of sensor data and
+advanced ML. Research has looked into the integration of speech signals
+along with ensemble classifiers such as AdaBoost \citep{Bukhari}
+as well as the processing of gait as well as tremor data obtained
+from off-the-shelf wearable devices. Still missing, though, is an
+integrative, high-fidelity method for tracking the subtle kinematics
+of hand movement, a key domain for the measurement of bradykinesia
+as well as tremor---beyond controlled smartphone tasks.
+
+This work contributes to this vibrant body of research through the
+proposal of a unifying methodology grounded in a bespoke SmartGlove
+system that would allow in-depth analysis of hand movement. Our contribution
+is tripartite:
+\begin{itemize}
+\item Innovation and pilot use of the SmartGlove, a sensor- rich tool to
+capture high-accuracy, multi-parameter kinematic output of the hand.
+\item Construction of a holistic, multiple-component feature selection framework
+that goes beyond single technologies by integrating statistical significance
+(t-tests), ensemble learning (Random Forest), and analysis of variance
+(PCA) to pick the most discriminating, non-redundant biomarkers.
+\item The recognition of essential attributes---especially non-linear dynamics
+and spectral traits---that are notably proficient in differentiating
+motor states in Parkinson's Disease patients both prior to and following
+medication, offers an enhanced array of digital biomarkers for prospective
+diagnostic and monitoring applications.
+\end{itemize}
+By emphasizing the rich data space of hand kinematics and adopting
+a rigorous, multi-faceted analytical framework, this research hopes
+to improve the accuracy and completeness of objective PD evaluation.
+Briefly stated, the key innovation of this work lies in the combination
+of a specially crafted data-capture device with an upper-level analytical
+framework. Contrast this with previous work, which has employed repurposed
+consumer devices or targeted a very limited set of symptoms, and our
+specially developed SmartGlove presents a previously unmatched, high-fidelity
+view of hand motion's rich kinematics. Coupled with our multi-modal
+feature choice methodology, this system doesn't merely replicate clinical
+scores but uncovers a novel class of physiologically enlightening
+biomarkers---specifically in the non-linear dynamic range---that
+are hidden under conventional analysis. This end-to-end machine learning
+model is a significant advancement toward precise, data-based neurology
+from correlation against clinical scales to the detection of underlying
+digital biomarkers for Parkinson's disease.
+
+In this work, extensive use was made of the Grammatical Evolution
+\citep{ge1} technique to create artificial features from existing
+ones in order to significantly reduce the number of required inputs
+and to detect hidden correlations in the initial features of the patterns.
+The applications of the Grammatical Evolution includes cases such
+as function approximation\citep{ge_program1,ge_program2}, economic
+problems \citep{ge_credit}, network security issues \citep{ge_intrusion},
+water quality problems \citep{ge_water}, medical problems\textbf{
+}\citep{ge_glykemia}, evolutionary computing \citep{ge_ant}, temperature
+prediction in data centers \citep{ge_datacenter}, solving trigonometric
+problems \citep{ge_trig}, composing music \citep{ge_music}, construction
+of neural networks \citep{ge_nn,ge_nn2}, numerical problems \citep{ge_constant},
+video games \citep{ge_pacman,ge_supermario}, energy issues \citep{ge_energy},
+combinatorial optimization \citep{ge_comb}, cryptography \citep{ge_crypt},
+production of decision trees \citep{ge_decision}, problems that appear
+in electronic circuits \citep{ge_analog} etc.
+
+The remainder of this paper follows this organization: Section \ref{sec:Materials-and-Methods}
+outlines the materials and methods utilized with a detailed description
+of the system architecture of the SmartGlove system, the process of
+data acquisition related to individual exercises of the hands, and
+the overall feature extraction process. Section \ref{sec:Results}
+details the multi-faceted feature choice strategy and the composite
+scoring system used to determine the best biomarkers. Finally, Section
+\ref{sec:Conclusions} discusses implications of the research results,
+points out limitations of the study, and suggests directions of future
+research.
+
+\section{Materials and Methods\label{sec:Materials-and-Methods}}
+
+This section describes the complete methodology developed for the
+objective measurement of motor symptoms for Parkinson's Disease (PD).
+The approach integrates a custom-developed data acquisition system
+with an advanced computational protocol for conveting raw sensor data
+into highly discriminative biomarkers. The analysis that follows follows
+this outline: first, the SmartGlove system and data collection protocol
+used during special motor experiments are described; second, the multi-domain
+feature extraction approach is outlined; third, the multi-method scoring
+regimen developed for feature selection is presented; and, last, the
+keynote technique of Grammatical Evolution for synthesizing virtual
+features for improved classification performance, dimension reduction,
+and generalizability is presented.
+
+\subsection{SmartGlove System and Sources of Data}
+
+The system of interest here as a primary data source is the SmartGlove
+system, a specially developed wearable system that has been created
+with the intent of telemonitoring motor symptoms of PD patients. It
+has been created with the support of the Operational Program of the
+Epirus Region 2014-2020 and ESPA 2014-2020 with a view of increasing
+innovative health and biotechnology solutions. The system of SmartGlove
+has three primary subsystems:
+\begin{enumerate}
+\item Textile Glove: Made of durable, biocompatible materials, the glove
+has conductive areas on the palm and fingers that aid movement recognition.
+It is sweat-resistant and can be washed. It is also expected to last
+longer than 10 years.
+\item System on Chip (SoC): The central processing unit encompasses a low-energy
+microcontroller that incorporates a Bluetooth 5.0 module, facilitating
+wireless data communication while utilizing minimal energy resources
+(with a typical operational range of 10-100 meters, contingent upon
+the surrounding environment).
+\item Sensors: The glove contains a multi-modal sensor suite:
+\item Flex sensors to measure finger bending.
+\item Contact sensors to detect finger-to-palm interaction.
+\item A 9-axis Inertial Measurement Unit (IMU), composed of a 3-axis accelerometer,
+3-axis gyroscope, and 3-axis magnetometer, to identify hands' orientation
+and movement. IMU has outputs of up to a sampling rate of 100 Hz and
+a resolution of 16 bits.
+\end{enumerate}
+The system is supplemented with a power management circuitry developed
+for lithium-polymer batteries, as well as with flash memory used for
+transient storage of data. The SmartGlove complies with the IEC 60601-1
+medical electrical apparatus safety standard, thus ensuring reliability
+for medical applications. The SmartGlove sends data via Bluetooth
+to the mobPark mobile app supporting Android 6.0+ as well as iOS 11+.
+The app acts as an intermediary providing the possibility of managing
+the profile of the users, providing screen-level cues of exercises,
+as well as capturing sensor data at a sampling rate of 100 Hz. Then
+the captured data gets securely sent via an encrypted HTTPS connection
+to a centralized cloud platform like AWS or Azure for storage, processing,
+and analyzing purposes with a consideration of the General Data Protection
+Regulation (GDPR).
+
+\subsection{Data Collection Exercises}
+
+The data recording at 100 Hz sampling frequency was selected for efficient
+tremor frequency (4-6 Hz) and bradykinesia capture. Prior to and after
+the administration of medicines, measurements were recorded, in order
+for this therapeutic effect of medicines. to be investigated. Four
+motor activities, according to standardized clinical examination,
+were performed:
+\begin{itemize}
+\item Exercise 0 (\textbf{Resting Tremor Observation)}): The patient was
+asked to sit with hands on their thighs, palms facing upwards, counting
+from 1 to 10. This evaluates postural stability, rest tremor. An example
+of this exercise is shown in Figure \ref{fig:exercise0}.
+\item Exercise 1 (\textbf{Test for Postural Tremor and Coordination}): The
+patient as shown in Figure \ref{fig:exercise1} held hands at shoulder
+height with fingers interlocked and attempted touching their index
+fingers together on counting to ten. This evaluates postural tremor
+and coordination.
+\item Exercise 2 (\textbf{Finger Tapping Speed Test}): Lifting the palm,
+the subject made ten fast, repeated taps using the index finger on
+the thumb as shown in Figure \ref{fig:exercise2}. This is a routine
+measure for assessing motor speed and bradykinesia.
+\item Exercise 3 (\textbf{Hand Opening-Closing Test}): The patient did ten
+fast, sustained cycles of full fist then reopening the hand from a
+fully stretched palm position. This exercise evaluates hand rigidity
+and bradykinesia and an example of this exercise is shown in Figure
+\ref{fig:exercise3}.
+\end{itemize}
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{exercise0}
+\par\end{centering}
+\caption{Resting Tremor Observation\label{fig:exercise0}}
+
+\end{figure}
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{exercise1}
+\par\end{centering}
+\caption{Test for Postural Tremor and Coordination\label{fig:exercise1}}
+
+\end{figure}
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{exercise2}
+\par\end{centering}
+\caption{Finger Tapping Speed Test\label{fig:exercise2}}
+
+\end{figure}
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{exercise3}
+\par\end{centering}
+\caption{Hand Opening-Closing Test\label{fig:exercise3}}
+
+\end{figure}
+
+
+\subsection{Feature extraction}
+
+Numerous features were taken from the raw sensor data (accelerometer,
+gyroscope, magnetometer) for each exercise in order to quantitatively
+describe the motor symptoms of Parkinson's disease. These features
+were computed using 50\% overlap (50 samples, 0.5 seconds) and sliding
+windows of 100 samples (1 second). These features extracted are as
+follows:
+\begin{itemize}
+\item Statistical Properties: These characteristics provide a succinct explanation
+of the signal's variation and distribution. The following properties
+were calculated: Skewness, Kurtosis, Quartile Deviation, Mean, Standard
+Deviation, Variance, Minimum, Maximum, Range, Median, and Interquartile
+Range (IQR).
+\item Energy Characteristics: These metrics assess the signal's intensity
+and degree of activity. Signal Magnitude Area (SMA), Root Mean Square
+(RMS), Total Energy, and Logarithmic Energy are among the features
+that were extracted. 
+\item Frequency-Domain Features: These are essential for detecting tremors
+and take into account the signal's spectral characteristics. Included
+are the following features: Dominant Frequency, Spectral Flatness,
+Spectral Flux, Spectral Variability, Spectral Entropy, Spectral Centroid,
+Spectral Spread, and Spectral Roll-on(85\%).
+\item Dynamic and Nonlinear Features: These characteristics specify the
+signal's temporal fluctuations, complexity, and predictability. The
+following characteristics are taken into consideration: Mean Absolute
+Deviation (MAD), Root Mean Square of Successive Differences (RMSSD),
+Higuchi Fractal Dimension, Lyapunov Exponent, and Sample Entropy.
+\end{itemize}
+Since each feature includes specific aspects of motor impairment typical
+of the disease, such as tremor regularity, movement amplitude, and
+signal complexity, the selection of features was driven by a large
+body of literature on PD analysis. The characteristics for Movement
+Analysis in Parkinson's Disease are outlined in Table \ref{tab:Table-of-Characteristics}.
+
+\begin{table}[H]
+\caption{Table of Characteristics for Movement Analysis in Parkinson's Disease.\label{tab:Table-of-Characteristics}}
+
+\raggedright{}{\scriptsize{}%
+\begin{tabular}{|c|c|c|c|}
+\hline 
+{\scriptsize\textbf{Category}} & {\scriptsize\textbf{Characteristics}} & {\scriptsize\textbf{Purpose}} & {\scriptsize\textbf{Clinical Significance}}\tabularnewline
+\hline 
+\hline 
+{\scriptsize Central Tendency} & {\scriptsize Mean, Median} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Median Measures the central value }\\
+{\scriptsize of the signal}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Detection of bradykinesia }\\
+{\scriptsize (slowed movements)}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Dispersion} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Standard deviation, }\\
+{\scriptsize Variance, IQR, QD}
+\end{cellvarwidth} & {\scriptsize Quantifies the spread of data} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Identifies motion variability }\\
+{\scriptsize (e.g. gravity, tremor)}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Range} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Minimum/Maximum value,}\\
+{\scriptsize{} Range}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Records extreme}\\
+{\scriptsize{} values}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Assessment of range }\\
+{\scriptsize of motion reduction}\\
+{\scriptsize{} in patients with Parkinson's disease}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Distribution Shape} & {\scriptsize Skewness, Kurtosis} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Describes asymmetry/peakedness}\\
+{\scriptsize{} of distribution}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Correlation with irregular }\\
+{\scriptsize motor patterns}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Variability} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Coefficient of Variation}\\
+{\scriptsize{} (CV), MAD, RMSSD}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Normalized measures }\\
+{\scriptsize of dispersion}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Variability differentiation before}\\
+{\scriptsize{} after the treatment}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Energy} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Total energy, }\\
+{\scriptsize Absolute Energy, RMS}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Measures signal }\\
+{\scriptsize intensity}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Correlation with hypokinesia }\\
+{\scriptsize (reduced motor energy)}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Logarithmic Energy} & {\scriptsize Log Energy} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Enhances subtle }\\
+{\scriptsize energy changes}
+\end{cellvarwidth} & {\scriptsize Detection of small changes}\tabularnewline
+\hline 
+{\scriptsize Spectral} & {\scriptsize Spectral Entropy, Centroid} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Analyzes frequency}\\
+{\scriptsize{} distribution}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Localization of tremor and }\\
+{\scriptsize rhythmic abnormality}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Roll-off} & {\scriptsize 85\% Roll-off} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Frequency band where }\\
+{\scriptsize 85\% of the power is concentrated}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Characterization of }\\
+{\scriptsize tremor bandwidth}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Dominant Frequency} & {\scriptsize Dominant Frequency} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Identification of peak}\\
+{\scriptsize{} frequency}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Detection of Parkinson's }\\
+{\scriptsize tremor (4-6Hz)}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Spectral Shape} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Flatness, Flux,}\\
+{\scriptsize{} Variability, Dispersion}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Quantifies the stability }\\
+{\scriptsize of the spectrum}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Unstable tremors vs. }\\
+{\scriptsize rhythmic movements}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Dynamics} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Lyapunov Exponent, }\\
+{\scriptsize Sampling Entropy}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Evaluates the chaos/regularity }\\
+{\scriptsize of the system}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Degeneration of motor control }\\
+{\scriptsize in Parkinson's}
+\end{cellvarwidth}\tabularnewline
+\hline 
+{\scriptsize Fractal} & {\scriptsize Dimension Higuchi} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Measures the complexity }\\
+{\scriptsize of the signal}
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+{\scriptsize Loss of fine }\\
+{\scriptsize motor control}
+\end{cellvarwidth}\tabularnewline
+\hline 
+\end{tabular}}{\scriptsize\par}
+\end{table}
+
+
+\subsection{Feature Selection Methodology}
+
+Feature selection is a critical step in developing accurate and interpretable
+machine learning (ML) models for Parkinson’s disease (PD) detection.
+In this study, a multi-method scoring approach was applied to identify
+the most informative features that differentiate between pre-medication
+and post-medication states. Instead of relying on a single method,
+three complementary techniques were employed, and their outputs were
+combined into a composite score.
+
+\subsubsection{Multi-Method Scoring Approach}
+
+To accurately evaluate the value of each characteristic for differentiating
+between pre- and post-medication states, a multi-angled scoring approach
+was adopted. For each feature, scores for three different aspects,
+such as statistical significance, importance based on the model, and
+variance contribution, were computed.
+\begin{itemize}
+\item Statistical Significance (Paired T-Test): The paired T-Test was then
+carried out on measurements preceding and succeeding medication on
+each dimension. To make the significance a number, the $p_{\mbox{value}}$
+was transformed into a score using the following formula:
+\begin{equation}
+\mbox{score}_{T_{\mbox{test}}}=-\log_{10}\left(p_{\mbox{value}}+\epsilon\right)\label{eq:ttest}
+\end{equation}
+Here, $e=1\times10^{-10}$ is a very small constant introduced for
+avoiding numerical instability arising from a $p_{\mbox{value}}$
+of zero. This mapping makes variables with lower $p_{\mbox{value}}$
+have exponentially large scores, hence indicating more considerable
+statistical evidence against the null hypothesis ( \citep{ttest}.
+\item \textbf{Model-Based Importance} (\textbf{Random Fores}t): The Random
+Forest classifier was built such that it could distinguish between
+the two different states. The importance of a specific feature was
+computed using the average reduction in Gini impurity across all trees
+in the ensemble. Gini impurity is a measure of the purity of a node,
+and the importance is given by the weighted cumulative reduction in
+node impurity, divided by the probability of the node, and averaged
+across trees \citep{patel}. The evaluation $\mbox{score}_{RF}$ for
+a feature, f is given by:
+\begin{equation}
+\mbox{score}_{RF}=\frac{1}{N_{\mbox{trees}}}\sum\label{eq:rf}
+\end{equation}
+where $N_{\mbox{trees}}$ is the overall number of trees, $T$ is
+one tree, and $\Delta\mbox{Gini}\left(n,f\right)$ decrease in Gini
+impurity at node $n$ when a split is made along feature $f$. High-scoring
+variables have a larger effect on the model predicting\textbf{ (Breiman,
+2001).}
+\item \textbf{Variance Contribution} \textbf{Score }(\textbf{PCA}): Principal
+Component Analysis (PCA) was performed on the standardized data set.
+The contribution of a individual original feature towards the principal
+components (PCs) was measured by adding its absolute loadings across
+all PCs. The loading of a feature onto a PC is its correlation with
+the specific component \citep{Guyon}. The score $\mbox{score}_{\mbox{PCA}}$
+was computed as follows:
+\begin{equation}
+\mbox{score}_{\mbox{PCA}}=\sum_{i}\left|\mbox{loading}_{i}\right|\label{eq:pca}
+\end{equation}
+Here, the $\mbox{loading}_{i}$ is the feature weight corresponding
+to the $i$-th principal component. This cumulative sum provides the
+total impact of the feature on the total variance tackled by the Principal
+Component Analysis (PCA) model \textbf{(Jolliffe \& Cadima, 2016).}
+\end{itemize}
+
+\subsubsection{Composite Score Calculation}
+
+To reduce these unrelated measurements into one unified measure of
+feature prominence, the scores were amalgamated. Each score was first
+normalized between $[0,1]$ using min-max normalization for comparability
+across scores. A clear composite score was then calculated as a weighted
+average of the normalized scores: 
+\begin{equation}
+\mbox{Composite Score}=\mbox{0.4\ensuremath{\times}score}_{T_{\mbox{test}}}+0.3\times\mbox{score}_{RF}+0.3\times\mbox{score}_{\mbox{PCA}}\label{eq:composite}
+\end{equation}
+This weighting approach was chosen so that features which are highly
+statistically significant (by the T-test) are given priority, first,
+while data from model-based learning (Random Forest) and variance-based
+analysis (PCA) are incorporated cautiously
+
+\subsubsection{Selection of best features}
+
+Features were ranked according to their composite score, and the top-performing
+ones were selected for subsequent model development. Representative
+high-ranking features includes:
+\begin{itemize}
+\item RMSSD from the gyroscope during Exercise 2 (score: 0.663),
+\item Lyapunov Exponent (score: 0.644),
+\item Higuchi Fractal Dimension (score: 0.612).
+\end{itemize}
+These selected features served as the foundation for later predictive
+modeling and analysis, aiming to capture the most relevant motor signal
+characteristics associated with PD symptoms \citep{goetz,chen}. In
+Table \ref{tab:Top-20-features} the top 20 features are presented.
+
+\begin{table}[H]
+\caption{Top 20 features scored\label{tab:Top-20-features}}
+
+\centering{}%
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Exercise & Sensor & \begin{cellvarwidth}[t]
+\centering
+Feature \\
+Name
+\end{cellvarwidth} & \begin{cellvarwidth}[t]
+\centering
+Composite\\
+Score
+\end{cellvarwidth}\tabularnewline
+\hline 
+\hline 
+2 & gyro & rmssd & 0.663\tabularnewline
+\hline 
+2 & gyro & lyapunov\_exponent & 0.644\tabularnewline
+\hline 
+2 & gyro & higuchi\_fractal\_dimension & 0.612\tabularnewline
+\hline 
+2 & gyro & range & 0.573\tabularnewline
+\hline 
+3 & acce & higuchi\_fractal\_dimension & 0.469\tabularnewline
+\hline 
+3 & gyro & max & 0.452\tabularnewline
+\hline 
+3 & acce & lyapunov\_exponent & 0.437\tabularnewline
+\hline 
+2 & gyro & spectral\_rolloff & 0.433\tabularnewline
+\hline 
+2 & acce & sample\_entropy & 0.422\tabularnewline
+\hline 
+0 & magn & lyapunov\_exponent & 0.406\tabularnewline
+\hline 
+0 & magn & spectral\_variability & 0.399\tabularnewline
+\hline 
+0 & magn & higuchi\_fractal\_dimension & 0.399\tabularnewline
+\hline 
+0 & magn & range & 0.381\tabularnewline
+\hline 
+3 & magn & rmssd & 0.376\tabularnewline
+\hline 
+0 & gyro & rmssd & 0.375\tabularnewline
+\hline 
+2 & gyro & std & 0.373\tabularnewline
+\hline 
+3 & acce & spectral\_flux & 0.367\tabularnewline
+\hline 
+1 & gyro & lyapunov\_exponent & 0.365\tabularnewline
+\hline 
+1 & gyro & rmssd & 0.361\tabularnewline
+\hline 
+1 & gyro & max & 0.358\tabularnewline
+\hline 
+\end{tabular}
+\end{table}
+
+
+\subsection{Grammatical Evolution preliminaries \label{subsec:Preliminaries}}
 
 Grammatical Evolution procedure can be considered as a genetic algorithm,
 where the chromosomes are sets of randomly chosen integers. These
@@ -262,7 +866,7 @@ x=\left[9,8,6,4,16,10,17,23,8,14\right]
 is produced for the grammar of Figure \ref{fig:BNF-grammar-of}. The
 production steps are shown in Table \ref{tab:table_with_steps}. 
 
-\begin{figure}
+\begin{figure}[H]
 \caption{An example of an extended BNF grammar.\label{fig:BNF-grammar-of}}
 
 \begin{lyxcode}
@@ -329,7 +933,7 @@ S::=\textless expr\textgreater ~~~(0)~
 ~~~~~~~~~~~\textbar ~9~(9)
 \end{lyxcode}
 \end{figure}
-\begin{table}
+\begin{table}[H]
 \caption{A series of production steps for the example chromosome. \label{tab:table_with_steps}}
 
 \centering{}%
@@ -364,7 +968,7 @@ String & Chromosome & Operation\tabularnewline
 \end{table}
 
 
-\subsection{The feature construction method}
+\subsection{The feature construction method\label{subsec:The-feature-construction}}
 
 The technique of feature construction produces artificial features
 for classification or regression problems as non - linear transformations
@@ -426,8 +1030,8 @@ are selected from the current population. The selection is performed
 using the tournament selection. The new chromosomes are produced from
 the old ones using the one - point crossover procedure, which is graphically
 outlined in Figure \ref{fig:One-point-crossover}. 
-\item \textbf{(OK)Perform} the mutation procedure: for each each element
-of each chromosome, a random number $r\in\left[0,1\right]$ is selected.
+\item \textbf{Perform} the mutation procedure: for each each element of
+each chromosome, a random number $r\in\left[0,1\right]$ is selected.
 The underlying element is altered randomly when $r\le p_{m}$. 
 \end{enumerate}
 \item \textbf{EndFor}
@@ -448,9 +1052,18 @@ and report the associated test error.\textbf{.}
 \par\end{centering}
 \caption{One point crossover method, used in the Grammatical Evolution procedure.\label{fig:One-point-crossover}}
 \end{figure}
+A flowchart of the previous algorithm is shown in Figure \ref{fig:Flowchart-of-the}.
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{flow}
+\par\end{centering}
+\caption{Flowchart of the used genetic algorithm.\label{fig:Flowchart-of-the}}
+
+\end{figure}
 
 
-\section{Results}
+\section{Results\label{sec:Results}}
 
 The code used in the experiments was code in the C++ programming language
 and for the optimization methods the freely available Optimus programming
@@ -487,7 +1100,7 @@ $H$ & Number of processing nodes for neural network & 10\tabularnewline
 
 In the experimental tables the following notation is used:
 \begin{enumerate}
-\item The column DATASET represents the used dataset.
+\item The column DATASET represents the performed exercise.
 \item The column RBF stands for the application of an RBF neural network
 \citep{rbf1,rbf2} with 10 processing nodes on the corresponding dataset.
 \item The column GEN represents the application of a genetic algorithm \citep{geneticnn}
@@ -512,6 +1125,35 @@ of four artificial features using the feature construction method.
 \item The row AVERAGE represents the average classification error for all
 datasets and the corresponding method.
 \end{enumerate}
+Table \ref{tab:exper} reports classification error per exercise and
+per feature/model family, where lower values are better. The proposed
+Feature Construction approach (columns FC2, FC3 and FC4) consistently
+yields lower errors than classical baselines such as PCA, RBF, NNC,
+GEN and GENCLASS, indicating that the constructed descriptors capture
+the discriminative motion patterns more effectively. Based on the
+overall average, FC3 is the strongest among the proposed variants,
+achieving the lowest mean error, with FC4 very close behind and FC2
+also competitive. In EXERCISE 0 the Feature Construction variants
+clearly dominate, with FC3 providing the best balance between expressiveness
+and generalization, FC4 performing nearly as well, and FC2 remaining
+stable. In EXERCISE 1 the picture is similar: FC2--FC4 retain a lead
+over classical pipelines and FC3 acts as the “sweet spot,” while FC4
+is the slightly more aggressive variant and FC2 the conservative yet
+reliable option. In EXERCISE 2, where separability is more challenging,
+the FC columns keep the error noticeably lower than the classical
+models and FC3 generally maintains an edge, although FC4 occasionally
+approaches or overlaps within small margins. In EXERCISE 3 the same
+trend holds, with FC2, FC3 and FC4 achieving lower errors and FC3
+preserving the overall lead among the proposed methods. Overall, Table
+5 underscores that representation quality precedes classifier complexity;
+when features are properly constructed, even relatively simple decision
+rules can achieve consistently low error. In practice, orchestrating
+Feature Construction with linear or RBF-based decision layersor adopting
+a hybrid design where feature construction is followed by mild dimensionality
+reduction preserves the information advantage while further controlling
+noise. The average results for this table are also outlined graphically
+in Figure \ref{fig:The-average-classification}.
+
 \begin{table}[H]
 \caption{Experimental results for various exercises.\label{tab:exper}}
 
@@ -521,7 +1163,7 @@ datasets and the corresponding method.
 {\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
 \hline 
 \hline 
-{\footnotesize EXERCISE\_0} & {\footnotesize 40.86\%} & {\footnotesize 39.63\%} & {\footnotesize 44.70\%} & {\footnotesize 32.57\%} & {\footnotesize 25.52\%} & {\footnotesize 11.39\%} & {\footnotesize 11.06\%} & {\footnotesize 10.35\%}\tabularnewline
+{\footnotesize EXERCISE 0} & {\footnotesize 40.86\%} & {\footnotesize 39.63\%} & {\footnotesize 44.70\%} & {\footnotesize 32.57\%} & {\footnotesize 25.52\%} & {\footnotesize 11.39\%} & {\footnotesize 11.06\%} & {\footnotesize 10.35\%}\tabularnewline
 \hline 
 {\footnotesize EXERCISE 1} & {\footnotesize 38.65\%} & {\footnotesize 47.61\%} & {\footnotesize 47.35\%} & {\footnotesize 42.07\%} & {\footnotesize 29.98\%} & {\footnotesize 20.16\%} & {\footnotesize 16.08\%} & {\footnotesize 14.84\%}\tabularnewline
 \hline 
@@ -531,8 +1173,19 @@ datasets and the corresponding method.
 \hline 
 \end{tabular}}{\footnotesize\par}
 \end{table}
+\begin{figure}[H]
+\includegraphics{parkinson_bars}
+
+\caption{The average classification error for all methods participated in the
+experiments.\label{fig:The-average-classification}}
+
+\end{figure}
+Also the precision values for all exercises and machine learning methods
+are outlined in Table \ref{tab:Precision-values.}. Similarly, the
+recall values are depicted in Table \ref{tab:Recall-values.}.
+
 \begin{table}[H]
-\caption{Precision values.\label{tab:Precision-values.}}
+\caption{Precision values for all methods participated in the experiments.\label{tab:Precision-values.}}
 
 \raggedright{}{\footnotesize{}%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -540,18 +1193,18 @@ datasets and the corresponding method.
 {\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
 \hline 
 \hline 
-{\footnotesize EXERCISE\_0} & {\footnotesize 58.93\%} & {\footnotesize 60.30\%} & {\footnotesize 55.89\%} & {\footnotesize 67.34\%} & {\footnotesize 76.09\%} & {\footnotesize 88.51\%} & {\footnotesize 88.87\%} & {\footnotesize 89.82\%}\tabularnewline
+{\footnotesize EXERCISE 0} & {\footnotesize 0.589} & {\footnotesize 0.603} & {\footnotesize 0.559} & {\footnotesize 0.673} & {\footnotesize 0.761} & {\footnotesize 0.885} & {\footnotesize 0.889} & {\footnotesize 0.898}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 1} & {\footnotesize 61.99\%} & {\footnotesize 49.57\%} & {\footnotesize 58.12\%} & {\footnotesize 59.48\%} & {\footnotesize 71.27\%} & {\footnotesize 79.45\%} & {\footnotesize 83.66\%} & {\footnotesize 85.10\%}\tabularnewline
+{\footnotesize EXERCISE 1} & {\footnotesize 0.62} & {\footnotesize 0.496} & {\footnotesize 0.581} & {\footnotesize 0.595} & {\footnotesize 0.713} & {\footnotesize 0.795} & {\footnotesize 0.837} & {\footnotesize 0.851}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 2} & {\footnotesize 61.61\%} & {\footnotesize 72.58\%} & {\footnotesize 58.21\%} & {\footnotesize 64.62\%} & {\footnotesize 69.02\%} & {\footnotesize 77.78\%} & {\footnotesize 80.27\%} & {\footnotesize 78.01\%}\tabularnewline
+{\footnotesize EXERCISE 2} & {\footnotesize 0.616} & {\footnotesize 0.726} & {\footnotesize 0.582} & {\footnotesize 0.646} & {\footnotesize 0.69} & {\footnotesize 0.778} & {\footnotesize 0.803} & {\footnotesize 0.78}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 3} & {\footnotesize 58.33\%} & {\footnotesize 60.80\%} & {\footnotesize 56.63\%} & {\footnotesize 64.22\%} & {\footnotesize 71.52\%} & {\footnotesize 80.29\%} & {\footnotesize 82.88\%} & {\footnotesize 80.30\%}\tabularnewline
+{\footnotesize EXERCISE 3} & {\footnotesize 0.583} & {\footnotesize 0.608} & {\footnotesize 0.566} & {\footnotesize 0.642} & {\footnotesize 0.715} & {\footnotesize 0.803} & {\footnotesize 0.829} & {\footnotesize 0.803}\tabularnewline
 \hline 
 \end{tabular}}{\footnotesize\par}
 \end{table}
 \begin{table}[H]
-\caption{Recall values.\label{tab:Recall-values.}}
+\caption{Recall values for all methods used in the conducted experiments.\label{tab:Recall-values.}}
 
 \raggedright{}{\footnotesize{}%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -559,19 +1212,19 @@ datasets and the corresponding method.
 {\footnotesize DATASET} & {\footnotesize RBF} & {\footnotesize GEN} & {\footnotesize PCA} & {\footnotesize NNC} & {\footnotesize GENCLASS} & {\footnotesize FC2} & {\footnotesize FC3} & {\footnotesize FC4}\tabularnewline
 \hline 
 \hline 
-{\footnotesize EXERCISE\_0} & {\footnotesize 58.84\%} & {\footnotesize 60.27\%} & {\footnotesize 55.85\%} & {\footnotesize 68.92\%} & {\footnotesize 74.99\%} & {\footnotesize 88.25\%} & {\footnotesize 88.49\%} & {\footnotesize 89.27\%}\tabularnewline
+{\footnotesize EXERCISE 0} & {\footnotesize 0.588} & {\footnotesize 0.603} & {\footnotesize 0.559} & {\footnotesize 0.689} & {\footnotesize 0.75} & {\footnotesize 0.883} & {\footnotesize 0.885} & {\footnotesize 0.893}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 1} & {\footnotesize 61.90\%} & {\footnotesize 76.55\%} & {\footnotesize 60.45\%} & {\footnotesize 62.56\%} & {\footnotesize 71.11\%} & {\footnotesize 79.74\%} & {\footnotesize 83.92\%} & {\footnotesize 85.42\%}\tabularnewline
+{\footnotesize EXERCISE 1} & {\footnotesize 0.619} & {\footnotesize 0.766} & {\footnotesize 0.605} & {\footnotesize 0.626} & {\footnotesize 0.711} & {\footnotesize 0.797} & {\footnotesize 0.839} & {\footnotesize 0.854}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 2} & {\footnotesize 62.55\%} & {\footnotesize 64.58\%} & {\footnotesize 58.94\%} & {\footnotesize 65.32\%} & {\footnotesize 67.42\%} & {\footnotesize 77.06\%} & {\footnotesize 80.14\%} & {\footnotesize 78.04\%}\tabularnewline
+{\footnotesize EXERCISE 2} & {\footnotesize 0.626} & {\footnotesize 0.646} & {\footnotesize 0.589} & {\footnotesize 0.653} & {\footnotesize 0.674} & {\footnotesize 0.771} & {\footnotesize 0.801} & {\footnotesize 0.78}\tabularnewline
 \hline 
-{\footnotesize EXERCISE 3} & {\footnotesize 58.30\%} & {\footnotesize 60.76\%} & {\footnotesize 56.67\%} & {\footnotesize 65.19\%} & {\footnotesize 71.27\%} & {\footnotesize 80.12\%} & {\footnotesize 82.65\%} & {\footnotesize 80.21\%}\tabularnewline
+{\footnotesize EXERCISE 3} & {\footnotesize 0.583} & {\footnotesize 0.608} & {\footnotesize 0.567} & {\footnotesize 0.652} & {\footnotesize 0.713} & {\footnotesize 0.801} & {\footnotesize 0.827} & {\footnotesize 0.802}\tabularnewline
 \hline 
 \end{tabular}}{\footnotesize\par}
 \end{table}
 
 
-\section{Conclusions}
+\section{Conclusions\label{sec:Conclusions}}
 
 \vspace{6pt}
 
@@ -597,13 +1250,168 @@ using Virtual Reality techniques\textquotedbl{} (project code:TAEDK-06195).}
 
 \reftitle{References}
 \begin{thebibliography}{99}
+\bibitem[(2008)]{jan_parkinsons}Jankovic, J., 2008. Parkinson’s disease:
+clinical features and diagnosis. J Neurol Neurosurg Psychiatry 79,
+368. 
+
+\bibitem[(2008)]{javaid_ml}Javaid, M., Haleem, A., Pratap Singh,
+R., Suman, R., Rab, S., 2022. Significance of machine learning in
+healthcare: Features, pillars and applications. International Journal
+of Intelligent Networks 3, 58--73. 
+
+\bibitem[(2008)]{li_review}C., Wang, J., Wang, S., Zhang, Y., 2024.
+A review of IoT applications in healthcare. Neurocomputing 565, 127017. 
+
+\bibitem[(2008)]{zhan_therapy}Zhan, A., Mohan, S., Tarolli, C., Schneider,
+R.B., Adams, J.L., Sharma, S., Elson, M.J., Spear, K.L., Glidden,
+A.M., Little, M.A., Terzis, A., Dorsey, E.R., Saria, S., 2018. Using
+Smartphones and Machine Learning to Quantify Parkinson Disease Severity:
+The Mobile Parkinson Disease Score. JAMA Neurology 75, 876--880. 
+
+\bibitem[(2008)]{Lipsmeier}Lipsmeier, F., Taylor, K.I., Kilchenmann,
+T., Wolf, D., Scotland, A., Schjodt-Eriksen, J., Cheng, W.Y., Fernandez-Garcia,
+I., Siebourg-Polster, J., Jin, L., Soto, J., Verselis, L., Boess,
+F., Koller, M., Grundman, M., Monsch, A.U., Postuma, R.B., Ghosh,
+A., Kremer, T., Czech, C., Gossens, C., Lindemann, M., 2018. Evaluation
+of smartphone-based testing to generate exploratory outcome measures
+in a phase 1 Parkinson's disease clinical trial. Movement Disorders
+33, 1287--1297. 
+
+\bibitem[(2008)]{kim2010}Kim, J.W., Lee, J.H., Kwon, Y., Kim, C.S.,
+Eom, G.M., Koh, S.B., Kwon, D.Y., Park, K.W., 2011. Quantification
+of bradykinesia during clinical finger taps using a gyrosensor in
+patients with Parkinson's disease. Medical \& Biological Engineering
+\& Computing 49, 365--371. 
+
+\bibitem[(2012)]{rigas_tremor}Rigas, G., Gatsios, D., Fotiadis, D.I.,
+Tsakanikas, V., Tsilikis, I., Konitsiotis, S., 2012. Assessment of
+Tremor Activity in the Parkinson’s Disease Using a Set of Wearable
+Sensors. IEEE Transactions on Information Technology in Biomedicine
+16, 478--487. 
+
+\bibitem[(2014)]{Djuric_Jovicic}Djuric-Jovicic, M., Jovicic, N.S.,
+Radovanovic, S.M., Stankovic, I.D., Popovic, M.B., Kostic, V.S., 2014.
+Automatic Identification and Classification of Freezing of Gait Episodes
+in Parkinson's Disease Patients. IEEE Transactions on Neural Systems
+and Rehabilitation Engineering 22, 685--694. 
+
+\bibitem[(2014)]{tsanas_parkinson}Tsanas, A., Little, M.A., McSharry,
+P.E., Ramig, L.O., 2010. Accurate telemonitoring of Parkinson's disease
+progression by noninvasive speech tests. IEEE Transactions on Biomedical
+Engineering 57, 884--893. 
+
+\bibitem[(2014)]{Farzanehfar}Farzanehfar, P., Woodrow, H., Braybrook,
+M., McGregor, S., Evans, A., Nicklason, F., Horne, M., 2018. Objective
+measurement in routine care of people with Parkinson's disease improves
+outcomes. NPJ Parkinson's Disease 4, 10. 
+
+\bibitem[(2014)]{Bukhari}Bukhari, S.N.H., Ogudo, K.A., 2024. Ensemble
+Machine Learning Approach for Parkinson’s Disease Detection Using
+Speech Signals. Mathematics 12, 1575. 
+
+\bibitem{ge1}M. O’Neill, C. Ryan, Grammatical evolution, IEEE Trans.
+Evol. Comput. \textbf{5,}pp. 349--358, 2001.
+
+\bibitem{ge_program1}C. Ryan, J. Collins, M. O’Neill, Grammatical
+evolution: Evolving programs for an arbitrary language. In: Banzhaf,
+W., Poli, R., Schoenauer, M., Fogarty, T.C. (eds) Genetic Programming.
+EuroGP 1998. Lecture Notes in Computer Science, vol 1391. Springer,
+Berlin, Heidelberg, 1998.
+
+\bibitem{ge_program2}M. O’Neill, M., C. Ryan, Evolving Multi-line
+Compilable C Programs. In: Poli, R., Nordin, P., Langdon, W.B., Fogarty,
+T.C. (eds) Genetic Programming. EuroGP 1999. Lecture Notes in Computer
+Science, vol 1598. Springer, Berlin, Heidelberg, 1999.
+
+\bibitem{ge_credit}A. Brabazon, M. O'Neill, Credit classification
+using grammatical evolution, Informatica \textbf{30.3}, 2006.
+
+\bibitem{ge_intrusion}S. Şen, J.A. Clark. A grammatical evolution
+approach to intrusion detection on mobile ad hoc networks, In: Proceedings
+of the second ACM conference on Wireless network security, 2009.
+
+\bibitem{ge_water}L. Chen, C.H. Tan, S.J. Kao, T.S. Wang, Improvement
+of remote monitoring on water quality in a subtropical reservoir by
+incorporating grammatical evolution with parallel genetic algorithms
+into satellite imagery, Water Research \textbf{ 42}, pp. 296-306,
+2008.
+
+\bibitem{ge_glykemia}J. I. Hidalgo, J. M. Colmenar, J.L. Risco-Martin,
+A. Cuesta-Infante, E. Maqueda, M. Botella,J. A. Rubio, Modeling glycemia
+in humans by means of Grammatical Evolution, Applied Soft Computing
+\textbf{20}, pp. 40-53, 2014.
+
+\bibitem{ge_ant}J. Tavares, F.B. Pereira, Automatic Design of Ant
+Algorithms with Grammatical Evolution. In: Moraglio, A., Silva, S.,
+Krawiec, K., Machado, P., Cotta, C. (eds) Genetic Programming. EuroGP
+2012. Lecture Notes in Computer Science, vol 7244. Springer, Berlin,
+Heidelberg, 2012.
+
+\bibitem{ge_datacenter}M. Zapater, J.L. Risco-Martín, P. Arroba,
+J.L. Ayala, J.M. Moya, R. Hermida, Runtime data center temperature
+prediction using Grammatical Evolution techniques, Applied Soft Computing
+\textbf{49}, pp. 94-107, 2016.
+
+\bibitem{ge_trig}C. Ryan, M. O’Neill, J.J. Collins, Grammatical evolution:
+Solving trigonometric identities, proceedings of Mendel. Vol. 98.
+1998.
+
+\bibitem{ge_music}A.O. Puente, R. S. Alfonso, M. A. Moreno, Automatic
+composition of music by means of grammatical evolution, In: APL '02:
+Proceedings of the 2002 conference on APL: array processing languages:
+lore, problems, and applications July 2002 Pages 148--155. 
+
+\bibitem{ge_nn}Lídio Mauro Limade Campo, R. Célio Limã Oliveira,Mauro
+Roisenberg, Optimization of neural networks through grammatical evolution
+and a genetic algorithm, Expert Systems with Applications \textbf{56},
+pp. 368-384, 2016.
+
+\bibitem{ge_nn2}K. Soltanian, A. Ebnenasir, M. Afsharchi, Modular
+Grammatical Evolution for the Generation of Artificial Neural Networks,
+Evolutionary Computation \textbf{30}, pp 291--327, 2022.
+
+\bibitem{ge_constant}I. Dempsey, M.O' Neill, A. Brabazon, Constant
+creation in grammatical evolution, International Journal of Innovative
+Computing and Applications \textbf{1} , pp 23--38, 2007.
+
+\bibitem{ge_pacman}E. Galván-López, J.M. Swafford, M. O’Neill, A.
+Brabazon, Evolving a Ms. PacMan Controller Using Grammatical Evolution.
+In: , et al. Applications of Evolutionary Computation. EvoApplications
+2010. Lecture Notes in Computer Science, vol 6024. Springer, Berlin,
+Heidelberg, 2010.
+
+\bibitem{ge_supermario}N. Shaker, M. Nicolau, G. N. Yannakakis, J.
+Togelius, M. O'Neill, Evolving levels for Super Mario Bros using grammatical
+evolution, 2012 IEEE Conference on Computational Intelligence and
+Games (CIG), 2012, pp. 304-31.
+
+\bibitem{ge_energy}D. Martínez-Rodríguez, J. M. Colmenar, J. I. Hidalgo,
+R.J. Villanueva Micó, S. Salcedo-Sanz, Particle swarm grammatical
+evolution for energy demand estimation, Energy Science and Engineering
+\textbf{8}, pp. 1068-1079, 2020.
+
+\bibitem{ge_comb}N. R. Sabar, M. Ayob, G. Kendall, R. Qu, Grammatical
+Evolution Hyper-Heuristic for Combinatorial Optimization Problems,
+IEEE Transactions on Evolutionary Computation \textbf{17}, pp. 840-861,
+2013.
+
+\bibitem{ge_crypt}C. Ryan, M. Kshirsagar, G. Vaidya, G. et al. Design
+of a cryptographically secure pseudo random number generator with
+grammatical evolution. Sci Rep \textbf{12}, 8602, 2022.
+
+\bibitem{ge_decision}P.J. Pereira, P. Cortez, R. Mendes, Multi-objective
+Grammatical Evolution of Decision Trees for Mobile Marketing user
+conversion prediction, Expert Systems with Applications \textbf{168},
+114287, 2021.
+
+\bibitem{ge_analog}F. Castejón, E.J. Carmona, Automatic design of
+analog electronic circuits using grammatical evolution, Applied Soft
+Computing \textbf{62}, pp. 1003-1018, 2018.
+
 \bibitem{bnf1}J. W. Backus. The Syntax and Semantics of the Proposed
 International Algebraic Language of the Zurich ACM-GAMM Conference.
 Proceedings of the International Conference on Information Processing,
 UNESCO, 1959, pp.125-132.
-
-\bibitem{ge1}M. O’Neill, C. Ryan, Grammatical evolution, IEEE Trans.
-Evol. Comput. \textbf{5,}pp. 349--358, 2001.
 
 \bibitem{nn1}C. Bishop, Neural Networks for Pattern Recognition,
 Oxford University Press, 1995.
@@ -635,6 +1443,34 @@ Applications \textbf{38}, pp. 9991-9999, 2011
 I. Androulidakis and E. Zaitseva, Classification of EEG signals using
 feature creation produced by grammatical evolution, In: 24th Telecommunications
 Forum (TELFOR), pp. 1-4, 2016.
+
+\bibitem[(1977)]{ttest}Tukey, J.W., 1977. Exploratory Data Analysis.
+Addison-Wesley.
+
+\bibitem[(1977)]{patel}Patel, S., Lorincz, K., Hughes, R., Huggins,
+N., Growdon, J., Standaert, D., Akay, M., Dy, J., Welsh, M., Bonato,
+P., 2009. Monitoring Motor Fluctuations in Patients With Parkinson’s
+Disease Using Wearable Sensors. IEEE Trans. Inform. Technol. Biomed.
+13, 864--873. 
+
+\bibitem[(1977)]{Guyon}Guyon, I., Elisseeff, A., 2003. An Introduction
+to Variable and Feature Selection. Journal of Machine Learning Research
+3, 1157--1182.
+
+\bibitem[(1977)]{goetz}Goetz, C.G., Tilley, B.C., Shaftman, S.R.,
+Stebbins, G.T., Fahn, S., Martinez‐Martin, P., Poewe, W., Sampaio,
+C., Stern, M.B., Dodel, R., Dubois, B., Holloway, R., Jankovic, J.,
+Kulisevsky, J., Lang, A.E., Lees, A., Leurgans, S., LeWitt, P.A.,
+Nyenhuis, D., Olanow, C.W., Rascol, O., Schrag, A., Teresi, J.A.,
+Van Hilten, J.J., LaPelle, N., 2008. Movement Disorder Society‐sponsored
+revision of the Unified Parkinson’s Disease Rating Scale (MDS‐UPDRS):
+Scale presentation and clinimetric testing results. Movement Disorders
+23, 2129--2170. 
+
+\bibitem[(1977)]{chen}Chen, Z., Pang, M., Zhao, Z., Li, S., Miao,
+R., Zhang, Yifan, Feng, Xiaoyue, Feng, Xin, Zhang, Yexian, Duan, M.,
+Huang, L., Zhou, F., 2020. Feature selection may improve deep neural
+networks for the bioinformatics problems. Bioinformatics 36, 1542--1552. 
 
 \bibitem[(2025)]{optimus}I.G. Tsoulos, V. Charilogis, G. Kyrou, V.N.
 Stavrou, A. Tzallas, Journal of Open Source Software \textbf{10},
