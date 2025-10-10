@@ -375,35 +375,21 @@ Correspondence:
 \end_layout
 
 \begin_layout Abstract
-
-\series bold
-This study introduces a set of features designed to capture the motor symptoms of Parkinson’s Disease (PD) through detailed motion analysis,
- with a specific focus on how these symptoms change before and after medication.
- The features reflect key aspects of patient movement,
- such as tremor intensity,
- slowness,
+This study proposes a new methodology for evaluating Parkinson's Disease (PD) motor symptoms through complex motion analysis,
+ with particular emphasis on symptom variations in the periods leading up to and after medication intake.
+ Data were collected through a custom-made SmartGlove system during four standardized hand motor tests.
+ An exhaustive set of features was extracted from the sensor signals,
+ encompassing essential aspects of motor impairment,
+ such as tremor,
+ bradykinesia,
  rigidity,
- instability,
- and irregularity in motion patterns.
- By quantifying how consistently and smoothly a patient performs specific tasks,
- the features provide insight into motor control quality and neurological function.
- Crucially,
- they are labeled according to the patient's state—
-before and after receiving medication—
-allowing for a clear comparison of treatment effects.
- This enables not only objective tracking of symptom severity,
- but also evaluation of medication responsiveness.
- These features address a fundamental clinical need:
- moving beyond subjective observation toward continuous,
- data-driven monitoring of disease progression and therapeutic effectiveness in Parkinson’s Disease.
- In the current work the impact of feature construction using Grammatical Evolution on previously mentioned features in evaluated.
- We compare traditional neural architectures (MLP with ADAM,
- MLP with Genetic Algorithm,
- and RBF networks) against models trained on artificially constructed features.
- The results demonstrate a substantial reduction in classification error when 2 to 5 constructed features are used,
- achieving the lowest error rate (14.33%) with four generated features (FC4GEN),
- compared to 38.65% for the best baseline model (RBF).
- These findings highlight the effectiveness of evolutionary feature construction in enhancing classification accuracy.
+ and movement abnormality.
+ An original multi-method scoring procedure was adopted,
+ combining statistical significance,
+ model-based importance,
+ and variance contribution,
+ in order to determine the most discriminative biomarkers while maintaining the top - ranked features in the top 80%.
+ The crux of this paper is an assessment of the contribution of creating synthetic features based on Grammatical Evolution from the selected subset.
 \end_layout
 
 \begin_layout Keywords
@@ -829,7 +815,19 @@ nolink "false"
 \end_inset
 
  details the multi-faceted feature choice strategy and the composite scoring system used to determine the best biomarkers.
- Finally,
+ Also,
+ a detailed discussion on the experimental results is provided in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Discussion"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+ and finally,
  Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2144,6 +2142,69 @@ motor control
 
 \end_inset
 
+For the tri-axial accelerometer,
+ gyroscope,
+ and magnetometer data,
+ the magnitude of the signal vector was first calculated for each time point as 
+\begin_inset Formula 
+\begin{equation}
+d=\sqrt{x^{2}+y^{2}+z^{2}}\label{eq:distance}
+\end{equation}
+
+\end_inset
+
+and the subsequent features were then extracted from this combined magnitude signal to produce a single value per feature.
+ The flowchart of Figure illustrating the multi-domain feature extraction process from raw sensor data,
+ including statistical,
+ energy,
+ frequency-domain,
+ and dynamic/nonlinear features.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename flow1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The flowchart of he multi-domain feature extraction process from raw sensor data.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:flowExtraction"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -2227,7 +2288,11 @@ Model-Based Importance
 Random Fores
 \series default
 t):
- The Random Forest classifier was built such that it could distinguish between the two different states.
+
+\series bold
+ 
+\series default
+The Random Forest classifier was built such that it could distinguish between the two different states.
  The importance of a specific feature was computed using the average reduction in Gini impurity across all trees in the ensemble.
  Gini impurity is a measure of the purity of a node,
  and the importance is given by the weighted cumulative reduction in node impurity,
@@ -2241,46 +2306,72 @@ literal "false"
 \end_inset
 
 .
- The evaluation 
-\begin_inset Formula $\mbox{score}_{RF}$
+ The calculation was performed as follows:
+ For a single tree 
+\begin_inset Formula $T$
 \end_inset
 
- for a feature,
- f is given by:
+,
+ the importance of feature 
+\begin_inset Formula $f$
+\end_inset
+
+ is the sum of its Gini impurity decreases across all nodes where it is used for splitting:
+ 
 \begin_inset Formula 
 \begin{equation}
-\mbox{score}_{RF}=\frac{1}{N_{\mbox{trees}}}\sum\label{eq:rf}
+\mbox{Importance}_{T}\left(f\right)=\sum_{n\in S\left(T,f\right)}\Delta\mbox{Gini}\left(n,f\right)\label{eq:importance}
 \end{equation}
 
 \end_inset
 
-where 
-\begin_inset Formula $N_{\mbox{trees}}$
+Where 
+\begin_inset Formula $S\left(T,f\right)$
 \end_inset
 
- is the overall number of trees,
- 
+ is the set of all nodes in tree 
 \begin_inset Formula $T$
 \end_inset
 
- is one tree,
+ split by feature 
+\begin_inset Formula $f$
+\end_inset
+
+,
  and 
 \begin_inset Formula $\Delta\mbox{Gini}\left(n,f\right)$
 \end_inset
 
- decrease in Gini impurity at node 
+ is the decrease in Gini impurity at node 
 \begin_inset Formula $n$
 \end_inset
 
- when a split is made along feature 
+ achieved by splitting on 
 \begin_inset Formula $f$
 \end_inset
 
 .
- High-scoring variables have a larger effect on the model predicting
-\series bold
- (Breiman,
- 2001).
+ The importance is then averaged across all 
+\begin_inset Formula $N_{\mbox{trees}}$
+\end_inset
+
+ trees in the forest to obtain the final score:
+\begin_inset Formula 
+\begin{equation}
+\mbox{score}_{RF}(f)=\frac{1}{N_{\mbox{trees}}}\sum_{T=1}^{N_{\mbox{trees}}}\mbox{Importance}_{T}(f)\label{eq:rf}
+\end{equation}
+
+\end_inset
+
+Features with a higher 
+\begin_inset Formula $\mbox{score}$
+\end_inset
+
+
+\begin_inset Formula $\mbox{score}_{RF}(f)$
+\end_inset
+
+ are more influential in the model's decision-making process.
 \end_layout
 
 \begin_layout Itemize
@@ -2331,9 +2422,14 @@ Here,
 
 -th principal component.
  This cumulative sum provides the total impact of the feature on the total variance tackled by the Principal Component Analysis (PCA) model 
-\series bold
-(Jolliffe & Cadima,
- 2016).
+\begin_inset CommandInset citation
+LatexCommand citep
+key "pcaReview"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -4383,7 +4479,8 @@ max
 
 \end_inset
 
-
+Following the ranking by composite score,
+ the top 80% of features were retained for the subsequent model development and feature construction process.
 \end_layout
 
 \begin_layout Subsection
@@ -4725,7 +4822,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -5669,7 +5766,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5690,6 +5787,66 @@ Flowchart of the used genetic algorithm.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Flowchart-of-the"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ The flowchart that describes the proposed methodology for Parkinson’s Disease motor symptom analysis,
+ from data acquisition using the SmartGlove to feature construction and classification is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:End-to-end-flowchart-of"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename flowWhole.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+End-to-end flowchart of the proposed methodology for Parkinson’s Disease motor symptom analysis,
+ from data acquisition using the SmartGlove to feature construction and classification.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:End-to-end-flowchart-of"
 
 \end_inset
 
@@ -7877,6 +8034,134 @@ EXERCISE 3
 \end_layout
 
 \begin_layout Section
+Discussion
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Discussion"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Comparison of Motor Exercises Study
+\end_layout
+
+\begin_layout Standard
+The performance of our models was inconsistent across the four exercises,
+ but it also gave us important information about which motor activities produce the most discriminative data for distinguishing pre- and post-medication conditions.
+ The easiest task for classification was Exercise 0 (Resting Tremor Observation),
+ for all FC models produced the best results with the least error rates of around 10-11%.
+ The excellent performance here implies that resting-state kinematics,
+ almost certainly including subtle tremor and rigidity,
+ are greatly and reliably impacted by medication.
+ The relative ease of such a task ensures that,
+ to some extent,
+ "voluntary noise" due to move decisions is minimized,
+ such that the model isolates essential pathological signatures that were reliably modulated by medicine.
+ On the other hand,
+ Exercises 2 and 3 (Finger Tapping and Hand Opening-Closing),
+ as tests for bradykinesia and rigidity,
+ also had good results but with slightly elevated error rates.
+ The rapid,
+ repeated character of these tests for generating rich dynamic and non-linear data,
+ and the saliency of features such as the Root Mean Square of Successive Differences (RMSSD),
+ and the Lyapunov Exponent of the gyroscope,
+ highlight that the smoothness and predictability of motion is a chief biomarker.
+ Finally,
+ Exercise 1 (Postural Tremor and Coordination) was the most difficult for our models.
+ The complexity of the task,
+ with more complex planning of motor actions,
+ can create data with higher inter-subject variability or can involve neurobiological circuitry that is less reliably impacted by medication in the short-term.
+ In conclusion,
+ while all of these exercises contributed,
+ the most reliable information for the production of discriminative features in such a specific classification task were the resting tremor observation and specifically conducted bradykinesia tests.
+\end_layout
+
+\begin_layout Subsection
+Effectiveness of the Multi-Method Feature Scoring System
+\end_layout
+
+\begin_layout Standard
+One of the key contributions of the present work is the composite feature scoring system,
+ whereby it was successful in finding a sparse set of highly relevant biomarkers without prior recourse to a particular ML algorithm.
+ The power of such an approach is in the tripartite validation,
+ whereby it combined statistical significance,
+ model-driven importance,
+ and variance contribution.
+ The first,
+ the statistical T-test,
+ ensured that all chosen features had a significant mean shift between pharmacological states at the population scale,
+ a prerequisite for a useful biomarker.
+ The second,
+ the Random Forest importance,
+ assessed each feature's informativeness in a non-linear,
+ ensemble learning framework,
+ highlighting those that were most effective in splitting the data.
+ The third,
+ PCA variance contribution,
+ ensured that chosen features captured prominent patterns in the dataset,
+ optimizing for non-redundancy.
+ Empirical verification of such a strategy is in the composition of the top-ranked features,
+ whereby they were dominated by non-linear dynamic measures such as the Lyapunov exponent and Higuchi fractal dimension.
+ This suggests that the system successfully ranked features that described the complexity and chaos of PD motor control as most important,
+ something these sorts of simplistic statistical mean-based methods oftentimes fail to capture.
+ The reason why these very features subsequently became the foundation of the highly successful Grammatical Evolution process is that it empirically identifies that the scoring system was extraordinarily successful in reducing the raw feature space to the most physiologically relevant candidates of biomarkers,
+ with the direct consequence being the dramatic reduction in classification error.
+ Hence,
+ this is not so much a victory of the ultimate model,
+ but rather a direct consequence of such a rigorous,
+ multi-faced scoring system that revealed these data-driven biomarkers most relevant to the patient pharmacological state.
+\end_layout
+
+\begin_layout Subsection
+Limitations and Future Work
+\end_layout
+
+\begin_layout Standard
+Despite the successful findings,
+ the current study is limited by specific drawbacks that define clear paths for future research.
+ Foremost among these is partial activation of the full sensor complement of the SmartGlove.
+ While the information gathered through the inertial measurement unit (IMU) was very informative,
+ incremental information that potentially could arrive through the flex sensors and finger-to-palm touch sensors was not utilized in this evaluation.
+ These sensors may be used to offer direct,
+ quantitative measures of bradykinesia and rigidity—
+the range and velocity of finger flexion,
+ for example,
+ and the completeness of finger-tapping contacts—
+in values that at present are inferred exclusively based on IMU kinematics.
+ The application of these sensors in subsequent studies would allow for derivation of a more-complete digital model of hand motor function.
+\end_layout
+
+\begin_layout Standard
+Additionally,
+ the range of this research was limited by a modestly sized pool of participants.
+ To legitimize the reliability and portability of the thus derived features,
+ a larger and more heterogeneous dataset is required,
+ that would encompass patients in various stages of Parkinson's Disease,
+ in association with various age groups,
+ illness duration,
+ and treatment regimens.
+ It would make the feature selection process statistically more robust and legitimize that the thus determined biomarkers would represent the whole PD population,
+ rather than being unique to some subgroup,
+ only.
+ To overcome such identified limitations and extend our findings further,
+ our subsequent research will follow multiple avenues.
+ The near-term is the full integration of data from the flex and contact sensors into the feature extraction protocol,
+ thus generating a unified multi-modal dataset more comprehensively capturing the phenomenology of hand motion.
+ Concurrently,
+ we initiate a large-scale clinical validation study for the purpose of collecting data from a much larger population of subjects in diverse clinical settings.
+ This project shall allow us not only to verify the efficacy of our present features but also examine the feasibility of developing models for patient stratification by disease severity or for the prediction of individual responses to therapy.
+ Our long-term aim is to develop this methodology into a useful,
+ sustained,
+ at-home,
+ practical monitor,
+ providing continuous,
+ objective information for personalized therapeutic strategies for Parkinson's Disease.
+\end_layout
+
+\begin_layout Section
 Conclusions
 \begin_inset CommandInset label
 LatexCommand label
@@ -7885,6 +8170,34 @@ name "sec:Conclusions"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+This study successfully formulated a rigorous methodology for the unbiased assessment of motor symptoms in Parkinson's Disease,
+ finding that advanced feature engineering is necessary for accurate classification.
+ The main finding is that the generation of artificial features by Grammatical Evolution drastically outperforms conventional machine learning techniques operating with raw data.
+ By generating a short list of 2 to 5 strongly discriminative features,
+ we achieved a significant reduction of classification error,
+ with the best performing model reaching the feature construction model.
+\end_layout
+
+\begin_layout Standard
+The findings of our research contributed new meaningful information to the dataset.
+ The study indicated that few of the motor functions,
+ specifically observation of the resting tremor and execution of directional bradykinesia testing,
+ create the most discriminable kinematics for ascertaining drug effectiveness.
+ Additionally,
+ the multi-modal feature scoring system revealed meaningful potential for discerning the most important biomarkers,
+ of which the non-linear dynamics as well as signal complexity became prominent features of motor impairment for Parkinson's disease.
+\end_layout
+
+\begin_layout Standard
+The future studies will extend beyond the current boundaries by utilizing data from the unused contact and flex sensors,
+ and by validating the system in a larger and more heterogeneous patient population.
+ The long-term vision is to build such methodology into a practical,
+ user-friendly in-home,
+ real-time,
+ monitor that gives clinicians empirical data to personally guide therapeutic interventions and achieve better long-term patient outcomes.
 \end_layout
 
 \begin_layout Standard
@@ -9106,6 +9419,28 @@ Guyon,
  An Introduction to Variable and Feature Selection.
  Journal of Machine Learning Research 3,
  1157–1182.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "(2016)"
+key "pcaReview"
+literal "false"
+
+\end_inset
+
+T.
+ Jolliffe,
+ J.
+ Cadima,
+ Principal component analysis:
+ a review and recent developments, Philosophical Transactions of the Royal Society A:
+ Mathematical,
+ Physical and Engineering Sciences 374(2065),
+ p.
+ 20150202,
+ 2016.
 \end_layout
 
 \begin_layout Bibliography
