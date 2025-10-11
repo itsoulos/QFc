@@ -30,9 +30,9 @@ Tzallas and Vasileios Charilogis. }
 V. }
 
 
-\address{$^{1}$\quad{}Department of Informatics and Telecommunications,
-University of Ioannina, Greece;pint00141@uoi.gr\\
-$^{2}$\quad{}Department of Informatics and Telecommunications, University
+\address{$^{1}\quad$Department of Informatics and Telecommunications, University
+of Ioannina, Greece;pint00141@uoi.gr\\
+$^{2}\quad$Department of Informatics and Telecommunications, University
 of Ioannina, Greece; itsoulos@uoi.gr\\
 $^{3}\quad$Department of Informatics and Telecommunications, University
 of Ioannina, Greece; giannakeas@uoi.gr\\
@@ -45,20 +45,23 @@ of Ioannina, Greece; v.charilog@uoi.gr}
 \corres{Correspondence: itsoulos@uoi.gr}
 
 
-\abstract{This study proposes a new methodology for evaluating Parkinson's
-Disease (PD) motor symptoms through complex motion analysis, with
-particular emphasis on symptom variations in the periods leading up
-to and after medication intake. Data were collected through a custom-made
-SmartGlove system during four standardized hand motor tests. An exhaustive
-set of features was extracted from the sensor signals, encompassing
-essential aspects of motor impairment, such as tremor, bradykinesia,
-rigidity, and movement abnormality. An original multi-method scoring
-procedure was adopted, combining statistical significance, model-based
-importance, and variance contribution, in order to determine the most
-discriminative biomarkers while maintaining the top - ranked features
-in the top 80\%. The crux of this paper is an assessment of the contribution
-of creating synthetic features based on Grammatical Evolution from
-the selected subset.}
+\abstract{This study presents a methodology for evaluating motor symptoms in
+Parkinson’s disease through wearable motion analysis, with emphasis
+on symptom fluctuations immediately before and after medication intake.
+Data were collected using a custom SmartGlove across four standardized
+hand motor tests. A comprehensive feature set was extracted from inertial
+signals to capture tremor, bradykinesia, rigidity, and general movement
+abnormalities. We introduced a multi-method feature scoring scheme
+that integrates statistical significance, model-based importance,
+and variance contribution, and retained the top 80\% of top-ranked
+biomarkers to balance discriminability and robustness. Building upon
+this subset, we constructed higher-level (artificial) features with
+Grammatical Evolution (GE) and assessed their added value in PD motor
+assessment. Results indicate that GE-constructed features consistently
+improve classification and regression performance across exercises,
+particularly around the medication transition window, suggesting their
+utility as compact and interpretable digital biomarkers for remote
+monitoring.}
 
 
 \keyword{Machine learning; Evolutionary algorithms; Genetic Programming; Grammatical
@@ -236,36 +239,34 @@ condition's symptom profile is complex. As a result, slow symptom
 progression leads to misdiagnosis or delay, which leads to ineffective
 treatment, poor patient outcomes, and a lower quality of life \citep{jan_parkinsons}.
 
-The early detection and monitoring of Parkinson's disease (PD) could
-be greatly aided by recent technological advancements, particularly
-in the fields of machine learning (ML) and the internet of things
-(IoT). IoT sensors such as smartwatches, wearable health monitors,
-and others allow continuous and non-intrusive monitoring of motor
-activities, tremor frequencies, and gait abnormalities in real-time.
-These tools enable an evaluation of a patient's health while they
-are engaging in their regular activities and continue to gather large
-amounts of data outside of the typical clinical settings. One can
-more accurately identify early indicators of Parkinson's disease and
-enable early interventions by using machine learning techniques on
-this data \citep{javaid_ml,li_review}. For example, ML algorithms
+The early detection and monitoring of PD could be greatly aided by
+recent technological advancements, particularly in the fields of machine
+learning (ML) and the internet of things (IoT). IoT sensors such as
+smartwatches, wearable health monitors, and others allow continuous
+and non-intrusive monitoring of motor activities, tremor frequencies,
+and gait abnormalities in real-time. These tools enable an evaluation
+of a patient's health while they are engaging in their regular activities
+and continue to gather large amounts of data outside of the typical
+clinical settings. One can more accurately identify early indicators
+of PD and enable early interventions by using machine learning techniques
+on this data \citep{javaid_ml,li_review}. For example, ML algorithms
 can analyze speech patterns, motor skills, and other non-motor symptoms
 and differentiate subtle patterns that could foretell the full-blown
 expression of the disease.
 
 The pursuit of accurate, quantitative, and real-time measurement of
-Parkinson's disease (PD) motor symptoms has been the prime interest
-of computational neurology. It is rich in the current state-of-the-art
-research that utilizes diverse sensor modalities and machine learning
-(ML) methodologies. Pioneering work has validated the potential of
-smartphone sensor-derived composite scores, like the mobile Parkinson
-Disease Score (mPDS), that highly correlate to the conventional standards,
-such as the MDS-UPDRS, and that are capable of tracking intraday symptom
-variation as well as response to therapy \citep{zhan_therapy}. In
-the same line, smartphone-enabled active tests as well as passive
-monitoring during clinical trial protocols have been shown to be realistic,
-reliable, and highly sensible, usually uncovering abnormalities even
-among those patients rated as normal on specific items of the UPDRS
-during the clinic evaluation \citep{Lipsmeier}.
+PD motor symptoms has been the prime interest of computational neurology.
+It is rich in the current state-of-the-art research that utilizes
+diverse sensor modalities and machine learning (ML) methodologies.
+Pioneering work has validated the potential of smartphone sensor-derived
+composite scores, like the mobile PD Score (mPDS), that highly correlate
+to the conventional standards, such as the MDS-UPDRS, and that are
+capable of tracking intraday symptom variation as well as response
+to therapy \citep{zhan_therapy}. In the same line, smartphone-enabled
+active tests as well as passive monitoring during clinical trial protocols
+have been shown to be realistic, reliable, and highly sensible, usually
+uncovering abnormalities even among those patients rated as normal
+on specific items of the UPDRS during the clinic evaluation \citep{Lipsmeier}.
 
 In addition to smartphones, specific PD symptoms have been targeted
 with special-purpose sensors. Quantification of bradykinesia, the
@@ -290,7 +291,7 @@ as well as the processing of gait as well as tremor data obtained
 from off-the-shelf wearable devices. Still missing, though, is an
 integrative, high-fidelity method for tracking the subtle kinematics
 of hand movement, a key domain for the measurement of bradykinesia
-as well as tremor---beyond controlled smartphone tasks.
+as well as tremor beyond controlled smartphone tasks.
 
 This work contributes to this vibrant body of research through the
 proposal of a unifying methodology grounded in a bespoke SmartGlove
@@ -303,11 +304,11 @@ capture high-accuracy, multi-parameter kinematic output of the hand.
 that goes beyond single technologies by integrating statistical significance
 (t-tests), ensemble learning (Random Forest), and analysis of variance
 (PCA) to pick the most discriminating, non-redundant biomarkers.
-\item The recognition of essential attributes---especially non-linear dynamics
-and spectral traits---that are notably proficient in differentiating
-motor states in Parkinson's Disease patients both prior to and following
-medication, offers an enhanced array of digital biomarkers for prospective
-diagnostic and monitoring applications.
+\item The recognition of essential attributes especially nonlinear dynamics
+and spectral traits that are notably proficient in differentiating
+motor states in PD patients both prior to and following medication,
+offers an enhanced array of digital biomarkers for prospective diagnostic
+and monitoring applications.
 \end{itemize}
 By emphasizing the rich data space of hand kinematics and adopting
 a rigorous, multi-faceted analytical framework, this research hopes
@@ -320,11 +321,11 @@ specially developed SmartGlove presents a previously unmatched, high-fidelity
 view of hand motion's rich kinematics. Coupled with our multi-modal
 feature choice methodology, this system doesn't merely replicate clinical
 scores but uncovers a novel class of physiologically enlightening
-biomarkers---specifically in the non-linear dynamic range---that
-are hidden under conventional analysis. This end-to-end machine learning
-model is a significant advancement toward precise, data-based neurology
+biomarkers specifically in the nonlinear dynamic range that are hidden
+under conventional analysis. This end-to-end machine learning model
+is a significant advancement toward precise, data-based neurology
 from correlation against clinical scales to the detection of underlying
-digital biomarkers for Parkinson's disease.
+digital biomarkers for PD.
 
 In this work, extensive use was made of the Grammatical Evolution
 \citep{ge1} technique to create artificial features from existing
@@ -358,17 +359,17 @@ suggests directions of future research.
 \section{Materials and Methods\protect\label{sec:Materials-and-Methods}}
 
 This section describes the complete methodology developed for the
-objective measurement of motor symptoms for Parkinson's Disease (PD).
-The approach integrates a custom-developed data acquisition system
-with an advanced computational protocol for conveting raw sensor data
-into highly discriminative biomarkers. The analysis that follows follows
-this outline: first, the SmartGlove system and data collection protocol
-used during special motor experiments are described; second, the multi-domain
-feature extraction approach is outlined; third, the multi-method scoring
-regimen developed for feature selection is presented; and, last, the
-keynote technique of Grammatical Evolution for synthesizing virtual
-features for improved classification performance, dimension reduction,
-and generalizability is presented.
+objective measurement of motor symptoms PD. The approach integrates
+a custom-developed data acquisition system with an advanced computational
+protocol for conveting raw sensor data into highly discriminative
+biomarkers. The analysis that follows follows this outline: first,
+the SmartGlove system and data collection protocol used during special
+motor experiments are described, second, the multi-domain feature
+extraction approach is outlined, third, the multi-method scoring regimen
+developed for feature selection is presented, and, last, the keynote
+technique of Grammatical Evolution for synthesizing virtual features
+for improved classification performance, dimension reduction, and
+generalizability is presented.
 
 \subsection{SmartGlove System and Sources of Data}
 
@@ -545,7 +546,7 @@ Analysis in Parkinson's Disease are outlined in Table \ref{tab:Table-of-Characte
 \centering
 {\scriptsize Assessment of range }\\
 {\scriptsize of motion reduction}\\
-{\scriptsize{} in patients with Parkinson's disease}
+{\scriptsize{} in patients with PD}
 \end{cellvarwidth}\tabularnewline
 \hline 
 {\scriptsize Distribution Shape} & {\scriptsize Skewness, Kurtosis} & \begin{cellvarwidth}[t]
@@ -619,7 +620,7 @@ Analysis in Parkinson's Disease are outlined in Table \ref{tab:Table-of-Characte
 \end{cellvarwidth} & \begin{cellvarwidth}[t]
 \centering
 {\scriptsize Detection of Parkinson's }\\
-{\scriptsize tremor (4-6Hz)}
+{\scriptsize tremor (4-6 Hz)}
 \end{cellvarwidth}\tabularnewline
 \hline 
 {\scriptsize Spectral Shape} & \begin{cellvarwidth}[t]
@@ -687,12 +688,11 @@ sensor data.\protect\label{fig:flowExtraction}}
 \subsection{Feature Selection Methodology}
 
 Feature selection is a critical step in developing accurate and interpretable
-machine learning (ML) models for Parkinson’s disease (PD) detection.
-In this study, a multi-method scoring approach was applied to identify
-the most informative features that differentiate between pre-medication
-and post-medication states. Instead of relying on a single method,
-three complementary techniques were employed, and their outputs were
-combined into a composite score.
+machine learning (ML) models for PD detection. In this study, a multi-method
+scoring approach was applied to identify the most informative features
+that differentiate between pre-medication and post-medication states.
+Instead of relying on a single method, three complementary techniques
+were employed, and their outputs were combined into a composite score.
 
 \subsubsection{Multi-Method Scoring Approach}
 
@@ -864,7 +864,7 @@ The Grammatical Evolution procedure utilizes an extended version of
 the initial BNF grammar by adding enumeration in the the production
 rules. As an example of an extended BNF grammar consider the grammar
 shown in\textbf{ }Figure \ref{fig:BNF-grammar-of}.\textbf{ }The notation
-\textless{} \textgreater{} is used to enclose the non - terminal symbols
+\textless{} \textgreater{} is used to enclose the nonterminal symbols
 of the grammar. The value $d$ denotes the dimension of the input
 data. The Grammatical Evolution procedure starts from the start symbol
 of the program and gradually it creates valid programs in the underlying
@@ -875,7 +875,7 @@ of the production procedure has as follows:
 processing.
 \item \textbf{Select} the next rule using the equation Rule = V mod NR.
 The symbol NR denotes the number of production rules for the under
-processing non -- terminal symbol. 
+processing nonterminal symbol. 
 \end{itemize}
 A full working example of the production procedure is the chromosome
 \[
@@ -990,7 +990,7 @@ String & Chromosome & Operation\tabularnewline
 \subsection{The feature construction method\protect\label{subsec:The-feature-construction}}
 
 The technique of feature construction produces artificial features
-for classification or regression problems as non - linear transformations
+for classification or regression problems as nonlinear transformations
 of the original ones. The new features are evaluated using a machine
 learning technique, such as artificial neural networks \citep{nn1,nn2}
 or a Radial Basis Function (RBF) networks \citep{rbf1,rbf2}. This
@@ -1047,7 +1047,7 @@ new chromosomes are produced. For every pair of $\left(\tilde{z},\tilde{w}\right
 of new chromosomes, two two distinct chromosomes $\left(z,w\right)$
 are selected from the current population. The selection is performed
 using the tournament selection. The new chromosomes are produced from
-the old ones using the one - point crossover procedure, which is graphically
+the old ones using the one-point crossover procedure, which is graphically
 outlined in Figure \ref{fig:One-point-crossover}. 
 \item \textbf{Perform} the mutation procedure: for each each element of
 each chromosome, a random number $r\in\left[0,1\right]$ is selected.
@@ -1080,9 +1080,9 @@ A flowchart of the previous algorithm is shown in Figure \ref{fig:Flowchart-of-t
 \caption{Flowchart of the used genetic algorithm.\protect\label{fig:Flowchart-of-the}}
 
 \end{figure}
- The flowchart that describes the proposed methodology for Parkinson’s
-Disease motor symptom analysis, from data acquisition using the SmartGlove
-to feature construction and classification is shown in Figure \ref{fig:End-to-end-flowchart-of}.
+ The flowchart that describes the proposed methodology for PD motor
+symptom analysis, from data acquisition using the SmartGlove to feature
+construction and classification is shown in Figure \ref{fig:End-to-end-flowchart-of}.
 
 \begin{figure}[H]
 \begin{centering}
@@ -1103,7 +1103,7 @@ tool was incorporated \citep{optimus}. The experiments were conducted
 on machine with 128GB of ram, running the Debian Linux operating system.
 Each experiment was executed 30 times and the average classification
 error was measured and depicted in the related tables and graphs.
-Also, the 10 - fold cross validation technique was incorporated for
+Also, the 10-fold cross validation technique was incorporated for
 the validation of the experimental results. The values for the parameters
 of the proposed method are depicted in Table  \ref{tab:settings}.\textbf{
 }
@@ -1177,7 +1177,7 @@ models and FC3 generally maintains an edge, although FC4 occasionally
 approaches or overlaps within small margins. In EXERCISE 3 the same
 trend holds, with FC2, FC3 and FC4 achieving lower errors and FC3
 preserving the overall lead among the proposed methods. Overall, Table
-5 underscores that representation quality precedes classifier complexity;
+5 underscores that representation quality precedes classifier complexity,
 when features are properly constructed, even relatively simple decision
 rules can achieve consistently low error. In practice, orchestrating
 Feature Construction with linear or RBF-based decision layersor adopting
@@ -1275,7 +1275,7 @@ modulated by medicine. On the other hand, Exercises 2 and 3 (Finger
 Tapping and Hand Opening-Closing), as tests for bradykinesia and rigidity,
 also had good results but with slightly elevated error rates. The
 rapid, repeated character of these tests for generating rich dynamic
-and non-linear data, and the saliency of features such as the Root
+and nonlinear data, and the saliency of features such as the Root
 Mean Square of Successive Differences (RMSSD), and the Lyapunov Exponent
 of the gyroscope, highlight that the smoothness and predictability
 of motion is a chief biomarker. Finally, Exercise 1 (Postural Tremor
@@ -1299,12 +1299,12 @@ and variance contribution. The first, the statistical T-test, ensured
 that all chosen features had a significant mean shift between pharmacological
 states at the population scale, a prerequisite for a useful biomarker.
 The second, the Random Forest importance, assessed each feature's
-informativeness in a non-linear, ensemble learning framework, highlighting
+informativeness in a nonlinear, ensemble learning framework, highlighting
 those that were most effective in splitting the data. The third, PCA
 variance contribution, ensured that chosen features captured prominent
 patterns in the dataset, optimizing for non-redundancy. Empirical
 verification of such a strategy is in the composition of the top-ranked
-features, whereby they were dominated by non-linear dynamic measures
+features, whereby they were dominated by nonlinear dynamic measures
 such as the Lyapunov exponent and Higuchi fractal dimension. This
 suggests that the system successfully ranked features that described
 the complexity and chaos of PD motor control as most important, something
@@ -1329,9 +1329,9 @@ While the information gathered through the inertial measurement unit
 (IMU) was very informative, incremental information that potentially
 could arrive through the flex sensors and finger-to-palm touch sensors
 was not utilized in this evaluation. These sensors may be used to
-offer direct, quantitative measures of bradykinesia and rigidity---the
+offer direct, quantitative measures of bradykinesia and rigidity the
 range and velocity of finger flexion, for example, and the completeness
-of finger-tapping contacts---in values that at present are inferred
+of finger-tapping contacts in values that at present are inferred
 exclusively based on IMU kinematics. The application of these sensors
 in subsequent studies would allow for derivation of a more-complete
 digital model of hand motor function.
@@ -1339,38 +1339,38 @@ digital model of hand motor function.
 Additionally, the range of this research was limited by a modestly
 sized pool of participants. To legitimize the reliability and portability
 of the thus derived features, a larger and more heterogeneous dataset
-is required, that would encompass patients in various stages of Parkinson's
-Disease, in association with various age groups, illness duration,
-and treatment regimens. It would make the feature selection process
-statistically more robust and legitimize that the thus determined
-biomarkers would represent the whole PD population, rather than being
-unique to some subgroup, only. To overcome such identified limitations
-and extend our findings further, our subsequent research will follow
-multiple avenues. The near-term is the full integration of data from
-the flex and contact sensors into the feature extraction protocol,
-thus generating a unified multi-modal dataset more comprehensively
-capturing the phenomenology of hand motion. Concurrently, we initiate
-a large-scale clinical validation study for the purpose of collecting
-data from a much larger population of subjects in diverse clinical
-settings. This project shall allow us not only to verify the efficacy
-of our present features but also examine the feasibility of developing
-models for patient stratification by disease severity or for the prediction
-of individual responses to therapy. Our long-term aim is to develop
-this methodology into a useful, sustained, at-home, practical monitor,
-providing continuous, objective information for personalized therapeutic
-strategies for Parkinson's Disease.
+is required, that would encompass patients in various stages of PD,
+in association with various age groups, illness duration, and treatment
+regimens. It would make the feature selection process statistically
+more robust and legitimize that the thus determined biomarkers would
+represent the whole PD population, rather than being unique to some
+subgroup, only. To overcome such identified limitations and extend
+our findings further, our subsequent research will follow multiple
+avenues. The near-term is the full integration of data from the flex
+and contact sensors into the feature extraction protocol, thus generating
+a unified multi-modal dataset more comprehensively capturing the phenomenology
+of hand motion. Concurrently, we initiate a large-scale clinical validation
+study for the purpose of collecting data from a much larger population
+of subjects in diverse clinical settings. This project shall allow
+us not only to verify the efficacy of our present features but also
+examine the feasibility of developing models for patient stratification
+by disease severity or for the prediction of individual responses
+to therapy. Our long-term aim is to develop this methodology into
+a useful, sustained, at-home, practical monitor, providing continuous,
+objective information for personalized therapeutic strategies for
+PD.
 
 \section{Conclusions\protect\label{sec:Conclusions}}
 
 This study successfully formulated a rigorous methodology for the
-unbiased assessment of motor symptoms in Parkinson's Disease, finding
-that advanced feature engineering is necessary for accurate classification.
-The main finding is that the generation of artificial features by
-Grammatical Evolution drastically outperforms conventional machine
-learning techniques operating with raw data. By generating a short
-list of 2 to 4 strongly discriminative features, we achieved a significant
-reduction of classification error, with the best performing model
-reaching the feature construction model.
+unbiased assessment of motor symptoms in PD, finding that advanced
+feature engineering is necessary for accurate classification. The
+main finding is that the generation of artificial features by Grammatical
+Evolution drastically outperforms conventional machine learning techniques
+operating with raw data. By generating a short list of 2 to 4 strongly
+discriminative features, we achieved a significant reduction of classification
+error, with the best performing model reaching the feature construction
+model.
 
 The findings of our research contributed new meaningful information
 to the dataset. The study indicated that few of the motor functions,
@@ -1378,9 +1378,8 @@ specifically observation of the resting tremor and execution of directional
 bradykinesia testing, create the most discriminable kinematics for
 ascertaining drug effectiveness. Additionally, the multi-modal feature
 scoring system revealed meaningful potential for discerning the most
-important biomarkers, of which the non-linear dynamics as well as
-signal complexity became prominent features of motor impairment for
-Parkinson's disease.
+important biomarkers, of which the nonlinear dynamics as well as signal
+complexity became prominent features of motor impairment for PD.
 
 The future studies will extend beyond the current boundaries by utilizing
 data from the unused contact and flex sensors, and by validating the
@@ -1393,13 +1392,22 @@ patient outcomes.
 \vspace{6pt}
 
 
-\authorcontributions{Fo}
+\authorcontributions{Conceptualization, A.P. and I.G.T.;\textbf{ }methodology, A.P. and
+I.G.T.;\textbf{ }software, I.G.T.;\textbf{ }validation, A.P., A.T.
+and N.G.;\textbf{ }formal analysis, V.C., N.G. and I.G.T.;\textbf{
+}investigation, A.P. and N.G.;\textbf{ }resources, A.P. and I.G.T.;\textbf{
+}data curation, A.P. and I.G.T.;\textbf{ }writing---original draft
+preparation, A.P., N.G. and I.G.T.;\textbf{ }writing---review and
+editing,\textbf{ }A.P, V.C. and I.G.T.; visualization, V.C.;\textbf{
+}supervision, A.T; project administration, N.G.; funding acquisition,
+A.T.\textbf{ }All authors have read and agreed to the published version
+of the manuscript.}
 
 \funding{This research has been financed by the European Union : Next Generation
 EU through the Program Greece 2.0 National Recovery and Resilience
-Plan , under the call RESEARCH -- CREATE -- INNOVATE, project name
-“iCREW: Intelligent small craft simulator for advanced crew training
-using Virtual Reality techniques\textquotedbl{} (project code:TAEDK-06195).}
+Plan, under the call RESEARCH-CREATE-INNOVATE, project name “iCREW:
+Intelligent small craft simulator for advanced crew training using
+Virtual Reality techniques\textquotedbl{} (project code:TAEDK-06195).}
 
 \institutionalreview{Not applicable.}
 
