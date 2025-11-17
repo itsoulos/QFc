@@ -1,4 +1,4 @@
-%% LyX 2.4.0~RC3 created this file.  For more info, see https://www.lyx.org/.
+%% LyX 2.4.3 created this file.  For more info, see https://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi}
 \usepackage[utf8]{inputenc}
@@ -45,23 +45,28 @@ of Ioannina, Greece; v.charilog@uoi.gr}
 \corres{Correspondence: itsoulos@uoi.gr}
 
 
-\abstract{This study presents a methodology for evaluating motor symptoms in
-Parkinson’s disease through wearable motion analysis, with emphasis
-on symptom fluctuations immediately before and after medication intake.
-Data were collected using a custom SmartGlove across four standardized
-hand motor tests. A comprehensive feature set was extracted from inertial
-signals to capture tremor, bradykinesia, rigidity, and general movement
-abnormalities. We introduced a multi-method feature scoring scheme
-that integrates statistical significance, model-based importance,
-and variance contribution, and retained the top 80\% of top-ranked
-biomarkers to balance discriminability and robustness. Building upon
-this subset, we constructed higher-level (artificial) features with
-Grammatical Evolution (GE) and assessed their added value in PD motor
-assessment. Results indicate that GE-constructed features consistently
-improve classification and regression performance across exercises,
-particularly around the medication transition window, suggesting their
-utility as compact and interpretable digital biomarkers for remote
-monitoring.}
+\abstract{People with Parkinson’s disease often show changes in their movement
+abilities during the day, especially around the time they take medication.
+Being able to record these variations in an objective way can help
+doctors adapt treatment and follow disease changes more closely. A
+methodology for quantitative motor assessment, is proposed in this
+work. It employs data from a custom SmartGlove equipped with inertial
+sensors. A multi-method feature selection scheme is developed, integrating
+statistical significance, model-based importance, and variance contribution.
+The most significant features were retained, and higher-level artificial
+features were generated using Grammatical Evolution (GE). The framework
+combines multi-criteria feature selection with evolutionary feature
+construction, providing a compact and interpretable representation
+of motor behavior. Additionally, the framework highlights nonlinear
+and composite features as potential digital biomarkers for Parkinson’s
+monitoring. The method was validated on recordings collected from
+Parkinson’s patients before and after medication intake. The recordings
+have been retrieved during four standardized hand motor tasks targeting
+tremor, bradykinesia, rigidity, and general movement anomalies. The
+proposed method was compared with five existing machine learning models
+based on Artificial Neural Networks. GE-based features reduced classification
+errors to 10-19\%, outperforming baseline models. Furthermore, the
+proposed methodology performs prediction and recall 80-88\%.}
 
 
 \keyword{Machine learning; Evolutionary algorithms; Genetic Programming; Grammatical
@@ -356,7 +361,7 @@ and finally, Section \ref{sec:Conclusions} discusses implications
 of the research results, points out limitations of the study, and
 suggests directions of future research.
 
-\section{Materials and Methods\protect\label{sec:Materials-and-Methods}}
+\section{Materials and Methods\label{sec:Materials-and-Methods}}
 
 This section describes the complete methodology developed for the
 objective measurement of motor symptoms PD. The approach integrates
@@ -398,6 +403,11 @@ the surrounding environment).
 and movement. IMU has outputs of up to a sampling rate of 100 Hz and
 a resolution of 16 bits.
 \end{enumerate}
+The custom 9-axis IMU provides data with a resolution of 16 bits and
+a sampling rate of up to 100 Hz. All sensor modalities---IMU, flex,
+and contact---were sampled synchronously at 100 Hz by the onboard
+System-on-Chip (SoC).
+
 The system is supplemented with a power management circuitry developed
 for lithium-polymer batteries, as well as with flash memory used for
 transient storage of data. The SmartGlove complies with the IEC 60601-1
@@ -414,6 +424,15 @@ Regulation (GDPR).
 
 \subsection{Data Collection Exercises}
 
+For the scope of this study, the analysis was conducted exclusively
+on data from the 9-axis IMU (accelerometer, gyroscope, and magnetometer).
+While the SmartGlove also incorporates flex and contact sensors, the
+IMU data provides a comprehensive foundation for capturing the core
+kinematic characteristics of tremor, bradykinesia, and overall movement
+dynamics targeted in our exercises. The integration of flex and contact
+sensor data is a key direction for future work to capture a more complete
+digital model of hand function.
+
 The data recording at 100 Hz sampling frequency was selected for efficient
 tremor frequency (4-6 Hz) and bradykinesia capture. Prior to and after
 the administration of medicines, measurements were recorded, in order
@@ -421,10 +440,17 @@ for this therapeutic effect of medicines. to be investigated. Four
 motor activities, according to standardized clinical examination,
 were performed:
 \begin{itemize}
-\item Exercise 0 (\textbf{Resting Tremor Observation)}): The patient was
-asked to sit with hands on their thighs, palms facing upwards, counting
-from 1 to 10. This evaluates postural stability, rest tremor. An example
-of this exercise is shown in Figure \ref{fig:exercise0}.
+\item Exercise 0 (\textbf{Resting Tremor Observation)}): For the evaluation
+of resting tremor (item 3.17 of the MDS-UPDRS) participants were seated
+in a chair, with the hands resting in a supported position (on the
+arm-rests) and the feet flat on the floor for 10 s according to the
+standard instructions. In our study, we adopted a slightly modified
+posture (hands resting on the thighs, palms facing upward) in order
+to align with the SmartGlove positioning protocol used for all participants.
+While this deviation from the canonical arms-rest position may impact
+comparability with other studies, it ensures consistent sensor placement
+and data acquisition across our cohort. An example of this exercise
+is shown in Figure \ref{fig:exercise0}.
 \item Exercise 1 (\textbf{Test for Postural Tremor and Coordination}): The
 patient as shown in Figure \ref{fig:exercise1} held hands at shoulder
 height with fingers interlocked and attempted touching their index
@@ -444,28 +470,42 @@ and bradykinesia and an example of this exercise is shown in Figure
 \begin{centering}
 \includegraphics[scale=0.5]{exercise0}
 \par\end{centering}
-\caption{Resting Tremor Observation\protect\label{fig:exercise0}}
+\caption{Resting Tremor Observation task. Illustration of the first exercise
+in which participants remained seated with their hands resting on
+their thighs, palms facing upward, allowing clear observation of resting
+tremor amplitude and rhythm under baseline conditions before or after
+medication.\label{fig:exercise0}}
 
 \end{figure}
 \begin{figure}[H]
 \begin{centering}
 \includegraphics[scale=0.5]{exercise1}
 \par\end{centering}
-\caption{Test for Postural Tremor and Coordination\protect\label{fig:exercise1}}
+\caption{Postural Tremor and Coordination test. Depiction of the exercise used
+to evaluate postural tremor and hand--eye coordination, where subjects
+held their hands at shoulder height and attempted to touch their index
+fingers together while counting, revealing upper-limb stability and
+precision of movement.\label{fig:exercise1}}
 
 \end{figure}
 \begin{figure}[H]
 \begin{centering}
 \includegraphics[scale=0.5]{exercise2}
 \par\end{centering}
-\caption{Finger Tapping Speed Test\protect\label{fig:exercise2}}
+\caption{Finger Tapping Speed test. The participant performed ten rapid consecutive
+taps between the thumb and index finger, assessing bradykinesia and
+the speed of repetitive fine-motor actions characteristic of Parkinson’s
+disease.\label{fig:exercise2}}
 
 \end{figure}
 \begin{figure}[H]
 \begin{centering}
 \includegraphics[scale=0.5]{exercise3}
 \par\end{centering}
-\caption{Hand Opening-Closing Test\protect\label{fig:exercise3}}
+\caption{Hand Opening--Closing test. Illustration of the exercise in which
+the subject repeatedly performed full fist closures followed by full
+hand extensions, quantifying rigidity and bradykinetic movement through
+the amplitude and regularity of the motion.\label{fig:exercise3}}
 
 \end{figure}
 
@@ -506,7 +546,7 @@ body of literature on PD analysis. The characteristics for Movement
 Analysis in Parkinson's Disease are outlined in Table \ref{tab:Table-of-Characteristics}.
 
 \begin{table}[H]
-\caption{Table of Characteristics for Movement Analysis in Parkinson's Disease.\protect\label{tab:Table-of-Characteristics}}
+\caption{Table of Characteristics for Movement Analysis in Parkinson's Disease.\label{tab:Table-of-Characteristics}}
 
 \raggedright{}{\scriptsize{}%
 \begin{tabular}{|c|c|c|c|}
@@ -679,13 +719,27 @@ and dynamic/nonlinear features.
 \begin{centering}
 \includegraphics[scale=0.5]{flow1}
 \par\end{centering}
-\caption{The flowchart of he multi-domain feature extraction process from raw
-sensor data.\protect\label{fig:flowExtraction}}
+\caption{Multi-domain feature extraction process. Flowchart summarizing the
+complete pipeline that transforms raw sensor signals from the accelerometer,
+gyroscope, and magnetometer into statistical, frequency-domain, and
+nonlinear dynamic features used for further analysis..\label{fig:flowExtraction}}
 
 \end{figure}
 
 
 \subsection{Feature Selection Methodology}
+
+The feature selection process was applied to a dataset derived from
+a cohort of 14 patients with Parkinson's disease. Data were collected
+for each patient in both the practical OFF and ON medication states.
+The ON state assessment was conducted 1-1.5 hours after medication
+intake. To generate a sufficient number of instances for robust model
+development from the kinematic time-series, the feature extraction
+process (Section 2.3) with 1-second windows and 50\% overlap was used.
+This yielded a final dataset of 251, 357, 427, and 333 feature vectors
+for Exercises 0, 1, 2, and 3, respectively. The following methodology
+was used to identify the most discriminative features within this
+dataset.
 
 Feature selection is a critical step in developing accurate and interpretable
 machine learning (ML) models for PD detection. In this study, a multi-method
@@ -785,7 +839,7 @@ characteristics associated with PD symptoms \citep{goetz,chen}. In
 Table \ref{tab:Top-20-features} the top 20 features are presented.
 
 \begin{table}[H]
-\caption{Top 20 features scored\protect\label{tab:Top-20-features}}
+\caption{Top 20 features scored\label{tab:Top-20-features}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|c|}
@@ -847,7 +901,7 @@ Following the ranking by composite score, the top 80\% of features
 were retained for the subsequent model development and feature construction
 process.
 
-\subsection{Grammatical Evolution preliminaries \protect\label{subsec:Preliminaries}}
+\subsection{Grammatical Evolution preliminaries \label{subsec:Preliminaries}}
 
 Grammatical Evolution procedure can be considered as a genetic algorithm,
 where the chromosomes are sets of randomly chosen integers. These
@@ -886,7 +940,11 @@ is produced for the grammar of Figure \ref{fig:BNF-grammar-of}. The
 production steps are shown in Table \ref{tab:table_with_steps}. 
 
 \begin{figure}[H]
-\caption{An example of an extended BNF grammar.\protect\label{fig:BNF-grammar-of}}
+\caption{Example of an extended Backus--Naur Form (BNF) grammar used in Grammatical
+Evolution. The diagram outlines the structure of production rules
+applied to generate new mathematical expressions from existing features,
+enabling the automatic construction of artificial variables through
+evolutionary search.\label{fig:BNF-grammar-of}}
 
 \begin{lyxcode}
 S::=\textless expr\textgreater ~~~(0)~
@@ -953,7 +1011,7 @@ S::=\textless expr\textgreater ~~~(0)~
 \end{lyxcode}
 \end{figure}
 \begin{table}[H]
-\caption{A series of production steps for the example chromosome. \protect\label{tab:table_with_steps}}
+\caption{A series of production steps for the example chromosome. \label{tab:table_with_steps}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|}
@@ -987,7 +1045,7 @@ String & Chromosome & Operation\tabularnewline
 \end{table}
 
 
-\subsection{The feature construction method\protect\label{subsec:The-feature-construction}}
+\subsection{The feature construction method\label{subsec:The-feature-construction}}
 
 The technique of feature construction produces artificial features
 for classification or regression problems as nonlinear transformations
@@ -1069,7 +1127,10 @@ and report the associated test error.\textbf{.}
 \begin{centering}
 \includegraphics[scale=0.5]{cross2}
 \par\end{centering}
-\caption{One point crossover method, used in the Grammatical Evolution procedure.\protect\label{fig:One-point-crossover}}
+\caption{One-point crossover operation in the Grammatical Evolution procedure.
+Schematic representation showing how two parent chromosomes exchange
+genetic material to produce offspring solutions during the evolutionary
+optimization step.\label{fig:One-point-crossover}}
 \end{figure}
 A flowchart of the previous algorithm is shown in Figure \ref{fig:Flowchart-of-the}.
 
@@ -1077,7 +1138,10 @@ A flowchart of the previous algorithm is shown in Figure \ref{fig:Flowchart-of-t
 \begin{centering}
 \includegraphics[scale=0.5]{flow}
 \par\end{centering}
-\caption{Flowchart of the used genetic algorithm.\protect\label{fig:Flowchart-of-the}}
+\caption{Flowchart of the genetic algorithm applied for feature construction.
+Step-by-step depiction of the Grammatical Evolution workflow, from
+population initialization and evaluation to selection, crossover,
+and mutation, leading to optimized artificial features.\label{fig:Flowchart-of-the}}
 
 \end{figure}
  The flowchart that describes the proposed methodology for PD motor
@@ -1088,27 +1152,31 @@ construction and classification is shown in Figure \ref{fig:End-to-end-flowchart
 \begin{centering}
 \includegraphics[scale=0.5]{flowWhole}
 \par\end{centering}
-\caption{End-to-end flowchart of the proposed methodology for Parkinson’s Disease
-motor symptom analysis, from data acquisition using the SmartGlove
-to feature construction and classification.\protect\label{fig:End-to-end-flowchart-of}}
+\caption{End-to-end methodological framework for Parkinson’s Disease motor
+symptom analysis. Comprehensive overview of the entire SmartGlove
+pipeline---from sensor-based data acquisition and preprocessing to
+feature selection, Grammatical Evolution, and final machine-learning
+classification.\label{fig:End-to-end-flowchart-of}}
 
 \end{figure}
 
 
-\section{Results\protect\label{sec:Results}}
+\section{Results\label{sec:Results}}
 
-The code used in the experiments was code in the C++ programming language
-and for the optimization methods the freely available Optimus programming
-tool was incorporated \citep{optimus}. The experiments were conducted
-on machine with 128GB of ram, running the Debian Linux operating system.
-Each experiment was executed 30 times and the average classification
-error was measured and depicted in the related tables and graphs.
-Also, the 10-fold cross validation technique was incorporated for
-the validation of the experimental results. The values for the parameters
-of the proposed method are depicted in Table  \ref{tab:settings}.\textbf{
+The machine learning models were applied to a binary classification
+task to distinguish between the pre-medication (OFF) and post-medication
+(ON) states. The code used in the experiments was code in the C++
+programming language and for the optimization methods the freely available
+Optimus programming tool was incorporated \citep{optimus}. The experiments
+were conducted on machine with 128GB of ram, running the Debian Linux
+operating system. Each experiment was executed 30 times and the average
+classification error was measured and depicted in the related tables
+and graphs. Also, the 10-fold cross validation technique was incorporated
+for the validation of the experimental results. The values for the
+parameters of the proposed method are depicted in Table  \ref{tab:settings}.\textbf{
 }
 \begin{table}[H]
-\caption{The values for the parameters for the current work.\protect\label{tab:settings}}
+\caption{The values for the parameters for the current work.\label{tab:settings}}
 
 \centering{}%
 \begin{tabular}{|c|c|c|}
@@ -1187,7 +1255,7 @@ noise. The average results for this table are also outlined graphically
 in Figure \ref{fig:The-average-classification}.
 
 \begin{table}[H]
-\caption{Experimental results for various exercises.\protect\label{tab:exper}}
+\caption{Experimental results for various exercises.\label{tab:exper}}
 
 \raggedright{}{\footnotesize{}%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -1208,8 +1276,11 @@ in Figure \ref{fig:The-average-classification}.
 \begin{figure}[H]
 \includegraphics{parkinson_bars}
 
-\caption{The average classification error for all methods participated in the
-experiments.\protect\label{fig:The-average-classification}}
+\caption{Average classification error across all evaluated methods. Bar plot
+comparing the performance of different machine-learning approaches,
+showing that the proposed feature-construction models (FC2--FC4)
+consistently achieved the lowest classification errors, confirming
+the effectiveness of the Grammatical Evolution approach.\label{fig:The-average-classification}}
 
 \end{figure}
 Also the precision values for all exercises and machine learning methods
@@ -1217,7 +1288,7 @@ are outlined in Table \ref{tab:Precision-values.}. Similarly, the
 recall values are depicted in Table \ref{tab:Recall-values.}.
 
 \begin{table}[H]
-\caption{Precision values for all methods participated in the experiments.\protect\label{tab:Precision-values.}}
+\caption{Precision values for all methods participated in the experiments.\label{tab:Precision-values.}}
 
 \raggedright{}{\footnotesize{}%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -1236,7 +1307,7 @@ recall values are depicted in Table \ref{tab:Recall-values.}.
 \end{tabular}}{\footnotesize\par}
 \end{table}
 \begin{table}[H]
-\caption{Recall values for all methods used in the conducted experiments.\protect\label{tab:Recall-values.}}
+\caption{Recall values for all methods used in the conducted experiments.\label{tab:Recall-values.}}
 
 \raggedright{}{\footnotesize{}%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -1256,7 +1327,7 @@ recall values are depicted in Table \ref{tab:Recall-values.}.
 \end{table}
 
 
-\section{Discussion\protect\label{sec:Discussion}}
+\section{Discussion\label{sec:Discussion}}
 
 \subsection{Comparison of Motor Exercises Study}
 
@@ -1320,21 +1391,54 @@ of such a rigorous, multi-faced scoring system that revealed these
 data-driven biomarkers most relevant to the patient pharmacological
 state.
 
+\subsection{Interpretability and Biomarker Explainability}
+
+An additional perspective of the present work lies in the interpretability
+of the extracted and constructed features. Although the Grammatical
+Evolution framework operates in a data-driven way, the resulting artificial
+features were combinations of statistically significant and physiologically
+meaningful descriptors. Many of the top-ranked inputs in the feature
+scoring phase---such as the Lyapunov exponent, the Higuchi fractal
+dimension, and the Root Mean Square of Successive Differences (RMSSD)---are
+directly linked to the smoothness, stability, and complexity of movement,
+all of which are well-established indicators of motor impairment in
+Parkinson’s disease.
+
+In this sense, these variables can be viewed as digital biomarkers
+that reflect motor control degradation and the effect of medication
+on movement regularity. To further support interpretability, the contribution
+of each feature to model output was examined through its normalized
+importance during classification, showing that nonlinear dynamic descriptors
+consistently dominated the decision space. This correspondence between
+physiologically interpretable features and predictive importance indicates
+that the model’s decision process aligns with known pathophysiological
+mechanisms of Parkinsonian movement. Future versions of this work
+will include explicit explainability analyses (e.g., SHAP or LIME)
+to visualize feature contributions at the single-subject level, thereby
+reinforcing the transparency of the predictive framework and supporting
+clinical translation.
+
 \subsection{Limitations and Future Work}
 
 Despite the successful findings, the current study is limited by specific
-drawbacks that define clear paths for future research. Foremost among
-these is partial activation of the full sensor complement of the SmartGlove.
-While the information gathered through the inertial measurement unit
-(IMU) was very informative, incremental information that potentially
-could arrive through the flex sensors and finger-to-palm touch sensors
-was not utilized in this evaluation. These sensors may be used to
-offer direct, quantitative measures of bradykinesia and rigidity the
-range and velocity of finger flexion, for example, and the completeness
-of finger-tapping contacts in values that at present are inferred
-exclusively based on IMU kinematics. The application of these sensors
-in subsequent studies would allow for derivation of a more-complete
-digital model of hand motor function.
+drawbacks that define clear paths for future research. A primary limitation
+of this study is the partial utilization of the SmartGlove's full
+sensor suite. Our analysis was deliberately focused on the data from
+the inertial measurement unit (IMU). This focus allowed us to develop
+and validate our core methodological contribution, the multi-faceted
+feature scoring and Grammatical Evolution framework, on a rich but
+well-established kinematic data modality for assessing gross motor
+symptoms like tremor and bradykinesia. While the IMU data was highly
+informative, we acknowledge that the flex sensors and finger-to-palm
+contact sensors were not utilized. These sensors have the potential
+to provide direct, quantitative measures of rigidity (e.g., resistance
+to passive movement) and finer aspects of bradykinesia (e.g., range
+and velocity of individual finger flexion, completeness of finger-tapping
+contacts) that are currently only inferred from IMU kinematics. To
+overcome this limitation, our immediate future work includes the full
+integration of data from all available sensors into the feature extraction
+and modeling pipeline, which will enable a more holistic and precise
+quantification of hand motor function in Parkinson's disease.
 
 Additionally, the range of this research was limited by a modestly
 sized pool of participants. To legitimize the reliability and portability
@@ -1360,7 +1464,7 @@ a useful, sustained, at-home, practical monitor, providing continuous,
 objective information for personalized therapeutic strategies for
 PD.
 
-\section{Conclusions\protect\label{sec:Conclusions}}
+\section{Conclusions\label{sec:Conclusions}}
 
 This study successfully formulated a rigorous methodology for the
 unbiased assessment of motor symptoms in PD, finding that advanced
@@ -1409,9 +1513,13 @@ Plan, under the call RESEARCH-CREATE-INNOVATE, project name “iCREW:
 Intelligent small craft simulator for advanced crew training using
 Virtual Reality techniques\textquotedbl{} (project code:TAEDK-06195).}
 
-\institutionalreview{Not applicable.}
+\institutionalreview{The study was conducted in accordance with the Declaration of Helsinki
+and approved by the Scientific and Ethics Committee of the 417 Army
+Share Fund Hospital (NIMTS, Athens, Greece) under protocol number
+13/23.09.2021.}
 
-\informedconsent{Not applicable.}
+\informedconsent{All participants were fully informed about the purpose and procedures
+of the study and provided written consent prior to their participation.}
 
 \conflictsofinterest{The authors declare no conflicts of interest.}
 
