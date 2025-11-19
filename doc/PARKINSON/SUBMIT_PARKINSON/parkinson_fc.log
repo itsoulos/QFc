@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.11.10)  14 NOV 2025 16:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.11.18)  19 NOV 2025 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1603,7 +1603,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [14 <./flow.png> <./flowWhole.png>]
-Overfull \hbox (2.49998pt too wide) in paragraph at lines 1225--1225
+Overfull \hbox (2.49998pt too wide) in paragraph at lines 1247--1247
 []\T1/ppl/m/n/10 (-20) 10.  
  []
 
@@ -1620,10 +1620,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <parkinson_bars.png, id=373, 406.902pt x 255.354pt>
 File: parkinson_bars.png Graphic file (type png)
 <use parkinson_bars.png>
-Package pdftex.def Info: parkinson_bars.png  used on input line 1277.
+Package pdftex.def Info: parkinson_bars.png  used on input line 1299.
 (pdftex.def)             Requested size: 406.901pt x 255.35338pt.
 
-Overfull \hbox (12.54578pt too wide) in paragraph at lines 1277--1278
+Overfull \hbox (12.54578pt too wide) in paragraph at lines 1299--1300
 [][] 
  []
 
@@ -1636,7 +1636,48 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[16 <./parkinson_bars.png>]
+[16]
+<exercise0_roc.png, id=385, 677.53125pt x 526.96875pt>
+File: exercise0_roc.png Graphic file (type png)
+<use exercise0_roc.png>
+Package pdftex.def Info: exercise0_roc.png  used on input line 1359.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise1_roc.png, id=386, 677.53125pt x 526.96875pt>
+File: exercise1_roc.png Graphic file (type png)
+<use exercise1_roc.png>
+Package pdftex.def Info: exercise1_roc.png  used on input line 1359.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise2_roc.png, id=387, 677.53125pt x 526.96875pt>
+File: exercise2_roc.png Graphic file (type png)
+<use exercise2_roc.png>
+Package pdftex.def Info: exercise2_roc.png  used on input line 1361.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise3_roc.png, id=388, 677.53125pt x 526.96875pt>
+File: exercise3_roc.png Graphic file (type png)
+<use exercise3_roc.png>
+Package pdftex.def Info: exercise3_roc.png  used on input line 1361.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise0_pr.png, id=389, 677.53125pt x 526.96875pt>
+File: exercise0_pr.png Graphic file (type png)
+<use exercise0_pr.png>
+Package pdftex.def Info: exercise0_pr.png  used on input line 1369.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise1_pr.png, id=390, 677.53125pt x 526.96875pt>
+File: exercise1_pr.png Graphic file (type png)
+<use exercise1_pr.png>
+Package pdftex.def Info: exercise1_pr.png  used on input line 1369.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise2_pr.png, id=391, 677.53125pt x 526.96875pt>
+File: exercise2_pr.png Graphic file (type png)
+<use exercise2_pr.png>
+Package pdftex.def Info: exercise2_pr.png  used on input line 1371.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+<exercise3_pr.png, id=392, 677.53125pt x 526.96875pt>
+File: exercise3_pr.png Graphic file (type png)
+<use exercise3_pr.png>
+Package pdftex.def Info: exercise3_pr.png  used on input line 1371.
+(pdftex.def)             Requested size: 169.38239pt x 131.74185pt.
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1645,7 +1686,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[17]
+[17 <./parkinson_bars.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1654,7 +1695,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[18]
+[18 <./exercise0_roc.png (PNG copy)> <./exercise1_roc.png (PNG copy)> <./exerci
+se2_roc.png (PNG copy)> <./exercise3_roc.png (PNG copy)> <./exercise0_pr.png (P
+NG copy)> <./exercise1_pr.png (PNG copy)> <./exercise2_pr.png (PNG copy)> <./ex
+ercise3_pr.png (PNG copy)>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1690,7 +1734,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[22] 
+[22]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 24.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{24.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
+
+[23] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./parkinson_fc.aux)
  ***********
@@ -1701,13 +1754,13 @@ Package rerunfilecheck Info: File `parkinson_fc.out' has not changed.
 (rerunfilecheck)             Checksum: B21F71BACF99A8F0F755D332656388D3;3605.
  ) 
 Here is how much of TeX's memory you used:
- 34681 strings out of 475102
- 639834 string characters out of 5764876
+ 34779 strings out of 475102
+ 641964 string characters out of 5764876
  1125383 words of memory out of 5000000
- 56433 multiletter control sequences out of 15000+600000
+ 56527 multiletter control sequences out of 15000+600000
  632902 words of font info for 448 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 123i,13n,126p,5045b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,13n,126p,5045b,836s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/sheridan/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.
 600pk> </home/sheridan/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0
 800.375pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10
@@ -1719,10 +1772,10 @@ f-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/u
 plri8a.pfb>
-Output written on parkinson_fc.pdf (22 pages, 917176 bytes).
+Output written on parkinson_fc.pdf (23 pages, 1244330 bytes).
 PDF statistics:
- 542 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 156 named destinations out of 1000 (max. 500000)
- 100055 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 561 PDF objects out of 1000 (max. 8388607)
+ 433 compressed objects within 5 object streams
+ 160 named destinations out of 1000 (max. 500000)
+ 100095 words of extra memory for PDF output out of 106986 (max. 10000000)
 

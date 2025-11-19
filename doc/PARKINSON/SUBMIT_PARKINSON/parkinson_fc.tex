@@ -1172,9 +1172,31 @@ were conducted on machine with 128GB of ram, running the Debian Linux
 operating system. Each experiment was executed 30 times and the average
 classification error was measured and depicted in the related tables
 and graphs. Also, the 10-fold cross validation technique was incorporated
-for the validation of the experimental results. The values for the
-parameters of the proposed method are depicted in Table  \ref{tab:settings}.\textbf{
-}
+for the validation of the experimental results. Table \ref{tab:Distribution-of-patterns}
+presents the distribution of patterns into categories for each data
+set. The values for the parameters of the proposed method are depicted
+in Table  \ref{tab:settings}.\textbf{ }
+\begin{table}[H]
+
+\caption{Distribution of patterns for each dataset.\label{tab:Distribution-of-patterns}}
+
+\begin{centering}
+\begin{tabular}{|c|c|c|}
+\hline 
+DATASET & CLASS-0 & CLASS-1\tabularnewline
+\hline 
+\hline 
+EXERCISE0 & 251 & 241\tabularnewline
+\hline 
+EXERCISE1 & 357 & 343\tabularnewline
+\hline 
+EXERCISE2 & 427 & 364\tabularnewline
+\hline 
+EXERCISE3 & 333 & 328\tabularnewline
+\hline 
+\end{tabular}
+\par\end{centering}
+\end{table}
 \begin{table}[H]
 \caption{The values for the parameters for the current work.\label{tab:settings}}
 
@@ -1325,6 +1347,29 @@ recall values are depicted in Table \ref{tab:Recall-values.}.
 \hline 
 \end{tabular}}{\footnotesize\par}
 \end{table}
+ Moreover, Indicative plots for ROC and PR performance curves are
+outlined in Figures \ref{fig:roc} and \ref{fig:pr} respectively.
+
+\begin{figure}[H]
+\caption{Indicative plots for the ROC curves, involving the genetic algorithm,
+the NNC method and the proposed feature construction technique.\label{fig:roc}}
+
+$ $
+
+\includegraphics[scale=0.25]{exercise0_roc}\includegraphics[scale=0.25]{exercise1_roc}
+
+\includegraphics[scale=0.25]{exercise2_roc}\includegraphics[scale=0.25]{exercise3_roc}
+\end{figure}
+\begin{figure}[H]
+
+\caption{Indicative plots for the PR curves.\label{fig:pr}}
+
+$ $
+
+\includegraphics[scale=0.25]{exercise0_pr}\includegraphics[scale=0.25]{exercise1_pr}
+
+\includegraphics[scale=0.25]{exercise2_pr}\includegraphics[scale=0.25]{exercise3_pr}
+\end{figure}
 
 
 \section{Discussion\label{sec:Discussion}}
